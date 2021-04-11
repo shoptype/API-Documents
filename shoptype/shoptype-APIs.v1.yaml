@@ -3795,7 +3795,7 @@ components:
         - amount
         - currency
       title: Money
-      x-examples:
+      examples:
         Sample money object:
           amount: 77.71
           currency: USD
