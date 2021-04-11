@@ -597,7 +597,7 @@ paths:
                 Successfully on boarded:
                   value:
                     message: Vendor details of vendor name Test Vendor Name saved successfully
-                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjBlMDc3NjI1LTJjNTItMjcwZC00YTMzLTQwYTQ4MDE1NzY5YyIsInVzZXJJZCI6IjRkN2ExNzEwLTMyNWUtNGVkZi05NGI2LTU3ZGY1ZGRkMjEyZiIsInVzZXJUeXBlIjoidmVuZG9yIiwiaXNzIjoic2hvcC10eXBlIn0.YPY2aEl9LES0WZt1gy97u8FgYd5FgSdaH5fI5pj_nKg
+                    token: fyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjBlMDc3NjI1LTJjNTItMjcwZC00YTMzLTQwYTQ4MDE1NzY5YyIsInVzZXJJZCI6IjRkN2ExNzEwLTMyNWUtNGVkZi05NGI2LTU3ZGY1ZGRkMjEyZiIsInVzZXJUeXBlIjoidmVuZG9yIiwiaXNzIjoic2hvcC10eXBlIn0.YPY2aEl9LES0WZt1gy97u8FgYd5FgSdaH5fI5pj_nKg
         '400':
           description: Bad Request
           content:
@@ -2672,6 +2672,7 @@ paths:
 
 
 
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -3799,4 +3800,3 @@ components:
           amount: 77.71
           currency: USD
   securitySchemes: {}
-
