@@ -1,0 +1,3802 @@
+openapi: 3.0.0
+info:
+  title: Shoptype Integration APIs
+  version: '1.0'
+  description: |-
+    Shoptype APIs allow a network to build an end to end platform to sell products.
+
+    Terminologies:
+    - Network: An entity defined on shoptype representing a marketplace. Eg, sheroes, toontype, etc.
+    - Platform: The website hosted by the network. Example, https://sheroes.network, https://veed.online, etc
+    - Coseller: An influencer who can market the product and make earnings through shoptype.
+    - Vendor: An entity defined on shoptype who owns the products.
+    - Network Operator: One who manages the network.
+    - DeviceId: A unique id generated and stored in browser to track a buyer.
+servers:
+  - url: 'https://dev-backend.shoptype.com'
+    description: dev
+  - url: 'https://beta-backend.shoptype.com'
+    description: beta
+  - url: 'https://backend.shoptype.com'
+    description: prod
+paths:
+  '/states/{country_code}':
+    parameters:
+      - schema:
+          type: string
+          example: US
+        name: country_code
+        in: path
+        description: Country Code
+        required: true
+    get:
+      summary: Get states for a country
+      operationId: get-states-country_code
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - country_code
+                        - name
+                        - state_code
+                      properties:
+                        country_code:
+                          type: string
+                          minLength: 1
+                        name:
+                          type: string
+                          minLength: 1
+                        state_code:
+                          type: string
+                          minLength: 1
+                required:
+                  - data
+              examples:
+                States in US:
+                  value:
+                    data:
+                      - country_code: US
+                        name: Alabama
+                        state_code: AL
+                      - country_code: US
+                        name: Alaska
+                        state_code: AK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+              examples:
+                Invalid country code:
+                  value:
+                    error: country_code not found
+                    message: Invalid country_code
+      tags:
+        - utility
+  '/currency/{country_code}':
+    get:
+      summary: Get currency for a given country
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  currency:
+                    type: string
+                    minLength: 1
+                required:
+                  - currency
+              examples:
+                US currency:
+                  value:
+                    currency: USD
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+              examples:
+                invalid country code:
+                  value:
+                    message: currency not found
+      operationId: get-currency
+      description: Get currency for a given country
+      tags:
+        - utility
+    parameters:
+      - schema:
+          type: string
+          example: US
+        name: country_code
+        in: path
+        required: true
+        description: Country Code
+  /countries:
+    get:
+      summary: Get countries
+      tags:
+        - utility
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - name
+                        - iso3
+                        - iso2
+                        - phone_code
+                        - capital
+                        - currency
+                        - native
+                        - region
+                        - subregion
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+                          minLength: 1
+                        iso3:
+                          type: string
+                          minLength: 1
+                        iso2:
+                          type: string
+                          minLength: 1
+                        phone_code:
+                          type: string
+                          minLength: 1
+                        capital:
+                          type: string
+                          minLength: 1
+                        currency:
+                          type: string
+                          minLength: 1
+                        native:
+                          type: string
+                          minLength: 1
+                        region:
+                          type: string
+                          minLength: 1
+                        subregion:
+                          type: string
+                          minLength: 1
+                required:
+                  - data
+              examples:
+                Get all countries:
+                  value:
+                    data:
+                      - id: 1
+                        name: Afghanistan
+                        iso3: AFG
+                        iso2: AF
+                        phone_code: '93'
+                        capital: Kabul
+                        currency: AFN
+                        native: افغانستان
+                        region: Asia
+                        subregion: Southern Asia
+      operationId: get-countries
+      description: Get all countries
+  /register:
+    post:
+      summary: Register a new user
+      operationId: post-register
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                    required:
+                      - id
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - data
+                  - status
+                  - message
+              examples:
+                Successfully registered a user:
+                  value:
+                    data:
+                      id: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                    status: success
+                    message: User created successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                  status:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                  - status
+              examples:
+                User already registered:
+                  value:
+                    message: Email already exist
+                    status: error
+      description: Register a new user
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                phone:
+                  type: string
+                  minLength: 10
+                  maxLength: 10
+                email:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - name
+                - phone
+                - email
+                - password
+            examples:
+              Sign Up:
+                value:
+                  name: tom holland
+                  phone: '9880090999'
+                  email: tom_holland@mailinator.com
+                  password: Tom@1234
+        description: ''
+      parameters:
+        - schema:
+            type: string
+            example: 607274ee0cb35c0b894cb2bc
+          in: query
+          name: rid
+          description: Referral Id
+  /resend-verification-email:
+    post:
+      summary: Resend verification email
+      operationId: post-resend-verfication-email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                  userId:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+                  - userId
+              examples:
+                Successfully triggered:
+                  value:
+                    status: Success
+                    message: Verification email has been sent to your mail id
+                    userId: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+              examples:
+                Wrong email address:
+                  value:
+                    error: not_found
+                    message: User not found
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+              examples:
+                invalid email address:
+                  value:
+                    status: Failure
+                    message: Please send the request body in proper format
+      tags:
+        - user
+      description: Resend verification email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+              required:
+                - email
+            examples:
+              Valid payload:
+                value:
+                  email: tom_holland@mailinator.com
+        description: ''
+    parameters: []
+  /validate-email:
+    post:
+      summary: Verify the email
+      operationId: post-validate-email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  token:
+                    type: string
+                    minLength: 1
+                    description: JWT token
+                  id:
+                    type: string
+                    minLength: 1
+                    description: userId
+                  userType:
+                    type: string
+                required:
+                  - success
+                  - token
+                  - id
+              examples:
+                Successfully verified:
+                  value:
+                    success: true
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySWQiOiI0ZDdhMTcxMC0zMjVlLTRlZGYtOTRiNi01N2RmNWRkZDIxMmYiLCJpc3MiOiJzaG9wLXR5cGUifQ.oD6w9BKVCYUhhIdHYgJRBca_zDrDF9Qd4B0RamHwZbE
+                    id: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                    userType: ''
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - success
+                  - message
+              examples:
+                Invalid token:
+                  value:
+                    success: false
+                    message: Invalid Token
+      tags:
+        - user
+      description: When user clicks on the link sent in the verification email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                token:
+                  type: string
+                  minLength: 1
+              required:
+                - token
+            examples:
+              Valid body:
+                value:
+                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk3NTc1MGJlLTdhMWQtNGNkYS04MzRkLTFjMzE4YjkzMmM1MCIsInVzZXJpZCI6IjRkN2ExNzEwLTMyNWUtNGVkZi05NGI2LTU3ZGY1ZGRkMjEyZiIsInR5cGUiOiJlbWFpbF92ZXJpZmljYXRpb24iLCJpYXQiOjE2MTgwMTg1OTUsImV4cCI6MTYxODAyMjE5NX0.YrmTUR1tV5lKc7F8_HlCgEL0oICDrXb58sa_AdKmBCM
+  /authenticate:
+    post:
+      summary: Authenticate user for a given type
+      operationId: post-authenticate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  is_onboarded:
+                    type: boolean
+                  token:
+                    type: string
+                    minLength: 1
+                    description: JWT token
+                required:
+                  - is_onboarded
+                  - token
+              examples:
+                Coseller authenticated:
+                  value:
+                    is_onboarded: false
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySWQiOiI0ZDdhMTcxMC0zMjVlLTRlZGYtOTRiNi01N2RmNWRkZDIxMmYiLCJpc3MiOiJzaG9wLXR5cGUifQ.oD6w9BKVCYUhhIdHYgJRBca_zDrDF9Qd4B0RamHwZbE
+        '401':
+          description: Unauthorized
+      description: |-
+        A successfully verified user getting authenticated based on the following user types, 
+        - vendor 
+        - coseller
+        - network
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                userType:
+                  type: string
+                  minLength: 1
+                  enum:
+                    - coseller
+                    - vendor
+                    - network
+              required:
+                - userType
+            examples:
+              Coseller authentication:
+                value:
+                  userType: coseller
+              Vendor authentication:
+                value:
+                  userType: vendor
+              Network Operator Authentication:
+                value:
+                  userType: network
+      parameters:
+        - schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySWQiOiI0ZDdhMTcxMC0zMjVlLTRlZGYtOTRiNi01N2RmNWRkZDIxMmYiLCJpc3MiOiJzaG9wLXR5cGUifQ.oD6w9BKVCYUhhIdHYgJRBca_zDrDF9Qd4B0RamHwZbE
+          in: header
+          name: Authorization
+          description: Login token
+          required: true
+      tags:
+        - user
+  /vendors:
+    post:
+      summary: Create a new vendor
+      operationId: post-vendors
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                  token:
+                    type: string
+                    minLength: 1
+                    description: Updated vendor token
+                required:
+                  - message
+                  - token
+              examples:
+                Successfully on boarded:
+                  value:
+                    message: Vendor details of vendor name Test Vendor Name saved successfully
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjBlMDc3NjI1LTJjNTItMjcwZC00YTMzLTQwYTQ4MDE1NzY5YyIsInVzZXJJZCI6IjRkN2ExNzEwLTMyNWUtNGVkZi05NGI2LTU3ZGY1ZGRkMjEyZiIsInVzZXJUeXBlIjoidmVuZG9yIiwiaXNzIjoic2hvcC10eXBlIn0.YPY2aEl9LES0WZt1gy97u8FgYd5FgSdaH5fI5pj_nKg
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+              examples:
+                Already on boarded vendor:
+                  value:
+                    message: vendor account already linked
+      description: Onboard a new vendor
+      tags:
+        - vendor
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                productCategories:
+                  type: array
+                  minItems: 1
+                  description: Categories of products
+                  items:
+                    type: string
+                url:
+                  type: string
+                  minLength: 1
+                  description: URL of the vendor
+                  example: 'https://www.nike.com'
+                timestamp:
+                  type: number
+                  description: Current epoch time in millis
+                  example: 1618022863105
+              required:
+                - name
+                - productCategories
+                - url
+                - timestamp
+            examples:
+              Sample vendor details:
+                value:
+                  name: Test Vendor Name
+                  productCategories:
+                    - Apparel
+                  url: www.testvendor.com
+                  timestamp: 1618022863105
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              Vendor details:
+                value: '{"name":"Test Vendor Name","productCategories":["Apparel"],"url":"www.testvendor.com","timestamp":1618022863105}'
+        description: ''
+  /me:
+    get:
+      summary: Fetch user profile details
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    minLength: 1
+                    description: User Id
+                  name:
+                    type: string
+                    minLength: 1
+                  email:
+                    type: string
+                    minLength: 1
+                  phone:
+                    type: string
+                    minLength: 10
+                    maxLength: 10
+                  vendors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    description: Vendor details if the user has onbaorded as a vendor.
+                    items:
+                      $ref: '#/components/schemas/Vendor'
+                required:
+                  - _id
+                  - name
+                  - email
+                  - phone
+                  - vendors
+              examples:
+                User logged in as vendor:
+                  value:
+                    _id: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                    name: tom holland
+                    email: tom_holland@mailinator.com
+                    phone: '9880090999'
+                    vendors:
+                      - id: 0e077625-2c52-270d-4a33-40a48015769c
+                        name: Test Vendor Name
+                        user_id: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                        productCategories:
+                          - Apparel
+                        url: www.testvendor.com
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+      operationId: get-me
+      description: 'Fetch user profile details for user logged in a coseller, vendor or network operator'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: logged in user token
+          required: true
+  /cosellers:
+    post:
+      summary: Create a new coseller
+      operationId: post-cosellers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  token:
+                    type: string
+                    minLength: 1
+                    description: Updated coseller token
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - token
+                  - message
+              examples:
+                Successfully on boarded coseller:
+                  value:
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjZmMTMzZWFhLTA3ODctNjgxNC1hMjhkLWI1YTM0NjViYjcxMCIsInVzZXJJZCI6IjRkN2ExNzEwLTMyNWUtNGVkZi05NGI2LTU3ZGY1ZGRkMjEyZiIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A1XJbEIT3l-_edAh3pwh20sYP1TM4hd49vkul5s5yoY
+                    message: Coseller Details saved successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+              examples:
+                Coseller already onboarded:
+                  value:
+                    message: coseller account already linked
+      tags:
+        - coseller
+      description: Onboard a new coseller with all the profile details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: coseller token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                socialMediaAccounts:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      socialMediaName:
+                        type: string
+                        minLength: 1
+                      socialMediaLink:
+                        type: string
+                        minLength: 1
+                    required:
+                      - socialMediaName
+                      - socialMediaLink
+                gender:
+                  type: string
+                  minLength: 1
+                interests:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - socialMediaAccounts
+                - gender
+                - interests
+            examples:
+              Sample coseller profile:
+                value:
+                  socialMediaAccounts:
+                    - socialMediaName: TWITTER
+                      socialMediaLink: twitter.com/holland
+                    - socialMediaName: FACEBOOK
+                      socialMediaLink: facebook.com/holland
+                  gender: MALE
+                  interests:
+                    - Marketing
+                    - Gaming
+                    - Movies
+        description: Profile details
+    get:
+      summary: Fetch coseller profile details
+      operationId: get-cosellers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                    description: Coseller Id
+                  userId:
+                    type: string
+                    minLength: 1
+                  gender:
+                    type: string
+                    minLength: 1
+                  interests:
+                    type: array
+                    items:
+                      type: string
+                  socialMediaAccounts:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        socialMediaName:
+                          type: string
+                          minLength: 1
+                        socialMediaLink:
+                          type: string
+                          minLength: 1
+                      required:
+                        - socialMediaName
+                        - socialMediaLink
+                required:
+                  - id
+                  - userId
+                  - gender
+                  - interests
+                  - socialMediaAccounts
+              examples:
+                Coseller Sample profile details:
+                  value:
+                    id: 6f133eaa-0787-6814-a28d-b5a3465bb710
+                    userId: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                    gender: MALE
+                    interests:
+                      - Marketing
+                      - Gaming
+                      - Movies
+                    socialMediaAccounts:
+                      - socialMediaName: TWITTER
+                        socialMediaLink: twitter.com/holland
+                      - socialMediaName: FACEBOOK
+                        socialMediaLink: facebook.com/holland
+        '401':
+          description: Unauthorized
+      description: Fetch coseller profile details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: coseller token
+          required: true
+      tags:
+        - coseller
+  /command?type=syncProducts:
+    post:
+      summary: Sync products for a store
+      operationId: post-command
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                sync in progress:
+                  value: cannot initiate sync; sync already in progress
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - syncProducts
+            default: syncProducts
+          in: query
+          name: type
+          description: Command Type
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+      description: Initiate sync products for a store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                override_on_sync:
+                  type: boolean
+                  description: ''
+                  default: true
+                  writeOnly: true
+              required:
+                - override_on_sync
+            examples:
+              syncProducts:
+                value:
+                  override_on_sync: true
+        description: ''
+      tags:
+        - store
+    parameters: []
+  /upload-media:
+    post:
+      summary: Upload media
+      operationId: post-upload-media
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  fileName:
+                    type: string
+                    minLength: 1
+                required:
+                  - fileName
+              examples:
+                Uploaded 2 images:
+                  value:
+                    hulk1.jpg: 'https://images-shoptype.s3.amazonaws.com/temp/4d7a1710-325e-4edf-94b6-57df5ddd212f/hulk1.jpg'
+                    hulk2.jpg: 'https://images-shoptype.s3.amazonaws.com/temp/4d7a1710-325e-4edf-94b6-57df5ddd212f/hulk2.jpg'
+        '401':
+          description: Unauthorized
+      description: As a user upload media to shoptype
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              example-1:
+                value: {}
+        description: |-
+          Pass media as part of form data with below keys
+          ```sh
+          --form 'fileNames="[\"hulk1.jpg\",\"hulk2.jpg\"]"' \
+          --form 'hulk1.jpg=@"/Users/skbarik/Downloads/hulk1.jpg"' \
+          --form 'hulk2.jpg=@"/Users/skbarik/Downloads/hulk2.jpg"'
+          ```
+
+          ### Supported formats
+
+          | Type | Formats |
+          | ------ | ------ |
+          | Video | "video/mp4", "video/x-msvideo", "video/mpeg" |
+          | Image | "image/png", "image/jpeg", "image/gif" |
+
+          > Note: `AllowedMaxMediaSize=1 MB` 
+      tags:
+        - utility
+  /store/shopify:
+    parameters: []
+    post:
+      summary: Add shopify store to a vendor account
+      operationId: post-store-shopify
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                successfully accepted store:
+                  value:
+                    token_read_only: false
+                    webhook_created_successfully: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+              examples:
+                invalid api keys:
+                  value:
+                    error: Invalid shopify credentials
+                    message: err while fetching store front access token
+      description: |-
+        Add shopify store to a vendor account
+
+        - [Shopify Reference for creating private app](https://shopify.dev/tutorials/authenticate-a-private-app-with-shopify-admin#:~:text=From%20your%20Shopify%20admin%2C%20go,and%20a%20contact%20email%20address.)
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                storeName:
+                  type: string
+                  minLength: 1
+                  description: The store name of shopify
+                apiKey:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+                timestamp:
+                  type: number
+                  description: current epoch time in millis
+              required:
+                - storeName
+                - apiKey
+                - password
+                - timestamp
+            examples:
+              Sample shopify store:
+                value:
+                  storeName: shoptypes
+                  apiKey: 17f9d72b9670dcc715e5b0e42768b37e
+                  password: e202fb4a14cae81e8eeed939f0529386
+                  timestamp: 1618037786155
+        description: |
+          Shopify Store details
+          > Note: `storeName` is name of the shopify store. 
+
+          ### Examples of store name
+          | Shopify URL | StoreName |
+          | ------ | ------ |
+          | https://shop-types.myshopify.com | shop-types |
+          | https://shopskinnygirl.com | shopskinnygirl |
+          | https://www.hempvada.com | hempvada |
+      tags:
+        - store
+  /store/woo-commerce:
+    post:
+      summary: Add woocommerce store to a vendor account
+      operationId: post-store-woo-commerce
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+                  - message
+              examples:
+                Invalid keys:
+                  value:
+                    error: '{"actual_error":{"message":"Sorry, you cannot list resources."},"status_code":401,"message":"Sorry, you cannot list resources."}'
+                    message: err while fetching system status
+        '401':
+          description: Unauthorized
+      description: |
+        Add woocommerce store to a vendor account
+
+        - [WooCommerce Reference for generating REST API keys](https://docs.woocommerce.com/document/woocommerce-rest-api/)
+
+
+        > Note: To allow native checkout on shoptype, please give write access while generating woo commerce REST API keys.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                storeName:
+                  type: string
+                  minLength: 1
+                  description: Set same as storeHostUrl
+                storeHostUrl:
+                  type: string
+                  minLength: 1
+                  description: Store Host URL
+                  format: uri
+                consumerKey:
+                  type: string
+                  minLength: 1
+                consumerSecret:
+                  type: string
+                  minLength: 1
+                enableCheckoutShoptype:
+                  type: boolean
+                  description: |-
+                    - `True` - Enable native checkout on shoptype.
+                    - `False` - Redirect to woo commerce store url.
+              required:
+                - storeName
+                - storeHostUrl
+                - consumerKey
+                - consumerSecret
+                - enableCheckoutShoptype
+            examples:
+              Sample woo commerce store details:
+                value:
+                  storeName: 'https://shoptypewoo.wpcomstaging.com/'
+                  storeHostUrl: 'https://shoptypewoo.wpcomstaging.com/'
+                  consumerKey: ck_175cce977c850baa46442020de88c52b6dbe7032
+                  consumerSecret: cs_377678b1f5c805fb011363e85c967de9bbx578b8
+                  enableCheckoutShoptype: false
+        description: |
+          Woo commerce store details
+
+          > Note: Set `storeName` same as `storeHostUrl`. 
+      tags:
+        - store
+  /sync-status:
+    get:
+      summary: Fetch sync status for a vendor store
+      tags:
+        - store
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                    description: Vendor ID
+                  storeName:
+                    type: string
+                    minLength: 1
+                  lastSyncedAt:
+                    type: string
+                    minLength: 1
+                  productCount:
+                    type: number
+                  status:
+                    type: string
+                    minLength: 1
+                    enum:
+                      - completed
+                      - failed
+                      - in progress
+                required:
+                  - id
+                  - storeName
+                  - lastSyncedAt
+                  - productCount
+                  - status
+              examples:
+                Successful sync status:
+                  value:
+                    id: 2de759a9-82ac-d55d-da07-f6f94808b4ed
+                    storeName: 'https://shoptypewoo.wpcomstaging.com/'
+                    lastSyncedAt: '2021-04-11T03:33:31.372Z'
+                    productCount: 71
+                    status: completed
+                In progress sync status:
+                  value:
+                    id: 2de759a9-82ac-d55d-da07-f6f94808b4ed
+                    storeName: 'https://shoptypewoo.wpcomstaging.com/'
+                    lastSyncedAt: '2021-04-11T03:49:06.107Z'
+                    productCount: 7
+                    status: in progress
+        '401':
+          description: Unauthorized
+      operationId: get-sync-status
+      description: Fetch sync status for a vendor store
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+  /invites:
+    post:
+      summary: Create referral code
+      operationId: post-invites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - type
+                      - inviterId
+                      - inviterType
+                      - slug
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                        description: Invite ID
+                      type:
+                        type: string
+                        minLength: 1
+                      inviterId:
+                        type: string
+                        minLength: 1
+                      inviterType:
+                        type: string
+                        minLength: 1
+                      inviteeEmailIds: {}
+                      slug:
+                        type: string
+                        minLength: 1
+                required:
+                  - data
+              examples:
+                Successfully vendor create invite:
+                  value:
+                    data:
+                      id: 607273510cb35c0b894cb2ba
+                      type: referrer
+                      inviterId: 2e970d11-bf85-4adf-b663-06ae0e291781
+                      inviterType: VENDOR
+                      inviteeEmailIds: null
+                      slug: '?rid=607273510cb35c0b894cb2ba'
+                Successfully network operator create invite:
+                  value:
+                    data:
+                      id: 607274ee0cb35c0b894cb2bc
+                      type: referrer
+                      inviterId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                      inviterType: NETWORK_OPERATOR
+                      inviteeEmailIds: null
+                      slug: '?rid=607274ee0cb35c0b894cb2bc'
+                Successfully coseller create invite:
+                  value:
+                    data:
+                      id: 607274bf0cb35c0b894cb2bb
+                      type: referrer
+                      inviterId: 2e970d11-bf85-4adf-b663-06ae0e291781
+                      inviterType: COSELLER
+                      inviteeEmailIds: null
+                      slug: '?rid=607274bf0cb35c0b894cb2bb'
+        '401':
+          description: Unauthorized
+      description: Create referral code for invite
+      tags:
+        - referral
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                type:
+                  type: string
+                  minLength: 1
+                inviterId:
+                  type: string
+                  minLength: 1
+                inviterType:
+                  type: string
+                  minLength: 1
+              required:
+                - type
+                - inviterId
+                - inviterType
+            examples:
+              Vendor invite:
+                value:
+                  type: referrer
+                  inviterId: 2e970d11-bf85-4adf-b663-06ae0e291781
+                  inviterType: VENDOR
+              Coseller invite:
+                value:
+                  type: referrer
+                  inviterId: 2e970d11-bf85-4adf-b663-06ae0e291781
+                  inviterType: COSELLER
+              Network Operator Invite:
+                value:
+                  type: referrer
+                  inviterId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                  inviterType: NETWORK_OPERATOR
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: logged in user token
+  /social-login:
+    post:
+      summary: Social Login
+      operationId: post-social-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            minLength: 1
+                          email:
+                            type: string
+                            minLength: 1
+                          firstName:
+                            type: string
+                            minLength: 1
+                          lastName:
+                            type: string
+                            minLength: 1
+                          phone:
+                            type: string
+                        required:
+                          - id
+                          - email
+                          - firstName
+                          - lastName
+                          - phone
+                    required:
+                      - user
+                  token:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+                  - data
+                  - token
+              examples:
+                Successfully logged in:
+                  value:
+                    status: success
+                    message: User Logged in successfully
+                    data:
+                      user:
+                        id: e2594521-c298-4b3c-a763-213c573d8bf2
+                        email: skbarik@gmail.com
+                        firstName: sarthak
+                        lastName: barik
+                        phone: ''
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6ImUyNTk0NTIxLWMyOTgtNGIzYy1hNzYzLTIxM2M1NzNkOGJmMiIsImVtYWlsIjoiIiwiaXNzIjoiYXdha2UtbW9uZXkifQ.tzp7tcb33ZUFvA81F0bths07ez0wC05kx4IYSfqiREQ
+      tags:
+        - user
+      description: |-
+        Allows user to login through any oif the below social accounts
+        - Google
+        - Facebook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                token:
+                  type: string
+                  minLength: 1
+                  description: Oauth token
+                provider:
+                  type: string
+                  minLength: 1
+                  enum:
+                    - GOOGLE
+                    - FACEBOOK
+                domain:
+                  type: string
+                  minLength: 1
+              required:
+                - token
+                - provider
+                - domain
+            examples:
+              Google login:
+                value:
+                  token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImUxYWMzOWI2Y2NlZGEzM2NjOGNhNDNlOWNiYzE0ZjY2ZmFiODVhNGMiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjg0MTMxMjMzNjMxLWVhc3JzNGp1bDNhb25mcWI0M3NkNzdhMzg5M21vbWNnLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMjg0MTMxMjMzNjMxLWVhc3JzNGp1bDNhb25mcWI0M3NkNzdhMzg5M21vbWNnLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA4ODM2NTM1NTY1ODc5ODI0OTQ2IiwiZW1haWwiOiJocDAxNzQwQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoia1dqOVhkbUtkYVpYR0dDd1NTOXZPdyIsIm5hbWUiOiJIYXJpaGFyIFBydXN0eSIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vLVpCWXgwT3VZMVhzL0FBQUFBQUFBQUFJL0FBQUFBQUFBQUFBL0FNWnV1Y21pRDdCbnRVYlVLTEd0WjdHQWRTWFZBbF82aUEvczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6IkhhcmloYXIiLCJmYW1pbHlfbmFtZSI6IlBydXN0eSIsImxvY2FsZSI6ImVuLUdCIiwiaWF0IjoxNjE4MTE0MTI2LCJleHAiOjE2MTgxMTc3MjYsImp0aSI6Ijg3NmZmMjNlNmQ0MmFlNDlkNTQ0N2U0NTNmMDlmY2QyOWZiZjdmMTUifQ.gjNehBagEFZLNGmoiK9z8RIe59Zi21Pz_Y7OzvzAfFe6DEKy1TcvsR7sXJ75bnDdqWbXQDNCRxZpqALpBIPV7m_iZpV_eM4mTxe9H_IWEEPBrQmqRS0QYEQDt34Fk_Fi2tX7HgOwaO7qwH3t5slCz6elC6RROn0gm8zuQFSnOmpFdIpluJFEwT1mXQ88W1bE3Gix5_P434qHu5W2HlqNGEb8_zxPoARHH_66cBx1MvPRxgglBA9vUC_2tj2uXKbWZSJf7SGXN0JdkMWRPELgcHu0wS4d848HIdmgAH2PmrPg4gnbnjke3pKOaTX6Ye1i3B2fQVMVt1hU03-jhZf-aQ
+                  provider: GOOGLE
+                  domain: SHOPTYPE
+              Facebook login:
+                value:
+                  token: EAAnQJOAW5tcBAPVhtBJpcwWqQzJfoIKeMZA7WCQ8O14bgKojfO6CXDM3aBg1wynomyAflmiKeS97XkoNJGkowKaGevoSygjLKfwNVZBvNA61Isua742WQRHP9pGl78vqCvtU8vzz1nNHZCo18ZC69ESfIjmZBzTqpbBsxZAT7IfvfYmTwFyS2gWtw9ZAKl1D18BquI6Y0ZAMSwZDZD
+                  provider: FACEBOOK
+                  domain: SHOPTYPE
+      parameters:
+        - schema:
+            type: string
+            example: 607274ee0cb35c0b894cb2bc
+          in: query
+          name: rid
+          description: Referral Id
+  /referrals:
+    get:
+      summary: Fetch my referral tree
+      tags:
+        - referral
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - inviter
+                      - me
+                      - invitees
+                    properties:
+                      inviter:
+                        type: object
+                        required:
+                          - id
+                          - name
+                          - email
+                          - referredAt
+                          - acceptedAt
+                          - inviteesCount
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          email:
+                            type: string
+                          referredAt:
+                            type: number
+                            description: epoch seconds
+                          acceptedAt:
+                            type: number
+                            description: epoch seconds
+                          inviteesCount:
+                            type: number
+                          userTypes:
+                            type: array
+                            items:
+                              type: string
+                      me:
+                        type: object
+                        required:
+                          - id
+                          - name
+                          - email
+                          - referredAt
+                          - acceptedAt
+                          - inviteesCount
+                          - userTypes
+                        properties:
+                          id:
+                            type: string
+                            minLength: 1
+                          name:
+                            type: string
+                            minLength: 1
+                          email:
+                            type: string
+                            minLength: 1
+                          referredAt:
+                            type: number
+                            description: epoch seconds
+                          acceptedAt:
+                            type: number
+                            description: epoch seconds
+                          inviteesCount:
+                            type: number
+                          userTypes:
+                            type: array
+                            items:
+                              type: string
+                      invitees:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              minLength: 1
+                            name:
+                              type: string
+                              minLength: 1
+                            email:
+                              type: string
+                              minLength: 1
+                            referredAt:
+                              type: number
+                              description: epoch seconds
+                            acceptedAt:
+                              type: number
+                              description: epoch seconds
+                            inviteesCount:
+                              type: number
+                            userTypes:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                            - id
+                            - name
+                            - email
+                            - referredAt
+                            - acceptedAt
+                            - inviteesCount
+                required:
+                  - data
+              examples:
+                A referral tree:
+                  value:
+                    data:
+                      inviter:
+                        id: ''
+                        name: ''
+                        email: ''
+                        referredAt: 0
+                        acceptedAt: 0
+                        inviteesCount: 0
+                        userTypes: null
+                      me:
+                        id: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                        name: tom holland
+                        email: tom_holland@mailinator.com
+                        referredAt: 0
+                        acceptedAt: 0
+                        inviteesCount: 1
+                        userTypes:
+                          - Coseller
+                          - Vendor
+                      invitees:
+                        - id: 28bdc27b-8ebf-471f-848f-e0ba3574200a
+                          name: rajesh mehra
+                          email: rajesh_mehra@mailinator.com
+                          referredAt: 1618115719
+                          acceptedAt: 1618115747
+                          inviteesCount: 0
+                          userTypes: []
+        '401':
+          description: Unauthorized
+      operationId: get-referrals
+      description: Fetch my referral tree
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: logged in user token
+          required: true
+  /products:
+    get:
+      summary: Fetch products
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                    description: Total count of products
+                  products:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      $ref: '#/components/schemas/Product'
+                required:
+                  - count
+                  - products
+              examples:
+                Products sample:
+                  value:
+                    count: 3
+                    products:
+                      - id: 7e36bebd-fec5-cf9e-0f4b-63c96420e4ab
+                        handle: cbd-bath-bombs
+                        title: CBD Bath Bombs
+                        description: |-
+                          CBD Bath Bombs
+                          Hempvada's CBD Bath Bombs are made from a full spectrum blend CBD. Containing at least 35mg of CBD in every Bomb, these terpene targeted Blends are sure you leave you pleased. Super fizzy and very aromatic these bath bombs are unique in the fact that they are capable of covering harder to reach places.
+
+                          Sensual Releaf
+                          Drop one of our Sensual Releaf bath bombs into your tub and watch the fizz flow! Cannabinoids bursting from every last piece of our bath bomb for minutes on end. These long lasting bath bombs may help soothe and relief sore muscles in a fast manner. Our Sensual Releaf CBD Bath Bombs are a huge hit with all! Want to try?
+                          Using Sezzle for CBD? More info here!
+                           Back To Home Page
+                        tags:
+                          - bath
+                          - ' calming'
+                          - ' cbd'
+                          - ' immunity'
+                          - ' recovery'
+                          - ' releaf'
+                          - ' sensual'
+                          - ' topical'
+                          - ' topicals'
+                          - ' vitality'
+                        productType: Topical
+                        publishedAt: 1584632457000
+                        syncedAt: 1618041049
+                        primaryImageSrc:
+                          id: '22883125919938'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/7e36bebd-fec5-cf9e-0f4b-63c96420e4ab/cbd-bath-bombs-1x-35mg-cbd-bath-bomb-topical-bath-calming-cbd-immunity-recovery-hempvada-buy-high-quality-cbd-goods-online-made-in-usa-493.jpg'
+                          variantIds:
+                            - '36638925619353'
+                            - '36638925652121'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
+                        variants:
+                          - id: '36638925619353'
+                            discountedPrice: '9.00'
+                            discountedPriceAsMoney:
+                              amount: 9
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '22883125919938'
+                            quantity: -11
+                            variantNameValue:
+                              count: 1x 35mg CBD Bath Bomb
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                          - id: '36638925652121'
+                            discountedPrice: '40.00'
+                            discountedPriceAsMoney:
+                              amount: 40
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '22883125919938'
+                            quantity: 0
+                            variantNameValue:
+                              count: 5x 35mg CBD Bath Bombs
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                        store_name: hempvada
+                        currency: USD
+                        sourceId: '3558466420836'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: count
+                            values:
+                              - 1x 35mg CBD Bath Bomb
+                              - 5x 35mg CBD Bath Bombs
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -106.0402169
+                            - 36.9956786
+                        vendorName: Test Vendor Name
+                        productCommission:
+                          percentage: 0
+                        slug: ''
+                      - id: a408181d-fa68-f789-792a-48b476052e82
+                        handle: cbd-sea-salt-scrub-and-bath-bombs-bundle
+                        title: CBD Sea Salt Scrub and Bath Bombs Bundle
+                        description: |
+                          People have been loving our bath and beauty products and we decided it was time to offer them in bundles! Purchasing our CBD Bundles allow you to get the same products you normally purchase at a slightly discounted price! Awesome! Our CBD Sea Salt Scrub and Bath Bombs bundle comes with one 3oz Sea Salt Scrub and 3 of our long lasting bath bombs!
+
+                          CBD Bath Bombs 
+
+                          Hempvada's CBD Bath Bombs are made from a full spectrum blend CBD. Containing at least 35mg of CBD in every Bomb, these terpene targeted Blends are sure you leave you pleased. Perfect for after a long day of work, after an event or just when you need to relax!
+                          Ingredients: Avocado Oil, Baking Soda, Citric Acid, Epsom Salt, Witch Hazel Astringent, PolySorbate 80, whole plant extract, Essential Oils: Frankincense, Tea Tree, Lemon, and Blue Mica
+
+                          CBD Sea Salt Scrub
+
+                          Hempvada's brand new CBD Sea Salt Scrub is made with the finest ingredients that the planet has to offer. Sea Salt dredged directly from the dead sea, hand ground organic matcha powder, CBD extracted using the choicest herbal material and organic Ylang-Ylang are just a few of the choice ingredients we chose to make this infusion really work for you. Our Dead Sea Salt Scrub with CBD and Matcha Powder has anti aging and reparation properties considered to heal and rejuvenate your skin. The power of Dead Sea Salt within our CBD Salt Scrub will increase your circulation and help reduce the appearance of wrinkles. Dead Sea Salt having considerably lower sodium content than our table sodium based competitors, (less dry skin!) our CBD Sea Salt Scrub is sure to leave your skin softer and smoother feeling after just the first use.
+                          100mg in 3oz Jar
+                          How Matcha Powder Helps You
+
+
+                          Matcha Powder can treat inflammation
+
+
+                          Matcha Powder improves complexion
+
+
+                          Matcha Powder Diminishes the Sign of Aging
+
+
+                          Matcha Powder Treats Oily Skin
+
+
+                          Matcha Powder is great for all skin types
+
+
+                          5 Facts About Dead Sea Salt
+
+
+                          Dead Sea Salt has lower sodium content than most salt
+
+
+                          Dead Sea Salt has numerous minerals that restore and repair your skin
+
+
+                          Dead Sea Salt is known to reduce the appearance of wrinkles
+
+
+                          Dead Sea Salt helps your skin retain water for a more youthful appearance
+
+
+                          Dead Sea Salt increases blood circulation at the skins surface
+
+
+                          How To Use CBD Sea Salt Scrub
+
+
+                          Use warm water or apply our CBD Oil Lotion on your skin before applying our Hempvada Dead Sea CBD Salt to keep skin from drying out.
+
+
+                          Scrub your skin gently, pay special attention to extra dry areas such as feet and elbows, we recommend using 1 scope daily.
+
+
+                          After 10 minutes, wash the salt with warm water.
+
+
+                          Ingredients: Dead Sea Salt, Coconut Oil, Broad Spectrum CBD Distillate, Organic Matcha Powder, Helychrisum &amp; Organic Ylang Ylang Essential Oil
+                        tags:
+                          - bundle
+                          - ' CBD'
+                        productType: CBD Bundle
+                        publishedAt: 1600707348000
+                        syncedAt: 1618041070
+                        primaryImageSrc:
+                          id: '19520512753817'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/a408181d-fa68-f789-792a-48b476052e82/cbd-sea-salt-scrub-and-bath-bombs-bundle-cbd-bundle-bundle-cbd-buy-cbd-online-hempvada-high-quality-cbd-goods-606.jpg'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
+                        variants:
+                          - id: '36260688265369'
+                            discountedPrice: '45.00'
+                            discountedPriceAsMoney:
+                              amount: 45
+                              currency: USD
+                            price: '50.00'
+                            priceAsMoney:
+                              amount: 50
+                              currency: USD
+                            quantity: -1
+                            variantNameValue:
+                              title: Default Title
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                        store_name: hempvada
+                        currency: USD
+                        sourceId: '5676195381401'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -106.0402169
+                            - 36.9956786
+                        vendorName: Test Vendor Name
+                        productCommission:
+                          percentage: 0
+                        slug: ''
+                      - id: 0f3cf4ce-736a-9a23-ce98-a4721d3d6b8b
+                        handle: cbd-sea-salt-scrub-bath-bombs-and-pm-facial-moisturizer-bundle
+                        title: 'CBD Sea Salt Scrub, Bath Bombs and PM Facial Moisturizer Bundle'
+                        description: |-
+                          People have been loving our bath and beauty products and we decided it was time to offer them in bundles! Purchasing our CBD Bundles allow you to get the same products you normally purchase at a slightly discounted price! Awesome! Our CBD Sea Salt Scrub, CBD Bath Bombs and PM Facial Moisturizer Bundle comes with one 3oz CBD Sea Salt Scrub, 3 of our long lasting CBD bath bombs and one 2oz PM CBD Facial Moisturizer!
+
+                          CBD Bath Bombs 
+
+                          Hempvada's CBD Bath Bombs are made from a full spectrum blend CBD. Containing at least 35mg of CBD in every Bomb, these terpene targeted Blends are sure you leave you pleased. Perfect for after a long day of work, after an event or just when you need to relax!
+                          Ingredients: Avocado Oil, Baking Soda, Citric Acid, Epsom Salt, Witch Hazel Astringent, PolySorbate 80, whole plant extract, Essential Oils: Frankincense, Tea Tree, Lemon, and Blue Mica
+
+                          CBD Sea Salt Scrub
+
+                          Hempvada's brand new CBD Sea Salt Scrub is made with the finest ingredients that the planet has to offer. Sea Salt dredged directly from the dead sea, hand ground organic matcha powder, CBD extracted using the choicest herbal material and organic Ylang-Ylang are just a few of the choice ingredients we chose to make this infusion really work for you. Our Dead Sea Salt Scrub with CBD and Matcha Powder has anti aging and reparation properties considered to heal and rejuvenate your skin. The power of Dead Sea Salt within our CBD Salt Scrub will increase your circulation and help reduce the appearance of wrinkles. Dead Sea Salt having considerably lower sodium content than our table sodium based competitors, (less dry skin!) our CBD Sea Salt Scrub is sure to leave your skin softer and smoother feeling after just the first use.
+                          100mg in 3oz Jar
+                          How Matcha Powder Helps You
+
+
+                          Matcha Powder can treat inflammation
+
+
+                          Matcha Powder improves complexion
+
+
+                          Matcha Powder Diminishes the Sign of Aging
+
+
+                          Matcha Powder Treats Oily Skin
+
+
+                          Matcha Powder is great for all skin types
+
+
+                          5 Facts About Dead Sea Salt
+
+
+                          Dead Sea Salt has lower sodium content than most salt
+
+
+                          Dead Sea Salt has numerous minerals that restore and repair your skin
+
+
+                          Dead Sea Salt is known to reduce the appearance of wrinkles
+
+
+                          Dead Sea Salt helps your skin retain water for a more youthful appearance
+
+
+                          Dead Sea Salt increases blood circulation at the skins surface
+
+
+                          How To Use CBD Sea Salt Scrub
+
+
+                          Use warm water or apply our CBD Oil Lotion on your skin before applying our Hempvada Dead Sea CBD Salt to keep skin from drying out.
+
+
+                          Scrub your skin gently, pay special attention to extra dry areas such as feet and elbows, we recommend using 1 scope daily.
+
+
+                          After 10 minutes, wash the salt with warm water.
+
+
+                          Ingredients: Dead Sea Salt, Coconut Oil, Broad Spectrum CBD Distillate, Organic Matcha Powder, Helychrisum &amp; Organic Ylang Ylang Essential Oil
+                          PM Facial Moisturizer
+                          Sleep easy knowing that you will wake feeling more rested and with considerably softer skin! Our brand new CBD Facial Moisturizer should be used on your face in the evenings, avoiding your eyes, but is safe for use anywhere and at any time in a topical fashion. Sleep and look better with our special formula designed uniquely for creating a sense of calm and relation while moisturizing your skin, rejuvenating and replenishing your skin. 9/10 Dermatologists would recommend our Facial Moisturizer with Broad Spectrum CBD Extract! Enjoy today!
+
+                          Multiple replenishing oil create a rejuvenating effect
+                          Unscented, use anywhere without bothering others
+                          Creates calm and relaxing feelings
+                          Better rest and softer skin
+                          500mg Broad Spectrum CBD Distillate
+                          No detectable THC
+
+                          Ingredients: Cocoa Butter, Shea Butter, Hemp Seed Oil, Jojoba Oil, Coconut Oil, Broad Spectrum Distillate, Vitamin A, Vitamin C and Vitamin E.
+                        tags:
+                          - bundle
+                          - ' cbd'
+                        productType: CBD Bundle
+                        publishedAt: 1600707582000
+                        syncedAt: 1618041070
+                        primaryImageSrc:
+                          id: '19520521175193'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/0f3cf4ce-736a-9a23-ce98-a4721d3d6b8b/cbd-sea-salt-scrub-bath-bombs-and-pm-facial-moisturizer-bundle-cbd-bundle-bundle-cbd-buy-cbd-online-hempvada-high-quality-cbd-goods-593.jpg'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
+                        variants:
+                          - id: '36260724080793'
+                            discountedPrice: '70.00'
+                            discountedPriceAsMoney:
+                              amount: 70
+                              currency: USD
+                            price: '80.00'
+                            priceAsMoney:
+                              amount: 80
+                              currency: USD
+                            taxable: true
+                            quantity: -3
+                            variantNameValue:
+                              title: Default Title
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                        store_name: hempvada
+                        currency: USD
+                        sourceId: '5676206358681'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -106.0402169
+                            - 36.9956786
+                        vendorName: Test Vendor Name
+                        productCommission:
+                          percentage: 0
+                        slug: ''
+      operationId: get-products
+      description: Fetch products
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: Offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: string
+            example: 83790c69-c4da-e846-c5a3-2c932b5198d5
+          in: query
+          name: vendorId
+          description: Vendor ID
+        - schema:
+            type: string
+          in: query
+          name: category
+          description: Category
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Search text
+        - schema:
+            type: number
+            example: 22.5697
+          in: query
+          name: geoLat
+          description: Geo latitude
+        - schema:
+            type: number
+            example: 88.3697
+          in: query
+          name: geoLng
+          description: Geo Longitude
+        - schema:
+            type: integer
+          in: query
+          name: proximity
+          description: Proximity in meters
+        - schema:
+            type: string
+            enum:
+              - price
+              - discount
+          in: query
+          name: sortBy
+          description: Field name
+        - schema:
+            type: string
+            default: asc
+            enum:
+              - asc
+              - desc
+          in: query
+          name: orderBy
+          description: In ascending or descending order
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: '*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
+            type: number
+          in: query
+          name: minRange
+          description: Min price range
+        - schema:
+            type: number
+          in: query
+          name: maxRange
+          description: Max price range
+        - schema:
+            type: string
+            example: '2d00b753-e823-7760-985f-c227da456fc8,ab05df6e-09a2-9f12-5a3e-0345678174ca'
+          in: query
+          name: productIds
+          description: Comma separated product Ids
+        - schema:
+            type: string
+            example: USD
+          in: query
+          name: currency
+          description: Currency
+        - schema:
+            type: string
+            example: 'currency,catalogId,description,id,primaryImageSrc,title,variants,status'
+          in: query
+          name: includeFields
+          description: Fields to be in included in response
+  '/platforms/{id}/products':
+    get:
+      summary: Fetch products for a given platform
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                    description: Total count of products
+                  products:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      $ref: '#/components/schemas/Product'
+                required:
+                  - count
+                  - products
+              examples:
+                Fetch platform products:
+                  value:
+                    count: 60
+                    products:
+                      - id: 7e36bebd-fec5-cf9e-0f4b-63c96420e4ab
+                        handle: cbd-bath-bombs
+                        title: CBD Bath Bombs
+                        description: |-
+                          CBD Bath Bombs
+                          Hempvada's CBD Bath Bombs are made from a full spectrum blend CBD. Containing at least 35mg of CBD in every Bomb, these terpene targeted Blends are sure you leave you pleased. Super fizzy and very aromatic these bath bombs are unique in the fact that they are capable of covering harder to reach places.
+
+                          Sensual Releaf
+                          Drop one of our Sensual Releaf bath bombs into your tub and watch the fizz flow! Cannabinoids bursting from every last piece of our bath bomb for minutes on end. These long lasting bath bombs may help soothe and relief sore muscles in a fast manner. Our Sensual Releaf CBD Bath Bombs are a huge hit with all! Want to try?
+                          Using Sezzle for CBD? More info here!
+                           Back To Home Page
+                        tags:
+                          - bath
+                          - ' calming'
+                          - ' cbd'
+                          - ' immunity'
+                          - ' recovery'
+                          - ' releaf'
+                          - ' sensual'
+                          - ' topical'
+                          - ' topicals'
+                          - ' vitality'
+                        productType: Topical
+                        publishedAt: 1584632457000
+                        syncedAt: 1618041049
+                        primaryImageSrc:
+                          id: '22883125919938'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/7e36bebd-fec5-cf9e-0f4b-63c96420e4ab/cbd-bath-bombs-1x-35mg-cbd-bath-bomb-topical-bath-calming-cbd-immunity-recovery-hempvada-buy-high-quality-cbd-goods-online-made-in-usa-493.jpg'
+                          variantIds:
+                            - '36638925619353'
+                            - '36638925652121'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
+                        variants:
+                          - id: '36638925619353'
+                            discountedPrice: '9.00'
+                            discountedPriceAsMoney:
+                              amount: 9
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '22883125919938'
+                            quantity: -11
+                            variantNameValue:
+                              count: 1x 35mg CBD Bath Bomb
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                          - id: '36638925652121'
+                            discountedPrice: '40.00'
+                            discountedPriceAsMoney:
+                              amount: 40
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '22883125919938'
+                            quantity: 0
+                            variantNameValue:
+                              count: 5x 35mg CBD Bath Bombs
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                        store_name: hempvada
+                        currency: USD
+                        sourceId: '3558466420836'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: count
+                            values:
+                              - 1x 35mg CBD Bath Bomb
+                              - 5x 35mg CBD Bath Bombs
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -106.0402169
+                            - 36.9956786
+                        vendorName: ''
+                        productCommission:
+                          percentage: 0
+                        slug: /product/7e36bebd-fec5-cf9e-0f4b-63c96420e4ab?uid=4d7a1710-325e-4edf-94b6-57df5ddd212f&pid=c8783c73-a270-48d3-9a75-2c78181724eb&nid=cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
+                      - id: 9ab1e2bc-6b51-c4fc-fcff-98b615feb00b
+                        handle: cbd-beard-oil
+                        title: CBD Beard Oil
+                        description: |
+                          Dry, itchy or unmanageable beard? Our brand new CBD Beard Oil is the perfect fix. Coming in 2 fantastic fragrances, our 1000mg CBD beard oil in a 1 ounce bottle is the last beard oil you will ever want or need. Our CBD beard oil contains various high end and organic oils like hemp seed oil, jajoba oil and sweet almond oil, all of which have skin, as well as hair repairing and softening properties. The Omegas found in our refined hemp seed oil (in our CBD beard oil) are shown to increase hair growth. Your beard is either dry, itchy or not capable of being tamed, thats why you are here. But we do have a solution. Give our brand new cbd beard oil a rub on your skin and watch it go to work for you and your beard today!
+                          Four Frangrances!
+
+                          Redwood Trees
+                          Suave 
+
+                          Our CBD Beard Oil
+
+                          Contains 1000mg of skin perfecting full spectrum CBD
+                          Hemp Seed, Jajoba and Almond oils create softer skin
+                          Contains Omega's 3, 6 and 9 to promote healthy growth
+                          Vitamin E for super antioxident power
+                          Softer skin relieves itchy beards
+                          Oil help tame hair
+
+                          Why Hempvada CBD Beard Oil?
+                          Our beard oil was created for and tested by people with some of the toughest beards in the game. We tried more than a single formula. We landed on a base formula that our tests subject beards and skin decided was the best. At the end of the day the base formula ended up being a very simple but extremely effective combination of super refined golden hemp seed oil, organic jojoba oils and the ever sweet, sweet almond oil.
+                          Hemp Seed Oil
+                          Hempseed Oil helps enhance the growth of beard hair in a number of ways. Among these is through the Omega-3, Omega-6 and Omega-9 fatty acids, which are necessary in stimulating beard hair growth. Hempseed Oil will help moisturize the beard and you skin. Hempseed Oil will help prevent water loss and inject moisture in the beard hair and face. It is also easily absorbed by the beard hair. Hempseed Oil will also help strengthen the beard hair and prevent breakage or damage.
+                          Jojoba Oil
+                          Jojoba Oil is rich in minerals and vitamins that nourish beard hair, including vitamin C, B vitamins, vitamin E, copper, and zinc. Jojoba Oil helps strengthen the beard hair. Because it strengthens beard hair, it's known to help promote a fuller thicker beard. It also helps prevent dryness, damage and breakage.
+                          Sweet Almond Oil
+                          Sweet Almond Oil is rich in vitamins and minerals. Among these are Vitamin A, B1, B6, and vitamin E which is rich is antioxidants that promote  blood circulation, hence will provide more nutrients to the beard hair. Sweet Almond Oil can help your beard hair look bright, shiny and silky. It can penetrate the beard hair shaft and moisturize the beard hair from the inside.
+                          Ingredients: Hempseed Oil, Jojoba Oil, Sweet Almond Oil, Vitamin E, Hemp Extract Essential Oils and Fragrances. 
+                          Using Sezzle for CBD? More info here!
+                        tags:
+                          - bath
+                          - ' beard'
+                          - ' beauty'
+                          - ' cbd'
+                          - ' oil'
+                          - ' redwood'
+                          - ' tree'
+                        productType: Bath & Beauty
+                        publishedAt: 1603219906000
+                        syncedAt: 1618041049
+                        primaryImageSrc:
+                          id: '28125734633666'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/9ab1e2bc-6b51-c4fc-fcff-98b615feb00b/cbd-beard-oil-bath-beauty-bath-beard-beauty-cbd-oil-hempvada-buy-high-quality-cbd-goods-online-made-in-usa-706.jpg'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
+                        variants:
+                          - id: '36793692061849'
+                            discountedPrice: '30.00'
+                            discountedPriceAsMoney:
+                              amount: 30
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: -5
+                            variantNameValue:
+                              scent: Redwood Trees
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                          - id: '39470646984898'
+                            discountedPrice: '30.00'
+                            discountedPriceAsMoney:
+                              amount: 30
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 0
+                            variantNameValue:
+                              scent: Suave
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                        store_name: hempvada
+                        currency: USD
+                        sourceId: '5838392787097'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: scent
+                            values:
+                              - Redwood Trees
+                              - Suave
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -106.0402169
+                            - 36.9956786
+                        vendorName: ''
+                        productCommission:
+                          percentage: 0
+                        slug: /product/9ab1e2bc-6b51-c4fc-fcff-98b615feb00b?uid=4d7a1710-325e-4edf-94b6-57df5ddd212f&pid=c8783c73-a270-48d3-9a75-2c78181724eb&nid=cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
+                      - id: 697f2f3e-d6b2-69ba-3989-3922005fdb80
+                        handle: cbd-shatter-75-full-spectrum
+                        title: CBD Dabs - Shatter 75% Full Spectrum
+                        description: |-
+                          Buy CBD Dabs Shatter 75% Full Spectrum
+                          CBD Shatter by Hempvada is an absolutely beautiful dab oil. This oil allows you to take CBD directly into your system via inhaling the vapors of the oils when dabbing for a faster-acting experience. Get the highly coveted Entourage Effect with this product! 
+
+                          Great after an exhausting and stressful day.
+                          Hempvada CBD Shatters are terpy and delicious CBD dabs for sale with a great profile of CBD, CBN, and trace amounts of THC. These CBD Dabs can be used with any dabbing method to give you a faster acting CBD serving that you just can’t experience through ingesting or using a topical. Vaporizing CBD brings forth the full force of CBD by "indirect combustion". Our extract is free of any residual solvents.
+                          CBD is well known for its wellness properties and Hempvada is proud to provide one of the finest CBD shatters for sale available. 
+
+                          Full Spectrum CBD
+
+
+
+                          5-10 Servings per 1 gram container
+
+
+                          Made using %100 Domestically Sourced High CBD Hemp Flower
+
+
+                          Each Dab contains the whole spectrum or full spectrum of cannabinoids, fatty acids, and terpenes. Specifically showing high levels of CBD and CBN.
+
+
+                          Using Sezzle for CBD? More info here!
+                        tags:
+                          - CBD
+                          - ' cbd dab'
+                          - ' cbd shatter'
+                          - ' cbd wax'
+                          - ' CBDa'
+                          - ' CBG'
+                          - ' CBN'
+                          - ' concentrate'
+                          - ' dab'
+                          - ' dabbing'
+                          - ' extract'
+                          - ' full'
+                          - ' full spectrum'
+                          - ' shatter'
+                          - ' spectrum'
+                          - ' terpene'
+                          - ' terps'
+                          - ' wax'
+                          - ' waxes'
+                        productType: Extract
+                        publishedAt: 1584632466000
+                        syncedAt: 1618041049
+                        primaryImageSrc:
+                          id: '20113701208217'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/697f2f3e-d6b2-69ba-3989-3922005fdb80/cbd-dabs-shatter-75-full-spectrum-extract-cbd-cbd-dab-cbd-shatter-cbd-wax-cbda-hempvada-buy-high-quality-cbd-goods-online-made-in-usa-202.jpg'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
+                        variants:
+                          - id: '31221892218980'
+                            discountedPrice: '20.00'
+                            discountedPriceAsMoney:
+                              amount: 20
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: -59
+                            variantNameValue:
+                              title: Default Title
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                        store_name: hempvada
+                        currency: USD
+                        sourceId: '4342589194340'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -106.0402169
+                            - 36.9956786
+                        vendorName: ''
+                        productCommission:
+                          percentage: 0
+                        slug: /product/697f2f3e-d6b2-69ba-3989-3922005fdb80?uid=4d7a1710-325e-4edf-94b6-57df5ddd212f&pid=c8783c73-a270-48d3-9a75-2c78181724eb&nid=cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
+      operationId: get-platforms
+      description: Fetch products for a given platform managed by network
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: Offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: string
+          in: query
+          name: category
+          description: Category
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Search text
+        - schema:
+            type: number
+            example: 22.5697
+          in: query
+          name: geoLat
+          description: Geo latitude
+        - schema:
+            type: number
+            example: 88.3697
+          in: query
+          name: geoLng
+          description: Geo longitde
+        - schema:
+            type: integer
+          in: query
+          name: proximity
+          description: Proximity in meters
+        - schema:
+            type: string
+            enum:
+              - price
+              - discount
+          in: query
+          name: sortBy
+          description: Field name
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: asc
+          in: query
+          name: orderBy
+          description: In ascending or descending order
+        - schema:
+            type: string
+          in: query
+          name: tags
+          description: '''*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'''
+        - schema:
+            type: number
+          in: query
+          name: minRange
+          description: Min price range
+        - schema:
+            type: number
+          in: query
+          name: maxRange
+          description: Max price range
+        - schema:
+            type: string
+            example: '2d00b753-e823-7760-985f-c227da456fc8,ab05df6e-09a2-9f12-5a3e-0345678174ca'
+          in: query
+          name: productIds
+          description: Comma separated product Ids
+        - schema:
+            type: string
+            example: 83790c69-c4da-e846-c5a3-2c932b5198d5
+          in: query
+          name: vendorId
+          description: Vendor ID
+        - schema:
+            type: string
+            example: USD
+          in: query
+          name: currency
+          description: Currency
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Platform ID
+  '/platforms/{id}/vendors':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - network
+      responses: {}
+      operationId: get-platforms-id-vendors
+  /command?type=sendNotification:
+    post:
+      summary: Send email notification
+      operationId: post-command?type=sendNotification
+      responses:
+        '202':
+          description: Accepted
+      description: Send email notification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              Sample email notification:
+                value:
+                  type: email
+                  details:
+                    to:
+                      - name: Sarthak
+                        email: skbarik@gmail.com
+                    from: greeshma@coffeebeans.io
+                    subject: hello
+                    body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          <!DOCTYPE html
+                          PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                      <html xmlns="https://www.w3.org/1999/xhtml">
+
+                      <head>
+                          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                          <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
+                          <link rel="preconnect" href="https://fonts.gstatic.com" />
+                          <link rel="preconnect" href="https://fonts.gstatic.com" />
+                          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+                          <style>
+                              .shoptype-logo {
+                                  width: 80px;
+                                  height: 80px;
+                              }
+
+                              .shoptype-label {
+                                  font-size: 42px;
+                              }
+
+                              @media (max-width: 576px) {
+                                  .shoptype-logo {
+                                      width: 40px;
+                                      height: 40px;
+                                  }
+
+                                  .shoptype-label {
+                                      font-size: 24px;
+                                  }
+                              }
+                          </style>
+                      </head>
+
+                      <body style="
+                            margin: 0px;
+                            padding: 12px;
+                            width: auto;
+                            height: fit-content;
+                            font-family: 'Roboto', sans-serif;
+                            font-size: 16px;
+                            line-height: 1.5;
+                          ">
+                          <div style="max-width: 640px; margin: 0 auto">
+                              <div style="width: fit-content; margin: 24px auto">
+                                  <div style="
+                                  margin-right: 10px;
+                                  display: inline-block;
+                                  vertical-align: middle;
+                                ">
+                                      <img class="shoptype-logo" src="https://shoptype-media-assets.s3.amazonaws.com/logo.png" alt="Shoptype Logo" />
+                                  </div>
+                                  <div class="shoptype-label" style="
+                                  display: inline-block;
+                                  vertical-align: middle;
+                                  font-weight: 500;
+                                  color: #333333;
+                                ">
+                                      Shoptype
+                                  </div>
+                              </div>
+                              <div style="text-align: center">
+                                  <div style="
+                                  font-size: 24px;
+                                  font-weight: 500;
+                                  margin: 16px 0;
+                                  color: #333333;
+                                ">
+                                      Hi{{userName}},
+                                  </div>
+                                  <div style="
+                                  font-size: 20px;
+                                  font-weight: 400;
+                                  margin: 16px 0;
+                                  color: #333333;
+                                ">
+                                      You have been invited to join Shoptype by Test Vendor Name
+                                  </div>
+                                  <div style="
+                                  font-size: 24px;
+                                  font-weight: 500;
+                                  margin: 16px 0;
+                                  color: #333333;
+                                ">
+                                      Join today and enjoy unlimited benefits!
+                                  </div>
+                                  <div style="
+                                  font-size: 16px;
+                                  font-weight: 300;
+                                  margin: 8px 0;
+                                  color: #333333;
+                                ">
+                                      Want to co-sell products and make commissions on the fly?
+                                  </div>
+                                  <div style="
+                                  font-size: 24px;
+                                  font-weight: 400;
+                                  color: #333333;
+                                  margin: 16px 0;
+                                ">
+                                      Shoptype Co-seller account is what you’re looking for!
+                                  </div>
+                                  <div style="
+                                  font-size: 16px;
+                                  font-weight: 300;
+                                  margin: 8px 0;
+                                  color: #333333;
+                                ">
+                                      Own a brand? How about a platform that allows you to choose multiple
+                                      networks to push your products and allows you to set commissions for
+                                      influencers for your products?
+                                  </div>
+                                  <div style="
+                                  font-size: 24px;
+                                  font-weight: 400;
+                                  color: #333333;
+                                  margin: 16px 0;
+                                ">
+                                      Come, be a Shoptype Vendor today!
+                                  </div>
+                                  <div style="
+                                  font-size: 16px;
+                                  font-weight: 300;
+                                  margin: 8px 0;
+                                  color: #333333;
+                                ">
+                                      Have your Network? Choose from a list of Vendors for your Network and
+                                      let your business grow!
+                                  </div>
+                                  <div style="
+                                  font-size: 24px;
+                                  font-weight: 400;
+                                  color: #333333;
+                                  margin: 16px 0;
+                                ">
+                                      Become a Network Operator and start onboarding your Vendors,
+                                      absolutely hassle-free and quick!
+                                  </div>
+                                  <div style="font-size: 20px; font-weight: 400; margin: 16px 0">
+                                      Click&nbsp;<a href="https://dev.shoptype.com/users/signup?rid=6072e241a31266236f6d65d1">Here</a>&nbsp;to Join Now!
+                                  </div>
+                                  <div style="
+                                  font-size: 12px;
+                                  font-weight: 700;
+                                  color: #a1a1a1;
+                                  margin: 24px 0;
+                                ">
+                                      [Note. Please know that when you use our services, we collect the
+                                      email addresses from our users to verify the validity of these email
+                                      addresses. In providing our services, we only verify the validity of
+                                      email addresses and do not have access to any emails sent to or
+                                      received from the email addresses we verify.]
+                                  </div>
+                              </div>
+                          </div>
+                      </body>
+
+                      </html>
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: logged in user token
+          required: true
+      tags:
+        - utility
+components:
+  schemas:
+    Vendor:
+      description: Vendor model
+      type: object
+      x-examples:
+        Sample vendor:
+          id: 6607fca3-bb93-a6f9-cb26-0177fa46883b
+          name: HEMPVADA
+          user_id: 4112668b-9a35-4e1a-8ce1-627e780aacac
+          productCategories:
+            - ' Hemp'
+            - CBD
+            - Veed
+            - company type~brand
+            - company type~manufacturer
+            - company type~retailerCBD
+          url: 'https://www.hempvada.com/'
+          logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/4112668b-9a35-4e1a-8ce1-627e780aacac/hempvada%20logo.png'
+          shopifyVendor: ''
+          wooCommerceVendor: ''
+          wooCommerceShipping:
+            shippingServiceId: ''
+            shippingConsumerKey: ''
+            shippingConsumerSecret: ''
+          store:
+            addressLine1: 23 County Road B
+            city: Antonito
+            countryState: US - Colorado
+            postalCode: '81120'
+            currency: USD
+            geoLocation:
+              type: Point
+              coordinates:
+                - -106.0402169
+                - 36.9956786
+      title: Vendor
+      properties:
+        id:
+          type: string
+          minLength: 1
+          description: vendor id
+        name:
+          type: string
+          minLength: 1
+        user_id:
+          type: string
+          minLength: 1
+          description: The user account to which this vendor account is linked
+        productCategories:
+          type: array
+          items:
+            type: string
+        url:
+          type: string
+          minLength: 1
+        logo:
+          type: string
+          minLength: 1
+        shopifyVendor:
+          type: string
+          deprecated: true
+        wooCommerceVendor:
+          type: string
+          description: For a multi vendor store setup on woo commerce using Dokan
+        wooCommerceShipping:
+          type: object
+          deprecated: true
+          properties:
+            shippingServiceId:
+              type: string
+              deprecated: true
+            shippingConsumerKey:
+              type: string
+              deprecated: true
+            shippingConsumerSecret:
+              type: string
+              deprecated: true
+        store:
+          type: object
+          required:
+            - addressLine1
+            - city
+            - countryState
+            - postalCode
+            - currency
+            - geoLocation
+          properties:
+            addressLine1:
+              type: string
+              minLength: 1
+            city:
+              type: string
+              minLength: 1
+            countryState:
+              type: string
+              minLength: 1
+            postalCode:
+              type: string
+              minLength: 1
+            currency:
+              type: string
+              minLength: 1
+            geoLocation:
+              type: object
+              required:
+                - type
+                - coordinates
+              properties:
+                type:
+                  type: string
+                  minLength: 1
+                coordinates:
+                  type: array
+                  items:
+                    type: number
+      required:
+        - id
+        - name
+        - user_id
+        - productCategories
+        - url
+        - logo
+        - wooCommerceVendor
+        - store
+    Product:
+      description: ''
+      type: object
+      x-examples:
+        Sample product:
+          id: 7b72151b-a175-ea83-d4ec-e97bfad50256
+          handle: adoratherapy-abundance-room-boost-2
+          title: Adoratherapy Abundance Room Boost
+          description: |-
+            Super Cool Intense and exotic, Abundance is magnetic &amp; captivating. With top notes of cinnamon, clove, and patchouli. If abundance, prosperity, success, and self-confidence are what you desire most then Abundance Room Boost will ground your intention. An alternative to candles, room fresheners and diffusers, this all natural, organic, vegan &amp; cruelty free room and body spray is like feng shui for your mood and the mood of your environment
+            "I AM in the flow of constant prosperity and abundance"
+
+            Distilled water, symbio®solv Clear Plus, organic essential oils of patchouli, cinnamon, cardamon, bergamot, clove, frankincense and vetiver, oak moss and jasmine absolute, Verstatil SL non GMO, Citric Acid.
+
+            Bedroom: Spray before you get out of bed for the first breath of the day. Spray on your sheets and pillow before laying to rest.
+            Home and Office: Spray in the room you are in to shift the energy to the mood you desire
+            Pets &amp; Children: Spray to provide peace and calm to spaces you share with your family.
+            Yoga Mat and Meditation: Spray around you before or after your practice for purification and focus.
+            Travel: Spray around your self in public spaces to shift your energy inwards and release anxiety.
+            Personal Space: Mist your personal space for energy and recalibration.
+          tags:
+            - perfume
+          publishedAt: 1609942724000
+          syncedAt: 1613127604
+          primaryImageSrc:
+            id: '14075663614091'
+            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/445e0a5c-0006-faaf-6e33-d762c0bb078d/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+            variantIds:
+              - '37937107337371'
+          previewImageSrc: {}
+          secondaryImageSrc:
+            - id: '15287235739787'
+              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/445e0a5c-0006-faaf-6e33-d762c0bb078d/adora2_bffd1b03-e2f1-47b1-9e2f-d51938a5aecc.jpg'
+              variantIds:
+                - '32052631994507'
+            - id: '14075663581323'
+              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/445e0a5c-0006-faaf-6e33-d762c0bb078d/blu1.jpg'
+              variantIds:
+                - '32052631961739'
+            - id: '15647779160203'
+              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/445e0a5c-0006-faaf-6e33-d762c0bb078d/adora4_0c5110e8-c952-4cc2-8519-60677977a520.jpg'
+          primaryVideoSrc: {}
+          catalogId: 298d8392-863b-fb1e-9589-886694de46cb
+          variants:
+            - id: '32052631961739'
+              discountedPrice: '111.00'
+              discountedPriceAsMoney:
+                amount: 11100
+                currency: USD
+              price: ''
+              priceAsMoney:
+                amount: 0
+                currency: USD
+              taxable: true
+              imageIds:
+                - '14075663581323'
+              sku: RPRBTRAVEL
+              quantity: 880
+              variantNameValue:
+                color: Red
+                material: Chemical1
+                size: 10ML Spray
+              dimensions:
+                length: ''
+                width: ''
+                height: ''
+              weight: ''
+              dimension_unit: ''
+              weight_unit: ''
+            - id: '32052631994507'
+              discountedPrice: '40.00'
+              discountedPriceAsMoney:
+                amount: 4000
+                currency: USD
+              price: ''
+              priceAsMoney:
+                amount: 0
+                currency: USD
+              taxable: true
+              imageIds:
+                - '15287235739787'
+              sku: RPRBABUND
+              quantity: 656
+              variantNameValue:
+                color: Red
+                material: Chemical2
+                size: 100ML Spray
+              dimensions:
+                length: ''
+                width: ''
+                height: ''
+              weight: ''
+              dimension_unit: ''
+              weight_unit: ''
+            - id: '33521989812363'
+              discountedPrice: '10.00'
+              discountedPriceAsMoney:
+                amount: 1000
+                currency: USD
+              price: ''
+              priceAsMoney:
+                amount: 0
+                currency: USD
+              taxable: true
+              quantity: 233
+              variantNameValue:
+                color: Red
+                material: Chemical3
+                size: 1000ml
+              dimensions:
+                length: ''
+                width: ''
+                height: ''
+              weight: ''
+              dimension_unit: ''
+              weight_unit: ''
+            - id: '33528243978379'
+              discountedPrice: '10.00'
+              discountedPriceAsMoney:
+                amount: 1000
+                currency: USD
+              price: ''
+              priceAsMoney:
+                amount: 0
+                currency: USD
+              taxable: true
+              quantity: 34
+              variantNameValue:
+                color: Red
+                material: Chemical4
+                size: 1500ml
+              dimensions:
+                length: ''
+                width: ''
+                height: ''
+              weight: ''
+              dimension_unit: ''
+              weight_unit: ''
+            - id: '33529038766219'
+              discountedPrice: '10.00'
+              discountedPriceAsMoney:
+                amount: 1000
+                currency: USD
+              price: ''
+              priceAsMoney:
+                amount: 0
+                currency: USD
+              taxable: true
+              quantity: 232
+              variantNameValue:
+                color: Red
+                material: chemical5
+                size: 2000ml
+              dimensions:
+                length: ''
+                width: ''
+                height: ''
+              weight: ''
+              dimension_unit: ''
+              weight_unit: ''
+            - id: '37937107337371'
+              discountedPrice: '111.00'
+              discountedPriceAsMoney:
+                amount: 11100
+                currency: USD
+              price: ''
+              priceAsMoney:
+                amount: 0
+                currency: USD
+              taxable: true
+              imageIds:
+                - '14075663614091'
+              quantity: 0
+              variantNameValue:
+                color: Blue
+                material: Chemical2
+                size: 10ML Spray
+              dimensions:
+                length: ''
+                width: ''
+                height: ''
+              weight: ''
+              dimension_unit: ''
+              weight_unit: ''
+          currency: USD
+          sourceId: '4494262698123'
+          sourceName: SHOPIFY
+          options:
+            - name: size
+              values:
+                - 10ML Spray
+                - 100ML Spray
+                - 1000ml
+                - 1500ml
+                - 2000ml
+            - name: material
+              values:
+                - Chemical1
+                - Chemical2
+                - Chemical3
+                - Chemical4
+                - chemical5
+            - name: color
+              values:
+                - Red
+                - Blue
+          cards:
+            - id: '13'
+              heading: Testimony
+              type: text
+              content:
+                text: The best product ever!!!
+            - heading: FAQ
+              type: faq
+              content:
+                - answer: 'No'
+                  question: Is it available for sale in India?
+          vendor:
+            id: 298d8392-863b-fb1e-9589-886694de46cb
+            name: SHopfiaa
+            user_id: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+            productCategories:
+              - Apparel
+            logo: 'https://images-shoptype.s3.amazonaws.com/temp/e8b9b556-da4b-4d56-ba32-cb80c57136c4/tarts.jpeg'
+            shopifyVendor: ''
+            wooCommerceVendor: ''
+            wooCommerceShipping:
+              shippingServiceId: ''
+              shippingConsumerKey: ''
+              shippingConsumerSecret: ''
+            store:
+              addressLine1: 15678 w187th
+              city: Overland Park
+              countryState: US - Kansas
+              postalCode: '66221'
+              currency: USD
+              geoLocation:
+                type: Point
+                coordinates:
+                  - -94.70188999999999
+                  - 38.8671878
+          status: enabled
+          geoLocation:
+            type: Point
+            coordinates:
+              - -94.70188999999999
+              - 38.8671878
+          vendorName: SHopfiaa
+          productCommission:
+            percentage: 25
+          slug: ''
+      title: Product
+      properties:
+        id:
+          type: string
+          minLength: 1
+        handle:
+          type: string
+          minLength: 1
+        title:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+        tags:
+          type: array
+          items:
+            type: string
+        publishedAt:
+          type: number
+        syncedAt:
+          type: number
+        primaryImageSrc:
+          type: object
+          required:
+            - id
+            - imageSrc
+            - variantIds
+          properties:
+            id:
+              type: string
+              minLength: 1
+            imageSrc:
+              type: string
+              minLength: 1
+            variantIds:
+              type: array
+              items:
+                type: string
+        previewImageSrc:
+          type: string
+        secondaryImageSrc:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+              imageSrc:
+                type: string
+                minLength: 1
+              variantIds:
+                type: array
+                items:
+                  type: string
+            required:
+              - id
+              - imageSrc
+        primaryVideoSrc:
+          type: string
+        catalogId:
+          type: string
+          minLength: 1
+        variants:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: string
+        currency:
+          type: string
+          minLength: 1
+        sourceId:
+          type: string
+          minLength: 1
+        sourceName:
+          type: string
+          minLength: 1
+        options:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                minLength: 1
+              values:
+                type: array
+                items:
+                  type: string
+            required:
+              - name
+        cards:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+              heading:
+                type: string
+                minLength: 1
+              type:
+                type: string
+                minLength: 1
+              content:
+                type: object
+                properties:
+                  text:
+                    type: string
+                    minLength: 1
+                required:
+                  - text
+            required:
+              - id
+              - heading
+              - type
+        vendor:
+          $ref: '#/components/schemas/Vendor'
+        status:
+          type: string
+          minLength: 1
+        geoLocation:
+          type: object
+          required:
+            - type
+            - coordinates
+          properties:
+            type:
+              type: string
+              minLength: 1
+            coordinates:
+              type: array
+              items:
+                type: number
+        vendorName:
+          type: string
+          minLength: 1
+        productCommission:
+          type: object
+          required:
+            - percentage
+          properties:
+            percentage:
+              type: number
+        slug:
+          type: string
+      required:
+        - id
+        - handle
+        - title
+        - description
+        - tags
+        - publishedAt
+        - syncedAt
+        - primaryImageSrc
+        - previewImageSrc
+        - secondaryImageSrc
+        - primaryVideoSrc
+        - catalogId
+        - variants
+        - currency
+        - sourceId
+        - sourceName
+        - options
+        - cards
+        - status
+        - geoLocation
+        - vendorName
+        - productCommission
+        - slug
+    Order:
+      description: ''
+      type: object
+      title: Order
+      x-examples:
+        Sample order:
+          id: 602815a6fbc30b7315c64388
+          vendorId: 298d8392-863b-fb1e-9589-886694de46cb
+          externalSource: shopify
+          orderId: 0a93386d-950b-2d47-6aed-3f0d56fac498
+          externalId: '1518'
+          createdAt: '2021-02-13T18:08:35Z'
+          customerEmail: skbarik@gmail.com
+          quantity: 1
+          price:
+            amount: 111
+            currency: USD
+          totalPrice:
+            amount: 111
+            currency: USD
+          vendorRevenue:
+            amount: 77.71
+            currency: USD
+          attributions:
+            lIntro: true
+            lInvite: false
+            lMiddle: true
+            lPartner: false
+            lReferrer: false
+            lShare: false
+            lX: true
+          platformUrl: ''
+          productDetails:
+            - id: 7b72151b-a175-ea83-d4ec-e97bfad50256
+              variantId: '32052631961739'
+              externalId: '4494262698123'
+              price:
+                amount: 111
+                currency: USD
+              totalDiscount:
+                amount: 0
+                currency: USD
+              quantity: 1
+              primaryImageSrc:
+                id: '14075663614091'
+                imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/445e0a5c-0006-faaf-6e33-d762c0bb078d/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                variantIds:
+                  - '37937107337371'
+              title: Adoratherapy Abundance Room Boost
+              variantNameValue:
+                color: Red
+                material: Chemical1
+                size: 10ML Spray
+              commission_details:
+                l1:
+                  amount:
+                    amount: 2.77
+                    currency: USD
+                  percentage: 10
+                  userId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                  vendorId: 298d8392-863b-fb1e-9589-886694de46cb
+                  userName: sarthak barik
+                  platformUrl: ''
+                  createdAt: '2021-02-13T18:07:35.578Z'
+                lIntro:
+                  amount:
+                    amount: 3.89
+                    currency: USD
+                  percentage: 20
+                  userId: e2594521-c298-4b3c-a763-213c573d8bf2
+                  cosellerId: cfeb371d-2d48-0943-2d6c-f25d1a6be4e1
+                  userName: sarthak barik
+                  platformUrl: www.w3schools.com
+                  createdAt: '2021-01-29T08:03:21.49Z'
+                  adjustments:
+                    cosellerSplit:
+                      - amount:
+                          amount: 1.66
+                          currency: USD
+                        percentage: 30
+                        userId: ''
+                        platformId: 01f827c0-d95d-a52e-8db2-4f7ba1c19382
+                        networkId: 3ce3d621-467d-53fd-2e46-49678850c57b
+                        userName: ''
+                        platformUrl: www.w3schools.com
+                        createdAt: '2021-01-29T08:03:21.49Z'
+                lX:
+                  amount:
+                    amount: 19.42
+                    currency: USD
+                  percentage: 70
+                  userId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                  vendorId: 298d8392-863b-fb1e-9589-886694de46cb
+                  userName: sarthak barik
+                  platformUrl: ''
+                  createdAt: '2021-02-13T18:07:35.578Z'
+              total_adjustments:
+                cosellerSplit:
+                  amount: 1.66
+                  currency: USD
+          transactionStatus: pending
+      properties:
+        id:
+          type: string
+          minLength: 1
+        vendorId:
+          type: string
+          minLength: 1
+        externalSource:
+          type: string
+          minLength: 1
+        orderId:
+          type: string
+          minLength: 1
+        externalId:
+          type: string
+          minLength: 1
+          description: External order id example shopify order id
+        createdAt:
+          type: string
+          minLength: 1
+        customerEmail:
+          type: string
+          minLength: 1
+        quantity:
+          type: number
+        price:
+          $ref: '#/components/schemas/Money'
+        totalPrice:
+          $ref: '#/components/schemas/Money'
+        vendorRevenue:
+          $ref: '#/components/schemas/Money'
+        attributions:
+          type: object
+          description: To indicate which levels exist
+          required:
+            - lIntro
+            - lInvite
+            - lMiddle
+            - lPartner
+            - lReferrer
+            - lShare
+            - lX
+          properties:
+            lIntro:
+              type: boolean
+            lInvite:
+              type: boolean
+            lMiddle:
+              type: boolean
+            lPartner:
+              type: boolean
+            lReferrer:
+              type: boolean
+            lShare:
+              type: boolean
+            lX:
+              type: boolean
+        platformUrl:
+          type: string
+        productDetails:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+              variantId:
+                type: string
+                minLength: 1
+              externalId:
+                type: string
+                minLength: 1
+              price:
+                $ref: '#/components/schemas/Money'
+              totalDiscount:
+                $ref: '#/components/schemas/Money'
+              quantity:
+                type: number
+              primaryImageSrc:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                  imageSrc:
+                    type: string
+                    minLength: 1
+                  variantIds:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - id
+                  - imageSrc
+                  - variantIds
+              title:
+                type: string
+                minLength: 1
+              variantNameValue:
+                type: object
+                description: |-
+                  variant name value pair example,
+                  - size: L
+                  - color: Red
+                properties:
+                  variantName:
+                    type: string
+                    minLength: 1
+                    description: ''
+                required:
+                  - variantName
+              commission_details:
+                type: object
+                description: 'Commission details per level i.e. l1,l2,lIntro and lX'
+                properties:
+                  l1:
+                    type: object
+                    required:
+                      - amount
+                      - percentage
+                      - userId
+                      - vendorId
+                      - userName
+                      - platformUrl
+                      - createdAt
+                    properties:
+                      amount:
+                        $ref: '#/components/schemas/Money'
+                      percentage:
+                        type: number
+                      userId:
+                        type: string
+                        minLength: 1
+                      vendorId:
+                        type: string
+                        minLength: 1
+                      userName:
+                        type: string
+                        minLength: 1
+                      platformUrl:
+                        type: string
+                      createdAt:
+                        type: string
+                        minLength: 1
+                  lIntro:
+                    type: object
+                    required:
+                      - amount
+                      - percentage
+                      - userId
+                      - cosellerId
+                      - userName
+                      - platformUrl
+                      - createdAt
+                      - adjustments
+                    properties:
+                      amount:
+                        $ref: '#/components/schemas/Money'
+                      percentage:
+                        type: number
+                      userId:
+                        type: string
+                        minLength: 1
+                      cosellerId:
+                        type: string
+                        minLength: 1
+                      userName:
+                        type: string
+                        minLength: 1
+                      platformUrl:
+                        type: string
+                        minLength: 1
+                      createdAt:
+                        type: string
+                        minLength: 1
+                      adjustments:
+                        type: object
+                        required:
+                          - cosellerSplit
+                        properties:
+                          cosellerSplit:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              type: object
+                              properties:
+                                amount:
+                                  $ref: '#/components/schemas/Money'
+                                percentage:
+                                  type: number
+                                userId:
+                                  type: string
+                                platformId:
+                                  type: string
+                                  minLength: 1
+                                networkId:
+                                  type: string
+                                  minLength: 1
+                                userName:
+                                  type: string
+                                platformUrl:
+                                  type: string
+                                  minLength: 1
+                                createdAt:
+                                  type: string
+                                  minLength: 1
+                              required:
+                                - percentage
+                                - userId
+                                - platformId
+                                - networkId
+                                - userName
+                                - platformUrl
+                                - createdAt
+                  lX:
+                    type: object
+                    required:
+                      - amount
+                      - percentage
+                      - userId
+                      - vendorId
+                      - userName
+                      - platformUrl
+                      - createdAt
+                    properties:
+                      amount:
+                        $ref: '#/components/schemas/Money'
+                      percentage:
+                        type: number
+                      userId:
+                        type: string
+                        minLength: 1
+                      vendorId:
+                        type: string
+                        minLength: 1
+                      userName:
+                        type: string
+                        minLength: 1
+                      platformUrl:
+                        type: string
+                      createdAt:
+                        type: string
+                        minLength: 1
+                required:
+                  - l1
+                  - lIntro
+                  - lX
+              total_adjustments:
+                type: object
+                properties:
+                  cosellerSplit:
+                    $ref: '#/components/schemas/Money'
+                required:
+                  - cosellerSplit
+            required:
+              - id
+              - variantId
+              - externalId
+              - quantity
+              - title
+        transactionStatus:
+          type: string
+          minLength: 1
+          enum:
+            - success
+            - pending
+      required:
+        - id
+        - vendorId
+        - externalSource
+        - orderId
+        - externalId
+        - createdAt
+        - customerEmail
+        - quantity
+        - price
+        - totalPrice
+        - vendorRevenue
+        - attributions
+        - platformUrl
+        - productDetails
+        - transactionStatus
+    Money:
+      description: ''
+      type: object
+      properties:
+        amount:
+          type: number
+        currency:
+          type: string
+          minLength: 1
+      required:
+        - amount
+        - currency
+      title: Money
+      x-examples:
+        Sample money object:
+          amount: 77.71
+          currency: USD
+  securitySchemes: {}
+
