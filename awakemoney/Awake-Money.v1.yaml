@@ -1,0 +1,750 @@
+openapi: 3.0.0
+info:
+  title: Awake Money
+  version: '1.0'
+  description: |-
+    For payouts awake money has the following intgerations
+
+    | Currency | Provider |
+    | ------ | ------ |
+    | INR | Razorpay |
+    | USD | Stripe |
+servers:
+  - url: 'https://dev-backend.awake.money'
+    description: dev
+  - url: 'https://beta-backend.awake.money'
+    description: beta
+paths:
+  /login:
+    post:
+      summary: Login user
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            minLength: 1
+                          email:
+                            type: string
+                            minLength: 1
+                          firstName:
+                            type: string
+                            minLength: 1
+                          lastName:
+                            type: string
+                            minLength: 1
+                          phone:
+                            type: string
+                        required:
+                          - id
+                          - email
+                          - firstName
+                          - lastName
+                          - phone
+                    required:
+                      - user
+                  token:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+                  - data
+                  - token
+              examples:
+                Successful login:
+                  value:
+                    status: success
+                    message: User logged in successfully
+                    data:
+                      user:
+                        id: f1b7b518-722c-4a15-8cad-b0588b036c57
+                        email: tata.vendor@mailinator.com
+                        firstName: Tata
+                        lastName: Vendor
+                        phone: ''
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6ImYxYjdiNTE4LTcyMmMtNGExNS04Y2FkLWIwNTg4YjAzNmM1NyIsImVtYWlsIjoiIiwiaXNzIjoiYXdha2UtbW9uZXkifQ.A-QMq0MWN06JTfkvUN_wd_bQiQ4Es0n-O23EeQjujTw
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  code:
+                    type: number
+                  errorCode:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                required:
+                  - code
+                  - errorCode
+                  - message
+              examples:
+                Wrong password:
+                  value:
+                    code: 409
+                    errorCode: Invalid email or password
+                    message: ''
+      description: Login user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - email
+                - password
+            examples:
+              Login user sample:
+                value:
+                  email: tata.vendor@mailinator.com
+                  password: Ayusht@007
+      parameters: []
+      tags:
+        - user
+  /social-login:
+    post:
+      summary: Social login
+      operationId: post-social-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            minLength: 1
+                          email:
+                            type: string
+                            minLength: 1
+                          firstName:
+                            type: string
+                            minLength: 1
+                          lastName:
+                            type: string
+                            minLength: 1
+                          phone:
+                            type: string
+                        required:
+                          - id
+                          - email
+                          - firstName
+                          - lastName
+                          - phone
+                    required:
+                      - user
+                  token:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+                  - data
+                  - token
+              examples:
+                Successful login:
+                  value:
+                    status: success
+                    message: User Logged in successfully
+                    data:
+                      user:
+                        id: e2594521-c298-4b3c-a763-213c573d8bf2
+                        email: skbarik@gmail.com
+                        firstName: sarthak
+                        lastName: barik
+                        phone: ''
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6ImUyNTk0NTIxLWMyOTgtNGIzYy1hNzYzLTIxM2M1NzNkOGJmMiIsImVtYWlsIjoiIiwiaXNzIjoiYXdha2UtbW9uZXkifQ.tzp7tcb33ZUFvA81F0bths07ez0wC05kx4IYSfqiREQ
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  code:
+                    type: number
+                  errorCode:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                required:
+                  - code
+                  - errorCode
+                  - message
+              examples:
+                Wrong credentials:
+                  value:
+                    code: 404
+                    errorCode: Request failed with status code 400
+                    message: ''
+      description: Allow a user to login via social platforms like google and facebook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                token:
+                  type: string
+                  minLength: 1
+                  description: Oauth token
+                provider:
+                  type: string
+                  minLength: 1
+                  enum:
+                    - GOOGLE
+                    - FACEBOOK
+                domain:
+                  type: string
+                  minLength: 1
+              required:
+                - token
+                - provider
+                - domain
+            examples:
+              Social login sample body:
+                value:
+                  token: eyJhbGciOiJSUzI1NiIsImtpZCI6IjdkYTc4NjNlODYzN2Q2NjliYzJhMTI2MjJjZWRlMmE4ODEzZDExYjEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiMjg0MTMxMjMzNjMxLWVhc3JzNGp1bDNhb25mcWI0M3NkNzdhMzg5M21vbWNnLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMjg0MTMxMjMzNjMxLWVhc3JzNGp1bDNhb25mcWI0M3NkNzdhMzg5M21vbWNnLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTEyMTY3MTU3MTYwNjY5OTEyMTEzIiwiaGQiOiJjb2ZmZWViZWFucy5pbyIsImVtYWlsIjoiYXl1c2hAY29mZmVlYmVhbnMuaW8iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6InRJYVhCTF8tMEQ2T2RZa3pBZHNMYUEiLCJuYW1lIjoiQXl1c2ggVGl3YXJpIiwicGljdHVyZSI6Imh0dHBzOi8vbGg1Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tc1BiOW1SUXBUaXMvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjazZsV0ZPaGw3WFlJdXN3YkR4S3BwVTVxbnVlZy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiQXl1c2giLCJmYW1pbHlfbmFtZSI6IlRpd2FyaSIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNjAyNzUyMDcyLCJleHAiOjE2MDI3NTU2NzIsImp0aSI6IjI2MjY0ZjA3NDNmODBiNGRiMDUzMzZmZTYxZDMwMDNmZDBkYWYxNjMifQ.YPDwAREiUaQTKhIM4jzwntCvK1eU5Tu9pBup1foDDDFpYItsQ4Z_5KiyMo90rqE65TDoq4T3BiDTwSijulrSdFZApaUBReWq_HHCT0Xi_9qRjfodEmGTU2ivn2E3LqSwe6FFb2AM24i4M4gVN_ReRKON981xFm0Os-S4NamkCpFq71JL47TQaDVOczI6xI0yj35ac9rgvjM8RAph27fxX2Rpsm1YZ4bf8rijGkdR90DwL6GAHtzFc6MaKuDfddJBS_VoGHrhSTIVopK3sjHCNM-qDgy2ykNdN8tRsrLn3MeKckJJ8_jGGG_SWMpflgoOnYQjt5j6l5wBhJgxcX1Dag
+                  provider: GOOGLE
+                  domain: SHOPTYPE
+      tags:
+        - user
+  /me:
+    get:
+      summary: Get user profile
+      tags:
+        - user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                    minLength: 1
+                  updated_at:
+                    type: string
+                    minLength: 1
+                  deleted_at:
+                    type: object
+                    properties:
+                      Time:
+                        type: string
+                        minLength: 1
+                      Valid:
+                        type: boolean
+                    required:
+                      - Time
+                      - Valid
+                  id:
+                    type: string
+                    minLength: 1
+                  firstName:
+                    type: string
+                    minLength: 1
+                  lastName:
+                    type: string
+                    minLength: 1
+                  email:
+                    type: string
+                    minLength: 1
+                  phone:
+                    type: string
+                required:
+                  - created_at
+                  - updated_at
+                  - deleted_at
+                  - id
+                  - firstName
+                  - lastName
+                  - email
+                  - phone
+              examples:
+                Sample user profile:
+                  value:
+                    created_at: '2020-11-02T15:28:20.977403Z'
+                    updated_at: '2020-11-02T15:28:20.977403Z'
+                    deleted_at:
+                      Time: '0001-01-01T00:00:00Z'
+                      Valid: false
+                    id: e2594521-c298-4b3c-a763-213c573d8bf2
+                    firstName: sarthak
+                    lastName: barik
+                    email: skbarik@gmail.com
+                    phone: ''
+        '401':
+          description: Unauthorized
+      operationId: get-me
+      description: Fetch user profile details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+  /transactions:
+    get:
+      summary: Fetch transactions
+      tags:
+        - transaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+              examples:
+                Sample transactions:
+                  value:
+                    - id: 1422
+                      amount: 3.89
+                      entry_type: C
+                      created_at: '2021-02-13T18:08:38.865135Z'
+                      transaction_id: 283
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 1518'
+                      asset_type_unit: usd
+                    - id: 464
+                      amount: 2.48
+                      entry_type: C
+                      created_at: '2020-11-18T01:18:14.989803Z'
+                      transaction_id: 53
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 824'
+                      asset_type_unit: usd
+                    - id: 465
+                      amount: 2.48
+                      entry_type: C
+                      created_at: '2020-11-18T01:18:14.989803Z'
+                      transaction_id: 53
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 824'
+                      asset_type_unit: usd
+                    - id: 459
+                      amount: 2.48
+                      entry_type: C
+                      created_at: '2020-11-17T13:51:37.548045Z'
+                      transaction_id: 52
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 821'
+                      asset_type_unit: usd
+                    - id: 458
+                      amount: 2.48
+                      entry_type: C
+                      created_at: '2020-11-17T13:51:37.548045Z'
+                      transaction_id: 52
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 821'
+                      asset_type_unit: usd
+                    - id: 461
+                      amount: 14.88
+                      entry_type: C
+                      created_at: '2020-11-17T13:51:37.548045Z'
+                      transaction_id: 52
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 821'
+                      asset_type_unit: usd
+                    - id: 435
+                      amount: 14.88
+                      entry_type: C
+                      created_at: '2020-11-17T11:43:11.061935Z'
+                      transaction_id: 50
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 819'
+                      asset_type_unit: usd
+                    - id: 439
+                      amount: 2.48
+                      entry_type: C
+                      created_at: '2020-11-17T11:43:11.061935Z'
+                      transaction_id: 50
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 819'
+                      asset_type_unit: usd
+                    - id: 438
+                      amount: 2.48
+                      entry_type: C
+                      created_at: '2020-11-17T11:43:11.061935Z'
+                      transaction_id: 50
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : 819'
+                      asset_type_unit: usd
+                    - id: 57
+                      amount: 74.87
+                      entry_type: C
+                      created_at: '2020-11-02T15:30:33.031938Z'
+                      transaction_id: 8
+                      account_id: 11
+                      asset_type_id: 2
+                      ref: 'Order purchased on shop-type for order : T011-0002-20'
+                      asset_type_unit: usd
+      operationId: get-transactions
+      description: Fetch transactions
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+  /accounts:
+    get:
+      summary: Fetch accounts
+      tags:
+        - account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+              examples:
+                Sample accounts:
+                  value:
+                    - created_at: '2020-10-30T11:11:46.647121Z'
+                      updated_at: '2020-10-30T11:11:46.647122Z'
+                      deleted_at:
+                        Time: '0001-01-01T00:00:00Z'
+                        Valid: false
+                      id: 2
+                      name: sarthak_account
+                      amount: 114.55
+                      amount_on_hold: 8.85
+                      user_id: e2594521-c298-4b3c-a763-213c573d8bf2
+                      account_type_id: 2
+                      asset_type_id: 2
+                      asset_type: cash
+                      asset_type_unit: usd
+      operationId: get-accounts
+      description: Fetch accounts for a given user
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+  /withdraw:
+    post:
+      summary: Withdraw money from wallet
+      operationId: post-withdraw
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                asset_type_id:
+                  type: number
+                payment_method_type:
+                  type: string
+                  minLength: 1
+                withdraw_params:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+              required:
+                - asset_type_id
+                - payment_method_type
+                - withdraw_params
+            examples:
+              stripe:
+                value:
+                  asset_type_id: 2
+                  payment_method_type: stripe
+                  withdraw_params:
+                    amount: 350
+                    currency: usd
+              razorpay:
+                value:
+                  asset_type_id: 1
+                  payment_method_type: razorpay
+                  withdraw_params:
+                    fund_account_id: fa_GFZPpnZ0EdZP5F
+                    amount: 15.12
+                    currency: INR
+                    mode: IMPS
+                    purpose: payout
+                    queue_if_low_balance: true
+                    reference_id: Acme Transaction ID 12345
+                    narration: Acme Corp Fund Transfer
+      description: Withdraw money from wallet
+      tags:
+        - withdraw
+  /composite-withdraw:
+    post:
+      summary: Composite withdraw
+      operationId: post-composite-withdraw
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+      description: Composite withdraw allows a buyer to add an account and withdraw at same time. This is currently supported only for razorpay.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                asset_type_id:
+                  type: number
+                payment_method_type:
+                  type: string
+                  minLength: 1
+                  enum:
+                    - razorpay
+                composite_withdraw_params:
+                  type: object
+                  required:
+                    - amount
+                    - currency
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+              required:
+                - asset_type_id
+                - payment_method_type
+                - composite_withdraw_params
+            examples:
+              Razorpay:
+                value:
+                  asset_type_id: 1
+                  payment_method_type: razorpay
+                  composite_withdraw_params:
+                    amount: 15.12
+                    currency: INR
+                    mode: IMPS
+                    purpose: payout
+                    queue_if_low_balance: true
+                    reference_id: Acme Transaction ID 12345
+                    narration: Acme Corp Fund Transfer
+                    fund_account:
+                      account_type: bank_account
+                      bank_account:
+                        name: Goru Kumar
+                        ifsc: HDFC0001234
+                        account_number: '1121431121541121'
+                      contact:
+                        name: Goru Kumar
+                        email: goru.kumar@example.com
+                        contact: '9876543210'
+                        type: vendor
+                        reference_id: Acme Contact ID 12345
+                        notes:
+                          notes_key_1: 'Tea, Earl Grey, Hot'
+                          notes_key_2: 'Tea, Earl Grey… decaf.'
+        description: ''
+      tags:
+        - withdraw
+components:
+  schemas:
+    Transaction:
+      description: |-
+        - Following assets are supported in Awake Money
+
+        | Asset type ID | Asset type | Asset Type Unit |
+        | ------ | ------ | ------ |
+        | 1 | [cash] | [inr] |
+        | 2 | [cash] | [usd] |
+      type: object
+      title: Transaction
+      properties:
+        id:
+          type: number
+          description: ID
+        amount:
+          type: number
+          description: ''
+        entry_type:
+          type: string
+          minLength: 1
+          description: Credit or Debit
+          enum:
+            - C
+            - D
+        created_at:
+          type: string
+          minLength: 1
+        transaction_id:
+          type: number
+        account_id:
+          type: number
+        asset_type_id:
+          type: number
+          description: Asset Type ID
+        ref:
+          type: string
+          minLength: 1
+        asset_type_unit:
+          type: string
+          minLength: 1
+          description: Asset Type Unit
+      required:
+        - id
+        - amount
+        - entry_type
+        - created_at
+        - transaction_id
+        - account_id
+        - asset_type_id
+        - ref
+        - asset_type_unit
+      x-examples:
+        Sample transaction:
+          id: 1422
+          amount: 3.89
+          entry_type: C
+          created_at: '2021-02-13T18:08:38.865135Z'
+          transaction_id: 283
+          account_id: 11
+          asset_type_id: 2
+          ref: 'Order purchased on shop-type for order : 1518'
+          asset_type_unit: usd
+    Account:
+      description: ''
+      type: object
+      properties:
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        deleted_at:
+          type: object
+          properties:
+            Time:
+              type: string
+              minLength: 1
+            Valid:
+              type: boolean
+          required:
+            - Time
+            - Valid
+        id:
+          type: number
+        name:
+          type: string
+          minLength: 1
+        amount:
+          type: number
+        amount_on_hold:
+          type: number
+        user_id:
+          type: string
+          minLength: 1
+        account_type_id:
+          type: number
+        asset_type_id:
+          type: number
+        asset_type:
+          type: string
+          minLength: 1
+        asset_type_unit:
+          type: string
+          minLength: 1
+      required:
+        - created_at
+        - updated_at
+        - deleted_at
+        - id
+        - name
+        - amount
+        - amount_on_hold
+        - user_id
+        - account_type_id
+        - asset_type_id
+        - asset_type
+        - asset_type_unit
+      title: Account
+
