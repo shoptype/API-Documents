@@ -626,6 +626,112 @@ paths:
         description: ''
       tags:
         - withdraw
+  /stripe-connect/slug:
+    get:
+      summary: Fetch stripe connect slug
+      tags:
+        - stripe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    minLength: 1
+                required:
+                  - slug
+              examples:
+                Sample response:
+                  value:
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RLpKSCKaFD1yWfq8Ns9xhvWu&redirect_uri=https%3A%2F%2Fdev.awake.money%2Fdashboard&state=c1q23fgkars5tnut6g1g'
+      operationId: get-stripe-connect-slug
+      description: Fetch the slug for stripe connect
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          required: true
+          description: user token
+  /stripe-connect/verification/confirm:
+    post:
+      summary: ''
+      operationId: post-stripe-connect-verification-confirm
+      responses:
+        '200':
+          description: OK
+      tags:
+        - stripe
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                payment_method_type:
+                  type: string
+                  minLength: 1
+                code:
+                  type: string
+                  minLength: 1
+              required:
+                - payment_method_type
+                - code
+            examples:
+              Sample body:
+                value:
+                  payment_method_type: stripe
+                  code: ac_IBnThr9P5nfraiI89jsinSExA0LOCOKF
+      description: |-
+        Needs to be invoked once user is redirected back to native page after finishing stripe connect steps.
+
+        ### Please refer to below link for responses
+        - https://stripe.com/docs/connect/oauth-reference
+  /stripe-connect/details:
+    get:
+      summary: Fetch stripe connect details
+      tags:
+        - stripe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Sample response:
+                  value:
+                    scope: express
+                    livemode: false
+                    token_type: bearer
+                    access_token: sk_test_51IC4QT2XzsGnVHHi1WYRkmSPwLyk0QnEorWCekV0G2wEYc2KbuY2FWzU5jTofQXIuTIbYnTwzuhbFFu7vsX2t7n500iYDWq97A
+                    refresh_token: rt_Infoyas5WIwbNr5NhuwDxAtrlAJ7TpuTTkbhx6B5q0FzAwUq
+                    stripe_user_id: acct_1IC4QT2XzsGnVHHi
+                    stripe_publishable_key: pk_test_51IC4QT2XzsGnVHHieyCtGeotLosgiEQOUZ1HNoW3k2SjOZhQzz1y171tjxHGTpaSCfgmHcVCodKx6S5E7uAixTTA00ZBgZMVsp
+      operationId: get-stripe-connect-details
+      description: |-
+        Fetch stripe connect details
+        ### Please refer to below link for responses
+        - https://stripe.com/docs/connect/oauth-reference
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
 components:
   schemas:
     Transaction:
@@ -747,4 +853,3 @@ components:
         - asset_type
         - asset_type_unit
       title: Account
-
