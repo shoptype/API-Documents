@@ -3279,6 +3279,35 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -4590,7 +4619,7 @@ paths:
         description: Network ID
   /vendor-attribution:
     post:
-      summary: Set vendor attribution
+      summary: Crate vendor attribution
       operationId: post-vendor-attribution
       responses:
         '200':
@@ -4598,9 +4627,7 @@ paths:
       tags:
         - vendor
         - attribution
-      description: |-
-        Set vendor attribution
-        ### {id} = Attribution ID
+      description: Create vendor attribution
       requestBody:
         content:
           application/json:
@@ -4627,12 +4654,61 @@ paths:
         required: true
         description: Vendor ID
     get:
-      summary: Your GET endpoint
+      summary: Fetch attribution configured by vendor
       tags:
         - attribution
         - vendor
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/VendorAttributionConfig'
+                required:
+                  - data
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      id: 60750bdb7bcaba14157d2bc7
+                      vendorId: 0e077625-2c52-270d-4a33-40a48015769c
+                      attributionConfig:
+                        configs:
+                          l1:
+                            percentage: 5
+                            timeLimit: 259200000000000
+                            timeLimitUnit: hours
+                          l2:
+                            percentage: 5
+                            timeLimit: 129600000000000
+                            timeLimitUnit: hours
+                          lIntro:
+                            percentage: 10
+                            timeLimit: null
+                            timeLimitUnit: infinite
+                          lX:
+                            percentage: 80
+                            timeLimit: 3600000000000
+                            timeLimitUnit: hours
+                          networkCommission:
+                            percentage: 20
+                            timeLimit: null
+                            timeLimitUnit: ''
+                        adjustmentConfigs: null
       operationId: get-vendor-attribution-id
+      description: Fetch attribution configured by vendor
+      parameters:
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: authorization
+          description: vendor token
   '/vendor-attribution/{id}':
     parameters:
       - schema:
@@ -4640,15 +4716,189 @@ paths:
         name: id
         in: path
         required: true
+        description: Attribution ID
     put:
-      summary: ''
+      summary: Update vendor attribution config
       operationId: put-vendor-attribution-attributionId
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      vendorId:
+                        type: string
+                        minLength: 1
+                      attributionConfig:
+                        type: object
+                        properties:
+                          configs:
+                            type: object
+                            properties:
+                              l1:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                              l2:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                              lIntro:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lX:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                              networkCommission:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                            required:
+                              - l1
+                              - l2
+                              - lIntro
+                              - lX
+                              - networkCommission
+                          adjustmentConfigs: {}
+                        required:
+                          - configs
+                    required:
+                      - id
+                      - vendorId
+                      - attributionConfig
+                required:
+                  - data
+              examples:
+                Successful update response:
+                  value:
+                    data:
+                      id: 60750bdb7bcaba14157d2bc7
+                      vendorId: 0e077625-2c52-270d-4a33-40a48015769c
+                      attributionConfig:
+                        configs:
+                          l1:
+                            percentage: 5
+                            timeLimit: 259200000000000
+                            timeLimitUnit: hours
+                          l2:
+                            percentage: 5
+                            timeLimit: 129600000000000
+                            timeLimitUnit: hours
+                          lIntro:
+                            percentage: 10
+                            timeLimit: null
+                            timeLimitUnit: infinite
+                          lX:
+                            percentage: 80
+                            timeLimit: 3600000000000
+                            timeLimitUnit: hours
+                          networkCommission:
+                            percentage: 20
+                            timeLimit: null
+                            timeLimitUnit: ''
+                        adjustmentConfigs: null
       tags:
         - attribution
         - vendor
+      description: |-
+        Update vendor attribution config
+        ### {id} = Attribution ID
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorAttributionConfig'
+            examples:
+              Vendor attribution config:
+                value:
+                  id: 60750bdb7bcaba14157d2bc7
+                  vendorId: 0e077625-2c52-270d-4a33-40a48015769c
+                  attributionConfig:
+                    configs:
+                      l1:
+                        percentage: 5
+                        timeLimit: 259200000000000
+                        timeLimitUnit: hours
+                      l2:
+                        percentage: 5
+                        timeLimit: 129600000000000
+                        timeLimitUnit: hours
+                      lIntro:
+                        percentage: 10
+                        timeLimit: null
+                        timeLimitUnit: infinite
+                      lX:
+                        percentage: 80
+                        timeLimit: 3600000000000
+                        timeLimitUnit: hours
+                      networkCommission:
+                        percentage: 20
+                        timeLimit: null
+                        timeLimitUnit: ''
+                    adjustmentConfigs: null
   /network-attribution:
     post:
       summary: ''
@@ -5851,88 +6101,6 @@ components:
     VendorAttributionConfig:
       description: ''
       type: object
-      properties:
-        attributionConfig:
-          type: object
-          properties:
-            configs:
-              type: object
-              properties:
-                networkCommission:
-                  type: object
-                  properties:
-                    percentage:
-                      type: number
-                  required:
-                    - percentage
-                lIntro:
-                  type: object
-                  properties:
-                    percentage:
-                      type: number
-                    timeLimit: {}
-                    timeLimitUnit:
-                      type: string
-                      minLength: 1
-                  required:
-                    - percentage
-                    - timeLimitUnit
-                l1:
-                  type: object
-                  properties:
-                    percentage:
-                      type: number
-                    timeLimit:
-                      type: number
-                    timeLimitUnit:
-                      type: string
-                      minLength: 1
-                  required:
-                    - percentage
-                    - timeLimit
-                    - timeLimitUnit
-                l2:
-                  type: object
-                  properties:
-                    percentage:
-                      type: number
-                    timeLimit:
-                      type: number
-                    timeLimitUnit:
-                      type: string
-                      minLength: 1
-                  required:
-                    - percentage
-                    - timeLimit
-                    - timeLimitUnit
-                lX:
-                  type: object
-                  properties:
-                    percentage:
-                      type: number
-                    timeLimit:
-                      type: number
-                    timeLimitUnit:
-                      type: string
-                      minLength: 1
-                  required:
-                    - percentage
-                    - timeLimit
-                    - timeLimitUnit
-              required:
-                - networkCommission
-                - lIntro
-                - l1
-                - l2
-                - lX
-          required:
-            - configs
-        vendorId:
-          type: string
-          minLength: 1
-      required:
-        - attributionConfig
-        - vendorId
       title: VendorAttributionConfig
       x-examples:
         Sample payload:
@@ -5957,6 +6125,91 @@ components:
                 timeLimit: 3600000000000
                 timeLimitUnit: hours
           vendorId: 0e077625-2c52-270d-4a33-40a48015769c
+      properties:
+        attributionConfig:
+          type: object
+          required:
+            - configs
+          properties:
+            configs:
+              type: object
+              required:
+                - networkCommission
+                - lIntro
+                - l1
+                - l2
+                - lX
+              properties:
+                networkCommission:
+                  type: object
+                  required:
+                    - percentage
+                  properties:
+                    percentage:
+                      type: number
+                lIntro:
+                  type: object
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                l1:
+                  type: object
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                l2:
+                  type: object
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                lX:
+                  type: object
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+        vendorId:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          description: Attribution ID
+      required:
+        - attributionConfig
+        - vendorId
     NetworkAttributionConfig:
       description: ''
       type: object
