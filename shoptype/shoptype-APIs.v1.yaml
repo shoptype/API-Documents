@@ -3053,6 +3053,232 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -3436,6 +3662,1233 @@ paths:
           name: currency
           required: true
           description: Currency
+  /networks/discover-vendors:
+    get:
+      summary: Discover vendors not on your network
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  vendors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      $ref: '#/components/schemas/Vendor'
+                required:
+                  - count
+                  - vendors
+              examples:
+                Sample payload:
+                  value:
+                    count: 394
+                    vendors:
+                      - id: 015ce1ee-fdfa-a0fb-b70c-6854be14de04
+                        name: woocomerceAmit
+                        user_id: 8fa97cc8-da3f-459b-bb68-154f8cd93fca
+                        productCategories:
+                          - Books/Music/Video
+                        url: woocomerceAmit.com
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 01b5f9b9-1efd-cc9d-ee4a-dfb0fdf63ba3
+                        name: Abhijeet Kini Store Test
+                        user_id: 9f8be768-4cb0-4d2c-bf90-49dd3be52d58
+                        productCategories:
+                          - Apparel
+                        shopifyVendor: ''
+                        wooCommerceVendor: Sheroes
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 03a67677-8b70-c59b-1ec1-9df75e65a2e1
+                        name: vendorSJJ
+                        user_id: 74358134-9fd2-4d2a-b14a-89028155dfe1
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: 15678 w187th
+                          city: Overland Park
+                          countryState: US - Kansas
+                          postalCode: '66221'
+                          currency: USD
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - -94.70188999999999
+                              - 38.8671878
+                      - id: 03ca7acc-9802-f112-afb7-872975aaa9ef
+                        name: Tst999
+                        user_id: f6ff17ce-ccb4-47f1-aec8-91319db8239c
+                        productCategories:
+                          - Apparel
+                        shopifyVendor: ''
+                        wooCommerceVendor: Sheroes
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 04066e6d-4e8e-f9f0-3c35-f1e696ff4238
+                        name: Sheroes Vendor
+                        user_id: 0a27d1c0-243b-4134-804c-deed54b3e4ab
+                        productCategories:
+                          - Apparel
+                          - Health/Beauty
+                        url: www.sheco.com
+                        logo: 'https://images-shoptype.s3.amazonaws.com/temp/0a27d1c0-243b-4134-804c-deed54b3e4ab/sheroes_logo.png'
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 048ca86c-359c-c233-2a7f-7f83172d32c8
+                        name: kishu25
+                        user_id: 6d4a45dd-eb06-43dc-87a0-57cec88ae90c
+                        productCategories:
+                          - Apparel
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 04a5f160-a396-f41e-2faa-523dc30bba7c
+                        name: Test Brand
+                        user_id: 591c7feb-e6d5-4f08-b8bb-511cf6ca9a23
+                        productCategories:
+                          - Personal Care
+                        url: testbrand.com
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 04a60ec3-b789-5750-e84e-43b8a0c2658c
+                        name: ClockSeller
+                        user_id: a016ec5e-a939-460b-89e1-c5d5a86dd182
+                        productCategories:
+                          - Clocks
+                        shopifyVendor: ''
+                        wooCommerceVendor: IndiaStore
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ' - '
+                          postalCode: ''
+                          currency: INR
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 054b0a73-9446-1f91-1594-84d7e28472f5
+                        name: AyubLocalVendor
+                        user_id: 38ad5051-6fe0-4663-bda4-fdc87c775ef6
+                        productCategories:
+                          - Apparel
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 05610bad-bc34-708c-32d0-5d3433c41c81
+                        name: at1301
+                        user_id: b78a2fa9-1d3b-4b83-b1d9-f87b586e1c4d
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 06e3c771-2628-dd3b-db71-67b9d5241096
+                        name: AAAAAA
+                        user_id: b687b5c4-0435-4a35-b918-91736db59119
+                        productCategories:
+                          - Apparel
+                          - Automotive
+                          - Hardware/HomeImp
+                        shopifyVendor: ''
+                        wooCommerceVendor: hempvada
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 071dbc97-eebf-8b41-b10b-0b87edf5f186
+                        name: amit prod elete
+                        user_id: ce37675e-5671-4c80-85d3-fe7dc71f6a41
+                        productCategories:
+                          - Apparel
+                        url: aws.com
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 07b3932b-7417-f058-d1aa-c81e92c3b55b
+                        name: razortest
+                        user_id: b6608297-e67c-491a-8c78-51f26ed69282
+                        shopifyVendor: ''
+                        wooCommerceVendor: testagain
+                        enableCheckoutShoptype: true
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 07e85222-af4a-b1aa-ed16-f37475500875
+                        name: The Random Instructor
+                        user_id: 9907eaa3-90ad-458e-b3f6-db89aac52802
+                        productCategories:
+                          - Courses
+                        url: www.edulyx.com
+                        shopifyVendor: ''
+                        wooCommerceVendor: The Random Instructor_abhishek24.rajpoot@gmail.com
+                        enableCheckoutShoptype: true
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: United Kingdom (UK)
+                          postalCode: ''
+                          currency: GBP
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 0927b2ed-0527-a4d7-5451-2b71b4cf409a
+                        name: auto_IJVUV
+                        user_id: 12298e61-5135-4aa9-8560-0ab1c12ebcaa
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        enableCheckoutShoptype: true
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: United States (US) - Georgia
+                          postalCode: ''
+                          currency: INR
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 0b23fc4d-3306-eb62-b914-dd8d6eab500b
+                        name: Femora
+                        user_id: 2b2a2389-3484-4636-97ed-c59fcc116772
+                        productCategories:
+                          - Apparel
+                        url: www.femora.com
+                        shopifyVendor: ''
+                        wooCommerceVendor: Femora
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ' - '
+                          postalCode: ''
+                          currency: INR
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 0b84943d-4874-e9b5-bfe6-a567999642f0
+                        name: auto_XVLIF
+                        user_id: 435cecd4-3d39-45b8-8900-8644a275bf35
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        enableCheckoutShoptype: true
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: United States (US) - Georgia
+                          postalCode: ''
+                          currency: INR
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 0c23097e-81d9-62c0-02db-9e37d003817a
+                        name: vendorEWU
+                        user_id: 7378bb30-b1fb-4e7d-92d7-262caaf4bdc9
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: 15678 w187th
+                          city: Overland Park
+                          countryState: US - Kansas
+                          postalCode: '66221'
+                          currency: USD
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - -94.70188999999999
+                              - 38.8671878
+                      - id: 0c263029-995f-c07f-a4d0-0721ffcad926
+                        name: Tetestttt
+                        user_id: a52c5aa5-7a2d-4247-9738-496ff32f4a67
+                        productCategories:
+                          - testttt
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+                      - id: 0da6c970-1366-a155-fa38-08b541cc58f6
+                        name: burger
+                        user_id: 01ccb832-15f4-4cab-ac4e-1deecc5221c5
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        enableCheckoutShoptype: true
+                        wooCommerceShipping:
+                          shippingServiceId: '001'
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: ''
+                          city: ''
+                          countryState: ''
+                          postalCode: ''
+                          currency: ''
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - 0
+                              - 0
+      operationId: get-discover-vendors
+      description: Discover vendors not on your network
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: network token
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: count
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Search text
+    parameters: []
+  /networks/manage-vendors:
+    get:
+      summary: Fetch vendors part of your network
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  vendors:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      $ref: '#/components/schemas/Vendor'
+                required:
+                  - count
+                  - vendors
+              examples:
+                Sample payload:
+                  value:
+                    count: 1
+                    vendors:
+                      - id: 0e077625-2c52-270d-4a33-40a48015769c
+                        name: Test Vendor Name
+                        user_id: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                        productCategories:
+                          - Apparel
+                        url: www.testvendor.com
+                        shopifyVendor: ''
+                        wooCommerceVendor: ''
+                        wooCommerceShipping:
+                          shippingServiceId: ''
+                          shippingConsumerKey: ''
+                          shippingConsumerSecret: ''
+                        store:
+                          addressLine1: 23 County Road B
+                          city: Antonito
+                          countryState: US - Colorado
+                          postalCode: '81120'
+                          currency: USD
+                          geoLocation:
+                            type: Point
+                            coordinates:
+                              - -106.0402169
+                              - 36.9956786
+      operationId: get-networks-manage-vendors
+      description: Fetch vendors part of your network
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: network token
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: Offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Search text
+  /networks/invite-vendor:
+    post:
+      summary: Invite vendor to network
+      operationId: post-networks-invite-vendor
+      responses:
+        '200':
+          description: OK
+      description: Invite vendor to network
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: network token
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: vendorId
+          description: Vendor ID
+          required: true
+      tags:
+        - network
+  /networks/unlink-vendor:
+    delete:
+      summary: Remove a vendor from network
+      operationId: delete-networks-unlink-vendor
+      responses:
+        '200':
+          description: OK
+      description: Remove a vendor from network
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: network token
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: vendorId
+          description: Vendor ID
+          required: true
+      tags:
+        - network
+  /networks:
+    get:
+      summary: Get network details
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  network:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      userId:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      network_setting:
+                        type: object
+                        properties:
+                          cosellerSplit:
+                            type: object
+                            properties:
+                              percentage:
+                                type: number
+                              timeLimit: {}
+                              timeLimitUnit:
+                                type: string
+                            required:
+                              - percentage
+                              - timeLimitUnit
+                          networkFee:
+                            type: object
+                            properties:
+                              percentage:
+                                type: number
+                              timeLimit: {}
+                              timeLimitUnit:
+                                type: string
+                            required:
+                              - percentage
+                              - timeLimitUnit
+                        required:
+                          - cosellerSplit
+                          - networkFee
+                    required:
+                      - id
+                      - userId
+                      - name
+                      - network_setting
+                  platforms:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - url
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        url:
+                          type: string
+                          minLength: 1
+                        network_setting: {}
+                required:
+                  - network
+                  - platforms
+              examples:
+                Sample response:
+                  value:
+                    network:
+                      id: cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
+                      userId: 4d7a1710-325e-4edf-94b6-57df5ddd212f
+                      name: IMDB
+                      network_setting:
+                        cosellerSplit:
+                          percentage: 1
+                          timeLimit: null
+                          timeLimitUnit: ''
+                        networkFee:
+                          percentage: 2
+                          timeLimit: null
+                          timeLimitUnit: ''
+                    platforms:
+                      - id: c8783c73-a270-48d3-9a75-2c78181724eb
+                        url: imdb.com
+                        network_setting: null
+      operationId: get-networks
+      description: Get network details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: network token
+          required: true
+  /network-settings:
+    post:
+      summary: Update network settings
+      operationId: post-network-settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  code:
+                    type: string
+                    minLength: 1
+                required:
+                  - code
+              examples:
+                Success response:
+                  value:
+                    code: network settings saved
+      description: Update network settings
+      parameters:
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: authorization
+          description: network token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                name:
+                  type: string
+                  minLength: 1
+                cosellerSplit:
+                  type: number
+                networkCharge:
+                  type: number
+              required:
+                - id
+                - name
+                - cosellerSplit
+                - networkCharge
+            examples:
+              Sample payload:
+                value:
+                  id: cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
+                  name: IMDB
+                  cosellerSplit: 1
+                  networkCharge: 2
+      tags:
+        - network
+  '/network-attribution/{network_id}':
+    get:
+      summary: Fetch network attribution
+      tags:
+        - network
+        - attribution
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      networkId:
+                        type: string
+                        minLength: 1
+                      attributionConfig:
+                        type: object
+                        properties:
+                          configs:
+                            type: object
+                            properties:
+                              l1:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              l2:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lIntro:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lX:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                            required:
+                              - l1
+                              - l2
+                              - lIntro
+                              - lX
+                          adjustmentConfigs: {}
+                        required:
+                          - configs
+                    required:
+                      - id
+                      - networkId
+                      - attributionConfig
+                required:
+                  - data
+              examples:
+                Sample:
+                  value:
+                    data:
+                      id: 30d55ee5-4e72-45c0-f680-c20b7cbd20f9
+                      networkId: cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
+                      attributionConfig:
+                        configs:
+                          l1:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          l2:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          lIntro:
+                            percentage: 10
+                            timeLimit: null
+                            timeLimitUnit: infinite
+                          lX:
+                            percentage: 90
+                            timeLimit: 3600000000000
+                            timeLimitUnit: hours
+                        adjustmentConfigs: null
+        '404':
+          description: Not Found
+      operationId: get-network-attribution
+      description: |-
+        Fetch network attribution for a given network
+        ### {id} = Network ID
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: network token
+          required: true
+    parameters:
+      - schema:
+          type: string
+        name: network_id
+        in: path
+        required: true
+        description: Network ID
+  /vendor-attribution:
+    post:
+      summary: Set vendor attribution
+      operationId: post-vendor-attribution
+      responses:
+        '200':
+          description: OK
+      tags:
+        - vendor
+        - attribution
+      description: |-
+        Set vendor attribution
+        ### {id} = Attribution ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+            examples:
+              Sample:
+                value: {}
+      parameters:
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: authorization
+          description: vendor token
+    parameters: []
+  '/vendor-attribution/{vendor_id}':
+    parameters:
+      - schema:
+          type: string
+        name: vendor_id
+        in: path
+        required: true
+        description: Vendor ID
+    get:
+      summary: Your GET endpoint
+      tags:
+        - attribution
+        - vendor
+      responses: {}
+      operationId: get-vendor-attribution-id
+  '/vendor-attribution/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-vendor-attribution-attributionId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - attribution
+        - vendor
+  /network-attribution:
+    post:
+      summary: ''
+      operationId: post-network-attribution
+      responses:
+        '200':
+          description: OK
+      tags:
+        - network
+        - attribution
+  '/network-attribution/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-network-attribution-attributionID
+      responses:
+        '200':
+          description: OK
+      tags:
+        - network
+        - attribution
+  /product-attribution:
+    post:
+      summary: ''
+      operationId: post-product-attribution
+      responses:
+        '200':
+          description: OK
+      tags:
+        - vendor
+        - attribution
+  '/product-attribution/{productId}':
+    parameters:
+      - schema:
+          type: string
+        name: productId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - attribution
+        - vendor
+      responses: {}
+      operationId: get-product-attribution-productId
+    put:
+      summary: ''
+      operationId: put-product-attribution-productId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - attribution
+        - vendor
+  /address:
+    get:
+      summary: Fetch address details
+      tags:
+        - utility
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  city:
+                    type: string
+                    minLength: 1
+                  country:
+                    type: string
+                    minLength: 1
+                  country_code:
+                    type: string
+                    minLength: 1
+                  currency:
+                    type: string
+                    minLength: 1
+                  formatted_address:
+                    type: string
+                    minLength: 1
+                  locality:
+                    type: string
+                    minLength: 1
+                  postal_code:
+                    type: string
+                    minLength: 1
+                  state:
+                    type: string
+                    minLength: 1
+                required:
+                  - city
+                  - country
+                  - country_code
+                  - currency
+                  - formatted_address
+                  - locality
+                  - postal_code
+                  - state
+              examples:
+                Sample address:
+                  value:
+                    city: Bengaluru
+                    country: India
+                    country_code: IN
+                    currency: INR
+                    formatted_address: '18, Kaggadasapura Main Rd, Nagavarapalya, Kaggadasapura, Bengaluru, Karnataka 560093, India'
+                    locality: Nagavarapalya
+                    postal_code: '560093'
+                    state: Karnataka
+      operationId: get-address
+      description: Fetch address details based on geo lat lng or pincode
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: postalCode
+          description: Postal Code
+        - schema:
+            type: number
+          in: query
+          name: geoLat
+          description: Geo Lat
+        - schema:
+            type: number
+          in: query
+          name: geoLng
+          description: Geo Lng
+  /login:
+    post:
+      summary: Login a user
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  msg:
+                    type: string
+                    minLength: 1
+                  data:
+                    type: object
+                    required:
+                      - _id
+                      - name
+                      - email
+                      - token
+                      - provider_data
+                    properties:
+                      _id:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      email:
+                        type: string
+                        minLength: 1
+                      token:
+                        type: string
+                        minLength: 1
+                      provider_data:
+                        type: object
+                        properties:
+                          '':
+                            type: string
+                  isNewUser:
+                    type: boolean
+                required:
+                  - status
+                  - msg
+                  - data
+                  - isNewUser
+              examples:
+                Successful login:
+                  value:
+                    status: success
+                    msg: User logged in successfully
+                    data:
+                      _id: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                      name: sarthak barik
+                      email: skb1984@mailinator.com
+                      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySWQiOiJlOGI5YjU1Ni1kYTRiLTRkNTYtYmEzMi1jYjgwYzU3MTM2YzQiLCJpc3MiOiJzaG9wLXR5cGUifQ.zqsXpkg7RXZ_XLvbrjd86tWhd4TBbRmOxQ0U6r2zFps
+                      provider_data: {}
+                    isNewUser: false
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                required:
+                  - error
+              examples:
+                Invalid password:
+                  value:
+                    error: Invalid email or password
+      description: Login a user
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - email
+                - password
+            examples:
+              Sample user login:
+                value:
+                  email: skb1984@mailinator.com
+                  password: Sarthak@1984
 components:
   schemas:
     Vendor:
@@ -4395,4 +5848,208 @@ components:
         Sample money object:
           amount: 79.71
           currency: USD
+    VendorAttributionConfig:
+      description: ''
+      type: object
+      properties:
+        attributionConfig:
+          type: object
+          properties:
+            configs:
+              type: object
+              properties:
+                networkCommission:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                  required:
+                    - percentage
+                lIntro:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                l1:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+                l2:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+                lX:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+              required:
+                - networkCommission
+                - lIntro
+                - l1
+                - l2
+                - lX
+          required:
+            - configs
+        vendorId:
+          type: string
+          minLength: 1
+      required:
+        - attributionConfig
+        - vendorId
+      title: VendorAttributionConfig
+      x-examples:
+        Sample payload:
+          attributionConfig:
+            configs:
+              networkCommission:
+                percentage: 20
+              lIntro:
+                percentage: 10
+                timeLimit: null
+                timeLimitUnit: infinite
+              l1:
+                percentage: 5
+                timeLimit: 259200000000000
+                timeLimitUnit: hours
+              l2:
+                percentage: 5
+                timeLimit: 129600000000000
+                timeLimitUnit: hours
+              lX:
+                percentage: 80
+                timeLimit: 3600000000000
+                timeLimitUnit: hours
+          vendorId: 0e077625-2c52-270d-4a33-40a48015769c
+    NetworkAttributionConfig:
+      description: ''
+      type: object
+      properties:
+        attributionConfig:
+          type: object
+          properties:
+            configs:
+              type: object
+              properties:
+                lIntro:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                l1:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                l2:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                lX:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+              required:
+                - lIntro
+                - l1
+                - l2
+                - lX
+          required:
+            - configs
+        networkId:
+          type: string
+          minLength: 1
+      required:
+        - attributionConfig
+        - networkId
+      x-examples:
+        Sample:
+          attributionConfig:
+            configs:
+              lIntro:
+                percentage: 10
+                timeLimit: null
+                timeLimitUnit: infinite
+              l1:
+                percentage: 0
+                timeLimit: null
+                timeLimitUnit: hours
+              l2:
+                percentage: 0
+                timeLimit: null
+                timeLimitUnit: hours
+              lX:
+                percentage: 90
+                timeLimit: 3600000000000
+                timeLimitUnit: hours
+          networkId: cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
+      title: NetworkAttributionConfig
   securitySchemes: {}
