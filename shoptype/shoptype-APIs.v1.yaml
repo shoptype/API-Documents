@@ -2588,11 +2588,326 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Fetch vendors for a given platform
       tags:
         - network
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  $ref: '#/components/schemas/Vendor'
+              examples:
+                Sample payload:
+                  value:
+                    - id: 19f0fb1d-e948-afe3-24be-798ece731b9e
+                      name: AdamsCBD
+                      user_id: 1ce91f19-67c5-45b6-af95-6493b0588339
+                      productCategories:
+                        - CBD
+                        - Hemp
+                        - Veed
+                        - company type~brand
+                        - company type~manufacturer
+                        - company type~retailerCBD
+                      url: 'https://adamscbd.com'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/1ce91f19-67c5-45b6-af95-6493b0588339/AdamsCBD%20logo-large_180x.jpg'
+                      shopifyVendor: ''
+                      wooCommerceVendor: AdamsCBD
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 9984 SCRIPS RANCH BLVD. STE. 182
+                        city: SAN DIEGO
+                        countryState: United States (US) - California
+                        postalCode: '92131'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -117.0676398
+                            - 32.8932137
+                    - id: 383bea08-151d-bbe9-ee8b-bd92a9d51e0e
+                      name: Lightshade - Holly Medical
+                      user_id: c16a4db1-2475-4283-864e-a0272f789d0a
+                      productCategories:
+                        - Weed
+                      url: 'https://veed.store/store/lightshade-holly-medical'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/c16a4db1-2475-4283-864e-a0272f789d0a/aa96fa38-4270-48e2-b022-35a28d1eb468.jpg'
+                      shopifyVendor: ''
+                      wooCommerceVendor: lightshadehollymedical
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 3950 Holly St.
+                        city: Denver
+                        countryState: US - Colorado
+                        postalCode: '80207'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -104.9213643
+                            - 39.7619439
+                    - id: 63d16bee-423f-bc4b-ca9c-b184d6f7eb0e
+                      name: Veed-Online
+                      user_id: ee38ed2b-7148-4b57-a6e8-999e52e58dd0
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/ee38ed2b-7148-4b57-a6e8-999e52e58dd0/6ab8bda2-fea4-4f7f-b574-2da19b6fd186.png'
+                      shopifyVendor: ''
+                      wooCommerceVendor: maribisofchicagomed
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: ''
+                        city: ''
+                        countryState: ''
+                        postalCode: ''
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                    - id: 66bdcd17-8792-1e3a-9dec-a8fe3165f74c
+                      name: Ultra Health - Hobbs
+                      user_id: ce9f6813-0e28-4d8d-92d1-c2bb9eb17bcf
+                      productCategories:
+                        - Cannabis
+                        - THC
+                        - Veed
+                      url: 'https://veed.store/store/ultra-health-hobbs'
+                      shopifyVendor: ''
+                      wooCommerceVendor: ultrahealthhobbs
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 3211 N Dal Paso St
+                        city: Hobbs
+                        countryState: US - New Mexico
+                        postalCode: '88240'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -103.4049445
+                            - 32.6702606
+                    - id: 73225b03-e8cc-5275-b14a-2bfd6958371d
+                      name: Baileys CBD
+                      user_id: 261ca9d2-d8d7-46c3-bf2d-02c3f1266775
+                      productCategories:
+                        - Veed
+                        - ' CBD'
+                        - ' Petcare'
+                      url: 'https://www.baileyscbd.com'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/261ca9d2-d8d7-46c3-bf2d-02c3f1266775/Baileys_Logo_Master_Baileys_Logo_No_Badge.png'
+                      shopifyVendor: ''
+                      wooCommerceVendor: ''
+                      wooCommerceShipping:
+                        shippingServiceId: ''
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: '2930 Grace Lane '
+                        city: Costa Mesa
+                        countryState: US - California
+                        postalCode: '92626'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -117.9022435
+                            - 33.6780125
+                    - id: 783c8747-4608-88b1-da78-5560e2da3507
+                      name: Herbs4you - Recreational
+                      user_id: d28298af-b054-4aca-ac5e-0027e5596b79
+                      productCategories:
+                        - Weed
+                      url: 'https://veed.store/store/herbs4you-recreational'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/d28298af-b054-4aca-ac5e-0027e5596b79/2696c955-ac73-4692-a876-76219d3d9ed8.jpg'
+                      shopifyVendor: ''
+                      wooCommerceVendor: herbs4yourecreational
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 20 East 9th Avenue
+                        city: Denver
+                        countryState: US - Colorado
+                        postalCode: '80203'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -104.9826965
+                            - 39.7312095
+                    - id: a1bb7dd6-9388-6fb3-5804-0d7aea0c0235
+                      name: Lightshade - Sheridan Medical
+                      user_id: c769151b-a5f8-44c4-b1d9-755f995a0ae6
+                      productCategories:
+                        - Weed
+                        - THC
+                        - CBD
+                      url: 'https://veed.store/store/lightshade-sheridan-medical'
+                      shopifyVendor: ''
+                      wooCommerceVendor: ''
+                      wooCommerceShipping:
+                        shippingServiceId: ''
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: ''
+                        city: ''
+                        countryState: ''
+                        postalCode: ''
+                        currency: ''
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                    - id: aff1da12-515a-bacc-438e-ddf5c3382622
+                      name: Bios Organics
+                      user_id: 8ed662f5-c785-4e0e-8428-09cd2c43966b
+                      productCategories:
+                        - CBD Beauty and Wellness Products
+                      url: biosorganics.com
+                      shopifyVendor: ''
+                      wooCommerceVendor: ''
+                      wooCommerceShipping:
+                        shippingServiceId: ''
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 2881 E LA Cresta Avenue
+                        city: Anaheim
+                        countryState: US - California
+                        postalCode: '92806'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -117.8680701
+                            - 33.8543596
+                    - id: b53cb2e0-3e21-186b-a08c-bb74ea59bc59
+                      name: Urban Dispensary - Medical
+                      user_id: e0300e2b-aed0-4a90-81c8-ee5e55b08145
+                      productCategories:
+                        - Veed
+                      url: 'https://veed.store/store/urban-dispensary-medical'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/e0300e2b-aed0-4a90-81c8-ee5e55b08145/c88ffcdf-9ef9-4851-a3be-5b021b7ab7d9.jpeg'
+                      shopifyVendor: ''
+                      wooCommerceVendor: urbandispensarymedical
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 2675 W 38th Ave
+                        city: Denver
+                        countryState: US - Colorado
+                        postalCode: '80211'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -105.0148322
+                            - 39.7698122
+                    - id: c28702da-7eb0-913c-551d-4d7085ce286e
+                      name: VITAE Glass
+                      user_id: 84dff081-6ace-4c6a-812c-c49d40cbccb7
+                      productCategories:
+                        - Cannabis
+                        - Speciality
+                      url: 'https://vitaeglass.com'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/84dff081-6ace-4c6a-812c-c49d40cbccb7/VITAE%20Glass.png'
+                      shopifyVendor: ''
+                      wooCommerceVendor: ''
+                      wooCommerceShipping:
+                        shippingServiceId: ''
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 1770 Post St
+                        city: San Francisco
+                        countryState: US - California
+                        postalCode: 94115-4250
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -122.4282295
+                            - 37.7833092
+                    - id: f61ace70-d813-8549-0e1f-86786942f552
+                      name: Medicine Box
+                      user_id: d0eab697-00cf-4036-aa89-0b48bc27590f
+                      productCategories:
+                        - CBD
+                        - Veed
+                        - company type~retailerCBD
+                        - company type~brand
+                      url: 'https://medicineboxwellness.com'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/d0eab697-00cf-4036-aa89-0b48bc27590f/Medicine%20Box%20Wellness%20Logo.png'
+                      shopifyVendor: ''
+                      wooCommerceVendor: ''
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 930 Tahoe Blvd
+                        city: Incline Village
+                        countryState: United States (US) - Nevada
+                        postalCode: '89451'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -119.9393608
+                            - 39.2355282
+                    - id: ff700949-29fc-17bd-1924-a7215559dc2f
+                      name: Juva Life
+                      user_id: 442b7238-53d6-4b00-a096-2cca77105c8d
+                      productCategories:
+                        - Cannabis
+                        - THC
+                        - Veed
+                        - company type~delivery recreational
+                      url: 'https://juvalife.com/'
+                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/442b7238-53d6-4b00-a096-2cca77105c8d/JUVA-life-footer-logo.png'
+                      shopifyVendor: ''
+                      wooCommerceVendor: juvalife
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: 465 Convention Way Suite 1
+                        city: Redwood City
+                        countryState: US - CA
+                        postalCode: '94063'
+                        currency: USD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -122.2086579
+                            - 37.5021585
       operationId: get-platforms-id-vendors
+      description: Fetch vendors for a given platform
   /command?type=sendNotification:
     post:
       summary: Send email notification
@@ -2618,6 +2933,70 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2840,6 +3219,220 @@ paths:
           required: true
       tags:
         - utility
+  /logout:
+    post:
+      summary: Logout a user
+      operationId: post-logout
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+              examples:
+                Successful logout:
+                  value:
+                    status: success
+                    message: Successfully logged out
+      description: Logout a user
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                userId:
+                  type: string
+                  minLength: 1
+              required:
+                - userId
+            examples:
+              Sample payload:
+                value:
+                  userId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+  /forgot-password:
+    post:
+      summary: Forgot password
+      operationId: post-forgot-password
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+              examples:
+                Successful reset:
+                  value:
+                    status: success
+                    message: Successfully sent reset password email
+      description: Allows a user to reset forgotten password. The user will receive a link on the same email address he has provided.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+              required:
+                - email
+            examples:
+              Sample payload:
+                value:
+                  email: tom_holland@mailinator.com
+      tags:
+        - user
+  /awake-money/accounts:
+    get:
+      summary: Fetch user awake money accounts
+      tags:
+        - money
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - id
+                    - account_type_id
+                    - asset_type_id
+                    - name
+                    - user_id
+                    - asset_type
+                    - asset_type_unit
+                    - amount
+                    - amount_on_hold
+                    - created_at
+                  properties:
+                    id:
+                      type: number
+                    account_type_id:
+                      type: number
+                    asset_type_id:
+                      type: number
+                    name:
+                      type: string
+                      minLength: 1
+                    user_id:
+                      type: string
+                      minLength: 1
+                    asset_type:
+                      type: string
+                      minLength: 1
+                    asset_type_unit:
+                      type: string
+                      minLength: 1
+                    amount:
+                      type: number
+                    amount_on_hold:
+                      type: number
+                    created_at:
+                      type: string
+                      minLength: 1
+              examples:
+                Sample payload:
+                  value:
+                    - id: 2
+                      account_type_id: 2
+                      asset_type_id: 2
+                      name: Walter_account
+                      user_id: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                      asset_type: cash
+                      asset_type_unit: usd
+                      amount: 0
+                      amount_on_hold: 127.41
+                      created_at: '2020-10-30T11:11:46.647121Z'
+      operationId: get-awake-money-accounts
+      description: Fetch user awake money accounts and details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+  /price-limits:
+    get:
+      summary: Fetch product price limits per currency
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  maxPrice:
+                    $ref: '#/components/schemas/Money'
+                  minPrice:
+                    $ref: '#/components/schemas/Money'
+                required:
+                  - maxPrice
+                  - minPrice
+              examples:
+                Sample payload:
+                  value:
+                    maxPrice:
+                      amount: 250000
+                      currency: INR
+                    minPrice:
+                      amount: 0
+                      currency: INR
+      operationId: get-price-limits
+      description: Fetch product price limits per currency
+      parameters:
+        - schema:
+            type: string
+            example: USD
+          in: query
+          name: currency
+          required: true
+          description: Currency
 components:
   schemas:
     Vendor:
@@ -3795,8 +4388,8 @@ components:
         - amount
         - currency
       title: Money
-      examples:
+      x-examples:
         Sample money object:
-          amount: 77.71
+          amount: 79.71
           currency: USD
   securitySchemes: {}
