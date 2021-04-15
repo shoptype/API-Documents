@@ -3,7 +3,7 @@ info:
   title: Shoptype Integration APIs
   version: '1.0'
   description: |-
-    Shoptype APIs helps a network to develope an e-commerce platform where sales can be tracked and attributed.
+    Shoptype APIs help a network to develope an e-commerce platform where sales can be tracked and attributed.
 
     Terminologies:
     - Network: An entity defined on shoptype representing a marketplace. Eg, sheroes, toontype, etc.
@@ -2999,6 +2999,7 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
 
 
 
