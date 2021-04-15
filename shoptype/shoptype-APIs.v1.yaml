@@ -2155,6 +2155,11 @@ paths:
           in: query
           name: includeFields
           description: Fields to be in included in response
+        - schema:
+            type: string
+          in: query
+          name: externalId
+          description: 'External product Id. <br> <b>Note: Can be used only with query param vendorId </b>'
   '/platforms/{id}/products':
     get:
       summary: Fetch products for a given platform
@@ -2573,6 +2578,11 @@ paths:
           in: query
           name: currency
           description: Currency
+        - schema:
+            type: string
+          in: query
+          name: externalId
+          description: 'External product Id. <br> <b>Note: Can be used only with query param vendorId </b>'
     parameters:
       - schema:
           type: string
@@ -2587,6 +2597,7 @@ paths:
         name: id
         in: path
         required: true
+        description: Platform ID
     get:
       summary: Fetch vendors for a given platform
       tags:
@@ -2908,6 +2919,59 @@ paths:
                             - 37.5021585
       operationId: get-platforms-id-vendors
       description: Fetch vendors for a given platform
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: vendorId
+          description: Vendor ID
+        - schema:
+            type: string
+          in: query
+          name: category
+          description: Comma separated Categories
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: Name of vendor
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Search text
+        - name: offset
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: Offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: number
+          in: query
+          name: geoLat
+          description: Geo latitude
+        - schema:
+            type: number
+          in: query
+          name: geoLng
+          description: Geo longitude
+        - schema:
+            type: integer
+          in: query
+          name: geoProximity
+          description: In meters
+        - schema:
+            type: string
+            example: USD
+          in: query
+          name: currency
+          description: Currency
   /command?type=sendNotification:
     post:
       summary: Send email notification
@@ -2933,6 +2997,64 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4624,6 +4746,132 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      vendorId:
+                        type: string
+                        minLength: 1
+                      attributionConfig:
+                        type: object
+                        properties:
+                          configs:
+                            type: object
+                            properties:
+                              l1:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              l2:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lIntro:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lX:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                              networkCommission:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                            required:
+                              - l1
+                              - l2
+                              - lIntro
+                              - lX
+                              - networkCommission
+                          adjustmentConfigs: {}
+                        required:
+                          - configs
+                    required:
+                      - id
+                      - vendorId
+                      - attributionConfig
+                required:
+                  - data
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      id: 6078226e35d93393c5b41ec2
+                      vendorId: bca332c5-53da-1a20-ae28-3a3aa7926a1c
+                      attributionConfig:
+                        configs:
+                          l1:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          l2:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          lIntro:
+                            percentage: 20
+                            timeLimit: null
+                            timeLimitUnit: infinite
+                          lX:
+                            percentage: 80
+                            timeLimit: 3600000000000
+                            timeLimitUnit: hours
+                          networkCommission:
+                            percentage: 30
+                            timeLimit: null
+                            timeLimitUnit: ''
+                        adjustmentConfigs: null
       tags:
         - vendor
         - attribution
@@ -4632,11 +4880,31 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties: {}
+              $ref: '#/components/schemas/VendorAttributionConfig'
             examples:
-              Sample:
-                value: {}
+              Sample vendor attribution:
+                value:
+                  attributionConfig:
+                    configs:
+                      networkCommission:
+                        percentage: 30
+                      lIntro:
+                        percentage: 20
+                        timeLimit: null
+                        timeLimitUnit: infinite
+                      l1:
+                        percentage: 0
+                        timeLimit: null
+                        timeLimitUnit: hours
+                      l2:
+                        percentage: 0
+                        timeLimit: null
+                        timeLimitUnit: hours
+                      lX:
+                        percentage: 80
+                        timeLimit: 3600000000000
+                        timeLimitUnit: hours
+                  vendorId: bca332c5-53da-1a20-ae28-3a3aa7926a1c
       parameters:
         - schema:
             type: string
