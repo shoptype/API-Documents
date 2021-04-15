@@ -3448,6 +3448,7 @@ paths:
 
 
 
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5426,12 +5427,6 @@ paths:
                   email: skb1984@mailinator.com
                   password: Sarthak@1984
   /invite/quick-signup:
-    get:
-      summary: Your GET endpoint
-      tags:
-        - referral
-      responses: {}
-      operationId: get-invite-quick-sign-up
     parameters: []
     post:
       summary: Invite through quick sign up
