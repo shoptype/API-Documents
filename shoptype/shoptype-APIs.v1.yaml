@@ -3449,6 +3449,7 @@ paths:
 
 
 
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5499,6 +5500,8 @@ paths:
                 value:
                   userId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
                   cosellerId: 232bca95-a43b-5337-2c82-2133f9165c6d
+      tags:
+        - referral
 components:
   schemas:
     Vendor:
