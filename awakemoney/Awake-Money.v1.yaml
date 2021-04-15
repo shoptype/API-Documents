@@ -658,6 +658,12 @@ paths:
           name: authorization
           required: true
           description: user token
+        - schema:
+            type: string
+            example: 'https://dev.awake.money/dashboard'
+          in: query
+          name: requestUri
+          description: Redirection URL
   /stripe-connect/verification/confirm:
     post:
       summary: ''
