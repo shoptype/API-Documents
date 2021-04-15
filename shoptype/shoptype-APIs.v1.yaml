@@ -3,7 +3,7 @@ info:
   title: Shoptype Integration APIs
   version: '1.0'
   description: |-
-    Shoptype APIs allow a network to build an end to end platform to sell products.
+    Shoptype APIs helps a network to develope an e-commerce platform where sales can be tracked and attributed.
 
     Terminologies:
     - Network: An entity defined on shoptype representing a marketplace. Eg, sheroes, toontype, etc.
@@ -12,6 +12,8 @@ info:
     - Vendor: An entity defined on shoptype who owns the products.
     - Network Operator: One who manages the network.
     - DeviceId: A unique id generated and stored in browser to track a buyer.
+  contact:
+    email: sarthak@shoptype.com
 servers:
   - url: 'https://dev-backend.shoptype.com'
     description: dev
@@ -2997,6 +2999,9 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
 
 
 
