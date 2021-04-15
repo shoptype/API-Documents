@@ -3436,6 +3436,18 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5413,6 +5425,85 @@ paths:
                 value:
                   email: skb1984@mailinator.com
                   password: Sarthak@1984
+  /invite/quick-signup:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - referral
+      responses: {}
+      operationId: get-invite-quick-sign-up
+    parameters: []
+    post:
+      summary: Invite through quick sign up
+      operationId: post-invite-quick-signup
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      type:
+                        type: string
+                        minLength: 1
+                      inviterId:
+                        type: string
+                        minLength: 1
+                      inviterType:
+                        type: string
+                        minLength: 1
+                      inviteeEmailIds: {}
+                      slug:
+                        type: string
+                        minLength: 1
+                    required:
+                      - id
+                      - type
+                      - inviterId
+                      - inviterType
+                      - slug
+                required:
+                  - data
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      id: 6078898135d93393c5b41ee7
+                      type: quickSignup
+                      inviterId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                      inviterType: coseller
+                      inviteeEmailIds: null
+                      slug: '?rid=6078898135d93393c5b41ee7'
+      description: Create referral for a coseller performing a quick sign up
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                userId:
+                  type: string
+                  minLength: 1
+                cosellerId:
+                  type: string
+                  minLength: 1
+              required:
+                - userId
+                - cosellerId
+            examples:
+              Sample payload:
+                value:
+                  userId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                  cosellerId: 232bca95-a43b-5337-2c82-2133f9165c6d
 components:
   schemas:
     Vendor:
