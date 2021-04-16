@@ -1385,9 +1385,11 @@ paths:
                 type:
                   type: string
                   minLength: 1
+                  example: referrer
                 inviterId:
                   type: string
                   minLength: 1
+                  description: User Id
                 inviterType:
                   type: string
                   minLength: 1
@@ -2999,6 +3001,8 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
 
 
 
