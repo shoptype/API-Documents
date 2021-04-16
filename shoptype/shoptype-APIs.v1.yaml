@@ -3489,6 +3489,54 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5609,6 +5657,110 @@ paths:
                   status: disabled
       tags:
         - product
+  '/order/transaction/{orderId}/status':
+    parameters:
+      - schema:
+          type: string
+        name: orderId
+        in: path
+        required: true
+        description: Order ID
+    get:
+      summary: Get order transaction status
+      tags:
+        - order
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                    enum:
+                      - pending
+                      - success
+                required:
+                  - status
+              examples:
+                Pending status:
+                  value:
+                    status: pending
+                Successful status:
+                  value:
+                    status: success
+        '':
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+              examples:
+                Success:
+                  value:
+                    status: success
+                Pending:
+                  value:
+                    status: pending
+      operationId: get-transaction-orderId-status
+      description: Get order transaction status
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Vendor token
+          required: true
+  '/order/transaction/{orderId}/complete':
+    parameters:
+      - schema:
+          type: string
+          example: 0a93386d-950b-2d47-6aed-3f0d56fac498
+        name: orderId
+        in: path
+        required: true
+        description: Order ID
+    post:
+      summary: Settle an order transaction
+      operationId: post-order-transaction-orderId-complete
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+              examples:
+                Successfully settled:
+                  value:
+                    message: Status updated
+      description: Settle an order transaction
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Vendor token
+          required: true
+      tags:
+        - order
 components:
   schemas:
     Vendor:
