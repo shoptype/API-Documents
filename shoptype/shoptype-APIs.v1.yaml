@@ -21,6 +21,8 @@ servers:
     description: beta
   - url: 'https://backend.shoptype.com'
     description: prod
+  - url: 'http://localhost:9000'
+    description: local
 paths:
   '/states/{country_code}':
     parameters:
@@ -2164,6 +2166,11 @@ paths:
           in: query
           name: externalId
           description: 'External product Id. <br> <b>Note: Can be used only with query param vendorId </b>'
+        - schema:
+            type: boolean
+          in: query
+          name: showHidden
+          description: Show disabled products
   '/platforms/{id}/products':
     get:
       summary: Fetch products for a given platform
@@ -2587,6 +2594,11 @@ paths:
           in: query
           name: externalId
           description: 'External product Id. <br> <b>Note: Can be used only with query param vendorId </b>'
+        - schema:
+            type: boolean
+          in: query
+          description: Show disabled products
+          name: showHidden
     parameters:
       - schema:
           type: string
@@ -3001,6 +3013,14 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
 
 
 
