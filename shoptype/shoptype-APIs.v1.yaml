@@ -3450,6 +3450,43 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5502,6 +5539,113 @@ paths:
                   cosellerId: 232bca95-a43b-5337-2c82-2133f9165c6d
       tags:
         - referral
+  '/products/{productId}':
+    parameters:
+      - schema:
+          type: string
+        name: productId
+        in: path
+        required: true
+        description: Product ID
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-products-productId
+    post:
+      summary: Set product status
+      operationId: post-products-productId
+      responses:
+        '200':
+          description: OK
+      description: Set product status
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: vendorToken
+          required: true
+          description: Vendor token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                status:
+                  type: string
+                  minLength: 1
+                  enum:
+                    - enabled
+                    - disabled
+              required:
+                - status
+            examples:
+              Enable product:
+                value:
+                  status: enabled
+              Disable product:
+                value:
+                  status: disabled
+    put:
+      summary: Set product status
+      operationId: put-products-productId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+              examples:
+                Product successfully enabled:
+                  value:
+                    message: Product is enabled
+                Product successfully disabled:
+                  value:
+                    message: Product is disabled
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      description: Set product status
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Vendor token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                status:
+                  type: string
+                  minLength: 1
+                  enum:
+                    - enabled
+                    - disabled
+              required:
+                - status
+            examples:
+              Enable product:
+                value:
+                  status: enabled
+              Disable product:
+                value:
+                  status: disabled
 components:
   schemas:
     Vendor:
