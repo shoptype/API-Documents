@@ -5744,25 +5744,6 @@ paths:
                 Successful status:
                   value:
                     status: success
-        '':
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  status:
-                    type: string
-                    minLength: 1
-                required:
-                  - status
-              examples:
-                Success:
-                  value:
-                    status: success
-                Pending:
-                  value:
-                    status: pending
       operationId: get-transaction-orderId-status
       description: Get order transaction status
       parameters:
