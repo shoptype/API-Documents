@@ -331,6 +331,11 @@ paths:
           in: query
           name: rid
           description: Referral Id
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform ID
   /resend-verification-email:
     post:
       summary: Resend verification email
@@ -427,6 +432,12 @@ paths:
                 value:
                   email: tom_holland@mailinator.com
         description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform ID
     parameters: []
   /validate-email:
     post:
@@ -504,6 +515,12 @@ paths:
               Valid body:
                 value:
                   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk3NTc1MGJlLTdhMWQtNGNkYS04MzRkLTFjMzE4YjkzMmM1MCIsInVzZXJpZCI6IjRkN2ExNzEwLTMyNWUtNGVkZi05NGI2LTU3ZGY1ZGRkMjEyZiIsInR5cGUiOiJlbWFpbF92ZXJpZmljYXRpb24iLCJpYXQiOjE2MTgwMTg1OTUsImV4cCI6MTYxODAyMjE5NX0.YrmTUR1tV5lKc7F8_HlCgEL0oICDrXb58sa_AdKmBCM
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform ID
   /authenticate:
     post:
       summary: Authenticate user for a given type
@@ -1537,6 +1554,11 @@ paths:
           in: query
           name: rid
           description: Referral Id
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform ID
   /referrals:
     get:
       summary: Fetch my referral tree
@@ -3613,6 +3635,23 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -3815,6 +3854,11 @@ paths:
           name: authorization
           description: user token
           required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform ID
       requestBody:
         content:
           application/json:
@@ -3861,7 +3905,12 @@ paths:
                     status: success
                     message: Successfully sent reset password email
       description: Allows a user to reset forgotten password. The user will receive a link on the same email address he has provided.
-      parameters: []
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform ID
       requestBody:
         content:
           application/json:
@@ -5590,6 +5639,12 @@ paths:
                 value:
                   email: skb1984@mailinator.com
                   password: Sarthak@1984
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform ID
   /invite/quick-signup:
     parameters: []
     post:
