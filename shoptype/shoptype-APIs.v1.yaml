@@ -3608,6 +3608,11 @@ paths:
 
 
 
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5887,9 +5892,11 @@ paths:
                   trackerId:
                     type: string
                     description: Newly generated trackerId for the product and user signed in
+                    example: XYZ-123
                   slug:
                     type: string
                     description: Newly generated publish slug (link) along with trackerId appended
+                    example: /product/123-ABC-123?tid=XYZ-123
       operationId: get-track-publish-slug
       description: Generate publish slug (Link) for a product along with a new associated trackerID to publish/cosell a product.
       parameters:
