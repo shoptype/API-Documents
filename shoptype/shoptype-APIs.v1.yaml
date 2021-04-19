@@ -3566,6 +3566,29 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5827,7 +5850,7 @@ paths:
                 device_id:
                   type: string
                   minLength: 1
-                  description: Genertated DeviceID
+                  description: Generated DeviceID
                 url:
                   type: string
                   minLength: 1
@@ -5835,7 +5858,7 @@ paths:
                 tracker_id:
                   type: string
                   minLength: 1
-                  description: TrackerID which came as a param of the URL of product paae
+                  description: TrackerID which came as a param of the URL of product page
                 referrer:
                   type: string
                   minLength: 1
@@ -5848,6 +5871,50 @@ paths:
         description: ''
       tags:
         - events
+  /track/publish-slug:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  trackerId:
+                    type: string
+                    minLength: 1
+                    description: Newly generated trackerId for the product and user signed in
+                  slug:
+                    type: string
+                    minLength: 1
+                    description: Newly generated publish slug (link) along with trackerId appended
+                required:
+                  - trackerId
+                  - slug
+      operationId: get-track-publish-slug-v2
+      description: Generate publish slug (Link) for a product along with a new associated trackerID to publish/cosell a product.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Logged in User/Network/Vendor/Coseller token
+        - schema:
+            type: string
+          in: query
+          name: productId
+          description: Identifier of the product to publish/cosell
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: shareLink
+          description: 'Product page url along with trackerId, required in case of coselling'
+    parameters: []
 components:
   schemas:
     Vendor:
