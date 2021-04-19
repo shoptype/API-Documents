@@ -3652,6 +3652,26 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5972,6 +5992,164 @@ paths:
           in: query
           name: shareLink
           description: 'Product page url along with trackerId, required in case of coselling'
+  '/vendors/{vendorId}/orders':
+    parameters:
+      - schema:
+          type: string
+        name: vendorId
+        in: path
+        required: true
+        description: Vendor ID
+    get:
+      summary: Get orders for a vendor
+      tags:
+        - order
+        - vendor
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  data:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      $ref: '#/components/schemas/Order'
+                required:
+                  - count
+                  - data
+              examples:
+                Orders sample:
+                  value:
+                    count: 1
+                    data:
+                      - id: 602815a6fbc30b7315c64388
+                        vendorId: 298d8392-863b-fb1e-9589-886694de46cb
+                        externalSource: shopify
+                        orderId: 0a93386d-950b-2d47-6aed-3f0d56fac498
+                        externalId: '1518'
+                        createdAt: '2021-02-13T18:08:35Z'
+                        customerEmail: skbarik@gmail.com
+                        quantity: 1
+                        price:
+                          amount: 111
+                          currency: USD
+                        totalPrice:
+                          amount: 111
+                          currency: USD
+                        vendorRevenue:
+                          amount: 77.71
+                          currency: USD
+                        attributions:
+                          lIntro: true
+                          lInvite: false
+                          lMiddle: true
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        platformUrl: ''
+                        productDetails:
+                          - id: 7b72151b-a175-ea83-d4ec-e97bfad50256
+                            variantId: '32052631961739'
+                            externalId: '4494262698123'
+                            price:
+                              amount: 111
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075663614091'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/445e0a5c-0006-faaf-6e33-d762c0bb078d/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                              variantIds:
+                                - '37937107337371'
+                            title: Adoratherapy Abundance Room Boost
+                            variantNameValue:
+                              color: Red
+                              material: Chemical1
+                              size: 10ML Spray
+                            commission_details:
+                              l1:
+                                amount:
+                                  amount: 2.77
+                                  currency: USD
+                                percentage: 10
+                                userId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                                vendorId: 298d8392-863b-fb1e-9589-886694de46cb
+                                userName: sarthak barik
+                                platformUrl: ''
+                                createdAt: '2021-02-13T18:07:35.578Z'
+                              lIntro:
+                                amount:
+                                  amount: 3.89
+                                  currency: USD
+                                percentage: 20
+                                userId: e2594521-c298-4b3c-a763-213c573d8bf2
+                                cosellerId: cfeb371d-2d48-0943-2d6c-f25d1a6be4e1
+                                userName: sarthak barik
+                                platformUrl: www.w3schools.com
+                                createdAt: '2021-01-29T08:03:21.49Z'
+                                adjustments:
+                                  cosellerSplit:
+                                    - amount:
+                                        amount: 1.66
+                                        currency: USD
+                                      percentage: 30
+                                      userId: ''
+                                      platformId: 01f827c0-d95d-a52e-8db2-4f7ba1c19382
+                                      networkId: 3ce3d621-467d-53fd-2e46-49678850c57b
+                                      userName: ''
+                                      platformUrl: www.w3schools.com
+                                      createdAt: '2021-01-29T08:03:21.49Z'
+                              lX:
+                                amount:
+                                  amount: 19.42
+                                  currency: USD
+                                percentage: 70
+                                userId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
+                                vendorId: 298d8392-863b-fb1e-9589-886694de46cb
+                                userName: sarthak barik
+                                platformUrl: ''
+                                createdAt: '2021-02-13T18:07:35.578Z'
+                            total_adjustments:
+                              cosellerSplit:
+                                amount: 1.66
+                                currency: USD
+                        transactionStatus: success
+      operationId: get-vendors-vendorId-orders
+      description: Get orders for a vendor in a paginated way
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Vendor token
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: Offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: string
+            example: USD
+          in: query
+          name: currency
+          description: Currency
 components:
   schemas:
     Vendor:
