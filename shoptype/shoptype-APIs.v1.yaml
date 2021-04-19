@@ -3588,6 +3588,8 @@ paths:
 
 
 
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5830,7 +5832,7 @@ paths:
                 device_id:
                   type: string
                   minLength: 1
-                  description: Genertated DeviceID
+                  description: Generated DeviceID
                 url:
                   type: string
                   minLength: 1
@@ -5838,7 +5840,7 @@ paths:
                 tracker_id:
                   type: string
                   minLength: 1
-                  description: TrackerID which came as a param of the URL of product paae
+                  description: TrackerID which came as a param of the URL of product page
                 referrer:
                   type: string
                   minLength: 1
