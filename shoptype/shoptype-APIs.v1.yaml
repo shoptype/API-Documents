@@ -3590,6 +3590,24 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5853,6 +5871,45 @@ paths:
         description: ''
       tags:
         - event
+  /track/publish-slug:
+    get:
+      summary: Get Publish/Cosell Product Link
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  trackerId:
+                    type: string
+                    description: Newly generated trackerId for the product and user signed in
+                  slug:
+                    type: string
+                    description: Newly generated publish slug (link) along with trackerId appended
+      operationId: get-track-publish-slug
+      description: Generate publish slug (Link) for a product along with a new associated trackerID to publish/cosell a product.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Logged in User/Network/Vendor/Coseller token
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: productId
+          description: Identifier of the product to publish/cosell
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: shareLink
+          description: 'Product page url along with trackerId, required in case of coselling'
 components:
   schemas:
     Vendor:
