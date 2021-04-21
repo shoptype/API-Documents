@@ -1412,6 +1412,10 @@ paths:
                 inviterType:
                   type: string
                   minLength: 1
+                  enum:
+                    - network
+                    - vendor
+                    - coseller
               required:
                 - type
                 - inviterId
@@ -1421,17 +1425,17 @@ paths:
                 value:
                   type: referrer
                   inviterId: 2e970d11-bf85-4adf-b663-06ae0e291781
-                  inviterType: VENDOR
+                  inviterType: vendor
               Coseller invite:
                 value:
                   type: referrer
                   inviterId: 2e970d11-bf85-4adf-b663-06ae0e291781
-                  inviterType: COSELLER
+                  inviterType: coseller
               Network Operator Invite:
                 value:
                   type: referrer
                   inviterId: e8b9b556-da4b-4d56-ba32-cb80c57136c4
-                  inviterType: NETWORK_OPERATOR
+                  inviterType: network
       parameters:
         - schema:
             type: string
@@ -3035,6 +3039,11 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
 
 
 
