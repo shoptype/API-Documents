@@ -3751,6 +3751,22 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6489,6 +6505,62 @@ paths:
                   variant_name_value:
                     title: Default Title
                   quantity: 2
+  /cosellers/quick-social-login:
+    post:
+      summary: Quick social login for cosellers
+      operationId: post-quick-social-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  Token:
+                    type: string
+                    minLength: 1
+                  Message:
+                    type: string
+                    minLength: 1
+                required:
+                  - Token
+                  - Message
+              examples:
+                Sample success response:
+                  value: {}
+      description: Quick social login for cosellers
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                domain:
+                  type: string
+                  minLength: 1
+                provider:
+                  type: string
+                  minLength: 1
+                token:
+                  type: string
+                  minLength: 1
+              required:
+                - domain
+                - provider
+                - token
+            examples:
+              Sample body:
+                value:
+                  domain: SHOPTYPE
+                  provider: SHEROES
+                  token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdW5pbEBzaGVyb2VzLmluIiwiYXVkaWVuY2UiOiJ3ZWIiLCJjcmVhdGVkIjoxNjE1ODE5MzQ5NTkzLCJleHAiOjE2NDczNTUzNDksImp0aSI6Ijg5MzcxNCJ9.wX9JlZAAzcAqe-QO14iHsqlwG8V8cUEUa1GZ5h6YM9LqcCegdG80XQEBi0Fi3-YeIeVzC1W6r8w1xFUb4LU06Q
+      tags:
+        - user
+    parameters: []
 components:
   schemas:
     Vendor:
