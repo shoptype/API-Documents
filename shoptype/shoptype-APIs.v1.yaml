@@ -3767,6 +3767,18 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6561,6 +6573,28 @@ paths:
       tags:
         - user
     parameters: []
+  /store/manual/product:
+    post:
+      summary: Add product manually
+      operationId: post-store-manual-product
+      responses:
+        '202':
+          description: Accepted
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      description: Add product manually
+      tags:
+        - product
 components:
   schemas:
     Vendor:
