@@ -1218,37 +1218,46 @@ paths:
                 storeName:
                   type: string
                   minLength: 1
-                  description: Set same as storeHostUrl
                 storeHostUrl:
                   type: string
                   minLength: 1
-                  description: Store Host URL
-                  format: uri
                 consumerKey:
                   type: string
                   minLength: 1
                 consumerSecret:
                   type: string
                   minLength: 1
+                dokan_vendor_id:
+                  type: string
+                  minLength: 1
+                dokan_vendor_name:
+                  type: string
+                  minLength: 1
                 enableCheckoutShoptype:
                   type: boolean
-                  description: |-
-                    - `True` - Enable native checkout on shoptype.
-                    - `False` - Redirect to woo commerce store url.
+                  default: false
+                shippingServiceId:
+                  type: string
+                  minLength: 1
+                  deprecated: true
               required:
                 - storeName
                 - storeHostUrl
                 - consumerKey
                 - consumerSecret
                 - enableCheckoutShoptype
+                - shippingServiceId
             examples:
               Sample woo commerce store details:
                 value:
-                  storeName: 'https://shoptypewoo.wpcomstaging.com/'
-                  storeHostUrl: 'https://shoptypewoo.wpcomstaging.com/'
-                  consumerKey: ck_175cce977c850baa46442020de88c52b6dbe7032
-                  consumerSecret: cs_377678b1f5c805fb011363e85c967de9bbx578b8
-                  enableCheckoutShoptype: false
+                  storeName: 'https://4d645ce34d.nxcli.net'
+                  storeHostUrl: 'https://4d645ce34d.nxcli.net'
+                  consumerKey: ck_737d009b7d6d5b9e18217dea814a39d9fe020346
+                  consumerSecret: cs_001fcdefc8819a72cb7fb2d215618de107ad929f
+                  dokan_vendor_id: '25'
+                  dokan_vendor_name: India Today
+                  enableCheckoutShoptype: true
+                  shippingServiceId: '001'
         description: |
           Woo commerce store details
 
@@ -3014,6 +3023,12 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
 
 
 
