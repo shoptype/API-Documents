@@ -1139,11 +1139,15 @@ paths:
                 timestamp:
                   type: number
                   description: current epoch time in millis
+                enableCheckoutShoptype:
+                  type: boolean
+                  default: false
               required:
                 - storeName
                 - apiKey
                 - password
                 - timestamp
+                - enableCheckoutShoptype
             examples:
               Sample shopify store:
                 value:
@@ -1151,6 +1155,7 @@ paths:
                   apiKey: 17f9d72b9670dcc715e5b0e42768b37e
                   password: e202fb4a14cae81e8eeed939f0529386
                   timestamp: 1618037786155
+                  enableCheckoutShoptype: true
         description: |
           Shopify Store details
           > Note: `storeName` is name of the shopify store. 
@@ -3023,6 +3028,9 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
 
 
 
