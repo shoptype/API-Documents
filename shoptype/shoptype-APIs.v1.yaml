@@ -3957,6 +3957,7 @@ paths:
 
 
 
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -7309,6 +7310,8 @@ paths:
                 value:
                   deviceId: 750cae4ce6a87a95353c8c2f00b33c0c
                   cartId: 13af4a80-a05c-421d-a7a4-51b734f23079
+      tags:
+        - checkout
   '/checkout/{checkoutId}':
     parameters:
       - schema:
