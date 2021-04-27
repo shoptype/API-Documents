@@ -3806,6 +3806,44 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6285,49 +6323,6 @@ paths:
           name: currency
           description: Currency
   /cart:
-    get:
-      summary: Get cart
-      tags:
-        - cart
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cart'
-              examples:
-                Sample cart response:
-                  value:
-                    id: 8577356d-de44-42db-845d-50a690bd3172
-                    cart_lines:
-                      - product_id: ca638752-75ea-a703-d5e3-1bb1969c2ca9
-                        product_variant_id: '8173'
-                        source_id: '8173'
-                        quantity: 1
-                        variant_name_value:
-                          title: Default Title
-                        vendor_id: a216b020-4d8f-c0bc-0aea-75664504f309
-                        vendor_name: Syncrefat
-                        name: SynercentCrafts-Dusk Lagoon' Handwoven Mercerized Cotton Saree
-                        price:
-                          amount: 3216
-                          currency: INR
-                        image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9bd883d0-a397-ae35-d3df-0a42315aa7fa/DLJDMCCTSRP1.jpg'
-                        is_virtual: false
-                    sub_total:
-                      amount: 3216
-                      currency: INR
-                    total_quantity: 1
-      operationId: get-cart
-      description: Get cart
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: X-Shoptype-Api-Key
-          description: API key
-          required: true
     post:
       summary: Create a empty cart
       operationId: post-cart
@@ -6454,96 +6449,6 @@ paths:
           description: API Key
       tags:
         - cart
-    put:
-      summary: Update items in cart
-      operationId: put-cart-cartId-add
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cart'
-              examples:
-                Sample response:
-                  value:
-                    id: 6fdd2930-337b-4772-8d78-f48262fd5661
-                    cart_lines:
-                      - product_id: ca638752-75ea-a703-d5e3-1bb1969c2ca9
-                        product_variant_id: '8173'
-                        source_id: '8173'
-                        quantity: 2
-                        variant_name_value:
-                          title: Default Title
-                        vendor_id: a216b020-4d8f-c0bc-0aea-75664504f309
-                        vendor_name: Syncrefat
-                        name: SynercentCrafts-Dusk Lagoon' Handwoven Mercerized Cotton Saree
-                        price:
-                          amount: 3216
-                          currency: INR
-                        image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9bd883d0-a397-ae35-d3df-0a42315aa7fa/DLJDMCCTSRP1.jpg'
-                        is_virtual: false
-                    sub_total:
-                      amount: 6432
-                      currency: INR
-                    total_quantity: 2
-                Empty cart response:
-                  value:
-                    id: 6fdd2930-337b-4772-8d78-f48262fd5661
-                    cart_lines: []
-      description: Update items in cart
-      tags:
-        - cart
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: X-Shoptype-Api-Key
-          description: API Key
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                product_id:
-                  type: string
-                  minLength: 1
-                product_variant_id:
-                  type: string
-                  minLength: 1
-                variant_name_value:
-                  type: object
-                  properties:
-                    title:
-                      type: string
-                      minLength: 1
-                  required:
-                    - title
-                quantity:
-                  type: number
-              required:
-                - product_id
-                - product_variant_id
-                - variant_name_value
-                - quantity
-            examples:
-              Sample request to empty cart:
-                value:
-                  product_id: ca638752-75ea-a703-d5e3-1bb1969c2ca9
-                  product_variant_id: '8173'
-                  variant_name_value:
-                    title: Default Title
-                  quantity: 0
-              Sample request to increment items:
-                value:
-                  product_id: ca638752-75ea-a703-d5e3-1bb1969c2ca9
-                  product_variant_id: '8173'
-                  variant_name_value:
-                    title: Default Title
-                  quantity: 2
   /cosellers/quick-social-login:
     post:
       summary: Quick social login for cosellers
@@ -6622,6 +6527,150 @@ paths:
       description: Add product manually
       tags:
         - product
+  '/cart/{cartId}':
+    parameters:
+      - schema:
+          type: string
+        name: cartId
+        in: path
+        required: true
+        description: Cart ID
+    get:
+      summary: Get cart
+      tags:
+        - cart
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+              examples:
+                Sample response:
+                  value:
+                    id: 13af4a80-a05c-421d-a7a4-51b734f23079
+                    cart_lines:
+                      - product_id: 02e52e9a-baac-31f7-57c5-824dc47903e7
+                        product_variant_id: '1255'
+                        source_id: '1255'
+                        quantity: 1
+                        variant_name_value:
+                          title: Default Title
+                        vendor_id: 70c35743-f341-03bf-3786-9215f2cd1c17
+                        vendor_name: neelima_woocommerce
+                        name: Aao Kabhi Slim Hard Shell Case For Huawei Mate 10
+                        price:
+                          amount: 6.6
+                          currency: USD
+                        image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/02e52e9a-baac-31f7-57c5-824dc47903e7/601040106216-1.jpg'
+                        is_virtual: false
+                    sub_total:
+                      amount: 6.6
+                      currency: USD
+                    total_quantity: 1
+      operationId: get-cart-cartId
+      description: Fetch cart details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: API Key
+          required: true
+    put:
+      summary: Update cart
+      operationId: put-cart-cartId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+              examples:
+                Sample response:
+                  value:
+                    id: 13af4a80-a05c-421d-a7a4-51b734f23079
+                    cart_lines:
+                      - product_id: 02e52e9a-baac-31f7-57c5-824dc47903e7
+                        product_variant_id: '1255'
+                        source_id: '1255'
+                        quantity: 2
+                        variant_name_value:
+                          title: Default Title
+                        vendor_id: 70c35743-f341-03bf-3786-9215f2cd1c17
+                        vendor_name: neelima_woocommerce
+                        name: Aao Kabhi Slim Hard Shell Case For Huawei Mate 10
+                        price:
+                          amount: 6.6
+                          currency: USD
+                        image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/02e52e9a-baac-31f7-57c5-824dc47903e7/601040106216-1.jpg'
+                        is_virtual: false
+                    sub_total:
+                      amount: 13.2
+                      currency: USD
+                    total_quantity: 2
+      description: Update cart line items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  minLength: 1
+                product_variant_id:
+                  type: string
+                  minLength: 1
+                variant_name_value:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      minLength: 1
+                  required:
+                    - title
+                quantity:
+                  type: number
+              required:
+                - product_id
+                - product_variant_id
+                - variant_name_value
+                - quantity
+            examples:
+              Add line item:
+                value:
+                  product_id: 02e52e9a-baac-31f7-57c5-824dc47903e7
+                  product_variant_id: '1255'
+                  variant_name_value:
+                    title: Default Title
+                  quantity: 2
+      tags:
+        - cart
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: API Key
+    delete:
+      summary: Delete cart
+      operationId: delete-cart-cartId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - cart
+      description: Delete cart
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: API Key
 components:
   schemas:
     Vendor:
