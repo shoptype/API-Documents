@@ -2971,7 +2971,6 @@ paths:
           in: query
           name: text
           description: Search text
-        - name: offset
         - schema:
             type: integer
           in: query
