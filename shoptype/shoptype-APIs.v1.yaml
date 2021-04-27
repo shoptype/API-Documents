@@ -3924,6 +3924,39 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5699,14 +5732,177 @@ paths:
         - attribution
   /product-attribution:
     post:
-      summary: ''
+      summary: Create product attribution
       operationId: post-product-attribution
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      productId:
+                        type: string
+                        minLength: 1
+                      attributionConfig:
+                        type: object
+                        properties:
+                          configs:
+                            type: object
+                            properties:
+                              l1:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              l2:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lIntro:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lX:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                              networkCommission:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                            required:
+                              - l1
+                              - l2
+                              - lIntro
+                              - lX
+                              - networkCommission
+                          adjustmentConfigs: {}
+                        required:
+                          - configs
+                    required:
+                      - id
+                      - productId
+                      - attributionConfig
+                required:
+                  - data
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      id: 6087a5f1ba86aded6d2a4129
+                      productId: 47416583-b12e-7403-319f-639e891646a8
+                      attributionConfig:
+                        configs:
+                          l1:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          l2:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          lIntro:
+                            percentage: 10
+                            timeLimit: null
+                            timeLimitUnit: infinite
+                          lX:
+                            percentage: 90
+                            timeLimit: 3600000000000
+                            timeLimitUnit: hours
+                          networkCommission:
+                            percentage: 30
+                            timeLimit: null
+                            timeLimitUnit: ''
+                        adjustmentConfigs: null
       tags:
         - vendor
         - attribution
+      description: Create product attribution
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: vendor token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductAttributionConfig'
+            examples:
+              Sample request:
+                value:
+                  attributionConfig:
+                    configs:
+                      networkCommission:
+                        percentage: 30
+                      lIntro:
+                        percentage: 10
+                        timeLimit: null
+                        timeLimitUnit: infinite
+                      l1:
+                        percentage: 0
+                        timeLimit: null
+                        timeLimitUnit: hours
+                      l2:
+                        percentage: 0
+                        timeLimit: null
+                        timeLimitUnit: hours
+                      lX:
+                        percentage: 90
+                        timeLimit: 3600000000000
+                        timeLimitUnit: hours
+                  productId: 47416583-b12e-7403-319f-639e891646a8
   '/product-attribution/{productId}':
     parameters:
       - schema:
@@ -5715,21 +5911,323 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get product attribution
       tags:
         - attribution
         - vendor
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      productId:
+                        type: string
+                        minLength: 1
+                      attributionConfig:
+                        type: object
+                        properties:
+                          configs:
+                            type: object
+                            properties:
+                              l1:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              l2:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lIntro:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lX:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                              networkCommission:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                            required:
+                              - l1
+                              - l2
+                              - lIntro
+                              - lX
+                              - networkCommission
+                          adjustmentConfigs: {}
+                        required:
+                          - configs
+                    required:
+                      - id
+                      - productId
+                      - attributionConfig
+                required:
+                  - data
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      id: 6087a5f1ba86aded6d2a4129
+                      productId: 47416583-b12e-7403-319f-639e891646a8
+                      attributionConfig:
+                        configs:
+                          l1:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          l2:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: hours
+                          lIntro:
+                            percentage: 10
+                            timeLimit: null
+                            timeLimitUnit: infinite
+                          lX:
+                            percentage: 90
+                            timeLimit: 3600000000000
+                            timeLimitUnit: hours
+                          networkCommission:
+                            percentage: 30
+                            timeLimit: null
+                            timeLimitUnit: ''
+                        adjustmentConfigs: null
       operationId: get-product-attribution-productId
+      description: Get product attribution
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Vendor token
+          required: true
     put:
-      summary: ''
+      summary: Update product attribution
       operationId: put-product-attribution-productId
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      productId:
+                        type: string
+                        minLength: 1
+                      attributionConfig:
+                        type: object
+                        properties:
+                          configs:
+                            type: object
+                            properties:
+                              l1:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              l2:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lIntro:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                              lX:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit:
+                                    type: number
+                                  timeLimitUnit:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - percentage
+                                  - timeLimit
+                                  - timeLimitUnit
+                              networkCommission:
+                                type: object
+                                properties:
+                                  percentage:
+                                    type: number
+                                  timeLimit: {}
+                                  timeLimitUnit:
+                                    type: string
+                                required:
+                                  - percentage
+                                  - timeLimitUnit
+                            required:
+                              - l1
+                              - l2
+                              - lIntro
+                              - lX
+                              - networkCommission
+                          adjustmentConfigs: {}
+                        required:
+                          - configs
+                    required:
+                      - id
+                      - productId
+                      - attributionConfig
+                required:
+                  - data
+              examples:
+                Sample response:
+                  value:
+                    data:
+                      id: string
+                      productId: string
+                      attributionConfig:
+                        configs:
+                          l1:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: string
+                          l2:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: string
+                          lIntro:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: string
+                          lX:
+                            percentage: 0
+                            timeLimit: 0
+                            timeLimitUnit: string
+                          networkCommission:
+                            percentage: 0
+                            timeLimit: null
+                            timeLimitUnit: string
+                        adjustmentConfigs: null
       tags:
         - attribution
         - vendor
+      description: Update product attribution
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Vendor token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductAttributionConfig'
+            examples:
+              Sample request:
+                value:
+                  id: 6087a5f1ba86aded6d2a4129
+                  productId: 47416583-b12e-7403-319f-639e891646a8
+                  attributionConfig:
+                    configs:
+                      l1:
+                        percentage: 5
+                        timeLimit: null
+                        timeLimitUnit: hours
+                      l2:
+                        percentage: 0
+                        timeLimit: null
+                        timeLimitUnit: hours
+                      lIntro:
+                        percentage: 5
+                        timeLimit: null
+                        timeLimitUnit: infinite
+                      lX:
+                        percentage: 90
+                        timeLimit: 3600000000000
+                        timeLimitUnit: hours
+                      networkCommission:
+                        percentage: 30
+                        timeLimit: null
+                        timeLimitUnit: ''
+                    adjustmentConfigs: null
   /address:
     get:
       summary: Fetch address details
@@ -9637,4 +10135,86 @@ components:
                 currency: USD
           requires_shipping: true
       title: Checkout
+    ProductAttributionConfig:
+      description: ''
+      type: object
+      properties:
+        attributionConfig:
+          type: object
+          properties:
+            configs:
+              type: object
+              properties:
+                networkCommission:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                  required:
+                    - percentage
+                lIntro:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                l1:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                l2:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit: {}
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimitUnit
+                lX:
+                  type: object
+                  properties:
+                    percentage:
+                      type: number
+                    timeLimit:
+                      type: number
+                    timeLimitUnit:
+                      type: string
+                      minLength: 1
+                  required:
+                    - percentage
+                    - timeLimit
+                    - timeLimitUnit
+              required:
+                - networkCommission
+                - lIntro
+                - l1
+                - l2
+                - lX
+          required:
+            - configs
+        productId:
+          type: string
+          minLength: 1
+      required:
+        - attributionConfig
+        - productId
+      title: ProductAttributionConfig
   securitySchemes: {}
