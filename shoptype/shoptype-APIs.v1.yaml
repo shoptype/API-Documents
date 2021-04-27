@@ -3844,6 +3844,87 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6671,6 +6752,1143 @@ paths:
           in: header
           name: X-Shoptype-Api-Key
           description: API Key
+  /checkout:
+    post:
+      summary: Create checkout
+      operationId: post-checkout
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  checkout_id:
+                    type: string
+                    minLength: 1
+                  external_url:
+                    type: boolean
+                  redirect_uri:
+                    type: string
+                    minLength: 1
+                required:
+                  - checkout_id
+                  - external_url
+                  - redirect_uri
+              examples:
+                Sample response:
+                  value:
+                    checkout_id: 7f4f1be1-9501-491c-bd5b-603c30a24321
+                    external_url: false
+                    redirect_uri: /checkout_v2/7f4f1be1-9501-491c-bd5b-603c30a24321
+      description: Create checkout
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: API Key
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                  minLength: 1
+                cartId:
+                  type: string
+                  minLength: 1
+              required:
+                - deviceId
+                - cartId
+            examples:
+              Sample body:
+                value:
+                  deviceId: 750cae4ce6a87a95353c8c2f00b33c0c
+                  cartId: 13af4a80-a05c-421d-a7a4-51b734f23079
+  '/checkout/{checkoutId}':
+    parameters:
+      - schema:
+          type: string
+        name: checkoutId
+        in: path
+        required: true
+    get:
+      summary: Fetch checkout details
+      tags:
+        - checkout
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Checkout'
+              examples:
+                Sample response:
+                  value:
+                    id: 7f4f1be1-9501-491c-bd5b-603c30a24321
+                    order_id: 103d6699-1abb-3221-e88c-178807cad309
+                    device_id: 750cae4ce6a87a95353c8c2f00b33c0c
+                    taxes:
+                      amount: 0
+                      currency: USD
+                    shipping:
+                      amount: 100
+                      currency: USD
+                    sub_total:
+                      amount: 15.73
+                      currency: USD
+                    total:
+                      amount: 115.73
+                      currency: USD
+                    created_at: '2021-04-27T05:22:16.961Z'
+                    updated_at: '2021-04-27T05:28:37.904Z'
+                    payment:
+                      status: created
+                      method: stripe
+                      transaction_id: pi_1IkjTNFQPnig6EmyCIEvkVIc
+                      method_detail_html: ''
+                      method_details: null
+                    shipping_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 665-2544
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    billing_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 665-2544
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        external_order_id: ''
+                        status: ''
+                        cart_lines:
+                          - product_id: cd37bbd2-0df6-d909-2d3b-fe0c3074d178
+                            product_variant_id: '1241'
+                            source_id: '1241'
+                            quantity: 1
+                            variant_name_value:
+                              title: Default Title
+                            vendor_id: 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+                            vendor_name: ShoptypeWooCheckoutTest
+                            name: Newborn Baby Boys 9 Pc Layette Baby Shower Gift
+                            price:
+                              amount: 15.73
+                              currency: USD
+                            image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/cd37bbd2-0df6-d909-2d3b-fe0c3074d178/500_116B_911UB_3211B.jpg'
+                            is_virtual: false
+                        taxes:
+                          amount: 0
+                          currency: USD
+                        shipping_options:
+                          - method_key: 'free_shipping:41'
+                            method_title: Free shipping
+                            method_id: free_shipping
+                            shipping_html: Free shipping
+                            chosen_method: false
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'local_pickup:42'
+                            method_title: Local pickup
+                            method_id: local_pickup
+                            shipping_html: Local pickup
+                            chosen_method: false
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'flat_rate:40'
+                            method_title: Flat rate
+                            method_id: flat_rate
+                            shipping_html: 'Flat rate: $100.00'
+                            chosen_method: true
+                            total:
+                              amount: 100
+                              currency: USD
+                        shipping_selected:
+                          method_key: 'flat_rate:40'
+                          method_title: Flat rate
+                          method_id: flat_rate
+                          shipping_html: 'Flat rate: $100.00'
+                          chosen_method: true
+                          total:
+                            amount: 100
+                            currency: USD
+                        sub_total:
+                          amount: 15.73
+                          currency: USD
+                        total:
+                          amount: 115.73
+                          currency: USD
+                    requires_shipping: true
+      operationId: get-checkout-checkoutId
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: Shoptype API Key
+      description: Fetch checkout details
+    put:
+      summary: Update checkout address
+      operationId: put-checkout-checkoutId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                  order_id:
+                    type: string
+                  device_id:
+                    type: string
+                    minLength: 1
+                  taxes:
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                      currency:
+                        type: string
+                        minLength: 1
+                    required:
+                      - amount
+                      - currency
+                  shipping:
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                      currency:
+                        type: string
+                        minLength: 1
+                    required:
+                      - amount
+                      - currency
+                  sub_total:
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                      currency:
+                        type: string
+                        minLength: 1
+                    required:
+                      - amount
+                      - currency
+                  total:
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                      currency:
+                        type: string
+                        minLength: 1
+                    required:
+                      - amount
+                      - currency
+                  created_at:
+                    type: string
+                    minLength: 1
+                  updated_at:
+                    type: string
+                    minLength: 1
+                  payment:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        minLength: 1
+                      method:
+                        type: string
+                      transaction_id:
+                        type: string
+                      method_detail_html:
+                        type: string
+                      method_details: {}
+                    required:
+                      - status
+                      - method
+                      - transaction_id
+                      - method_detail_html
+                  shipping_address:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      street1:
+                        type: string
+                        minLength: 1
+                      email:
+                        type: string
+                        minLength: 1
+                      phone:
+                        type: string
+                        minLength: 1
+                      city:
+                        type: string
+                        minLength: 1
+                      state:
+                        type: string
+                        minLength: 1
+                      stateCode:
+                        type: string
+                        minLength: 1
+                      postalCode:
+                        type: string
+                        minLength: 1
+                      country:
+                        type: string
+                        minLength: 1
+                      countryCode:
+                        type: string
+                        minLength: 1
+                    required:
+                      - name
+                      - street1
+                      - email
+                      - phone
+                      - city
+                      - state
+                      - stateCode
+                      - postalCode
+                      - country
+                      - countryCode
+                  billing_address:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      street1:
+                        type: string
+                        minLength: 1
+                      email:
+                        type: string
+                        minLength: 1
+                      phone:
+                        type: string
+                        minLength: 1
+                      city:
+                        type: string
+                        minLength: 1
+                      state:
+                        type: string
+                        minLength: 1
+                      stateCode:
+                        type: string
+                        minLength: 1
+                      postalCode:
+                        type: string
+                        minLength: 1
+                      country:
+                        type: string
+                        minLength: 1
+                      countryCode:
+                        type: string
+                        minLength: 1
+                    required:
+                      - name
+                      - street1
+                      - email
+                      - phone
+                      - city
+                      - state
+                      - stateCode
+                      - postalCode
+                      - country
+                      - countryCode
+                  is_shipping_billing:
+                    type: boolean
+                  order_details_per_vendor:
+                    type: object
+                    properties:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        type: object
+                        properties:
+                          external_order_id:
+                            type: string
+                          status:
+                            type: string
+                          cart_lines:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - product_id
+                                - product_variant_id
+                                - source_id
+                                - quantity
+                                - vendor_id
+                                - vendor_name
+                                - name
+                                - image_src
+                                - is_virtual
+                              properties:
+                                product_id:
+                                  type: string
+                                  minLength: 1
+                                product_variant_id:
+                                  type: string
+                                  minLength: 1
+                                source_id:
+                                  type: string
+                                  minLength: 1
+                                quantity:
+                                  type: number
+                                variant_name_value:
+                                  type: object
+                                  properties:
+                                    title:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - title
+                                vendor_id:
+                                  type: string
+                                  minLength: 1
+                                vendor_name:
+                                  type: string
+                                  minLength: 1
+                                name:
+                                  type: string
+                                  minLength: 1
+                                price:
+                                  type: object
+                                  properties:
+                                    amount:
+                                      type: number
+                                    currency:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - amount
+                                    - currency
+                                image_src:
+                                  type: string
+                                  minLength: 1
+                                is_virtual:
+                                  type: boolean
+                          taxes:
+                            type: object
+                            properties:
+                              amount:
+                                type: number
+                              currency:
+                                type: string
+                                minLength: 1
+                            required:
+                              - amount
+                              - currency
+                          shipping_options:
+                            type: array
+                            uniqueItems: true
+                            minItems: 1
+                            items:
+                              required:
+                                - method_key
+                                - method_title
+                                - method_id
+                                - shipping_html
+                                - chosen_method
+                              properties:
+                                method_key:
+                                  type: string
+                                  minLength: 1
+                                method_title:
+                                  type: string
+                                  minLength: 1
+                                method_id:
+                                  type: string
+                                  minLength: 1
+                                shipping_html:
+                                  type: string
+                                  minLength: 1
+                                chosen_method:
+                                  type: boolean
+                                total:
+                                  type: object
+                                  properties:
+                                    amount:
+                                      type: number
+                                    currency:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - amount
+                                    - currency
+                          shipping_selected:
+                            type: object
+                            properties:
+                              method_key:
+                                type: string
+                                minLength: 1
+                              method_title:
+                                type: string
+                                minLength: 1
+                              method_id:
+                                type: string
+                                minLength: 1
+                              shipping_html:
+                                type: string
+                                minLength: 1
+                              chosen_method:
+                                type: boolean
+                              total:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                            required:
+                              - method_key
+                              - method_title
+                              - method_id
+                              - shipping_html
+                              - chosen_method
+                              - total
+                          sub_total:
+                            type: object
+                            properties:
+                              amount:
+                                type: number
+                              currency:
+                                type: string
+                                minLength: 1
+                            required:
+                              - amount
+                              - currency
+                          total:
+                            type: object
+                            properties:
+                              amount:
+                                type: number
+                              currency:
+                                type: string
+                                minLength: 1
+                            required:
+                              - amount
+                              - currency
+                        required:
+                          - external_order_id
+                          - status
+                          - cart_lines
+                          - taxes
+                          - shipping_options
+                          - shipping_selected
+                          - sub_total
+                          - total
+                    required:
+                      - 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+                  requires_shipping:
+                    type: boolean
+                required:
+                  - id
+                  - order_id
+                  - device_id
+                  - taxes
+                  - shipping
+                  - sub_total
+                  - total
+                  - created_at
+                  - updated_at
+                  - payment
+                  - shipping_address
+                  - billing_address
+                  - is_shipping_billing
+                  - order_details_per_vendor
+                  - requires_shipping
+              examples:
+                Sample response:
+                  value:
+                    id: 7f4f1be1-9501-491c-bd5b-603c30a24321
+                    order_id: ''
+                    device_id: 750cae4ce6a87a95353c8c2f00b33c0c
+                    taxes:
+                      amount: 0
+                      currency: USD
+                    shipping:
+                      amount: 100
+                      currency: USD
+                    sub_total:
+                      amount: 15.73
+                      currency: USD
+                    total:
+                      amount: 115.73
+                      currency: USD
+                    created_at: '2021-04-27T05:22:16.961Z'
+                    updated_at: '2021-04-27T05:25:02.888527178Z'
+                    payment:
+                      status: pending
+                      method: ''
+                      transaction_id: ''
+                      method_detail_html: ''
+                      method_details: null
+                    shipping_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 665-2544
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    billing_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 665-2544
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        external_order_id: ''
+                        status: ''
+                        cart_lines:
+                          - product_id: cd37bbd2-0df6-d909-2d3b-fe0c3074d178
+                            product_variant_id: '1241'
+                            source_id: '1241'
+                            quantity: 1
+                            variant_name_value:
+                              title: Default Title
+                            vendor_id: 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+                            vendor_name: ShoptypeWooCheckoutTest
+                            name: Newborn Baby Boys 9 Pc Layette Baby Shower Gift
+                            price:
+                              amount: 15.73
+                              currency: USD
+                            image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/cd37bbd2-0df6-d909-2d3b-fe0c3074d178/500_116B_911UB_3211B.jpg'
+                            is_virtual: false
+                        taxes:
+                          amount: 0
+                          currency: USD
+                        shipping_options:
+                          - method_key: 'free_shipping:41'
+                            method_title: Free shipping
+                            method_id: free_shipping
+                            shipping_html: Free shipping
+                            chosen_method: false
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'local_pickup:42'
+                            method_title: Local pickup
+                            method_id: local_pickup
+                            shipping_html: Local pickup
+                            chosen_method: false
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'flat_rate:40'
+                            method_title: Flat rate
+                            method_id: flat_rate
+                            shipping_html: 'Flat rate: $100.00'
+                            chosen_method: true
+                            total:
+                              amount: 100
+                              currency: USD
+                        shipping_selected:
+                          method_key: 'flat_rate:40'
+                          method_title: Flat rate
+                          method_id: flat_rate
+                          shipping_html: 'Flat rate: $100.00'
+                          chosen_method: true
+                          total:
+                            amount: 100
+                            currency: USD
+                        sub_total:
+                          amount: 15.73
+                          currency: USD
+                        total:
+                          amount: 115.73
+                          currency: USD
+                    requires_shipping: true
+      tags:
+        - checkout
+      description: Updated checkout address
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: API Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                shipping_address:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      minLength: 1
+                    phone:
+                      type: string
+                      minLength: 1
+                    email:
+                      type: string
+                      minLength: 1
+                    street1:
+                      type: string
+                      minLength: 1
+                    city:
+                      type: string
+                      minLength: 1
+                    country:
+                      type: string
+                      minLength: 1
+                    countryCode:
+                      type: string
+                      minLength: 1
+                    state:
+                      type: string
+                      minLength: 1
+                    stateCode:
+                      type: string
+                      minLength: 1
+                    postalCode:
+                      type: string
+                      minLength: 1
+                  required:
+                    - name
+                    - phone
+                    - email
+                    - street1
+                    - city
+                    - country
+                    - countryCode
+                    - state
+                    - stateCode
+                    - postalCode
+                billing_address:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      minLength: 1
+                    phone:
+                      type: string
+                      minLength: 1
+                    email:
+                      type: string
+                      minLength: 1
+                    street1:
+                      type: string
+                      minLength: 1
+                    city:
+                      type: string
+                      minLength: 1
+                    country:
+                      type: string
+                      minLength: 1
+                    countryCode:
+                      type: string
+                      minLength: 1
+                    state:
+                      type: string
+                      minLength: 1
+                    stateCode:
+                      type: string
+                      minLength: 1
+                    postalCode:
+                      type: string
+                      minLength: 1
+                  required:
+                    - name
+                    - phone
+                    - email
+                    - street1
+                    - city
+                    - country
+                    - countryCode
+                    - state
+                    - stateCode
+                    - postalCode
+                is_shipping_billing:
+                  type: boolean
+              required:
+                - shipping_address
+                - billing_address
+                - is_shipping_billing
+            examples:
+              Response with shipping and taxes:
+                value:
+                  shipping_address:
+                    name: sarthak barik
+                    phone: +1 (988) 665-2544
+                    email: skbarik@gmail.com
+                    street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                    city: New Delhi
+                    country: India
+                    countryCode: IN
+                    state: Delhi
+                    stateCode: DL
+                    postalCode: '110004'
+                  billing_address:
+                    name: sarthak barik
+                    phone: +1 (988) 665-2544
+                    email: skbarik@gmail.com
+                    street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                    city: New Delhi
+                    country: India
+                    countryCode: IN
+                    state: Delhi
+                    stateCode: DL
+                    postalCode: '110004'
+                  is_shipping_billing: true
+  '/checkout/{checkoutId}/payment':
+    parameters:
+      - schema:
+          type: string
+        name: checkoutId
+        in: path
+        required: true
+    post:
+      summary: Initialise checkout payment
+      operationId: post-checkout-checkoutId-payment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                  amount:
+                    type: object
+                    properties:
+                      amount:
+                        type: number
+                      currency:
+                        type: string
+                        minLength: 1
+                    required:
+                      - amount
+                      - currency
+                  amount_in_denomination:
+                    type: number
+                  status:
+                    type: string
+                    minLength: 1
+                  method:
+                    type: string
+                    minLength: 1
+                  public_key:
+                    type: string
+                    minLength: 1
+                  client_secret:
+                    type: string
+                    minLength: 1
+                  billing_address:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      street1:
+                        type: string
+                        minLength: 1
+                      email:
+                        type: string
+                        minLength: 1
+                      phone:
+                        type: string
+                        minLength: 1
+                      city:
+                        type: string
+                        minLength: 1
+                      state:
+                        type: string
+                        minLength: 1
+                      stateCode:
+                        type: string
+                        minLength: 1
+                      postalCode:
+                        type: string
+                        minLength: 1
+                      country:
+                        type: string
+                        minLength: 1
+                      countryCode:
+                        type: string
+                        minLength: 1
+                    required:
+                      - name
+                      - street1
+                      - email
+                      - phone
+                      - city
+                      - state
+                      - stateCode
+                      - postalCode
+                      - country
+                      - countryCode
+                required:
+                  - id
+                  - amount
+                  - amount_in_denomination
+                  - status
+                  - method
+                  - public_key
+                  - client_secret
+                  - billing_address
+              examples:
+                Sample stripe response:
+                  value:
+                    id: pi_1IkjTNFQPnig6EmyCIEvkVIc
+                    amount:
+                      amount: 115.73
+                      currency: USD
+                    amount_in_denomination: 11573
+                    status: requires_payment_method
+                    method: stripe
+                    public_key: pk_test_51GvkFkFQPnig6EmyrxxbVmWEHOTi1jX9Xe6xkteaTvMJXgdhAVC9TNeN92kv9jGG9nurGqI3aRslyg9zCJ13I2cd00ZB2Cg3np
+                    client_secret: pi_1IkjTNFQPnig6EmyCIEvkVIc_secret_uqe1xESCTQv3V3JmOeBCWXTnl
+                    billing_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 665-2544
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+      description: |
+        Initialise checkout payment
+        - Supported method: Stripe, razorpay
+      parameters:
+        - schema:
+            type: string
+          in: header
+          required: true
+          name: X-Shoptype-Api-Key
+          description: API Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+      tags:
+        - checkout
+  '/checkout/{checkoutId}/shipping-method':
+    parameters:
+      - schema:
+          type: string
+        name: checkoutId
+        in: path
+        required: true
+        description: Checkout Id
+    put:
+      summary: Updated checkout shipping method
+      operationId: put-checkout-checkoutId-shipping-method
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Checkout'
+              examples:
+                Sample response:
+                  value:
+                    id: 67eefe62-9d21-437d-91b2-6350963d7c74
+                    order_id: ''
+                    device_id: 750cae4ce6a87a95353c8c2f00b33c0c
+                    taxes:
+                      amount: 0
+                      currency: USD
+                    shipping:
+                      amount: 0
+                      currency: USD
+                    sub_total:
+                      amount: 0
+                      currency: USD
+                    total:
+                      amount: 0
+                      currency: USD
+                    created_at: '2021-04-27T05:37:00.066Z'
+                    updated_at: '2021-04-27T05:37:22.518194568Z'
+                    payment:
+                      status: pending
+                      method: ''
+                      transaction_id: ''
+                      method_detail_html: ''
+                      method_details: null
+                    shipping_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 776-2655
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    billing_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 776-2655
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        external_order_id: ''
+                        status: ''
+                        cart_lines:
+                          - product_id: cd37bbd2-0df6-d909-2d3b-fe0c3074d178
+                            product_variant_id: '1241'
+                            source_id: '1241'
+                            quantity: 1
+                            variant_name_value:
+                              title: Default Title
+                            vendor_id: 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+                            vendor_name: ShoptypeWooCheckoutTest
+                            name: Newborn Baby Boys 9 Pc Layette Baby Shower Gift
+                            price:
+                              amount: 0
+                              currency: USD
+                            image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/1d8920ba-9012-b75c-cb96-2958f9fb0dbc/500_116B_911UB_3211B.jpg'
+                            is_virtual: false
+                        taxes:
+                          amount: 0
+                          currency: USD
+                        shipping_options:
+                          - method_key: 'free_shipping:41'
+                            method_title: Free shipping
+                            method_id: free_shipping
+                            shipping_html: Free shipping
+                            chosen_method: false
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'local_pickup:42'
+                            method_title: Local pickup
+                            method_id: local_pickup
+                            shipping_html: Local pickup
+                            chosen_method: true
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'flat_rate:40'
+                            method_title: Flat rate
+                            method_id: flat_rate
+                            shipping_html: 'Flat rate: $100.00'
+                            chosen_method: false
+                            total:
+                              amount: 100
+                              currency: USD
+                        shipping_selected:
+                          method_key: 'local_pickup:42'
+                          method_title: Local pickup
+                          method_id: local_pickup
+                          shipping_html: Local pickup
+                          chosen_method: true
+                          total:
+                            amount: 0
+                            currency: USD
+                        sub_total:
+                          amount: 0
+                          currency: USD
+                        total:
+                          amount: 0
+                          currency: USD
+                    requires_shipping: true
+      description: Updated checkout shipping method
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: Shoptype API Key
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                method_key_per_vendor:
+                  type: object
+                  required:
+                    - '{vendorId}'
+                  properties:
+                    '{vendorId}':
+                      type: object
+                      required:
+                        - method_key
+                      properties:
+                        method_key:
+                          type: string
+                          minLength: 1
+              required:
+                - method_key_per_vendor
+            examples:
+              Sample request body:
+                value:
+                  method_key_per_vendor:
+                    36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                      method_key: 'local_pickup:42'
+      tags:
+        - checkout
 components:
   schemas:
     Vendor:
@@ -7931,4 +9149,493 @@ components:
             currency: INR
           total_quantity: 1
       title: Cart
+    Checkout:
+      description: Supports multi vendor
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        order_id:
+          type: string
+          minLength: 1
+        device_id:
+          type: string
+          minLength: 1
+        taxes:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+          required:
+            - amount
+            - currency
+        shipping:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+          required:
+            - amount
+            - currency
+        sub_total:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+          required:
+            - amount
+            - currency
+        total:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+          required:
+            - amount
+            - currency
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        payment:
+          type: object
+          properties:
+            status:
+              type: string
+              minLength: 1
+            method:
+              type: string
+              minLength: 1
+            transaction_id:
+              type: string
+              minLength: 1
+            method_detail_html:
+              type: string
+            method_details: {}
+          required:
+            - status
+            - method
+            - transaction_id
+            - method_detail_html
+        shipping_address:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+            street1:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              minLength: 1
+            phone:
+              type: string
+              minLength: 1
+            city:
+              type: string
+              minLength: 1
+            state:
+              type: string
+              minLength: 1
+            stateCode:
+              type: string
+              minLength: 1
+            postalCode:
+              type: string
+              minLength: 1
+            country:
+              type: string
+              minLength: 1
+            countryCode:
+              type: string
+              minLength: 1
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
+        billing_address:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+            street1:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              minLength: 1
+            phone:
+              type: string
+              minLength: 1
+            city:
+              type: string
+              minLength: 1
+            state:
+              type: string
+              minLength: 1
+            stateCode:
+              type: string
+              minLength: 1
+            postalCode:
+              type: string
+              minLength: 1
+            country:
+              type: string
+              minLength: 1
+            countryCode:
+              type: string
+              minLength: 1
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
+        is_shipping_billing:
+          type: boolean
+        order_details_per_vendor:
+          type: object
+          properties:
+            36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+              type: object
+              properties:
+                external_order_id:
+                  type: string
+                status:
+                  type: string
+                cart_lines:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - product_id
+                      - product_variant_id
+                      - source_id
+                      - quantity
+                      - vendor_id
+                      - vendor_name
+                      - name
+                      - image_src
+                      - is_virtual
+                    properties:
+                      product_id:
+                        type: string
+                        minLength: 1
+                      product_variant_id:
+                        type: string
+                        minLength: 1
+                      source_id:
+                        type: string
+                        minLength: 1
+                      quantity:
+                        type: number
+                      variant_name_value:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            minLength: 1
+                        required:
+                          - title
+                      vendor_id:
+                        type: string
+                        minLength: 1
+                      vendor_name:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      price:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                          currency:
+                            type: string
+                            minLength: 1
+                        required:
+                          - amount
+                          - currency
+                      image_src:
+                        type: string
+                        minLength: 1
+                      is_virtual:
+                        type: boolean
+                taxes:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                  required:
+                    - amount
+                    - currency
+                shipping_options:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - method_key
+                      - method_title
+                      - method_id
+                      - shipping_html
+                      - chosen_method
+                    properties:
+                      method_key:
+                        type: string
+                        minLength: 1
+                      method_title:
+                        type: string
+                        minLength: 1
+                      method_id:
+                        type: string
+                        minLength: 1
+                      shipping_html:
+                        type: string
+                        minLength: 1
+                      chosen_method:
+                        type: boolean
+                      total:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                          currency:
+                            type: string
+                            minLength: 1
+                        required:
+                          - amount
+                          - currency
+                shipping_selected:
+                  type: object
+                  properties:
+                    method_key:
+                      type: string
+                      minLength: 1
+                    method_title:
+                      type: string
+                      minLength: 1
+                    method_id:
+                      type: string
+                      minLength: 1
+                    shipping_html:
+                      type: string
+                      minLength: 1
+                    chosen_method:
+                      type: boolean
+                    total:
+                      type: object
+                      properties:
+                        amount:
+                          type: number
+                        currency:
+                          type: string
+                          minLength: 1
+                      required:
+                        - amount
+                        - currency
+                  required:
+                    - method_key
+                    - method_title
+                    - method_id
+                    - shipping_html
+                    - chosen_method
+                    - total
+                sub_total:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                  required:
+                    - amount
+                    - currency
+                total:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                  required:
+                    - amount
+                    - currency
+              required:
+                - external_order_id
+                - status
+                - cart_lines
+                - taxes
+                - shipping_options
+                - shipping_selected
+                - sub_total
+                - total
+          required:
+            - 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+        requires_shipping:
+          type: boolean
+      required:
+        - id
+        - order_id
+        - device_id
+        - taxes
+        - shipping
+        - sub_total
+        - total
+        - created_at
+        - updated_at
+        - payment
+        - shipping_address
+        - billing_address
+        - is_shipping_billing
+        - order_details_per_vendor
+        - requires_shipping
+      x-examples:
+        Sample body:
+          id: 7f4f1be1-9501-491c-bd5b-603c30a24321
+          order_id: 103d6699-1abb-3221-e88c-178807cad309
+          device_id: 750cae4ce6a87a95353c8c2f00b33c0c
+          taxes:
+            amount: 0
+            currency: USD
+          shipping:
+            amount: 100
+            currency: USD
+          sub_total:
+            amount: 15.73
+            currency: USD
+          total:
+            amount: 115.73
+            currency: USD
+          created_at: '2021-04-27T05:22:16.961Z'
+          updated_at: '2021-04-27T05:28:37.904Z'
+          payment:
+            status: created
+            method: stripe
+            transaction_id: pi_1IkjTNFQPnig6EmyCIEvkVIc
+            method_detail_html: ''
+            method_details: null
+          shipping_address:
+            name: sarthak barik
+            street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+            email: skbarik@gmail.com
+            phone: +1 (988) 665-2544
+            city: New Delhi
+            state: Delhi
+            stateCode: DL
+            postalCode: '110004'
+            country: India
+            countryCode: IN
+          billing_address:
+            name: sarthak barik
+            street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+            email: skbarik@gmail.com
+            phone: +1 (988) 665-2544
+            city: New Delhi
+            state: Delhi
+            stateCode: DL
+            postalCode: '110004'
+            country: India
+            countryCode: IN
+          is_shipping_billing: true
+          order_details_per_vendor:
+            36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+              external_order_id: ''
+              status: ''
+              cart_lines:
+                - product_id: cd37bbd2-0df6-d909-2d3b-fe0c3074d178
+                  product_variant_id: '1241'
+                  source_id: '1241'
+                  quantity: 1
+                  variant_name_value:
+                    title: Default Title
+                  vendor_id: 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+                  vendor_name: ShoptypeWooCheckoutTest
+                  name: Newborn Baby Boys 9 Pc Layette Baby Shower Gift
+                  price:
+                    amount: 15.73
+                    currency: USD
+                  image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/cd37bbd2-0df6-d909-2d3b-fe0c3074d178/500_116B_911UB_3211B.jpg'
+                  is_virtual: false
+              taxes:
+                amount: 0
+                currency: USD
+              shipping_options:
+                - method_key: 'free_shipping:41'
+                  method_title: Free shipping
+                  method_id: free_shipping
+                  shipping_html: Free shipping
+                  chosen_method: false
+                  total:
+                    amount: 0
+                    currency: USD
+                - method_key: 'local_pickup:42'
+                  method_title: Local pickup
+                  method_id: local_pickup
+                  shipping_html: Local pickup
+                  chosen_method: false
+                  total:
+                    amount: 0
+                    currency: USD
+                - method_key: 'flat_rate:40'
+                  method_title: Flat rate
+                  method_id: flat_rate
+                  shipping_html: 'Flat rate: $100.00'
+                  chosen_method: true
+                  total:
+                    amount: 100
+                    currency: USD
+              shipping_selected:
+                method_key: 'flat_rate:40'
+                method_title: Flat rate
+                method_id: flat_rate
+                shipping_html: 'Flat rate: $100.00'
+                chosen_method: true
+                total:
+                  amount: 100
+                  currency: USD
+              sub_total:
+                amount: 15.73
+                currency: USD
+              total:
+                amount: 115.73
+                currency: USD
+          requires_shipping: true
+      title: Checkout
   securitySchemes: {}
