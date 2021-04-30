@@ -3958,6 +3958,10 @@ paths:
 
 
 
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6770,6 +6774,81 @@ paths:
                     $ref: '#/components/schemas/Product'
                   tracker_id:
                     type: string
+              examples:
+                Example:
+                  value:
+                    product:
+                      id: string
+                      handle: string
+                      title: string
+                      description: string
+                      tags:
+                        - string
+                      publishedAt: 0
+                      syncedAt: 0
+                      primaryImageSrc:
+                        id: string
+                        imageSrc: string
+                        variantIds:
+                          - string
+                      previewImageSrc: string
+                      secondaryImageSrc:
+                        - id: string
+                          imageSrc: string
+                          variantIds:
+                            - string
+                      primaryVideoSrc: string
+                      catalogId: string
+                      variants:
+                        - string
+                      currency: string
+                      sourceId: string
+                      sourceName: string
+                      options:
+                        - name: string
+                          values:
+                            - string
+                      cards:
+                        - id: string
+                          heading: string
+                          type: string
+                          content:
+                            text: string
+                      vendor:
+                        id: string
+                        name: string
+                        user_id: string
+                        productCategories:
+                          - string
+                        url: string
+                        logo: string
+                        shopifyVendor: string
+                        wooCommerceVendor: string
+                        wooCommerceShipping:
+                          shippingServiceId: string
+                          shippingConsumerKey: string
+                          shippingConsumerSecret: string
+                        store:
+                          addressLine1: string
+                          city: string
+                          countryState: string
+                          postalCode: string
+                          currency: string
+                          geoLocation:
+                            type: string
+                            coordinates:
+                              - 0
+                      status: string
+                      geoLocation:
+                        type: string
+                        coordinates:
+                          - 0
+                      vendorName: string
+                      productCommission:
+                        percentage: 0
+                      slug: string
+                      is_virtual: true
+                    tracker_id: string
       description: |-
         Get product details for a productId and platformId, along with a new associated tracker.
 
@@ -6786,8 +6865,12 @@ paths:
                   type: string
               required:
                 - device_id
+        description: |-
+          DeviceId has to be generated on client side and is required,
+          TrackerId is optional
       tags:
         - network
+      parameters: []
   '/vendors/{vendorId}/orders':
     parameters:
       - schema:
