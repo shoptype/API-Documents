@@ -6743,6 +6743,54 @@ paths:
           in: query
           name: shareLink
           description: 'Product page url along with trackerId, required in case of coselling'
+  '/platforms/{platformId}/product/{productId}':
+    parameters:
+      - schema:
+          type: string
+        name: platformId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: productId
+        in: path
+        required: true
+    post:
+      summary: Get Platform product by ID
+      operationId: post-platforms-platformId-product-productId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product:
+                    $ref: '#/components/schemas/Product'
+                  tracker_id:
+                    type: string
+              examples:
+                example-1:
+                  value: {}
+      description: |-
+        Get product details for a productId and platformId, along with a new associated tracker.
+
+        If a tracker is present in the request, the same one is used for triggering events (ex. view event), else a new one is used.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                device_id:
+                  type: string
+                tracker_id:
+                  type: string
+              required:
+                - device_id
+      tags:
+        - network
   '/vendors/{vendorId}/orders':
     parameters:
       - schema:
