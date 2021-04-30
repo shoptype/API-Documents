@@ -6770,9 +6770,6 @@ paths:
                     $ref: '#/components/schemas/Product'
                   tracker_id:
                     type: string
-              examples:
-                example-1:
-                  value: {}
       description: |-
         Get product details for a productId and platformId, along with a new associated tracker.
 
