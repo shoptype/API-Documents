@@ -3963,6 +3963,9 @@ paths:
 
 
 
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6755,11 +6758,13 @@ paths:
         name: platformId
         in: path
         required: true
+        description: Platform Id
       - schema:
           type: string
         name: productId
         in: path
         required: true
+        description: Product Id
     post:
       summary: Get Platform product by ID
       operationId: post-platforms-platformId-product-productId
