@@ -664,6 +664,11 @@ paths:
           in: query
           name: requestUri
           description: Redirection URL
+        - schema:
+            type: string
+          in: query
+          name: currency
+          description: Currency in string
   /stripe-connect/verification/confirm:
     post:
       summary: ''
@@ -700,6 +705,7 @@ paths:
                 value:
                   payment_method_type: stripe
                   code: ac_IBnThr9P5nfraiI89jsinSExA0LOCOKF
+                  currency: cad
       description: |-
         Needs to be invoked once user is redirected back to native page after finishing stripe connect steps.
 
@@ -738,6 +744,11 @@ paths:
           in: header
           name: authorization
           description: user token
+        - schema:
+            type: string
+          in: query
+          name: currency
+          description: Currency in string
 components:
   schemas:
     Transaction:
