@@ -767,6 +767,31 @@ paths:
           name: currency
           description: Currency in string
           required: true
+  /razorpay/contacts:
+    get:
+      summary: Fetch existing contacts
+      tags:
+        - Razorpay
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value: {}
+      operationId: get-razorpay-contacts
+      description: Fetches all the contacts for the logged in user.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Login token
+          required: true
 components:
   schemas:
     Transaction:
