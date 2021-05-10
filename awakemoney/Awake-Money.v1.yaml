@@ -9,6 +9,7 @@ info:
     | ------ | ------ |
     | INR | Razorpay |
     | USD | Stripe |
+    | CAD | Stripe |
 servers:
   - url: 'https://dev-backend.awake.money'
     description: dev
