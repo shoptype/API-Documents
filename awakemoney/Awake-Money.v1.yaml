@@ -454,6 +454,11 @@ paths:
           name: authorization
           description: user token
           required: true
+        - schema:
+            type: string
+          in: query
+          name: currency
+          description: Currency in string
   /accounts:
     get:
       summary: Fetch accounts
@@ -669,6 +674,7 @@ paths:
           description: Redirection URL
         - schema:
             type: string
+            default: usd
           in: query
           name: currency
           description: Currency in string
@@ -703,6 +709,7 @@ paths:
                   minLength: 1
                 currency:
                   type: string
+                  default: usd
               required:
                 - payment_method_type
                 - code
@@ -763,6 +770,7 @@ paths:
           description: user token
         - schema:
             type: string
+            default: usd
           in: query
           name: currency
           description: Currency in string
