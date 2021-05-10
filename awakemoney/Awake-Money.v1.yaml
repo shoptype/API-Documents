@@ -520,6 +520,8 @@ paths:
                   minLength: 1
                 withdraw_params:
                   type: object
+                  required:
+                    - currency
                   properties:
                     amount:
                       type: number
@@ -669,6 +671,7 @@ paths:
           in: query
           name: currency
           description: Currency in string
+          required: true
   /stripe-connect/verification/confirm:
     post:
       summary: ''
@@ -697,15 +700,28 @@ paths:
                 code:
                   type: string
                   minLength: 1
+                currency:
+                  type: string
               required:
                 - payment_method_type
                 - code
+                - currency
             examples:
               Sample body:
                 value:
                   payment_method_type: stripe
                   code: ac_IBnThr9P5nfraiI89jsinSExA0LOCOKF
                   currency: cad
+              example-2:
+                value:
+                  payment_method_type: string
+                  code: string
+                  currency: cad
+              example-3:
+                value:
+                  payment_method_type: string
+                  code: string
+                  currency: usd
       description: |-
         Needs to be invoked once user is redirected back to native page after finishing stripe connect steps.
 
@@ -749,6 +765,7 @@ paths:
           in: query
           name: currency
           description: Currency in string
+          required: true
 components:
   schemas:
     Transaction:
