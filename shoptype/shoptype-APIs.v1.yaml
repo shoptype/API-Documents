@@ -4018,6 +4018,17 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -5971,6 +5982,7 @@ paths:
         name: productId
         in: path
         required: true
+        description: Product Id of product whose attribution has to be deleted
     get:
       summary: Get product attribution
       tags:
@@ -6301,9 +6313,6 @@ paths:
                 description: ''
                 type: object
                 properties:
-                  code:
-                    type: string
-                    minLength: 1
                   message:
                     type: string
                     minLength: 1
@@ -6311,18 +6320,20 @@ paths:
                     type: string
                     minLength: 1
                 required:
-                  - code
                   - message
                   - error
               examples:
                 404 Not Found:
                   value:
-                    code: not_found
-                    message: 'DeleteProductAttribution : Product Id not found'
                     error: not_found
+                    message: Product Id not found
                 200 OK:
                   value:
                     message: Product Attribution deleted
+                500 Internal Server Error:
+                  value:
+                    error: internal
+                    message: Error occured when deleting Product Attribution
             application/xml:
               schema:
                 description: ''
