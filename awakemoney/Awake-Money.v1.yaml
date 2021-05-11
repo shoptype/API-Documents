@@ -778,8 +778,6 @@ paths:
   /razorpay/contacts:
     get:
       summary: Fetch existing contacts
-      tags:
-        - Razorpay
       responses:
         '200':
           description: OK
@@ -800,6 +798,8 @@ paths:
           name: authorization
           description: Login token
           required: true
+      tags:
+        - razorpay
 components:
   schemas:
     Transaction:
