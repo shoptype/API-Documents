@@ -3970,6 +3970,21 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -7457,137 +7472,6 @@ paths:
         name: checkoutId
         in: path
         required: true
-    get:
-      summary: Fetch checkout details
-      tags:
-        - checkout
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Checkout'
-              examples:
-                Sample response:
-                  value:
-                    id: 7f4f1be1-9501-491c-bd5b-603c30a24321
-                    order_id: 103d6699-1abb-3221-e88c-178807cad309
-                    device_id: 750cae4ce6a87a95353c8c2f00b33c0c
-                    taxes:
-                      amount: 0
-                      currency: USD
-                    shipping:
-                      amount: 100
-                      currency: USD
-                    sub_total:
-                      amount: 15.73
-                      currency: USD
-                    total:
-                      amount: 115.73
-                      currency: USD
-                    created_at: '2021-04-27T05:22:16.961Z'
-                    updated_at: '2021-04-27T05:28:37.904Z'
-                    payment:
-                      status: created
-                      method: stripe
-                      transaction_id: pi_1IkjTNFQPnig6EmyCIEvkVIc
-                      method_detail_html: ''
-                      method_details: null
-                    shipping_address:
-                      name: sarthak barik
-                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
-                      email: skbarik@gmail.com
-                      phone: +1 (988) 665-2544
-                      city: New Delhi
-                      state: Delhi
-                      stateCode: DL
-                      postalCode: '110004'
-                      country: India
-                      countryCode: IN
-                    billing_address:
-                      name: sarthak barik
-                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
-                      email: skbarik@gmail.com
-                      phone: +1 (988) 665-2544
-                      city: New Delhi
-                      state: Delhi
-                      stateCode: DL
-                      postalCode: '110004'
-                      country: India
-                      countryCode: IN
-                    is_shipping_billing: true
-                    order_details_per_vendor:
-                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
-                        external_order_id: ''
-                        status: ''
-                        cart_lines:
-                          - product_id: cd37bbd2-0df6-d909-2d3b-fe0c3074d178
-                            product_variant_id: '1241'
-                            source_id: '1241'
-                            quantity: 1
-                            variant_name_value:
-                              title: Default Title
-                            vendor_id: 36970ed9-93a5-2593-eb4f-2ad54c1c336d
-                            vendor_name: ShoptypeWooCheckoutTest
-                            name: Newborn Baby Boys 9 Pc Layette Baby Shower Gift
-                            price:
-                              amount: 15.73
-                              currency: USD
-                            image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/cd37bbd2-0df6-d909-2d3b-fe0c3074d178/500_116B_911UB_3211B.jpg'
-                            is_virtual: false
-                        taxes:
-                          amount: 0
-                          currency: USD
-                        shipping_options:
-                          - method_key: 'free_shipping:41'
-                            method_title: Free shipping
-                            method_id: free_shipping
-                            shipping_html: Free shipping
-                            chosen_method: false
-                            total:
-                              amount: 0
-                              currency: USD
-                          - method_key: 'local_pickup:42'
-                            method_title: Local pickup
-                            method_id: local_pickup
-                            shipping_html: Local pickup
-                            chosen_method: false
-                            total:
-                              amount: 0
-                              currency: USD
-                          - method_key: 'flat_rate:40'
-                            method_title: Flat rate
-                            method_id: flat_rate
-                            shipping_html: 'Flat rate: $100.00'
-                            chosen_method: true
-                            total:
-                              amount: 100
-                              currency: USD
-                        shipping_selected:
-                          method_key: 'flat_rate:40'
-                          method_title: Flat rate
-                          method_id: flat_rate
-                          shipping_html: 'Flat rate: $100.00'
-                          chosen_method: true
-                          total:
-                            amount: 100
-                            currency: USD
-                        sub_total:
-                          amount: 15.73
-                          currency: USD
-                        total:
-                          amount: 115.73
-                          currency: USD
-                    requires_shipping: true
-      operationId: get-checkout-checkoutId
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: X-Shoptype-Api-Key
-          description: Shoptype API Key
-      description: Fetch checkout details
     put:
       summary: Update checkout address
       operationId: put-checkout-checkoutId
@@ -8528,6 +8412,145 @@ paths:
                       method_key: 'local_pickup:42'
       tags:
         - checkout
+  '/checkout/{checkoutId}':
+    parameters:
+      - schema:
+          type: string
+        name: checkoutId
+        in: path
+        required: true
+        description: Checkout Id
+    get:
+      summary: Fetch checkout details
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Checkout'
+              examples:
+                Sample response:
+                  value:
+                    id: 7f4f1be1-9501-491c-bd5b-603c30a24321
+                    order_id: 103d6699-1abb-3221-e88c-178807cad309
+                    device_id: 750cae4ce6a87a95353c8c2f00b33c0c
+                    taxes:
+                      amount: 0
+                      currency: USD
+                    shipping:
+                      amount: 100
+                      currency: USD
+                    sub_total:
+                      amount: 15.73
+                      currency: USD
+                    total:
+                      amount: 115.73
+                      currency: USD
+                    created_at: '2021-04-27T05:22:16.961Z'
+                    updated_at: '2021-04-27T05:28:37.904Z'
+                    payment:
+                      status: created
+                      method: stripe
+                      transaction_id: pi_1IkjTNFQPnig6EmyCIEvkVIc
+                      method_detail_html: ''
+                      method_details: null
+                    shipping_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 665-2544
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    billing_address:
+                      name: sarthak barik
+                      street1: Rajaji Marg Vijay Chowk Area Central Secretariat
+                      email: skbarik@gmail.com
+                      phone: +1 (988) 665-2544
+                      city: New Delhi
+                      state: Delhi
+                      stateCode: DL
+                      postalCode: '110004'
+                      country: India
+                      countryCode: IN
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        external_order_id: ''
+                        status: ''
+                        cart_lines:
+                          - product_id: cd37bbd2-0df6-d909-2d3b-fe0c3074d178
+                            product_variant_id: '1241'
+                            source_id: '1241'
+                            quantity: 1
+                            variant_name_value:
+                              title: Default Title
+                            vendor_id: 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+                            vendor_name: ShoptypeWooCheckoutTest
+                            name: Newborn Baby Boys 9 Pc Layette Baby Shower Gift
+                            price:
+                              amount: 15.73
+                              currency: USD
+                            image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/cd37bbd2-0df6-d909-2d3b-fe0c3074d178/500_116B_911UB_3211B.jpg'
+                            is_virtual: false
+                        taxes:
+                          amount: 0
+                          currency: USD
+                        shipping_options:
+                          - method_key: 'free_shipping:41'
+                            method_title: Free shipping
+                            method_id: free_shipping
+                            shipping_html: Free shipping
+                            chosen_method: false
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'local_pickup:42'
+                            method_title: Local pickup
+                            method_id: local_pickup
+                            shipping_html: Local pickup
+                            chosen_method: false
+                            total:
+                              amount: 0
+                              currency: USD
+                          - method_key: 'flat_rate:40'
+                            method_title: Flat rate
+                            method_id: flat_rate
+                            shipping_html: 'Flat rate: $100.00'
+                            chosen_method: true
+                            total:
+                              amount: 100
+                              currency: USD
+                        shipping_selected:
+                          method_key: 'flat_rate:40'
+                          method_title: Flat rate
+                          method_id: flat_rate
+                          shipping_html: 'Flat rate: $100.00'
+                          chosen_method: true
+                          total:
+                            amount: 100
+                            currency: USD
+                        sub_total:
+                          amount: 15.73
+                          currency: USD
+                        total:
+                          amount: 115.73
+                          currency: USD
+                    requires_shipping: true
+      operationId: get-checkout-checkoutId
+      description: Fetch checkout details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-Api-Key
+          description: Shoptype API Key
+          required: true
 components:
   schemas:
     Vendor:
