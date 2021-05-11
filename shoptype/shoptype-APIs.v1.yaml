@@ -3986,6 +3986,10 @@ paths:
 
 
 
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -7473,6 +7477,7 @@ paths:
         name: checkoutId
         in: path
         required: true
+        description: Checkout Id
     put:
       summary: Update checkout address
       operationId: put-checkout-checkoutId
@@ -8111,6 +8116,7 @@ paths:
         name: checkoutId
         in: path
         required: true
+        description: Checkout Id
     post:
       summary: Initialise checkout payment
       operationId: post-checkout-checkoutId-payment
@@ -8381,7 +8387,7 @@ paths:
             type: string
           in: header
           name: X-Shoptype-Api-Key
-          description: Shoptype API Key
+          description: API Key
           required: true
       requestBody:
         content:
@@ -8551,7 +8557,7 @@ paths:
             type: string
           in: header
           name: X-Shoptype-Api-Key
-          description: Shoptype API Key
+          description: API Key
           required: true
 components:
   schemas:
