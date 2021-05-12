@@ -4032,6 +4032,9 @@ paths:
 
 
 
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6326,10 +6329,6 @@ paths:
                   - message
                   - error
               examples:
-                404 Not Found:
-                  value:
-                    error: not_found
-                    message: Product Id not found
                 200 OK:
                   value:
                     message: Product Attribution deleted
@@ -6337,6 +6336,10 @@ paths:
                   value:
                     error: internal
                     message: Error occured when deleting Product Attribution
+                404 Not Found:
+                  value:
+                    error: not_found
+                    message: Product Id not found
             application/xml:
               schema:
                 description: ''
