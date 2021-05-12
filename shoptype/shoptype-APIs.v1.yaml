@@ -4029,6 +4029,10 @@ paths:
 
 
 
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -6313,27 +6317,59 @@ paths:
                 description: ''
                 type: object
                 properties:
+                  code:
+                    type: string
+                    minLength: 1
                   message:
                     type: string
                     minLength: 1
                   error:
-                    type: string
-                    minLength: 1
+                    type: object
+                    properties:
+                      Code:
+                        type: number
+                      Message:
+                        type: string
+                        minLength: 1
+                      Labels: {}
+                      Name:
+                        type: string
+                        minLength: 1
+                    required:
+                      - Code
+                      - Message
+                      - Name
                 required:
+                  - code
                   - message
                   - error
+                x-examples:
+                  example-1:
+                    code: internal
+                    message: Error occured when deleting Product Attribution
+                    error:
+                      Code: 73
+                      Message: Invalid namespace specified 'test.'
+                      Labels: null
+                      Name: InvalidNamespace
               examples:
                 404 Not Found:
                   value:
-                    error: not_found
+                    code: not_found
                     message: Product Id not found
+                    error: not_found
                 200 OK:
                   value:
                     message: Product Attribution deleted
                 500 Internal Server Error:
                   value:
-                    error: internal
+                    code: internal
                     message: Error occured when deleting Product Attribution
+                    error:
+                      Code: 73
+                      Message: Invalid namespace specified 'test.'
+                      Labels: null
+                      Name: InvalidNamespace
             application/xml:
               schema:
                 description: ''
