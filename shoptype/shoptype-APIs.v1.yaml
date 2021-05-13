@@ -327,15 +327,19 @@ paths:
       parameters:
         - schema:
             type: string
-            example: 607274ee0cb35c0b894cb2bc
-          in: query
-          name: rid
-          description: Referral Id
-        - schema:
-            type: string
           in: header
           name: X-Shoptype-PlatformId
           description: Platform ID
+        - schema:
+            type: string
+          in: query
+          name: userId
+          description: User Id of invitee
+        - schema:
+            type: string
+          in: query
+          name: cosellerId
+          description: Coseller Id of invitee
   /resend-verification-email:
     post:
       summary: Resend verification email
@@ -1543,15 +1547,19 @@ paths:
       parameters:
         - schema:
             type: string
-            example: 607274ee0cb35c0b894cb2bc
-          in: query
-          name: rid
-          description: Referral Id
-        - schema:
-            type: string
           in: header
           name: X-Shoptype-PlatformId
           description: Platform ID
+        - schema:
+            type: string
+          in: query
+          name: userId
+          description: User Id of Invitee
+        - schema:
+            type: string
+          in: query
+          name: cosellerId
+          description: Coseller Id of invitee
   /referrals:
     get:
       summary: Fetch my referral tree
@@ -3027,6 +3035,24 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6132,6 +6158,7 @@ paths:
           name: authorization
           description: Vendor token
           required: true
+      x-internal: false
     put:
       summary: Update product attribution
       operationId: put-product-attribution-productId
