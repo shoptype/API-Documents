@@ -336,6 +336,11 @@ paths:
           in: header
           name: X-Shoptype-PlatformId
           description: Platform ID
+        - schema:
+            type: string
+          in: query
+          name: tid
+          description: Tracker Id (in case of cosell)
   /resend-verification-email:
     post:
       summary: Resend verification email
@@ -1552,6 +1557,11 @@ paths:
           in: header
           name: X-Shoptype-PlatformId
           description: Platform ID
+        - schema:
+            type: string
+          in: query
+          name: tid
+          description: Tracker Id (in case of cosell)
   /referrals:
     get:
       summary: Fetch my referral tree
@@ -3027,6 +3037,15 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6611,7 +6630,9 @@ paths:
                       inviterType: coseller
                       inviteeEmailIds: null
                       slug: '?rid=6078898135d93393c5b41ee7'
-      description: Create referral for a coseller performing a quick sign up
+      description: |-
+        Create referral for a coseller performing a quick sign up
+        (Deprecated) Use tid instead
       requestBody:
         content:
           application/json:
@@ -6635,6 +6656,7 @@ paths:
                   cosellerId: 232bca95-a43b-5337-2c82-2133f9165c6d
       tags:
         - referral
+      deprecated: true
   '/products/{productId}':
     parameters:
       - schema:
@@ -7353,6 +7375,7 @@ paths:
                   token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdW5pbEBzaGVyb2VzLmluIiwiYXVkaWVuY2UiOiJ3ZWIiLCJjcmVhdGVkIjoxNjE1ODE5MzQ5NTkzLCJleHAiOjE2NDczNTUzNDksImp0aSI6Ijg5MzcxNCJ9.wX9JlZAAzcAqe-QO14iHsqlwG8V8cUEUa1GZ5h6YM9LqcCegdG80XQEBi0Fi3-YeIeVzC1W6r8w1xFUb4LU06Q
       tags:
         - user
+      x-internal: false
     parameters: []
   /store/manual/product:
     post:
