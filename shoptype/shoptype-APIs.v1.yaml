@@ -4083,6 +4083,7 @@ paths:
 
 
 
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -8725,7 +8726,7 @@ paths:
           required: true
   /cosellers/quick-login:
     post:
-      summary: Login as a coseller
+      summary: Normal login for cosellers
       operationId: post-cosellers-login
       responses:
         '200':
