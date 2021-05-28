@@ -5204,6 +5204,69 @@ paths:
           name: authorization
           description: network token
           required: true
+    post:
+      summary: Create network profile
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  token:
+                    type: string
+                    minLength: 1
+                    description: Network token
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - token
+                  - message
+              examples:
+                example-1:
+                  value:
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6ImUxMTQ1YTlhLTc1OGUtMWRiMy02YmM1LWJmYjVhNjUwMTc1NSIsInVzZXJJZCI6IjhhMDJhZDU3LTk0N2UtNGIxZC04M2YzLWYzYmMzNmZhZWNjMCIsInVzZXJUeXBlIjoibmV0d29yayIsImlzcyI6InNob3AtdHlwZSJ9.y8lMrDFHBJAJirGSG8as5hjXgpdqgsehuBzxEb7jEpg
+                    message: Network Details saved successfully
+      operationId: post-networks
+      description: Create network details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Login token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  description: Unique Network Name
+                urls:
+                  type: array
+                  description: Currenly we support upto one platform url per network.
+                  items:
+                    type: object
+              required:
+                - name
+                - urls
+            examples:
+              example-1:
+                value:
+                  name: Ayush Network
+                  urls:
+                    - 'https://ayush.wizz.com'
+        description: ''
   /network-settings:
     post:
       summary: Update network settings
