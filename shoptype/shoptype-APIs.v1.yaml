@@ -2194,11 +2194,22 @@ paths:
           in: query
           name: showHidden
           description: Show disabled products
-  '/platforms/{id}/products':
-    get:
-      summary: Fetch products for a given platform
-      tags:
-        - network
+        - schema:
+            type: string
+          in: query
+          name: inStock
+          description: 'boolean: true or false'
+  '/platforms/{id}/vendors/disable-products':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Platform ID
+    put:
+      summary: ''
+      operationId: put-platforms-id-vendors
       responses:
         '200':
           description: OK
@@ -2208,808 +2219,37 @@ paths:
                 description: ''
                 type: object
                 properties:
-                  count:
-                    type: number
-                    description: Total count of products
-                  products:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      $ref: '#/components/schemas/Product'
+                  message:
+                    type: string
+                    minLength: 1
                 required:
-                  - count
-                  - products
-              examples:
-                Fetch platform products:
-                  value:
-                    count: 60
-                    products:
-                      - id: 7e36bebd-fec5-cf9e-0f4b-63c96420e4ab
-                        handle: cbd-bath-bombs
-                        title: CBD Bath Bombs
-                        description: |-
-                          CBD Bath Bombs
-                          Hempvada's CBD Bath Bombs are made from a full spectrum blend CBD. Containing at least 35mg of CBD in every Bomb, these terpene targeted Blends are sure you leave you pleased. Super fizzy and very aromatic these bath bombs are unique in the fact that they are capable of covering harder to reach places.
-
-                          Sensual Releaf
-                          Drop one of our Sensual Releaf bath bombs into your tub and watch the fizz flow! Cannabinoids bursting from every last piece of our bath bomb for minutes on end. These long lasting bath bombs may help soothe and relief sore muscles in a fast manner. Our Sensual Releaf CBD Bath Bombs are a huge hit with all! Want to try?
-                          Using Sezzle for CBD? More info here!
-                           Back To Home Page
-                        tags:
-                          - bath
-                          - ' calming'
-                          - ' cbd'
-                          - ' immunity'
-                          - ' recovery'
-                          - ' releaf'
-                          - ' sensual'
-                          - ' topical'
-                          - ' topicals'
-                          - ' vitality'
-                        productType: Topical
-                        publishedAt: 1584632457000
-                        syncedAt: 1618041049
-                        primaryImageSrc:
-                          id: '22883125919938'
-                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/7e36bebd-fec5-cf9e-0f4b-63c96420e4ab/cbd-bath-bombs-1x-35mg-cbd-bath-bomb-topical-bath-calming-cbd-immunity-recovery-hempvada-buy-high-quality-cbd-goods-online-made-in-usa-493.jpg'
-                          variantIds:
-                            - '36638925619353'
-                            - '36638925652121'
-                        previewImageSrc: {}
-                        primaryVideoSrc: {}
-                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
-                        variants:
-                          - id: '36638925619353'
-                            discountedPrice: '9.00'
-                            discountedPriceAsMoney:
-                              amount: 9
-                              currency: USD
-                            price: ''
-                            priceAsMoney:
-                              amount: 0
-                              currency: USD
-                            taxable: true
-                            imageIds:
-                              - '22883125919938'
-                            quantity: -11
-                            variantNameValue:
-                              count: 1x 35mg CBD Bath Bomb
-                            dimensions:
-                              length: ''
-                              width: ''
-                              height: ''
-                            weight: ''
-                            dimension_unit: ''
-                            weight_unit: ''
-                          - id: '36638925652121'
-                            discountedPrice: '40.00'
-                            discountedPriceAsMoney:
-                              amount: 40
-                              currency: USD
-                            price: ''
-                            priceAsMoney:
-                              amount: 0
-                              currency: USD
-                            taxable: true
-                            imageIds:
-                              - '22883125919938'
-                            quantity: 0
-                            variantNameValue:
-                              count: 5x 35mg CBD Bath Bombs
-                            dimensions:
-                              length: ''
-                              width: ''
-                              height: ''
-                            weight: ''
-                            dimension_unit: ''
-                            weight_unit: ''
-                        store_name: hempvada
-                        currency: USD
-                        sourceId: '3558466420836'
-                        sourceName: SHOPIFY
-                        options:
-                          - name: count
-                            values:
-                              - 1x 35mg CBD Bath Bomb
-                              - 5x 35mg CBD Bath Bombs
-                        status: enabled
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -106.0402169
-                            - 36.9956786
-                        vendorName: ''
-                        productCommission:
-                          percentage: 0
-                        slug: /product/7e36bebd-fec5-cf9e-0f4b-63c96420e4ab?uid=4d7a1710-325e-4edf-94b6-57df5ddd212f&pid=c8783c73-a270-48d3-9a75-2c78181724eb&nid=cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
-                      - id: 9ab1e2bc-6b51-c4fc-fcff-98b615feb00b
-                        handle: cbd-beard-oil
-                        title: CBD Beard Oil
-                        description: |
-                          Dry, itchy or unmanageable beard? Our brand new CBD Beard Oil is the perfect fix. Coming in 2 fantastic fragrances, our 1000mg CBD beard oil in a 1 ounce bottle is the last beard oil you will ever want or need. Our CBD beard oil contains various high end and organic oils like hemp seed oil, jajoba oil and sweet almond oil, all of which have skin, as well as hair repairing and softening properties. The Omegas found in our refined hemp seed oil (in our CBD beard oil) are shown to increase hair growth. Your beard is either dry, itchy or not capable of being tamed, thats why you are here. But we do have a solution. Give our brand new cbd beard oil a rub on your skin and watch it go to work for you and your beard today!
-                          Four Frangrances!
-
-                          Redwood Trees
-                          Suave 
-
-                          Our CBD Beard Oil
-
-                          Contains 1000mg of skin perfecting full spectrum CBD
-                          Hemp Seed, Jajoba and Almond oils create softer skin
-                          Contains Omega's 3, 6 and 9 to promote healthy growth
-                          Vitamin E for super antioxident power
-                          Softer skin relieves itchy beards
-                          Oil help tame hair
-
-                          Why Hempvada CBD Beard Oil?
-                          Our beard oil was created for and tested by people with some of the toughest beards in the game. We tried more than a single formula. We landed on a base formula that our tests subject beards and skin decided was the best. At the end of the day the base formula ended up being a very simple but extremely effective combination of super refined golden hemp seed oil, organic jojoba oils and the ever sweet, sweet almond oil.
-                          Hemp Seed Oil
-                          Hempseed Oil helps enhance the growth of beard hair in a number of ways. Among these is through the Omega-3, Omega-6 and Omega-9 fatty acids, which are necessary in stimulating beard hair growth. Hempseed Oil will help moisturize the beard and you skin. Hempseed Oil will help prevent water loss and inject moisture in the beard hair and face. It is also easily absorbed by the beard hair. Hempseed Oil will also help strengthen the beard hair and prevent breakage or damage.
-                          Jojoba Oil
-                          Jojoba Oil is rich in minerals and vitamins that nourish beard hair, including vitamin C, B vitamins, vitamin E, copper, and zinc. Jojoba Oil helps strengthen the beard hair. Because it strengthens beard hair, it's known to help promote a fuller thicker beard. It also helps prevent dryness, damage and breakage.
-                          Sweet Almond Oil
-                          Sweet Almond Oil is rich in vitamins and minerals. Among these are Vitamin A, B1, B6, and vitamin E which is rich is antioxidants that promote  blood circulation, hence will provide more nutrients to the beard hair. Sweet Almond Oil can help your beard hair look bright, shiny and silky. It can penetrate the beard hair shaft and moisturize the beard hair from the inside.
-                          Ingredients: Hempseed Oil, Jojoba Oil, Sweet Almond Oil, Vitamin E, Hemp Extract Essential Oils and Fragrances. 
-                          Using Sezzle for CBD? More info here!
-                        tags:
-                          - bath
-                          - ' beard'
-                          - ' beauty'
-                          - ' cbd'
-                          - ' oil'
-                          - ' redwood'
-                          - ' tree'
-                        productType: Bath & Beauty
-                        publishedAt: 1603219906000
-                        syncedAt: 1618041049
-                        primaryImageSrc:
-                          id: '28125734633666'
-                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/9ab1e2bc-6b51-c4fc-fcff-98b615feb00b/cbd-beard-oil-bath-beauty-bath-beard-beauty-cbd-oil-hempvada-buy-high-quality-cbd-goods-online-made-in-usa-706.jpg'
-                        previewImageSrc: {}
-                        primaryVideoSrc: {}
-                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
-                        variants:
-                          - id: '36793692061849'
-                            discountedPrice: '30.00'
-                            discountedPriceAsMoney:
-                              amount: 30
-                              currency: USD
-                            price: ''
-                            priceAsMoney:
-                              amount: 0
-                              currency: USD
-                            taxable: true
-                            quantity: -5
-                            variantNameValue:
-                              scent: Redwood Trees
-                            dimensions:
-                              length: ''
-                              width: ''
-                              height: ''
-                            weight: ''
-                            dimension_unit: ''
-                            weight_unit: ''
-                          - id: '39470646984898'
-                            discountedPrice: '30.00'
-                            discountedPriceAsMoney:
-                              amount: 30
-                              currency: USD
-                            price: ''
-                            priceAsMoney:
-                              amount: 0
-                              currency: USD
-                            taxable: true
-                            quantity: 0
-                            variantNameValue:
-                              scent: Suave
-                            dimensions:
-                              length: ''
-                              width: ''
-                              height: ''
-                            weight: ''
-                            dimension_unit: ''
-                            weight_unit: ''
-                        store_name: hempvada
-                        currency: USD
-                        sourceId: '5838392787097'
-                        sourceName: SHOPIFY
-                        options:
-                          - name: scent
-                            values:
-                              - Redwood Trees
-                              - Suave
-                        status: enabled
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -106.0402169
-                            - 36.9956786
-                        vendorName: ''
-                        productCommission:
-                          percentage: 0
-                        slug: /product/9ab1e2bc-6b51-c4fc-fcff-98b615feb00b?uid=4d7a1710-325e-4edf-94b6-57df5ddd212f&pid=c8783c73-a270-48d3-9a75-2c78181724eb&nid=cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
-                      - id: 697f2f3e-d6b2-69ba-3989-3922005fdb80
-                        handle: cbd-shatter-75-full-spectrum
-                        title: CBD Dabs - Shatter 75% Full Spectrum
-                        description: |-
-                          Buy CBD Dabs Shatter 75% Full Spectrum
-                          CBD Shatter by Hempvada is an absolutely beautiful dab oil. This oil allows you to take CBD directly into your system via inhaling the vapors of the oils when dabbing for a faster-acting experience. Get the highly coveted Entourage Effect with this product! 
-
-                          Great after an exhausting and stressful day.
-                          Hempvada CBD Shatters are terpy and delicious CBD dabs for sale with a great profile of CBD, CBN, and trace amounts of THC. These CBD Dabs can be used with any dabbing method to give you a faster acting CBD serving that you just can’t experience through ingesting or using a topical. Vaporizing CBD brings forth the full force of CBD by "indirect combustion". Our extract is free of any residual solvents.
-                          CBD is well known for its wellness properties and Hempvada is proud to provide one of the finest CBD shatters for sale available. 
-
-                          Full Spectrum CBD
-
-
-
-                          5-10 Servings per 1 gram container
-
-
-                          Made using %100 Domestically Sourced High CBD Hemp Flower
-
-
-                          Each Dab contains the whole spectrum or full spectrum of cannabinoids, fatty acids, and terpenes. Specifically showing high levels of CBD and CBN.
-
-
-                          Using Sezzle for CBD? More info here!
-                        tags:
-                          - CBD
-                          - ' cbd dab'
-                          - ' cbd shatter'
-                          - ' cbd wax'
-                          - ' CBDa'
-                          - ' CBG'
-                          - ' CBN'
-                          - ' concentrate'
-                          - ' dab'
-                          - ' dabbing'
-                          - ' extract'
-                          - ' full'
-                          - ' full spectrum'
-                          - ' shatter'
-                          - ' spectrum'
-                          - ' terpene'
-                          - ' terps'
-                          - ' wax'
-                          - ' waxes'
-                        productType: Extract
-                        publishedAt: 1584632466000
-                        syncedAt: 1618041049
-                        primaryImageSrc:
-                          id: '20113701208217'
-                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/697f2f3e-d6b2-69ba-3989-3922005fdb80/cbd-dabs-shatter-75-full-spectrum-extract-cbd-cbd-dab-cbd-shatter-cbd-wax-cbda-hempvada-buy-high-quality-cbd-goods-online-made-in-usa-202.jpg'
-                        previewImageSrc: {}
-                        primaryVideoSrc: {}
-                        catalogId: 0e077625-2c52-270d-4a33-40a48015769c
-                        variants:
-                          - id: '31221892218980'
-                            discountedPrice: '20.00'
-                            discountedPriceAsMoney:
-                              amount: 20
-                              currency: USD
-                            price: ''
-                            priceAsMoney:
-                              amount: 0
-                              currency: USD
-                            taxable: true
-                            quantity: -59
-                            variantNameValue:
-                              title: Default Title
-                            dimensions:
-                              length: ''
-                              width: ''
-                              height: ''
-                            weight: ''
-                            dimension_unit: ''
-                            weight_unit: ''
-                        store_name: hempvada
-                        currency: USD
-                        sourceId: '4342589194340'
-                        sourceName: SHOPIFY
-                        options:
-                          - name: title
-                            values:
-                              - Default Title
-                        status: enabled
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -106.0402169
-                            - 36.9956786
-                        vendorName: ''
-                        productCommission:
-                          percentage: 0
-                        slug: /product/697f2f3e-d6b2-69ba-3989-3922005fdb80?uid=4d7a1710-325e-4edf-94b6-57df5ddd212f&pid=c8783c73-a270-48d3-9a75-2c78181724eb&nid=cb6b93f0-0e9b-9fb6-c3e4-a882059eb741
-      operationId: get-platforms
-      description: Fetch products for a given platform managed by network
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: offset
-          description: Offset
-        - schema:
-            type: integer
-          in: query
-          name: count
-          description: Count
-        - schema:
-            type: string
-          in: query
-          name: category
-          description: Category
-        - schema:
-            type: string
-          in: query
-          name: text
-          description: Search text
-        - schema:
-            type: number
-            example: 22.5697
-          in: query
-          name: geoLat
-          description: Geo latitude
-        - schema:
-            type: number
-            example: 88.3697
-          in: query
-          name: geoLng
-          description: Geo longitde
-        - schema:
-            type: integer
-          in: query
-          name: proximity
-          description: Proximity in meters
-        - schema:
-            type: string
-            enum:
-              - price
-              - discount
-          in: query
-          name: sortBy
-          description: Field name
-        - schema:
-            type: string
-            enum:
-              - asc
-              - desc
-            default: asc
-          in: query
-          name: orderBy
-          description: In ascending or descending order
-        - schema:
-            type: string
-          in: query
-          name: tags
-          description: '''*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'''
-        - schema:
-            type: number
-          in: query
-          name: minRange
-          description: Min price range
-        - schema:
-            type: number
-          in: query
-          name: maxRange
-          description: Max price range
-        - schema:
-            type: string
-            example: '2d00b753-e823-7760-985f-c227da456fc8,ab05df6e-09a2-9f12-5a3e-0345678174ca'
-          in: query
-          name: productIds
-          description: Comma separated product Ids
-        - schema:
-            type: string
-            example: 83790c69-c4da-e846-c5a3-2c932b5198d5
-          in: query
-          name: vendorId
-          description: Vendor ID
-        - schema:
-            type: string
-            example: USD
-          in: query
-          name: currency
-          description: Currency
-        - schema:
-            type: string
-          in: query
-          name: externalId
-          description: 'External product Id. <br> <b>Note: Can be used only with query param vendorId </b>'
-        - schema:
-            type: boolean
-          in: query
-          description: Show disabled products
-          name: showHidden
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: Platform ID
-  '/platforms/{id}/vendors':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: Platform ID
-    get:
-      summary: Fetch vendors for a given platform
-      tags:
-        - network
-      responses:
-        '200':
-          description: OK
+                  - message
+                x-examples:
+                  example-1:
+                    message: 'Product is disabled for vendor:7d06cab3-b3bf-9028-b25d-3885662f3742'
+        '':
           content:
             application/json:
               schema:
-                type: array
                 description: ''
-                minItems: 1
-                uniqueItems: true
-                items:
-                  $ref: '#/components/schemas/Vendor'
-              examples:
-                Sample payload:
-                  value:
-                    - id: 19f0fb1d-e948-afe3-24be-798ece731b9e
-                      name: AdamsCBD
-                      user_id: 1ce91f19-67c5-45b6-af95-6493b0588339
-                      productCategories:
-                        - CBD
-                        - Hemp
-                        - Veed
-                        - company type~brand
-                        - company type~manufacturer
-                        - company type~retailerCBD
-                      url: 'https://adamscbd.com'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/1ce91f19-67c5-45b6-af95-6493b0588339/AdamsCBD%20logo-large_180x.jpg'
-                      shopifyVendor: ''
-                      wooCommerceVendor: AdamsCBD
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 9984 SCRIPS RANCH BLVD. STE. 182
-                        city: SAN DIEGO
-                        countryState: United States (US) - California
-                        postalCode: '92131'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -117.0676398
-                            - 32.8932137
-                    - id: 383bea08-151d-bbe9-ee8b-bd92a9d51e0e
-                      name: Lightshade - Holly Medical
-                      user_id: c16a4db1-2475-4283-864e-a0272f789d0a
-                      productCategories:
-                        - Weed
-                      url: 'https://veed.store/store/lightshade-holly-medical'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/c16a4db1-2475-4283-864e-a0272f789d0a/aa96fa38-4270-48e2-b022-35a28d1eb468.jpg'
-                      shopifyVendor: ''
-                      wooCommerceVendor: lightshadehollymedical
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 3950 Holly St.
-                        city: Denver
-                        countryState: US - Colorado
-                        postalCode: '80207'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -104.9213643
-                            - 39.7619439
-                    - id: 63d16bee-423f-bc4b-ca9c-b184d6f7eb0e
-                      name: Veed-Online
-                      user_id: ee38ed2b-7148-4b57-a6e8-999e52e58dd0
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/ee38ed2b-7148-4b57-a6e8-999e52e58dd0/6ab8bda2-fea4-4f7f-b574-2da19b6fd186.png'
-                      shopifyVendor: ''
-                      wooCommerceVendor: maribisofchicagomed
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: ''
-                        city: ''
-                        countryState: ''
-                        postalCode: ''
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - 0
-                            - 0
-                    - id: 66bdcd17-8792-1e3a-9dec-a8fe3165f74c
-                      name: Ultra Health - Hobbs
-                      user_id: ce9f6813-0e28-4d8d-92d1-c2bb9eb17bcf
-                      productCategories:
-                        - Cannabis
-                        - THC
-                        - Veed
-                      url: 'https://veed.store/store/ultra-health-hobbs'
-                      shopifyVendor: ''
-                      wooCommerceVendor: ultrahealthhobbs
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 3211 N Dal Paso St
-                        city: Hobbs
-                        countryState: US - New Mexico
-                        postalCode: '88240'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -103.4049445
-                            - 32.6702606
-                    - id: 73225b03-e8cc-5275-b14a-2bfd6958371d
-                      name: Baileys CBD
-                      user_id: 261ca9d2-d8d7-46c3-bf2d-02c3f1266775
-                      productCategories:
-                        - Veed
-                        - ' CBD'
-                        - ' Petcare'
-                      url: 'https://www.baileyscbd.com'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/261ca9d2-d8d7-46c3-bf2d-02c3f1266775/Baileys_Logo_Master_Baileys_Logo_No_Badge.png'
-                      shopifyVendor: ''
-                      wooCommerceVendor: ''
-                      wooCommerceShipping:
-                        shippingServiceId: ''
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: '2930 Grace Lane '
-                        city: Costa Mesa
-                        countryState: US - California
-                        postalCode: '92626'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -117.9022435
-                            - 33.6780125
-                    - id: 783c8747-4608-88b1-da78-5560e2da3507
-                      name: Herbs4you - Recreational
-                      user_id: d28298af-b054-4aca-ac5e-0027e5596b79
-                      productCategories:
-                        - Weed
-                      url: 'https://veed.store/store/herbs4you-recreational'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/d28298af-b054-4aca-ac5e-0027e5596b79/2696c955-ac73-4692-a876-76219d3d9ed8.jpg'
-                      shopifyVendor: ''
-                      wooCommerceVendor: herbs4yourecreational
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 20 East 9th Avenue
-                        city: Denver
-                        countryState: US - Colorado
-                        postalCode: '80203'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -104.9826965
-                            - 39.7312095
-                    - id: a1bb7dd6-9388-6fb3-5804-0d7aea0c0235
-                      name: Lightshade - Sheridan Medical
-                      user_id: c769151b-a5f8-44c4-b1d9-755f995a0ae6
-                      productCategories:
-                        - Weed
-                        - THC
-                        - CBD
-                      url: 'https://veed.store/store/lightshade-sheridan-medical'
-                      shopifyVendor: ''
-                      wooCommerceVendor: ''
-                      wooCommerceShipping:
-                        shippingServiceId: ''
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: ''
-                        city: ''
-                        countryState: ''
-                        postalCode: ''
-                        currency: ''
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - 0
-                            - 0
-                    - id: aff1da12-515a-bacc-438e-ddf5c3382622
-                      name: Bios Organics
-                      user_id: 8ed662f5-c785-4e0e-8428-09cd2c43966b
-                      productCategories:
-                        - CBD Beauty and Wellness Products
-                      url: biosorganics.com
-                      shopifyVendor: ''
-                      wooCommerceVendor: ''
-                      wooCommerceShipping:
-                        shippingServiceId: ''
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 2881 E LA Cresta Avenue
-                        city: Anaheim
-                        countryState: US - California
-                        postalCode: '92806'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -117.8680701
-                            - 33.8543596
-                    - id: b53cb2e0-3e21-186b-a08c-bb74ea59bc59
-                      name: Urban Dispensary - Medical
-                      user_id: e0300e2b-aed0-4a90-81c8-ee5e55b08145
-                      productCategories:
-                        - Veed
-                      url: 'https://veed.store/store/urban-dispensary-medical'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/e0300e2b-aed0-4a90-81c8-ee5e55b08145/c88ffcdf-9ef9-4851-a3be-5b021b7ab7d9.jpeg'
-                      shopifyVendor: ''
-                      wooCommerceVendor: urbandispensarymedical
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 2675 W 38th Ave
-                        city: Denver
-                        countryState: US - Colorado
-                        postalCode: '80211'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -105.0148322
-                            - 39.7698122
-                    - id: c28702da-7eb0-913c-551d-4d7085ce286e
-                      name: VITAE Glass
-                      user_id: 84dff081-6ace-4c6a-812c-c49d40cbccb7
-                      productCategories:
-                        - Cannabis
-                        - Speciality
-                      url: 'https://vitaeglass.com'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/84dff081-6ace-4c6a-812c-c49d40cbccb7/VITAE%20Glass.png'
-                      shopifyVendor: ''
-                      wooCommerceVendor: ''
-                      wooCommerceShipping:
-                        shippingServiceId: ''
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 1770 Post St
-                        city: San Francisco
-                        countryState: US - California
-                        postalCode: 94115-4250
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -122.4282295
-                            - 37.7833092
-                    - id: f61ace70-d813-8549-0e1f-86786942f552
-                      name: Medicine Box
-                      user_id: d0eab697-00cf-4036-aa89-0b48bc27590f
-                      productCategories:
-                        - CBD
-                        - Veed
-                        - company type~retailerCBD
-                        - company type~brand
-                      url: 'https://medicineboxwellness.com'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/d0eab697-00cf-4036-aa89-0b48bc27590f/Medicine%20Box%20Wellness%20Logo.png'
-                      shopifyVendor: ''
-                      wooCommerceVendor: ''
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 930 Tahoe Blvd
-                        city: Incline Village
-                        countryState: United States (US) - Nevada
-                        postalCode: '89451'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -119.9393608
-                            - 39.2355282
-                    - id: ff700949-29fc-17bd-1924-a7215559dc2f
-                      name: Juva Life
-                      user_id: 442b7238-53d6-4b00-a096-2cca77105c8d
-                      productCategories:
-                        - Cannabis
-                        - THC
-                        - Veed
-                        - company type~delivery recreational
-                      url: 'https://juvalife.com/'
-                      logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/442b7238-53d6-4b00-a096-2cca77105c8d/JUVA-life-footer-logo.png'
-                      shopifyVendor: ''
-                      wooCommerceVendor: juvalife
-                      wooCommerceShipping:
-                        shippingServiceId: '001'
-                        shippingConsumerKey: ''
-                        shippingConsumerSecret: ''
-                      store:
-                        addressLine1: 465 Convention Way Suite 1
-                        city: Redwood City
-                        countryState: US - CA
-                        postalCode: '94063'
-                        currency: USD
-                        geoLocation:
-                          type: Point
-                          coordinates:
-                            - -122.2086579
-                            - 37.5021585
-      operationId: get-platforms-id-vendors
-      description: Fetch vendors for a given platform
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: 'Product is disabled for vendor:7d06cab3-b3bf-9028-b25d-3885662f3742'
+          description: Disable Products for any vendor
       parameters:
         - schema:
             type: string
-          in: query
-          name: vendorId
-          description: Vendor ID
-        - schema:
-            type: string
-          in: query
-          name: category
-          description: Comma separated Categories
-        - schema:
-            type: string
-          in: query
-          name: name
-          description: Name of vendor
-        - schema:
-            type: string
-          in: query
-          name: text
-          description: Search text
-        - schema:
-            type: integer
-          in: query
-          name: offset
-          description: Offset
-        - schema:
-            type: integer
-          in: query
-          name: count
-          description: Count
-        - schema:
-            type: number
-          in: query
-          name: geoLat
-          description: Geo latitude
-        - schema:
-            type: number
-          in: query
-          name: geoLng
-          description: Geo longitude
-        - schema:
-            type: integer
-          in: query
-          name: geoProximity
-          description: In meters
-        - schema:
-            type: string
-            example: USD
-          in: query
-          name: currency
-          description: Currency
+          in: header
+          name: Authorization
+          description: token
+      description: ''
   /command?type=sendNotification:
     post:
       summary: Send email notification
@@ -3035,6 +2275,106 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8698,6 +8038,496 @@ paths:
           name: X-Shoptype-Api-Key
           description: API Key
           required: true
+  /cosellers/quick-login:
+    post:
+      summary: ''
+      operationId: post-cosellers-quick-login
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  token:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - token
+                  - message
+                x-examples:
+                  example-1:
+                    token: cosellerToken
+                    message: Coseller Details saved successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - email
+                - password
+              x-examples:
+                example-1:
+                  email: peyebac794@itwbuy.com
+                  password: Password1@
+            examples: {}
+      description: Quick Login
+  /vendor-dashboard:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Total-Count:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - productId
+                    - vendorId
+                    - title
+                    - image_url
+                    - price
+                    - currency
+                    - total_clicks
+                    - total_publishes
+                    - total_quantity_sold
+                    - total_shares
+                  properties:
+                    productId:
+                      type: string
+                      minLength: 1
+                    vendorId:
+                      type: string
+                      minLength: 1
+                    title:
+                      type: string
+                      minLength: 1
+                    image_url:
+                      type: string
+                    price:
+                      type: string
+                      minLength: 1
+                    currency:
+                      type: string
+                      minLength: 1
+                    total_clicks:
+                      type: number
+                    total_publishes:
+                      type: number
+                    total_quantity_sold:
+                      type: number
+                    total_shares:
+                      type: number
+                x-examples:
+                  example-1:
+                    - productId: ec996e35-7f20-91e0-9e7f-c39da4ac6d65
+                      vendorId: 7d06cab3-b3bf-9028-b25d-3885662f3742
+                      title: add virtual product
+                      image_url: ''
+                      price: '10.00'
+                      currency: USD
+                      total_clicks: 12
+                      total_publishes: 12
+                      total_quantity_sold: 0
+                      total_shares: 2
+                    - productId: e4638f9b-d1f3-3485-0578-1eb0055f810b
+                      vendorId: 7d06cab3-b3bf-9028-b25d-3885662f3742
+                      title: Adoratherapy Abundance Room Boost 3(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg?v=1602601079'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 9
+                      total_publishes: 14
+                      total_quantity_sold: 0
+                      total_shares: 6
+      operationId: get-vendor-dashboard
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: token
+        - schema:
+            type: string
+          in: query
+          name: viewType
+        - schema:
+            type: string
+          in: query
+          name: offset
+        - schema:
+            type: string
+          in: query
+          name: count
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+        - schema:
+            type: string
+          in: query
+          name: sortField
+      description: Get Vendor Dashboard
+  /coseller-dashboard:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - cosellerId
+                    - productId
+                    - vendorId
+                    - vendorName
+                    - title
+                    - image_url
+                    - price
+                    - currency
+                    - total_clicks
+                    - total_publishes
+                    - total_commissions
+                    - total_commissions_direct_sales
+                    - total_commissions_influenced_sales
+                  properties:
+                    cosellerId:
+                      type: string
+                    productId:
+                      type: string
+                      minLength: 1
+                    vendorId:
+                      type: string
+                      minLength: 1
+                    vendorName:
+                      type: string
+                      minLength: 1
+                    title:
+                      type: string
+                      minLength: 1
+                    image_url:
+                      type: string
+                      minLength: 1
+                    price:
+                      type: string
+                      minLength: 1
+                    currency:
+                      type: string
+                      minLength: 1
+                    total_clicks:
+                      type: number
+                    total_publishes:
+                      type: number
+                    total_commissions:
+                      type: number
+                    total_commissions_direct_sales:
+                      type: number
+                    total_commissions_influenced_sales:
+                      type: number
+                x-examples:
+                  example-1:
+                    - cosellerId: ''
+                      productId: e4638f9b-d1f3-3485-0578-1eb0055f810b
+                      vendorId: 7d06cab3-b3bf-9028-b25d-3885662f3742
+                      vendorName: bhanu
+                      title: Adoratherapy Abundance Room Boost 3(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg?v=1602601079'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 5
+                      total_publishes: 5
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: ec996e35-7f20-91e0-9e7f-c39da4ac6d65
+                      vendorId: 7d06cab3-b3bf-9028-b25d-3885662f3742
+                      vendorName: bhanu
+                      title: add virtual product
+                      image_url: ''
+                      price: '10.00'
+                      currency: USD
+                      total_clicks: 8
+                      total_publishes: 9
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+          headers:
+            Total-Count:
+              schema:
+                type: string
+      operationId: get-coseller-dashboard
+      description: Get Coseller Dashboard
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+        - schema:
+            type: string
+          in: query
+          name: viewType
+        - schema:
+            type: string
+          in: query
+          name: currency
+        - schema:
+            type: string
+          in: query
+          name: offset
+        - schema:
+            type: string
+          in: query
+          name: count
+        - schema:
+            type: string
+          in: query
+          name: sortOrder
+        - schema:
+            type: string
+          in: query
+          name: sortField
+  '/platforms/{id}/vendors':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - id
+                    - name
+                    - user_id
+                    - store_id
+                    - shopifyVendor
+                    - dokan_vendor
+                    - woocommerceVendor
+                    - enableCheckoutShoptype
+                    - wooCommerceShipping
+                    - store
+                  properties:
+                    id:
+                      type: string
+                      minLength: 1
+                    name:
+                      type: string
+                      minLength: 1
+                    user_id:
+                      type: string
+                      minLength: 1
+                    store_id:
+                      type: string
+                    shopifyVendor:
+                      type: string
+                    dokan_vendor:
+                      type: object
+                      properties:
+                        vendor_id:
+                          type: string
+                          minLength: 1
+                        name:
+                          type: string
+                          minLength: 1
+                      required:
+                        - vendor_id
+                        - name
+                    woocommerceVendor:
+                      type: string
+                    enableCheckoutShoptype:
+                      type: boolean
+                    wooCommerceShipping:
+                      type: object
+                      properties:
+                        shippingServiceId:
+                          type: string
+                          minLength: 1
+                        shippingConsumerKey:
+                          type: string
+                        shippingConsumerSecret:
+                          type: string
+                      required:
+                        - shippingServiceId
+                        - shippingConsumerKey
+                        - shippingConsumerSecret
+                    store:
+                      type: object
+                      properties:
+                        addressLine1:
+                          type: string
+                          minLength: 1
+                        city:
+                          type: string
+                          minLength: 1
+                        countryState:
+                          type: string
+                          minLength: 1
+                        postalCode:
+                          type: string
+                          minLength: 1
+                        currency:
+                          type: string
+                          minLength: 1
+                        geoLocation:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              minLength: 1
+                            coordinates:
+                              type: array
+                              items:
+                                required: []
+                                properties: {}
+                          required:
+                            - type
+                            - coordinates
+                      required:
+                        - addressLine1
+                        - city
+                        - countryState
+                        - postalCode
+                        - currency
+                        - geoLocation
+                x-examples:
+                  example-1:
+                    - id: af939d33-3a33-9e3c-fdce-863a7e3f8041
+                      name: bhanu123
+                      user_id: 472dabca-72d8-4dc6-a2c7-b052a2368747
+                      store_id: ''
+                      shopifyVendor: ''
+                      dokan_vendor:
+                        vendor_id: '176134914'
+                        name: gada electronics
+                      woocommerceVendor: ''
+                      enableCheckoutShoptype: true
+                      wooCommerceShipping:
+                        shippingServiceId: '001'
+                        shippingConsumerKey: ''
+                        shippingConsumerSecret: ''
+                      store:
+                        addressLine1: cb (gada electronics) - street2
+                        city: benguluru
+                        countryState: IN - KA
+                        postalCode: '560041'
+                        currency: CAD
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 77.5936183
+                            - 12.9217081
+      operationId: get-platforms-id-vendors
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: vendorId
+          description: Vendor ID
+        - schema:
+            type: string
+          in: query
+          name: category
+          description: Comma separated Categories
+        - schema:
+            type: string
+          in: query
+          name: name
+          description: Name of vendor
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Search text
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: Offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: number
+          in: query
+          name: geoLat
+          description: Geo latitude
+        - schema:
+            type: number
+          in: query
+          name: geoLng
+          description: Geo longitude
+        - schema:
+            type: integer
+          in: query
+          name: geoProximity
+          description: In meters
+        - schema:
+            type: string
+          in: query
+          name: currency
+          description: Currency
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: Platform ID
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: checkStore
+          description: 'boolean: true or false'
 components:
   schemas:
     Vendor:
