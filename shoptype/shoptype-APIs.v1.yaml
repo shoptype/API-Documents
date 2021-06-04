@@ -3,7 +3,7 @@ info:
   title: Shoptype Integration APIs
   version: '1.0'
   description: |-
-    Shoptype APIs help a network to develope an e-commerce platform where sales can be tracked and attributed.
+    Shoptype APIs help a network to develop an e-commerce platform where sales can be tracked and attributed.
 
     Terminologies:
     - Network: An entity defined on shoptype representing a marketplace. Eg, sheroes, toontype, etc.
@@ -333,13 +333,8 @@ paths:
         - schema:
             type: string
           in: query
-          name: userId
-          description: User Id of invitee
-        - schema:
-            type: string
-          in: query
-          name: cosellerId
-          description: Coseller Id of invitee
+          name: tid
+          description: Tracker Id (in case of cosell)
   /resend-verification-email:
     post:
       summary: Resend verification email
@@ -1553,13 +1548,8 @@ paths:
         - schema:
             type: string
           in: query
-          name: userId
-          description: User Id of Invitee
-        - schema:
-            type: string
-          in: query
-          name: cosellerId
-          description: Coseller Id of invitee
+          name: tid
+          description: Tracker Id (in case of cosell)
   /referrals:
     get:
       summary: Fetch my referral tree
@@ -2275,6 +2265,46 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4520,6 +4550,69 @@ paths:
           name: authorization
           description: network token
           required: true
+    post:
+      summary: Create network profile
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  token:
+                    type: string
+                    minLength: 1
+                    description: Network token
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - token
+                  - message
+              examples:
+                example-1:
+                  value:
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6ImUxMTQ1YTlhLTc1OGUtMWRiMy02YmM1LWJmYjVhNjUwMTc1NSIsInVzZXJJZCI6IjhhMDJhZDU3LTk0N2UtNGIxZC04M2YzLWYzYmMzNmZhZWNjMCIsInVzZXJUeXBlIjoibmV0d29yayIsImlzcyI6InNob3AtdHlwZSJ9.y8lMrDFHBJAJirGSG8as5hjXgpdqgsehuBzxEb7jEpg
+                    message: Network Details saved successfully
+      operationId: post-networks
+      description: Create network details
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Login token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  description: Unique Network Name
+                urls:
+                  type: array
+                  description: Currenly we support upto one platform url per network.
+                  items:
+                    type: object
+              required:
+                - name
+                - urls
+            examples:
+              example-1:
+                value:
+                  name: Ayush Network
+                  urls:
+                    - 'https://ayush.wizz.com'
+        description: ''
   /network-settings:
     post:
       summary: Update network settings
@@ -5978,7 +6071,9 @@ paths:
                       inviterType: coseller
                       inviteeEmailIds: null
                       slug: '?rid=6078898135d93393c5b41ee7'
-      description: Create referral for a coseller performing a quick sign up
+      description: |-
+        Create referral for a coseller performing a quick sign up
+        (Deprecated) Use tid instead
       requestBody:
         content:
           application/json:
@@ -6002,6 +6097,7 @@ paths:
                   cosellerId: 232bca95-a43b-5337-2c82-2133f9165c6d
       tags:
         - referral
+      deprecated: true
   '/products/{productId}':
     parameters:
       - schema:
@@ -6720,6 +6816,7 @@ paths:
                   token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdW5pbEBzaGVyb2VzLmluIiwiYXVkaWVuY2UiOiJ3ZWIiLCJjcmVhdGVkIjoxNjE1ODE5MzQ5NTkzLCJleHAiOjE2NDczNTUzNDksImp0aSI6Ijg5MzcxNCJ9.wX9JlZAAzcAqe-QO14iHsqlwG8V8cUEUa1GZ5h6YM9LqcCegdG80XQEBi0Fi3-YeIeVzC1W6r8w1xFUb4LU06Q
       tags:
         - user
+      x-internal: false
     parameters: []
   /store/manual/product:
     post:
@@ -8528,6 +8625,93 @@ paths:
           in: query
           name: checkStore
           description: 'boolean: true or false'
+  /cosellers/quick-login:
+    post:
+      summary: Standard login for cosellers
+      operationId: post-cosellers-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                  token:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                  - token
+                x-examples:
+                  example-1:
+                    message: Coseller Details saved successfully
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
+              examples:
+                Sample response:
+                  value:
+                    message: Coseller Details saved successfully
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
+        '400':
+          description: Bad Request
+        '':
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                  token:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                  - token
+                x-examples:
+                  example-1:
+                    message: Coseller Details saved successfully
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
+              examples:
+                Sample response:
+                  value:
+                    message: Coseller Details saved successfully
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
+      tags:
+        - user
+      description: Login as a coseller
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                email:
+                  type: string
+                  minLength: 1
+                password:
+                  type: string
+                  minLength: 1
+              required:
+                - email
+                - password
+              x-examples:
+                example-1:
+                  email: skb1984@mailinator.com
+                  password: Sarthak@1984
+            examples:
+              Sample body:
+                value:
+                  email: skb1984@mailinator.com
+                  password: test@2222
+    parameters: []
 components:
   schemas:
     Vendor:
