@@ -4176,6 +4176,9 @@ paths:
 
 
 
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -8906,37 +8909,12 @@ paths:
                     message: Coseller Details saved successfully
                     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
               examples:
-                Sample response:
+                sample response:
                   value:
                     message: Coseller Details saved successfully
                     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
         '400':
           description: Bad Request
-        '':
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                properties:
-                  message:
-                    type: string
-                    minLength: 1
-                  token:
-                    type: string
-                    minLength: 1
-                required:
-                  - message
-                  - token
-                x-examples:
-                  example-1:
-                    message: Coseller Details saved successfully
-                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
-              examples:
-                Sample response:
-                  value:
-                    message: Coseller Details saved successfully
-                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6IjFhMGZjNTlmLTFkZTktODdjNi02YjU1LWMyZGFhMTE3ZWY4NSIsInVzZXJJZCI6ImU4YjliNTU2LWRhNGItNGQ1Ni1iYTMyLWNiODBjNTcxMzZjNCIsInVzZXJUeXBlIjoiY29zZWxsZXIiLCJpc3MiOiJzaG9wLXR5cGUifQ.A9Nyt36Kw4DP2madymuHPJ9BjfoLV7XXJMTJxjZ0aPs
       tags:
         - user
       description: Login as a coseller
