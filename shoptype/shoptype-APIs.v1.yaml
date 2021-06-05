@@ -4146,6 +4146,36 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -9186,6 +9216,439 @@ paths:
           in: header
           name: Authorization
           description: Vendor token
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: count
+  /coseller-dashboard?viewType=cosellerView:
+    get:
+      summary: Get coseller dashboard view
+      tags:
+        - analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  cosellerId:
+                    type: string
+                  total_clicks:
+                    type: number
+                  total_publishes:
+                    type: number
+                  currency:
+                    type: string
+                    minLength: 1
+                  total_commissions:
+                    type: number
+                  total_commissions_direct_sales:
+                    type: number
+                  total_commissions_influenced_sales:
+                    type: number
+                required:
+                  - cosellerId
+                  - total_clicks
+                  - total_publishes
+                  - currency
+                  - total_commissions
+                  - total_commissions_direct_sales
+                  - total_commissions_influenced_sales
+                x-examples:
+                  example-1:
+                    cosellerId: ''
+                    total_clicks: 25
+                    total_publishes: 21
+                    currency: USD
+                    total_commissions: 45.65
+                    total_commissions_direct_sales: 19
+                    total_commissions_influenced_sales: 26.1
+              examples:
+                sample response:
+                  value:
+                    cosellerId: ''
+                    total_clicks: 25
+                    total_publishes: 21
+                    currency: USD
+                    total_commissions: 45.65
+                    total_commissions_direct_sales: 19
+                    total_commissions_influenced_sales: 26.1
+      operationId: get-coseller-dashboard?viewType=cosellerView
+      description: Get coseller dashboard view
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Coseller token
+          required: true
+        - schema:
+            type: string
+            example: USD
+          in: query
+          name: currency
+          description: currency
+          required: true
+  /coseller-dashboard?viewType=cosellerProductView:
+    get:
+      summary: Get coseller product dashboard view
+      tags:
+        - analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - cosellerId
+                    - productId
+                    - vendorId
+                    - vendorName
+                    - title
+                    - image_url
+                    - price
+                    - currency
+                    - total_clicks
+                    - total_publishes
+                    - total_commissions
+                    - total_commissions_direct_sales
+                    - total_commissions_influenced_sales
+                  properties:
+                    cosellerId:
+                      type: string
+                    productId:
+                      type: string
+                      minLength: 1
+                    vendorId:
+                      type: string
+                      minLength: 1
+                    vendorName:
+                      type: string
+                      minLength: 1
+                    title:
+                      type: string
+                      minLength: 1
+                    image_url:
+                      type: string
+                      minLength: 1
+                    price:
+                      type: string
+                      minLength: 1
+                    currency:
+                      type: string
+                      minLength: 1
+                    total_clicks:
+                      type: number
+                    total_publishes:
+                      type: number
+                    total_commissions:
+                      type: number
+                    total_commissions_direct_sales:
+                      type: number
+                    total_commissions_influenced_sales:
+                      type: number
+                x-examples:
+                  example-1:
+                    - cosellerId: ''
+                      productId: 241f25e3-780a-fe3a-8599-de55bc6f619a
+                      vendorId: 9abe0e77-6175-1d0b-df8e-d4247e99bde4
+                      vendorName: Adoratherapy
+                      title: Adoratherapy Abundance Room Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/241f25e3-780a-fe3a-8599-de55bc6f619a/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '100.50'
+                      currency: USD
+                      total_clicks: 5
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: f75fedb2-a5e3-cb54-2b8c-c3675d538819
+                      vendorId: 9abe0e77-6175-1d0b-df8e-d4247e99bde4
+                      vendorName: Adoratherapy
+                      title: Adoratherapy Beautiful Mood Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/f75fedb2-a5e3-cb54-2b8c-c3675d538819/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: f7f36a88-e89b-5eac-ecd0-af512d9416c4
+                      vendorId: 71e8d170-ffaf-8228-21c6-6837d63925af
+                      vendorName: VA Sports Live
+                      title: 'Marvel''s Avengers: Tony Stark Eye Glasses'
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/51fbd328-ae9b-1fc0-ef9e-4910497ff227/51a1OsuLv3L._UL1100_.jpg'
+                      price: '1'
+                      currency: USD
+                      total_clicks: 14
+                      total_publishes: 3
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: 135deac1-8bbd-8726-f825-1bb60fcf3474
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      vendorName: Sultan Co
+                      title: add virtual product
+                      image_url: ''
+                      price: '10.00'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: b9eccd3f-5112-733f-8b9d-47fe655ef2e2
+                      vendorId: eb4a5250-d41c-3fe5-134d-bba3fb7593ca
+                      vendorName: march_26_shop
+                      title: Adoratherapy Abundance Room Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/0f0bebeb-dec4-de34-3848-5090b4ac4cad/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: a4cdca6f-8e76-b1e2-7d87-7ce0434667d1
+                      vendorId: 5d24c472-11e8-ea85-a664-997d7cd3e9aa
+                      vendorName: Shopify ST Checkout BETA
+                      title: Adoratherapy Abundance Room Boost 3(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/a4cdca6f-8e76-b1e2-7d87-7ce0434667d1/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: aa9f0b43-4895-9788-47c4-80b869e3739d
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      vendorName: Sultan Co
+                      title: Adoratherapy Beautiful Mood Boost(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/61493db1-cfe0-deeb-5264-aa9a600e16bb/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 2
+                      total_publishes: 5
+                      total_commissions: 28.05
+                      total_commissions_direct_sales: 11
+                      total_commissions_influenced_sales: 16.5
+                    - cosellerId: ''
+                      productId: 171073ac-ff91-3336-257f-9a053be95950
+                      vendorId: 7b0f515e-3852-4c79-df45-72b2ea9e2563
+                      vendorName: Mahavir Co
+                      title: IKEA DIY Floor Lamp
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/852c6a68-b438-d39b-f8ad-8c014a562efd/41QAFJ0PuL._SL1224_.jpg'
+                      price: '100'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 17.6
+                      total_commissions_direct_sales: 8
+                      total_commissions_influenced_sales: 9.6
+                    - cosellerId: ''
+                      productId: 09ecce04-cff6-3b42-091b-c6252491db46
+                      vendorId: d583176d-049b-00c7-abcf-9f16c8962a6d
+                      vendorName: hats
+                      title: Adoratherapy Blissful Room Boost Adoratherapy
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/3dc755a6-82ce-c2d4-6f76-d4315152fbc1/gold1.jpg'
+                      price: '20.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 2
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: 87eafd92-7c7f-19e1-19da-b61f130334a7
+                      vendorId: d583176d-049b-00c7-abcf-9f16c8962a6d
+                      vendorName: hats
+                      title: Adoratherapy Chakra Cube Set of 7
+                      image_url: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/645x520__Cube9_MoodBoost_edff3477-4e1b-42e8-bb12-0b410ab7f6eb.jpg?v=1580181120'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 2
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+              examples:
+                sample response:
+                  value:
+                    - cosellerId: ''
+                      productId: 241f25e3-780a-fe3a-8599-de55bc6f619a
+                      vendorId: 9abe0e77-6175-1d0b-df8e-d4247e99bde4
+                      vendorName: Adoratherapy
+                      title: Adoratherapy Abundance Room Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/241f25e3-780a-fe3a-8599-de55bc6f619a/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '100.50'
+                      currency: USD
+                      total_clicks: 5
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: f75fedb2-a5e3-cb54-2b8c-c3675d538819
+                      vendorId: 9abe0e77-6175-1d0b-df8e-d4247e99bde4
+                      vendorName: Adoratherapy
+                      title: Adoratherapy Beautiful Mood Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/f75fedb2-a5e3-cb54-2b8c-c3675d538819/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: f7f36a88-e89b-5eac-ecd0-af512d9416c4
+                      vendorId: 71e8d170-ffaf-8228-21c6-6837d63925af
+                      vendorName: VA Sports Live
+                      title: 'Marvel''s Avengers: Tony Stark Eye Glasses'
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/51fbd328-ae9b-1fc0-ef9e-4910497ff227/51a1OsuLv3L._UL1100_.jpg'
+                      price: '1'
+                      currency: USD
+                      total_clicks: 14
+                      total_publishes: 3
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: 135deac1-8bbd-8726-f825-1bb60fcf3474
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      vendorName: Sultan Co
+                      title: add virtual product
+                      image_url: ''
+                      price: '10.00'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: b9eccd3f-5112-733f-8b9d-47fe655ef2e2
+                      vendorId: eb4a5250-d41c-3fe5-134d-bba3fb7593ca
+                      vendorName: march_26_shop
+                      title: Adoratherapy Abundance Room Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/0f0bebeb-dec4-de34-3848-5090b4ac4cad/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: a4cdca6f-8e76-b1e2-7d87-7ce0434667d1
+                      vendorId: 5d24c472-11e8-ea85-a664-997d7cd3e9aa
+                      vendorName: Shopify ST Checkout BETA
+                      title: Adoratherapy Abundance Room Boost 3(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/a4cdca6f-8e76-b1e2-7d87-7ce0434667d1/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: aa9f0b43-4895-9788-47c4-80b869e3739d
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      vendorName: Sultan Co
+                      title: Adoratherapy Beautiful Mood Boost(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/61493db1-cfe0-deeb-5264-aa9a600e16bb/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 2
+                      total_publishes: 5
+                      total_commissions: 28.05
+                      total_commissions_direct_sales: 11
+                      total_commissions_influenced_sales: 16.5
+                    - cosellerId: ''
+                      productId: 171073ac-ff91-3336-257f-9a053be95950
+                      vendorId: 7b0f515e-3852-4c79-df45-72b2ea9e2563
+                      vendorName: Mahavir Co
+                      title: IKEA DIY Floor Lamp
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/852c6a68-b438-d39b-f8ad-8c014a562efd/41QAFJ0PuL._SL1224_.jpg'
+                      price: '100'
+                      currency: USD
+                      total_clicks: 1
+                      total_publishes: 1
+                      total_commissions: 17.6
+                      total_commissions_direct_sales: 8
+                      total_commissions_influenced_sales: 9.6
+                    - cosellerId: ''
+                      productId: 09ecce04-cff6-3b42-091b-c6252491db46
+                      vendorId: d583176d-049b-00c7-abcf-9f16c8962a6d
+                      vendorName: hats
+                      title: Adoratherapy Blissful Room Boost Adoratherapy
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/3dc755a6-82ce-c2d4-6f76-d4315152fbc1/gold1.jpg'
+                      price: '20.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 2
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+                    - cosellerId: ''
+                      productId: 87eafd92-7c7f-19e1-19da-b61f130334a7
+                      vendorId: d583176d-049b-00c7-abcf-9f16c8962a6d
+                      vendorName: hats
+                      title: Adoratherapy Chakra Cube Set of 7
+                      image_url: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/645x520__Cube9_MoodBoost_edff3477-4e1b-42e8-bb12-0b410ab7f6eb.jpg?v=1580181120'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 2
+                      total_commissions: 0
+                      total_commissions_direct_sales: 0
+                      total_commissions_influenced_sales: 0
+          headers:
+            total-count:
+              schema:
+                type: integer
+              description: total product count
+      operationId: get-coseller-dashboard?viewType=cosellerProductView
+      description: Get coseller product dashboard view
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Coseller token
+          required: true
+        - schema:
+            type: string
+            example: USD
+          in: query
+          name: currency
+          description: currency
           required: true
         - schema:
             type: integer
