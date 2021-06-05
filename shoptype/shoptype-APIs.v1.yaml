@@ -2624,6 +2624,12 @@ paths:
           in: query
           description: Show disabled products
           name: showHidden
+        - schema:
+            type: boolean
+            default: 'false'
+          in: query
+          name: inStock
+          description: Show products in stock
     parameters:
       - schema:
           type: string
@@ -3012,6 +3018,12 @@ paths:
           in: query
           name: currency
           description: Currency
+        - schema:
+            type: boolean
+            default: 'false'
+          in: query
+          name: isStoreSetup
+          description: Filter out vendors who do not have any store (shopify/woocommerce) setup
   /command?type=sendNotification:
     post:
       summary: Send email notification
@@ -3037,6 +3049,26 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8875,6 +8907,41 @@ paths:
                   email: skb1984@mailinator.com
                   password: test@2222
     parameters: []
+  /vendors/disable-products:
+    put:
+      summary: Disable all products for a vendor
+      operationId: put-vendors-disable-products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: 'Product is disabled for vendor:7b0f515e-3852-4c79-df45-72b2ea9e2563'
+              examples:
+                sample success response:
+                  value:
+                    message: 'Product is disabled for vendor:7b0f515e-3852-4c79-df45-72b2ea9e2563'
+      description: Disable all products for a vendor
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Vendor token
+          required: true
+      tags:
+        - vendor
 components:
   schemas:
     Vendor:
