@@ -4117,6 +4117,35 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -8942,6 +8971,232 @@ paths:
           required: true
       tags:
         - vendor
+  /vendor-dashboard?viewType=vendorView:
+    get:
+      summary: Get vendor dashboard view
+      tags:
+        - analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                    total_clicks: 7
+                    total_publishes: 11
+                    currency: ''
+                    total_revenue:
+                      amount: 231.03
+                      currency: USD
+                    total_orders: 6
+                    total_items_sold: 6
+                    total_shares: 0
+                    total_commission_owed:
+                      amount: 89.97
+                      currency: USD
+                properties:
+                  vendorId:
+                    type: string
+                    minLength: 1
+                  total_clicks:
+                    type: number
+                  total_publishes:
+                    type: number
+                  currency:
+                    type: string
+                  total_revenue:
+                    $ref: '#/components/schemas/Money'
+                  total_orders:
+                    type: number
+                  total_items_sold:
+                    type: number
+                  total_shares:
+                    type: number
+                  total_commission_owed:
+                    $ref: '#/components/schemas/Money'
+                required:
+                  - vendorId
+                  - total_clicks
+                  - total_publishes
+                  - currency
+                  - total_revenue
+                  - total_orders
+                  - total_items_sold
+                  - total_shares
+                  - total_commission_owed
+              examples:
+                Sample response:
+                  value:
+                    vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                    total_clicks: 7
+                    total_publishes: 11
+                    currency: ''
+                    total_revenue:
+                      amount: 231.03
+                      currency: USD
+                    total_orders: 6
+                    total_items_sold: 6
+                    total_shares: 0
+                    total_commission_owed:
+                      amount: 89.97
+                      currency: USD
+      operationId: get-vendor-dashboard?viewType=vendorView
+      description: Get vendor dashboard view
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Vendor token
+          required: true
+  /vendor-dashboard?viewType=vendorProductView:
+    get:
+      summary: Get vendor product dashboard view
+      tags:
+        - analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - productId
+                    - vendorId
+                    - title
+                    - image_url
+                    - price
+                    - currency
+                    - total_clicks
+                    - total_publishes
+                    - total_quantity_sold
+                    - total_shares
+                  properties:
+                    productId:
+                      type: string
+                      minLength: 1
+                    vendorId:
+                      type: string
+                      minLength: 1
+                    title:
+                      type: string
+                      minLength: 1
+                    image_url:
+                      type: string
+                    price:
+                      type: string
+                      minLength: 1
+                    currency:
+                      type: string
+                      minLength: 1
+                    total_clicks:
+                      type: number
+                    total_publishes:
+                      type: number
+                    total_quantity_sold:
+                      type: number
+                    total_shares:
+                      type: number
+                x-examples:
+                  example-1:
+                    - productId: 135deac1-8bbd-8726-f825-1bb60fcf3474
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      title: add virtual product
+                      image_url: ''
+                      price: '10.00'
+                      currency: USD
+                      total_clicks: 4
+                      total_publishes: 4
+                      total_quantity_sold: 3
+                      total_shares: 0
+                    - productId: 9da4e195-a2f3-e939-783b-a1fcba6d4f33
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      title: Adoratherapy Abundance Room Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/c755be40-8863-0870-c4b3-3ad3ddff16b0/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 1
+                      total_quantity_sold: 0
+                      total_shares: 0
+                    - productId: aa9f0b43-4895-9788-47c4-80b869e3739d
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      title: Adoratherapy Beautiful Mood Boost(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/61493db1-cfe0-deeb-5264-aa9a600e16bb/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 3
+                      total_publishes: 6
+                      total_quantity_sold: 3
+                      total_shares: 0
+              examples:
+                sample response:
+                  value:
+                    - productId: 135deac1-8bbd-8726-f825-1bb60fcf3474
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      title: add virtual product
+                      image_url: ''
+                      price: '10.00'
+                      currency: USD
+                      total_clicks: 4
+                      total_publishes: 4
+                      total_quantity_sold: 3
+                      total_shares: 0
+                    - productId: 9da4e195-a2f3-e939-783b-a1fcba6d4f33
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      title: Adoratherapy Abundance Room Boost
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/c755be40-8863-0870-c4b3-3ad3ddff16b0/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                      price: '111.00'
+                      currency: USD
+                      total_clicks: 0
+                      total_publishes: 1
+                      total_quantity_sold: 0
+                      total_shares: 0
+                    - productId: aa9f0b43-4895-9788-47c4-80b869e3739d
+                      vendorId: 3865dfbf-0a56-a0c3-3411-730826afc0d5
+                      title: Adoratherapy Beautiful Mood Boost(Do not edit/delete this product. This is used in test cases)
+                      image_url: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/61493db1-cfe0-deeb-5264-aa9a600e16bb/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                      price: '100.00'
+                      currency: USD
+                      total_clicks: 3
+                      total_publishes: 6
+                      total_quantity_sold: 3
+                      total_shares: 0
+          headers:
+            total-count:
+              schema:
+                type: integer
+              description: total product count
+      operationId: get-vendor-dashboard?viewType=vendorProductView
+      description: Get vendor product dashboard view
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Vendor token
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: offset
+        - schema:
+            type: integer
+          in: query
+          name: count
+          description: count
 components:
   schemas:
     Vendor:
