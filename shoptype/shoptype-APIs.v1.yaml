@@ -3972,6 +3972,18 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -8527,20 +8539,29 @@ paths:
                       method_key: 'local_pickup:42'
       tags:
         - checkout
-  '/order/details/{order_id}':
+  '/order/details/{orderId}':
     parameters:
       - schema:
           type: string
-        name: order_id
+        name: orderId
         in: path
         required: true
         description: Shoptype Order Id
     get:
       summary: Your GET endpoint
-      tags: []
-      responses: {}
+      tags:
+        - order
       operationId: get-order-details-order_id
       description: Get Order Details for an order placed through Shoptype with Order Details per vendor with updated status and history
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoptypeOrder'
+        '':
+          description: ''
 components:
   schemas:
     Vendor:
