@@ -3962,6 +3962,16 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -8517,6 +8527,20 @@ paths:
                       method_key: 'local_pickup:42'
       tags:
         - checkout
+  '/order/details/{order_id}':
+    parameters:
+      - schema:
+          type: string
+        name: order_id
+        in: path
+        required: true
+        description: Shoptype Order Id
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-order-details-order_id
+      description: Get Order Details for an order placed through Shoptype with Order Details per vendor with updated status and history
 components:
   schemas:
     Vendor:
@@ -10348,4 +10372,353 @@ components:
         - attributionConfig
         - productId
       title: ProductAttributionConfig
+    ShoptypeOrder:
+      description: ''
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        device_id:
+          type: string
+          minLength: 1
+        taxes:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+          required:
+            - amount
+            - currency
+        sub_total:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+          required:
+            - amount
+            - currency
+        total:
+          type: object
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+          required:
+            - amount
+            - currency
+        payment:
+          type: object
+          properties:
+            status:
+              type: string
+              minLength: 1
+            method:
+              type: string
+              minLength: 1
+            transaction_id:
+              type: string
+              minLength: 1
+            method_detail_html:
+              type: string
+            method_details: {}
+          required:
+            - status
+            - method
+            - transaction_id
+            - method_detail_html
+        shipping_address:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+            street1:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              minLength: 1
+            phone:
+              type: string
+              minLength: 1
+            city:
+              type: string
+              minLength: 1
+            state:
+              type: string
+              minLength: 1
+            stateCode:
+              type: string
+              minLength: 1
+            postalCode:
+              type: string
+              minLength: 1
+            country:
+              type: string
+              minLength: 1
+            countryCode:
+              type: string
+              minLength: 1
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
+        billing_address:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 1
+            street1:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              minLength: 1
+            phone:
+              type: string
+              minLength: 1
+            city:
+              type: string
+              minLength: 1
+            state:
+              type: string
+              minLength: 1
+            stateCode:
+              type: string
+              minLength: 1
+            postalCode:
+              type: string
+              minLength: 1
+            country:
+              type: string
+              minLength: 1
+            countryCode:
+              type: string
+              minLength: 1
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
+        is_shipping_billing:
+          type: boolean
+        order_details_per_vendor:
+          type: object
+          properties:
+            '{VendorId}':
+              type: object
+              properties:
+                external_order_id:
+                  type: string
+                  minLength: 1
+                status:
+                  type: string
+                  minLength: 1
+                cart_lines:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - product_id
+                      - product_variant_id
+                      - source_id
+                      - quantity
+                      - vendor_id
+                      - vendor_name
+                      - is_virtual
+                    properties:
+                      product_id:
+                        type: string
+                        minLength: 1
+                      product_variant_id:
+                        type: string
+                        minLength: 1
+                      source_id:
+                        type: string
+                        minLength: 1
+                      quantity:
+                        type: number
+                      variant_name_value:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            minLength: 1
+                        required:
+                          - title
+                      vendor_id:
+                        type: string
+                      vendor_name:
+                        type: string
+                      is_virtual:
+                        type: boolean
+                taxes:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                  required:
+                    - amount
+                    - currency
+                shipping_options:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - method_key
+                      - method_title
+                      - method_id
+                      - shipping_html
+                      - chosen_method
+                    properties:
+                      method_key:
+                        type: string
+                        minLength: 1
+                      method_title:
+                        type: string
+                        minLength: 1
+                      method_id:
+                        type: string
+                        minLength: 1
+                      shipping_html:
+                        type: string
+                        minLength: 1
+                      chosen_method:
+                        type: boolean
+                      total:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                          currency:
+                            type: string
+                            minLength: 1
+                        required:
+                          - amount
+                          - currency
+                shipping_selected:
+                  type: object
+                  properties:
+                    method_key:
+                      type: string
+                      minLength: 1
+                    method_title:
+                      type: string
+                      minLength: 1
+                    method_id:
+                      type: string
+                      minLength: 1
+                    shipping_html:
+                      type: string
+                      minLength: 1
+                    chosen_method:
+                      type: boolean
+                  required:
+                    - method_key
+                    - method_title
+                    - method_id
+                    - shipping_html
+                    - chosen_method
+                history:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - status_from
+                      - status_to
+                      - updated_at
+                    properties:
+                      status_from:
+                        type: string
+                      status_to:
+                        type: string
+                        minLength: 1
+                      updated_at:
+                        type: string
+                        minLength: 1
+                sub_total:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                  required:
+                    - amount
+                    - currency
+                total:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                  required:
+                    - amount
+                    - currency
+              required:
+                - external_order_id
+                - status
+                - cart_lines
+                - taxes
+                - shipping_options
+                - shipping_selected
+                - history
+                - sub_total
+                - total
+          required:
+            - '{VendorId}'
+        requires_shipping:
+          type: boolean
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+      required:
+        - id
+        - device_id
+        - taxes
+        - sub_total
+        - total
+        - payment
+        - shipping_address
+        - billing_address
+        - is_shipping_billing
+        - order_details_per_vendor
+        - requires_shipping
+        - created_at
+        - updated_at
   securitySchemes: {}
