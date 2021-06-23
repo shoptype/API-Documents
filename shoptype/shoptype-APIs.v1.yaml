@@ -4188,6 +4188,31 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -7423,6 +7448,11 @@ paths:
           name: X-Shoptype-Api-Key
           description: API key
           required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
       requestBody:
         content:
           application/json:
@@ -7515,6 +7545,12 @@ paths:
           in: header
           name: X-Shoptype-Api-Key
           description: API Key
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
       tags:
         - cart
   /cosellers/quick-social-login:
@@ -7647,6 +7683,11 @@ paths:
           name: X-Shoptype-Api-Key
           description: API Key
           required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
     put:
       summary: Update cart
       operationId: put-cart-cartId
@@ -7725,6 +7766,12 @@ paths:
           in: header
           name: X-Shoptype-Api-Key
           description: API Key
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
     delete:
       summary: Delete cart
       operationId: delete-cart-cartId
@@ -7740,6 +7787,12 @@ paths:
           in: header
           name: X-Shoptype-Api-Key
           description: API Key
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
   /checkout:
     post:
       summary: Create checkout
@@ -7779,6 +7832,11 @@ paths:
           name: X-Shoptype-Api-Key
           description: API Key
           required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
       requestBody:
         content:
           application/json:
@@ -8314,6 +8372,11 @@ paths:
           name: X-Shoptype-Api-Key
           description: API Key
           required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
       requestBody:
         content:
           application/json:
@@ -8575,6 +8638,11 @@ paths:
           required: true
           name: X-Shoptype-Api-Key
           description: API Key
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
       requestBody:
         content:
           application/json:
@@ -8721,6 +8789,11 @@ paths:
           name: X-Shoptype-Api-Key
           description: API Key
           required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
       requestBody:
         content:
           application/json:
@@ -8891,6 +8964,11 @@ paths:
           name: X-Shoptype-Api-Key
           description: API Key
           required: true
+        - schema:
+            type: string
+          in: header
+          name: X-Shoptype-PlatformId
+          description: Platform Id
   /cosellers/quick-login:
     post:
       summary: Standard login for cosellers
