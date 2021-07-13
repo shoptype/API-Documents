@@ -4239,6 +4239,11 @@ paths:
 
 
 
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -7522,6 +7527,9 @@ paths:
                         price:
                           amount: 3216
                           currency: INR
+                        actual_price:
+                          amount: 4216
+                          currency: INR
                         image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9bd883d0-a397-ae35-d3df-0a42315aa7fa/DLJDMCCTSRP1.jpg'
                         is_virtual: false
                     sub_total:
@@ -7693,6 +7701,9 @@ paths:
                         name: Aao Kabhi Slim Hard Shell Case For Huawei Mate 10
                         price:
                           amount: 6.6
+                          currency: USD
+                        actual_price:
+                          amount: 9.6
                           currency: USD
                         image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/02e52e9a-baac-31f7-57c5-824dc47903e7/601040106216-1.jpg'
                         is_virtual: false
@@ -8381,6 +8392,9 @@ paths:
                             price:
                               amount: 15.73
                               currency: USD
+                            actual_price:
+                              amount: 17.73
+                              currency: USD
                             image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/cd37bbd2-0df6-d909-2d3b-fe0c3074d178/500_116B_911UB_3211B.jpg'
                             is_virtual: false
                         taxes:
@@ -8925,6 +8939,9 @@ paths:
                             price:
                               amount: 0
                               currency: USD
+                            actual_price:
+                              amount: 0
+                              currency: USD
                             image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/1d8920ba-9012-b75c-cb96-2958f9fb0dbc/500_116B_911UB_3211B.jpg'
                             is_virtual: false
                         taxes:
@@ -9196,6 +9213,9 @@ paths:
                             name: Newborn Baby Boys 9 Pc Layette Baby Shower Gift
                             price:
                               amount: 15.73
+                              currency: USD
+                            actual_price:
+                              amount: 17.73
                               currency: USD
                             image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/cd37bbd2-0df6-d909-2d3b-fe0c3074d178/500_116B_911UB_3211B.jpg'
                             is_virtual: false
