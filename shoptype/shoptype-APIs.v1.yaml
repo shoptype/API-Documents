@@ -4213,6 +4213,32 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -7674,6 +7700,32 @@ paths:
                       amount: 6.6
                       currency: USD
                     total_quantity: 1
+                example-2:
+                  value:
+                    id: string
+                    cart_lines:
+                      - product_id: string
+                        product_variant_id: string
+                        source_id: string
+                        quantity: 0
+                        variant_name_value:
+                          title: string
+                        vendor_id: string
+                        vendor_name: string
+                        name: string
+                        price:
+                          amount: 0
+                          currency: string
+                        image_src: string
+                        is_virtual: true
+                        actual_price:
+                          amount: 0
+                          currency: string
+                        '': string
+                    sub_total:
+                      amount: 0
+                      currency: string
+                    total_quantity: 0
       operationId: get-cart-cartId
       description: Fetch cart details
       parameters:
@@ -7890,48 +7942,48 @@ paths:
                     minLength: 1
                   taxes:
                     type: object
+                    required:
+                      - amount
+                      - currency
                     properties:
                       amount:
                         type: number
                       currency:
                         type: string
                         minLength: 1
-                    required:
-                      - amount
-                      - currency
                   shipping:
                     type: object
+                    required:
+                      - amount
+                      - currency
                     properties:
                       amount:
                         type: number
                       currency:
                         type: string
                         minLength: 1
-                    required:
-                      - amount
-                      - currency
                   sub_total:
                     type: object
+                    required:
+                      - amount
+                      - currency
                     properties:
                       amount:
                         type: number
                       currency:
                         type: string
                         minLength: 1
-                    required:
-                      - amount
-                      - currency
                   total:
                     type: object
+                    required:
+                      - amount
+                      - currency
                     properties:
                       amount:
                         type: number
                       currency:
                         type: string
                         minLength: 1
-                    required:
-                      - amount
-                      - currency
                   created_at:
                     type: string
                     minLength: 1
@@ -7940,6 +7992,11 @@ paths:
                     minLength: 1
                   payment:
                     type: object
+                    required:
+                      - status
+                      - method
+                      - transaction_id
+                      - method_detail_html
                     properties:
                       status:
                         type: string
@@ -7951,13 +8008,19 @@ paths:
                       method_detail_html:
                         type: string
                       method_details: {}
-                    required:
-                      - status
-                      - method
-                      - transaction_id
-                      - method_detail_html
                   shipping_address:
                     type: object
+                    required:
+                      - name
+                      - street1
+                      - email
+                      - phone
+                      - city
+                      - state
+                      - stateCode
+                      - postalCode
+                      - country
+                      - countryCode
                     properties:
                       name:
                         type: string
@@ -7989,19 +8052,19 @@ paths:
                       countryCode:
                         type: string
                         minLength: 1
-                    required:
-                      - name
-                      - street1
-                      - email
-                      - phone
-                      - city
-                      - state
-                      - stateCode
-                      - postalCode
-                      - country
-                      - countryCode
                   billing_address:
                     type: object
+                    required:
+                      - name
+                      - street1
+                      - email
+                      - phone
+                      - city
+                      - state
+                      - stateCode
+                      - postalCode
+                      - country
+                      - countryCode
                     properties:
                       name:
                         type: string
@@ -8033,24 +8096,24 @@ paths:
                       countryCode:
                         type: string
                         minLength: 1
-                    required:
-                      - name
-                      - street1
-                      - email
-                      - phone
-                      - city
-                      - state
-                      - stateCode
-                      - postalCode
-                      - country
-                      - countryCode
                   is_shipping_billing:
                     type: boolean
                   order_details_per_vendor:
                     type: object
+                    required:
+                      - 36970ed9-93a5-2593-eb4f-2ad54c1c336d
                     properties:
                       36970ed9-93a5-2593-eb4f-2ad54c1c336d:
                         type: object
+                        required:
+                          - external_order_id
+                          - status
+                          - cart_lines
+                          - taxes
+                          - shipping_options
+                          - shipping_selected
+                          - sub_total
+                          - total
                         properties:
                           external_order_id:
                             type: string
@@ -8061,16 +8124,7 @@ paths:
                             uniqueItems: true
                             minItems: 1
                             items:
-                              required:
-                                - product_id
-                                - product_variant_id
-                                - source_id
-                                - quantity
-                                - vendor_id
-                                - vendor_name
-                                - name
-                                - image_src
-                                - is_virtual
+                              type: object
                               properties:
                                 product_id:
                                   type: string
@@ -8111,33 +8165,49 @@ paths:
                                   required:
                                     - amount
                                     - currency
+                                actual_price:
+                                  type: object
+                                  properties:
+                                    amount:
+                                      type: number
+                                    currency:
+                                      type: string
+                                      minLength: 1
+                                  required:
+                                    - amount
+                                    - currency
                                 image_src:
                                   type: string
                                   minLength: 1
                                 is_virtual:
                                   type: boolean
+                              required:
+                                - product_id
+                                - product_variant_id
+                                - source_id
+                                - quantity
+                                - vendor_id
+                                - vendor_name
+                                - name
+                                - image_src
+                                - is_virtual
                           taxes:
                             type: object
+                            required:
+                              - amount
+                              - currency
                             properties:
                               amount:
                                 type: number
                               currency:
                                 type: string
                                 minLength: 1
-                            required:
-                              - amount
-                              - currency
                           shipping_options:
                             type: array
                             uniqueItems: true
                             minItems: 1
                             items:
-                              required:
-                                - method_key
-                                - method_title
-                                - method_id
-                                - shipping_html
-                                - chosen_method
+                              type: object
                               properties:
                                 method_key:
                                   type: string
@@ -8164,8 +8234,21 @@ paths:
                                   required:
                                     - amount
                                     - currency
+                              required:
+                                - method_key
+                                - method_title
+                                - method_id
+                                - shipping_html
+                                - chosen_method
                           shipping_selected:
                             type: object
+                            required:
+                              - method_key
+                              - method_title
+                              - method_id
+                              - shipping_html
+                              - chosen_method
+                              - total
                             properties:
                               method_key:
                                 type: string
@@ -8183,55 +8266,37 @@ paths:
                                 type: boolean
                               total:
                                 type: object
+                                required:
+                                  - amount
+                                  - currency
                                 properties:
                                   amount:
                                     type: number
                                   currency:
                                     type: string
                                     minLength: 1
-                                required:
-                                  - amount
-                                  - currency
-                            required:
-                              - method_key
-                              - method_title
-                              - method_id
-                              - shipping_html
-                              - chosen_method
-                              - total
                           sub_total:
                             type: object
+                            required:
+                              - amount
+                              - currency
                             properties:
                               amount:
                                 type: number
                               currency:
                                 type: string
                                 minLength: 1
-                            required:
-                              - amount
-                              - currency
                           total:
                             type: object
+                            required:
+                              - amount
+                              - currency
                             properties:
                               amount:
                                 type: number
                               currency:
                                 type: string
                                 minLength: 1
-                            required:
-                              - amount
-                              - currency
-                        required:
-                          - external_order_id
-                          - status
-                          - cart_lines
-                          - taxes
-                          - shipping_options
-                          - shipping_selected
-                          - sub_total
-                          - total
-                    required:
-                      - 36970ed9-93a5-2593-eb4f-2ad54c1c336d
                   requires_shipping:
                     type: boolean
                 required:
@@ -8362,6 +8427,104 @@ paths:
                           amount: 115.73
                           currency: USD
                     requires_shipping: true
+                example-2:
+                  value:
+                    id: string
+                    order_id: string
+                    device_id: string
+                    taxes:
+                      amount: 0
+                      currency: string
+                    shipping:
+                      amount: 0
+                      currency: string
+                    sub_total:
+                      amount: 0
+                      currency: string
+                    total:
+                      amount: 0
+                      currency: string
+                    created_at: string
+                    updated_at: string
+                    payment:
+                      status: string
+                      method: string
+                      transaction_id: string
+                      method_detail_html: string
+                      method_details: null
+                    shipping_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    billing_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        external_order_id: string
+                        status: string
+                        cart_lines:
+                          - product_id: string
+                            product_variant_id: string
+                            source_id: string
+                            quantity: 0
+                            variant_name_value:
+                              title: string
+                            vendor_id: string
+                            vendor_name: string
+                            name: string
+                            price:
+                              amount: 0
+                              currency: string
+                            actual_price:
+                              amount: 0
+                              currency: string
+                            image_src: string
+                            is_virtual: true
+                        taxes:
+                          amount: 0
+                          currency: string
+                        shipping_options:
+                          - method_key: string
+                            method_title: string
+                            method_id: string
+                            shipping_html: string
+                            chosen_method: true
+                            total:
+                              amount: 0
+                              currency: string
+                        shipping_selected:
+                          method_key: string
+                          method_title: string
+                          method_id: string
+                          shipping_html: string
+                          chosen_method: true
+                          total:
+                            amount: 0
+                            currency: string
+                        sub_total:
+                          amount: 0
+                          currency: string
+                        total:
+                          amount: 0
+                          currency: string
+                    requires_shipping: true
       tags:
         - checkout
       description: Updated checkout address
@@ -8386,6 +8549,17 @@ paths:
               properties:
                 shipping_address:
                   type: object
+                  required:
+                    - name
+                    - phone
+                    - email
+                    - street1
+                    - city
+                    - country
+                    - countryCode
+                    - state
+                    - stateCode
+                    - postalCode
                   properties:
                     name:
                       type: string
@@ -8417,19 +8591,19 @@ paths:
                     postalCode:
                       type: string
                       minLength: 1
-                  required:
-                    - name
-                    - phone
-                    - email
-                    - street1
-                    - city
-                    - country
-                    - countryCode
-                    - state
-                    - stateCode
-                    - postalCode
                 billing_address:
                   type: object
+                  required:
+                    - name
+                    - phone
+                    - email
+                    - street1
+                    - city
+                    - country
+                    - countryCode
+                    - state
+                    - stateCode
+                    - postalCode
                   properties:
                     name:
                       type: string
@@ -8461,19 +8635,10 @@ paths:
                     postalCode:
                       type: string
                       minLength: 1
-                  required:
-                    - name
-                    - phone
-                    - email
-                    - street1
-                    - city
-                    - country
-                    - countryCode
-                    - state
-                    - stateCode
-                    - postalCode
                 is_shipping_billing:
                   type: boolean
+                '':
+                  type: string
               required:
                 - shipping_address
                 - billing_address
@@ -8503,6 +8668,31 @@ paths:
                     state: Delhi
                     stateCode: DL
                     postalCode: '110004'
+                  is_shipping_billing: true
+              example-2:
+                value:
+                  shipping_address:
+                    name: string
+                    phone: string
+                    email: string
+                    street1: string
+                    city: string
+                    country: string
+                    countryCode: string
+                    state: string
+                    stateCode: string
+                    postalCode: string
+                  billing_address:
+                    name: string
+                    phone: string
+                    email: string
+                    street1: string
+                    city: string
+                    country: string
+                    countryCode: string
+                    state: string
+                    stateCode: string
+                    postalCode: string
                   is_shipping_billing: true
   '/checkout/{checkoutId}/payment':
     parameters:
@@ -8781,6 +8971,104 @@ paths:
                           amount: 0
                           currency: USD
                     requires_shipping: true
+                example-2:
+                  value:
+                    id: string
+                    order_id: string
+                    device_id: string
+                    taxes:
+                      amount: 0
+                      currency: string
+                    shipping:
+                      amount: 0
+                      currency: string
+                    sub_total:
+                      amount: 0
+                      currency: string
+                    total:
+                      amount: 0
+                      currency: string
+                    created_at: string
+                    updated_at: string
+                    payment:
+                      status: string
+                      method: string
+                      transaction_id: string
+                      method_detail_html: string
+                      method_details: null
+                    shipping_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    billing_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        external_order_id: string
+                        status: string
+                        cart_lines:
+                          - product_id: string
+                            product_variant_id: string
+                            source_id: string
+                            quantity: 0
+                            variant_name_value:
+                              title: string
+                            vendor_id: string
+                            vendor_name: string
+                            name: string
+                            price:
+                              amount: 0
+                              currency: string
+                            image_src: string
+                            is_virtual: true
+                            actual_price:
+                              amount: 0
+                              currency: string
+                        taxes:
+                          amount: 0
+                          currency: string
+                        shipping_options:
+                          - method_key: string
+                            method_title: string
+                            method_id: string
+                            shipping_html: string
+                            chosen_method: true
+                            total:
+                              amount: 0
+                              currency: string
+                        shipping_selected:
+                          method_key: string
+                          method_title: string
+                          method_id: string
+                          shipping_html: string
+                          chosen_method: true
+                          total:
+                            amount: 0
+                            currency: string
+                        sub_total:
+                          amount: 0
+                          currency: string
+                        total:
+                          amount: 0
+                          currency: string
+                    requires_shipping: true
       description: Updated checkout shipping method
       parameters:
         - schema:
@@ -8954,6 +9242,104 @@ paths:
                         total:
                           amount: 115.73
                           currency: USD
+                    requires_shipping: true
+                example-2:
+                  value:
+                    id: string
+                    order_id: string
+                    device_id: string
+                    taxes:
+                      amount: 0
+                      currency: string
+                    shipping:
+                      amount: 0
+                      currency: string
+                    sub_total:
+                      amount: 0
+                      currency: string
+                    total:
+                      amount: 0
+                      currency: string
+                    created_at: string
+                    updated_at: string
+                    payment:
+                      status: string
+                      method: string
+                      transaction_id: string
+                      method_detail_html: string
+                      method_details: null
+                    shipping_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    billing_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+                        external_order_id: string
+                        status: string
+                        cart_lines:
+                          - product_id: string
+                            product_variant_id: string
+                            source_id: string
+                            quantity: 0
+                            variant_name_value:
+                              title: string
+                            vendor_id: string
+                            vendor_name: string
+                            name: string
+                            price:
+                              amount: 0
+                              currency: string
+                            image_src: string
+                            is_virtual: true
+                            actual_price:
+                              amount: 0
+                              currency: string
+                        taxes:
+                          amount: 0
+                          currency: string
+                        shipping_options:
+                          - method_key: string
+                            method_title: string
+                            method_id: string
+                            shipping_html: string
+                            chosen_method: true
+                            total:
+                              amount: 0
+                              currency: string
+                        shipping_selected:
+                          method_key: string
+                          method_title: string
+                          method_id: string
+                          shipping_html: string
+                          chosen_method: true
+                          total:
+                            amount: 0
+                            currency: string
+                        sub_total:
+                          amount: 0
+                          currency: string
+                        total:
+                          amount: 0
+                          currency: string
                     requires_shipping: true
       operationId: get-checkout-checkoutId
       description: Fetch checkout details
@@ -9744,6 +10130,100 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Shoptype-Order'
+              examples:
+                example-1:
+                  value:
+                    id: string
+                    device_id: string
+                    taxes:
+                      amount: 0
+                      currency: string
+                    sub_total:
+                      amount: 0
+                      currency: string
+                    total:
+                      amount: 0
+                      currency: string
+                    payment:
+                      status: string
+                      method: string
+                      transaction_id: string
+                      method_detail_html: string
+                      method_details: null
+                    shipping_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    billing_address:
+                      name: string
+                      street1: string
+                      email: string
+                      phone: string
+                      city: string
+                      state: string
+                      stateCode: string
+                      postalCode: string
+                      country: string
+                      countryCode: string
+                    is_shipping_billing: true
+                    order_details_per_vendor:
+                      '{VendorId}':
+                        external_order_id: string
+                        status: string
+                        cart_lines:
+                          - product_id: string
+                            product_variant_id: string
+                            source_id: string
+                            quantity: 0
+                            variant_name_value:
+                              title: string
+                            vendor_id: string
+                            vendor_name: string
+                            is_virtual: true
+                            price:
+                              amount: 0
+                              currency: string
+                            actual_price:
+                              amount: 0
+                              currency: string
+                        taxes:
+                          amount: 0
+                          currency: string
+                        shipping_options:
+                          - method_key: string
+                            method_title: string
+                            method_id: string
+                            shipping_html: string
+                            chosen_method: true
+                            total:
+                              amount: 0
+                              currency: string
+                        shipping_selected:
+                          method_key: string
+                          method_title: string
+                          method_id: string
+                          shipping_html: string
+                          chosen_method: true
+                        history:
+                          - status_from: string
+                            status_to: string
+                            updated_at: string
+                        sub_total:
+                          amount: 0
+                          currency: string
+                        total:
+                          amount: 0
+                          currency: string
+                    requires_shipping: true
+                    created_at: string
+                    updated_at: string
       operationId: get-order-details-orderId
       description: Get Order Details for an order placed through Shoptype with Order Details per vendor with updated status and history
 components:
@@ -10918,6 +11398,29 @@ components:
     Cart:
       description: ''
       type: object
+      x-examples:
+        Sample cart:
+          id: 8577356d-de44-42db-845d-50a690bd3172
+          cart_lines:
+            - product_id: ca638752-75ea-a703-d5e3-1bb1969c2ca9
+              product_variant_id: '8173'
+              source_id: '8173'
+              quantity: 1
+              variant_name_value:
+                title: Default Title
+              vendor_id: a216b020-4d8f-c0bc-0aea-75664504f309
+              vendor_name: Syncrefat
+              name: SynercentCrafts-Dusk Lagoon' Handwoven Mercerized Cotton Saree
+              price:
+                amount: 3216
+                currency: INR
+              image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9bd883d0-a397-ae35-d3df-0a42315aa7fa/DLJDMCCTSRP1.jpg'
+              is_virtual: false
+          sub_total:
+            amount: 3216
+            currency: INR
+          total_quantity: 1
+      title: Cart
       properties:
         id:
           type: string
@@ -10959,11 +11462,15 @@ components:
                 minLength: 1
               price:
                 $ref: '#/components/schemas/Money'
+              actual_price:
+                $ref: '#/components/schemas/Money'
               image_src:
                 type: string
                 minLength: 1
               is_virtual:
                 type: boolean
+              '':
+                type: string
             required:
               - product_id
               - product_variant_id
@@ -10983,406 +11490,9 @@ components:
         - cart_lines
         - sub_total
         - total_quantity
-      x-examples:
-        Sample cart:
-          id: 8577356d-de44-42db-845d-50a690bd3172
-          cart_lines:
-            - product_id: ca638752-75ea-a703-d5e3-1bb1969c2ca9
-              product_variant_id: '8173'
-              source_id: '8173'
-              quantity: 1
-              variant_name_value:
-                title: Default Title
-              vendor_id: a216b020-4d8f-c0bc-0aea-75664504f309
-              vendor_name: Syncrefat
-              name: SynercentCrafts-Dusk Lagoon' Handwoven Mercerized Cotton Saree
-              price:
-                amount: 3216
-                currency: INR
-              image_src: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9bd883d0-a397-ae35-d3df-0a42315aa7fa/DLJDMCCTSRP1.jpg'
-              is_virtual: false
-          sub_total:
-            amount: 3216
-            currency: INR
-          total_quantity: 1
-      title: Cart
     Checkout:
       description: Supports multi vendor
       type: object
-      properties:
-        id:
-          type: string
-          minLength: 1
-        order_id:
-          type: string
-          minLength: 1
-        device_id:
-          type: string
-          minLength: 1
-        taxes:
-          type: object
-          properties:
-            amount:
-              type: number
-            currency:
-              type: string
-              minLength: 1
-          required:
-            - amount
-            - currency
-        shipping:
-          type: object
-          properties:
-            amount:
-              type: number
-            currency:
-              type: string
-              minLength: 1
-          required:
-            - amount
-            - currency
-        sub_total:
-          type: object
-          properties:
-            amount:
-              type: number
-            currency:
-              type: string
-              minLength: 1
-          required:
-            - amount
-            - currency
-        total:
-          type: object
-          properties:
-            amount:
-              type: number
-            currency:
-              type: string
-              minLength: 1
-          required:
-            - amount
-            - currency
-        created_at:
-          type: string
-          minLength: 1
-        updated_at:
-          type: string
-          minLength: 1
-        payment:
-          type: object
-          properties:
-            status:
-              type: string
-              minLength: 1
-            method:
-              type: string
-              minLength: 1
-            transaction_id:
-              type: string
-              minLength: 1
-            method_detail_html:
-              type: string
-            method_details: {}
-          required:
-            - status
-            - method
-            - transaction_id
-            - method_detail_html
-        shipping_address:
-          type: object
-          properties:
-            name:
-              type: string
-              minLength: 1
-            street1:
-              type: string
-              minLength: 1
-            email:
-              type: string
-              minLength: 1
-            phone:
-              type: string
-              minLength: 1
-            city:
-              type: string
-              minLength: 1
-            state:
-              type: string
-              minLength: 1
-            stateCode:
-              type: string
-              minLength: 1
-            postalCode:
-              type: string
-              minLength: 1
-            country:
-              type: string
-              minLength: 1
-            countryCode:
-              type: string
-              minLength: 1
-          required:
-            - name
-            - street1
-            - email
-            - phone
-            - city
-            - state
-            - stateCode
-            - postalCode
-            - country
-            - countryCode
-        billing_address:
-          type: object
-          properties:
-            name:
-              type: string
-              minLength: 1
-            street1:
-              type: string
-              minLength: 1
-            email:
-              type: string
-              minLength: 1
-            phone:
-              type: string
-              minLength: 1
-            city:
-              type: string
-              minLength: 1
-            state:
-              type: string
-              minLength: 1
-            stateCode:
-              type: string
-              minLength: 1
-            postalCode:
-              type: string
-              minLength: 1
-            country:
-              type: string
-              minLength: 1
-            countryCode:
-              type: string
-              minLength: 1
-          required:
-            - name
-            - street1
-            - email
-            - phone
-            - city
-            - state
-            - stateCode
-            - postalCode
-            - country
-            - countryCode
-        is_shipping_billing:
-          type: boolean
-        order_details_per_vendor:
-          type: object
-          properties:
-            36970ed9-93a5-2593-eb4f-2ad54c1c336d:
-              type: object
-              properties:
-                external_order_id:
-                  type: string
-                status:
-                  type: string
-                cart_lines:
-                  type: array
-                  uniqueItems: true
-                  minItems: 1
-                  items:
-                    required:
-                      - product_id
-                      - product_variant_id
-                      - source_id
-                      - quantity
-                      - vendor_id
-                      - vendor_name
-                      - name
-                      - image_src
-                      - is_virtual
-                    properties:
-                      product_id:
-                        type: string
-                        minLength: 1
-                      product_variant_id:
-                        type: string
-                        minLength: 1
-                      source_id:
-                        type: string
-                        minLength: 1
-                      quantity:
-                        type: number
-                      variant_name_value:
-                        type: object
-                        properties:
-                          title:
-                            type: string
-                            minLength: 1
-                        required:
-                          - title
-                      vendor_id:
-                        type: string
-                        minLength: 1
-                      vendor_name:
-                        type: string
-                        minLength: 1
-                      name:
-                        type: string
-                        minLength: 1
-                      price:
-                        type: object
-                        properties:
-                          amount:
-                            type: number
-                          currency:
-                            type: string
-                            minLength: 1
-                        required:
-                          - amount
-                          - currency
-                      image_src:
-                        type: string
-                        minLength: 1
-                      is_virtual:
-                        type: boolean
-                taxes:
-                  type: object
-                  properties:
-                    amount:
-                      type: number
-                    currency:
-                      type: string
-                      minLength: 1
-                  required:
-                    - amount
-                    - currency
-                shipping_options:
-                  type: array
-                  uniqueItems: true
-                  minItems: 1
-                  items:
-                    required:
-                      - method_key
-                      - method_title
-                      - method_id
-                      - shipping_html
-                      - chosen_method
-                    properties:
-                      method_key:
-                        type: string
-                        minLength: 1
-                      method_title:
-                        type: string
-                        minLength: 1
-                      method_id:
-                        type: string
-                        minLength: 1
-                      shipping_html:
-                        type: string
-                        minLength: 1
-                      chosen_method:
-                        type: boolean
-                      total:
-                        type: object
-                        properties:
-                          amount:
-                            type: number
-                          currency:
-                            type: string
-                            minLength: 1
-                        required:
-                          - amount
-                          - currency
-                shipping_selected:
-                  type: object
-                  properties:
-                    method_key:
-                      type: string
-                      minLength: 1
-                    method_title:
-                      type: string
-                      minLength: 1
-                    method_id:
-                      type: string
-                      minLength: 1
-                    shipping_html:
-                      type: string
-                      minLength: 1
-                    chosen_method:
-                      type: boolean
-                    total:
-                      type: object
-                      properties:
-                        amount:
-                          type: number
-                        currency:
-                          type: string
-                          minLength: 1
-                      required:
-                        - amount
-                        - currency
-                  required:
-                    - method_key
-                    - method_title
-                    - method_id
-                    - shipping_html
-                    - chosen_method
-                    - total
-                sub_total:
-                  type: object
-                  properties:
-                    amount:
-                      type: number
-                    currency:
-                      type: string
-                      minLength: 1
-                  required:
-                    - amount
-                    - currency
-                total:
-                  type: object
-                  properties:
-                    amount:
-                      type: number
-                    currency:
-                      type: string
-                      minLength: 1
-                  required:
-                    - amount
-                    - currency
-              required:
-                - external_order_id
-                - status
-                - cart_lines
-                - taxes
-                - shipping_options
-                - shipping_selected
-                - sub_total
-                - total
-          required:
-            - 36970ed9-93a5-2593-eb4f-2ad54c1c336d
-        requires_shipping:
-          type: boolean
-      required:
-        - id
-        - order_id
-        - device_id
-        - taxes
-        - shipping
-        - sub_total
-        - total
-        - created_at
-        - updated_at
-        - payment
-        - shipping_address
-        - billing_address
-        - is_shipping_billing
-        - order_details_per_vendor
-        - requires_shipping
       x-examples:
         Sample body:
           id: 7f4f1be1-9501-491c-bd5b-603c30a24321
@@ -11495,6 +11605,384 @@ components:
                 currency: USD
           requires_shipping: true
       title: Checkout
+      properties:
+        id:
+          type: string
+          minLength: 1
+        order_id:
+          type: string
+          minLength: 1
+        device_id:
+          type: string
+          minLength: 1
+        taxes:
+          type: object
+          required:
+            - amount
+            - currency
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+        shipping:
+          type: object
+          required:
+            - amount
+            - currency
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+        sub_total:
+          type: object
+          required:
+            - amount
+            - currency
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+        total:
+          type: object
+          required:
+            - amount
+            - currency
+          properties:
+            amount:
+              type: number
+            currency:
+              type: string
+              minLength: 1
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        payment:
+          type: object
+          required:
+            - status
+            - method
+            - transaction_id
+            - method_detail_html
+          properties:
+            status:
+              type: string
+              minLength: 1
+            method:
+              type: string
+              minLength: 1
+            transaction_id:
+              type: string
+              minLength: 1
+            method_detail_html:
+              type: string
+            method_details: {}
+        shipping_address:
+          type: object
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
+          properties:
+            name:
+              type: string
+              minLength: 1
+            street1:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              minLength: 1
+            phone:
+              type: string
+              minLength: 1
+            city:
+              type: string
+              minLength: 1
+            state:
+              type: string
+              minLength: 1
+            stateCode:
+              type: string
+              minLength: 1
+            postalCode:
+              type: string
+              minLength: 1
+            country:
+              type: string
+              minLength: 1
+            countryCode:
+              type: string
+              minLength: 1
+        billing_address:
+          type: object
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
+          properties:
+            name:
+              type: string
+              minLength: 1
+            street1:
+              type: string
+              minLength: 1
+            email:
+              type: string
+              minLength: 1
+            phone:
+              type: string
+              minLength: 1
+            city:
+              type: string
+              minLength: 1
+            state:
+              type: string
+              minLength: 1
+            stateCode:
+              type: string
+              minLength: 1
+            postalCode:
+              type: string
+              minLength: 1
+            country:
+              type: string
+              minLength: 1
+            countryCode:
+              type: string
+              minLength: 1
+        is_shipping_billing:
+          type: boolean
+        order_details_per_vendor:
+          type: object
+          required:
+            - 36970ed9-93a5-2593-eb4f-2ad54c1c336d
+          properties:
+            36970ed9-93a5-2593-eb4f-2ad54c1c336d:
+              type: object
+              required:
+                - external_order_id
+                - status
+                - cart_lines
+                - taxes
+                - shipping_options
+                - shipping_selected
+                - sub_total
+                - total
+              properties:
+                external_order_id:
+                  type: string
+                status:
+                  type: string
+                cart_lines:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      product_id:
+                        type: string
+                        minLength: 1
+                      product_variant_id:
+                        type: string
+                        minLength: 1
+                      source_id:
+                        type: string
+                        minLength: 1
+                      quantity:
+                        type: number
+                      variant_name_value:
+                        type: object
+                        properties:
+                          title:
+                            type: string
+                            minLength: 1
+                        required:
+                          - title
+                      vendor_id:
+                        type: string
+                        minLength: 1
+                      vendor_name:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                        minLength: 1
+                      price:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                          currency:
+                            type: string
+                            minLength: 1
+                        required:
+                          - amount
+                          - currency
+                      image_src:
+                        type: string
+                        minLength: 1
+                      is_virtual:
+                        type: boolean
+                      actual_price:
+                        $ref: '#/components/schemas/Money'
+                    required:
+                      - product_id
+                      - product_variant_id
+                      - source_id
+                      - quantity
+                      - vendor_id
+                      - vendor_name
+                      - name
+                      - image_src
+                      - is_virtual
+                taxes:
+                  type: object
+                  required:
+                    - amount
+                    - currency
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                shipping_options:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      method_key:
+                        type: string
+                        minLength: 1
+                      method_title:
+                        type: string
+                        minLength: 1
+                      method_id:
+                        type: string
+                        minLength: 1
+                      shipping_html:
+                        type: string
+                        minLength: 1
+                      chosen_method:
+                        type: boolean
+                      total:
+                        type: object
+                        properties:
+                          amount:
+                            type: number
+                          currency:
+                            type: string
+                            minLength: 1
+                        required:
+                          - amount
+                          - currency
+                    required:
+                      - method_key
+                      - method_title
+                      - method_id
+                      - shipping_html
+                      - chosen_method
+                shipping_selected:
+                  type: object
+                  required:
+                    - method_key
+                    - method_title
+                    - method_id
+                    - shipping_html
+                    - chosen_method
+                    - total
+                  properties:
+                    method_key:
+                      type: string
+                      minLength: 1
+                    method_title:
+                      type: string
+                      minLength: 1
+                    method_id:
+                      type: string
+                      minLength: 1
+                    shipping_html:
+                      type: string
+                      minLength: 1
+                    chosen_method:
+                      type: boolean
+                    total:
+                      type: object
+                      required:
+                        - amount
+                        - currency
+                      properties:
+                        amount:
+                          type: number
+                        currency:
+                          type: string
+                          minLength: 1
+                sub_total:
+                  type: object
+                  required:
+                    - amount
+                    - currency
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                total:
+                  type: object
+                  required:
+                    - amount
+                    - currency
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+        requires_shipping:
+          type: boolean
+      required:
+        - id
+        - order_id
+        - device_id
+        - taxes
+        - shipping
+        - sub_total
+        - total
+        - created_at
+        - updated_at
+        - payment
+        - shipping_address
+        - billing_address
+        - is_shipping_billing
+        - order_details_per_vendor
+        - requires_shipping
     ProductAttributionConfig:
       description: ''
       type: object
@@ -11589,39 +12077,44 @@ components:
           minLength: 1
         taxes:
           type: object
+          required:
+            - amount
+            - currency
           properties:
             amount:
               type: number
             currency:
               type: string
               minLength: 1
-          required:
-            - amount
-            - currency
         sub_total:
           type: object
+          required:
+            - amount
+            - currency
           properties:
             amount:
               type: number
             currency:
               type: string
               minLength: 1
-          required:
-            - amount
-            - currency
         total:
           type: object
+          required:
+            - amount
+            - currency
           properties:
             amount:
               type: number
             currency:
               type: string
               minLength: 1
-          required:
-            - amount
-            - currency
         payment:
           type: object
+          required:
+            - status
+            - method
+            - transaction_id
+            - method_detail_html
           properties:
             status:
               type: string
@@ -11635,13 +12128,19 @@ components:
             method_detail_html:
               type: string
             method_details: {}
-          required:
-            - status
-            - method
-            - transaction_id
-            - method_detail_html
         shipping_address:
           type: object
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
           properties:
             name:
               type: string
@@ -11673,19 +12172,19 @@ components:
             countryCode:
               type: string
               minLength: 1
-          required:
-            - name
-            - street1
-            - email
-            - phone
-            - city
-            - state
-            - stateCode
-            - postalCode
-            - country
-            - countryCode
         billing_address:
           type: object
+          required:
+            - name
+            - street1
+            - email
+            - phone
+            - city
+            - state
+            - stateCode
+            - postalCode
+            - country
+            - countryCode
           properties:
             name:
               type: string
@@ -11717,24 +12216,25 @@ components:
             countryCode:
               type: string
               minLength: 1
-          required:
-            - name
-            - street1
-            - email
-            - phone
-            - city
-            - state
-            - stateCode
-            - postalCode
-            - country
-            - countryCode
         is_shipping_billing:
           type: boolean
         order_details_per_vendor:
           type: object
+          required:
+            - '{VendorId}'
           properties:
             '{VendorId}':
               type: object
+              required:
+                - external_order_id
+                - status
+                - cart_lines
+                - taxes
+                - shipping_options
+                - shipping_selected
+                - history
+                - sub_total
+                - total
               properties:
                 external_order_id:
                   type: string
@@ -11747,14 +12247,7 @@ components:
                   uniqueItems: true
                   minItems: 1
                   items:
-                    required:
-                      - product_id
-                      - product_variant_id
-                      - source_id
-                      - quantity
-                      - vendor_id
-                      - vendor_name
-                      - is_virtual
+                    type: object
                     properties:
                       product_id:
                         type: string
@@ -11781,28 +12274,35 @@ components:
                         type: string
                       is_virtual:
                         type: boolean
+                      price:
+                        $ref: '#/components/schemas/Money'
+                      actual_price:
+                        $ref: '#/components/schemas/Money'
+                    required:
+                      - product_id
+                      - product_variant_id
+                      - source_id
+                      - quantity
+                      - vendor_id
+                      - vendor_name
+                      - is_virtual
                 taxes:
                   type: object
+                  required:
+                    - amount
+                    - currency
                   properties:
                     amount:
                       type: number
                     currency:
                       type: string
                       minLength: 1
-                  required:
-                    - amount
-                    - currency
                 shipping_options:
                   type: array
                   uniqueItems: true
                   minItems: 1
                   items:
-                    required:
-                      - method_key
-                      - method_title
-                      - method_id
-                      - shipping_html
-                      - chosen_method
+                    type: object
                     properties:
                       method_key:
                         type: string
@@ -11829,8 +12329,20 @@ components:
                         required:
                           - amount
                           - currency
+                    required:
+                      - method_key
+                      - method_title
+                      - method_id
+                      - shipping_html
+                      - chosen_method
                 shipping_selected:
                   type: object
+                  required:
+                    - method_key
+                    - method_title
+                    - method_id
+                    - shipping_html
+                    - chosen_method
                   properties:
                     method_key:
                       type: string
@@ -11846,21 +12358,12 @@ components:
                       minLength: 1
                     chosen_method:
                       type: boolean
-                  required:
-                    - method_key
-                    - method_title
-                    - method_id
-                    - shipping_html
-                    - chosen_method
                 history:
                   type: array
                   uniqueItems: true
                   minItems: 1
                   items:
-                    required:
-                      - status_from
-                      - status_to
-                      - updated_at
+                    type: object
                     properties:
                       status_from:
                         type: string
@@ -11870,40 +12373,32 @@ components:
                       updated_at:
                         type: string
                         minLength: 1
+                    required:
+                      - status_from
+                      - status_to
+                      - updated_at
                 sub_total:
                   type: object
+                  required:
+                    - amount
+                    - currency
                   properties:
                     amount:
                       type: number
                     currency:
                       type: string
                       minLength: 1
-                  required:
-                    - amount
-                    - currency
                 total:
                   type: object
+                  required:
+                    - amount
+                    - currency
                   properties:
                     amount:
                       type: number
                     currency:
                       type: string
                       minLength: 1
-                  required:
-                    - amount
-                    - currency
-              required:
-                - external_order_id
-                - status
-                - cart_lines
-                - taxes
-                - shipping_options
-                - shipping_selected
-                - history
-                - sub_total
-                - total
-          required:
-            - '{VendorId}'
         requires_shipping:
           type: boolean
         created_at:
