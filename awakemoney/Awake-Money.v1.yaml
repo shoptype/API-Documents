@@ -501,6 +501,223 @@ paths:
           name: authorization
           description: user token
           required: true
+  /linked-account:
+    post:
+      summary: Create a linked account
+      tags:
+        - linkedAccount
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    linked_account:
+                      created_at: '2021-07-13T00:01:04.28885+05:30'
+                      updated_at: '2021-07-13T00:01:04.28885+05:30'
+                      deleted_at:
+                        Time: '0001-01-01T00:00:00Z'
+                        Valid: false
+                      ID: 3
+                      type: stripe
+                      token: null
+                      amount: 0
+                      account_id: 2
+                      linked_account_id: 18
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHml&redirect_uri=&state=c3vss1dh5s5iqdchht00&suggested_capabilities='
+                properties:
+                  linked_account:
+                    type: object
+                    required:
+                      - created_at
+                      - updated_at
+                      - deleted_at
+                      - ID
+                      - type
+                      - amount
+                      - account_id
+                      - linked_account_id
+                    properties:
+                      created_at:
+                        type: string
+                        minLength: 1
+                      updated_at:
+                        type: string
+                        minLength: 1
+                      deleted_at:
+                        type: object
+                        required:
+                          - Time
+                          - Valid
+                        properties:
+                          Time:
+                            type: string
+                            minLength: 1
+                          Valid:
+                            type: boolean
+                      ID:
+                        type: number
+                      type:
+                        type: string
+                        minLength: 1
+                      token: {}
+                      amount:
+                        type: number
+                      account_id:
+                        type: number
+                      linked_account_id:
+                        type: number
+                  slug:
+                    type: string
+                    minLength: 1
+                    description: Slug to create a stripe connect account with the linked user
+                required:
+                  - linked_account
+                  - slug
+              examples:
+                Example:
+                  value:
+                    linked_account:
+                      created_at: '2021-07-13T00:01:04.28885+05:30'
+                      updated_at: '2021-07-13T00:01:04.28885+05:30'
+                      deleted_at:
+                        Time: '0001-01-01T00:00:00Z'
+                        Valid: false
+                      ID: 3
+                      type: stripe
+                      token: null
+                      amount: 0
+                      account_id: 2
+                      linked_account_id: 18
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RL&redirect_uri=&state=c3vss1dh5s5iqdchht00&suggested_capabilities='
+      operationId: post-linked-account
+      description: To create a linked account
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                  currency: usd
+                  redirect_url: 'https://dev.shoptype.com/dashboard'
+              properties:
+                user_id:
+                  type: string
+                  minLength: 1
+                currency:
+                  type: string
+                  minLength: 1
+                redirect_url:
+                  type: string
+                  minLength: 1
+                  description: Optional field - pass this in order to from the stripe connect slug with a redirect uri
+              required:
+                - user_id
+                - currency
+    get:
+      summary: Fetch all linked accounts
+      tags:
+        - linkedAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LinkedAccount'
+              examples:
+                example-1 when stripe connect is not complete - token field is null:
+                  value:
+                    - created_at: '2021-07-13T00:01:04.28885+05:30'
+                      updated_at: '2021-07-13T00:01:04.28885+05:30'
+                      deleted_at:
+                        Time: '0001-01-01T00:00:00Z'
+                        Valid: false
+                      ID: 3
+                      type: stripe
+                      token: null
+                      amount: 0
+                      account_id: 2
+                      linked_account_id: 18
+                      user_id: db95654b-d967-4470-94d6-0f309072ecb7
+                      linked_user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                      account_name: puma_account
+                      asset_type_unit: usd
+                    - created_at: '2021-07-14T16:06:01.494116+05:30'
+                      updated_at: '2021-07-14T16:06:01.494116+05:30'
+                      deleted_at:
+                        Time: '0001-01-01T00:00:00Z'
+                        Valid: false
+                      ID: 4
+                      type: stripe
+                      token: null
+                      amount: 0
+                      account_id: 6
+                      linked_account_id: 17
+                      user_id: db95654b-d967-4470-94d6-0f309072ecb7
+                      linked_user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                      account_name: puma_account
+                      asset_type_unit: cad
+                example-2 when stripe connect is done - token object has stripe connect details:
+                  value:
+                    - created_at: string
+                      updated_at: string
+                      deleted_at:
+                        Time: string
+                        Valid: true
+                      ID: 0
+                      type: string
+                      token:
+                        scope: string
+                        livemode: true
+                        token_type: string
+                        access_token: string
+                        refresh_token: string
+                        stripe_user_id: string
+                        stripe_publishable_key: string
+                      amount: 0
+                      account_id: 0
+                      linked_account_id: 0
+                      user_id: string
+                      linked_user_id: string
+                      account_name: string
+                      asset_type_unit: string
+      operationId: get-linked-account
+      description: Fetches all the existing linked accounts for the user
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: linkedAccountId
+          description: Filter by linked account
+        - schema:
+            type: string
+          in: query
+          name: currency
+          description: 'Filter by currency - usd, cad, brl, etc'
   /withdraw:
     post:
       summary: Withdraw money from wallet
@@ -802,134 +1019,6 @@ paths:
           required: true
       tags:
         - razorpay
-  /linked-account:
-    post:
-      summary: Create a linked account
-      tags:
-        - linkedAccount
-      responses:
-        '200':
-          description: OK
-          headers: {}
-          content:
-            application/json:
-              schema:
-                description: ''
-                type: object
-                x-examples:
-                  example-1:
-                    linked_account:
-                      created_at: '2021-07-13T00:01:04.28885+05:30'
-                      updated_at: '2021-07-13T00:01:04.28885+05:30'
-                      deleted_at:
-                        Time: '0001-01-01T00:00:00Z'
-                        Valid: false
-                      ID: 3
-                      type: stripe
-                      token: null
-                      amount: 0
-                      account_id: 2
-                      linked_account_id: 18
-                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHml&redirect_uri=&state=c3vss1dh5s5iqdchht00&suggested_capabilities='
-                properties:
-                  linked_account:
-                    type: object
-                    required:
-                      - created_at
-                      - updated_at
-                      - deleted_at
-                      - ID
-                      - type
-                      - amount
-                      - account_id
-                      - linked_account_id
-                    properties:
-                      created_at:
-                        type: string
-                        minLength: 1
-                      updated_at:
-                        type: string
-                        minLength: 1
-                      deleted_at:
-                        type: object
-                        required:
-                          - Time
-                          - Valid
-                        properties:
-                          Time:
-                            type: string
-                            minLength: 1
-                          Valid:
-                            type: boolean
-                      ID:
-                        type: number
-                      type:
-                        type: string
-                        minLength: 1
-                      token: {}
-                      amount:
-                        type: number
-                      account_id:
-                        type: number
-                      linked_account_id:
-                        type: number
-                  slug:
-                    type: string
-                    minLength: 1
-                    description: Slug to create a stripe connect account with the linked user
-                required:
-                  - linked_account
-                  - slug
-              examples:
-                Example:
-                  value:
-                    linked_account:
-                      created_at: '2021-07-13T00:01:04.28885+05:30'
-                      updated_at: '2021-07-13T00:01:04.28885+05:30'
-                      deleted_at:
-                        Time: '0001-01-01T00:00:00Z'
-                        Valid: false
-                      ID: 3
-                      type: stripe
-                      token: null
-                      amount: 0
-                      account_id: 2
-                      linked_account_id: 18
-                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RL&redirect_uri=&state=c3vss1dh5s5iqdchht00&suggested_capabilities='
-      operationId: post-linked-account
-      description: To create a linked account
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: authorization
-          description: user token
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              x-examples:
-                example-1:
-                  user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
-                  currency: usd
-                  redirect_url: 'https://dev.shoptype.com/dashboard'
-              properties:
-                user_id:
-                  type: string
-                  minLength: 1
-                currency:
-                  type: string
-                  minLength: 1
-                redirect_url:
-                  type: string
-                  minLength: 1
-                  description: Optional field - pass this in order to from the stripe connect slug with a redirect uri
-              required:
-                - user_id
-                - currency
 components:
   schemas:
     Transaction:
