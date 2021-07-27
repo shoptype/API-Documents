@@ -802,6 +802,134 @@ paths:
           required: true
       tags:
         - razorpay
+  /linked-account:
+    post:
+      summary: Create a linked account
+      tags:
+        - linkedAccount
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    linked_account:
+                      created_at: '2021-07-13T00:01:04.28885+05:30'
+                      updated_at: '2021-07-13T00:01:04.28885+05:30'
+                      deleted_at:
+                        Time: '0001-01-01T00:00:00Z'
+                        Valid: false
+                      ID: 3
+                      type: stripe
+                      token: null
+                      amount: 0
+                      account_id: 2
+                      linked_account_id: 18
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHml&redirect_uri=&state=c3vss1dh5s5iqdchht00&suggested_capabilities='
+                properties:
+                  linked_account:
+                    type: object
+                    required:
+                      - created_at
+                      - updated_at
+                      - deleted_at
+                      - ID
+                      - type
+                      - amount
+                      - account_id
+                      - linked_account_id
+                    properties:
+                      created_at:
+                        type: string
+                        minLength: 1
+                      updated_at:
+                        type: string
+                        minLength: 1
+                      deleted_at:
+                        type: object
+                        required:
+                          - Time
+                          - Valid
+                        properties:
+                          Time:
+                            type: string
+                            minLength: 1
+                          Valid:
+                            type: boolean
+                      ID:
+                        type: number
+                      type:
+                        type: string
+                        minLength: 1
+                      token: {}
+                      amount:
+                        type: number
+                      account_id:
+                        type: number
+                      linked_account_id:
+                        type: number
+                  slug:
+                    type: string
+                    minLength: 1
+                    description: Slug to create a stripe connect account with the linked user
+                required:
+                  - linked_account
+                  - slug
+              examples:
+                Example:
+                  value:
+                    linked_account:
+                      created_at: '2021-07-13T00:01:04.28885+05:30'
+                      updated_at: '2021-07-13T00:01:04.28885+05:30'
+                      deleted_at:
+                        Time: '0001-01-01T00:00:00Z'
+                        Valid: false
+                      ID: 3
+                      type: stripe
+                      token: null
+                      amount: 0
+                      account_id: 2
+                      linked_account_id: 18
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RL&redirect_uri=&state=c3vss1dh5s5iqdchht00&suggested_capabilities='
+      operationId: post-linked-account
+      description: To create a linked account
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                  currency: usd
+                  redirect_url: 'https://dev.shoptype.com/dashboard'
+              properties:
+                user_id:
+                  type: string
+                  minLength: 1
+                currency:
+                  type: string
+                  minLength: 1
+                redirect_url:
+                  type: string
+                  minLength: 1
+                  description: Optional field - pass this in order to from the stripe connect slug with a redirect uri
+              required:
+                - user_id
+                - currency
 components:
   schemas:
     Transaction:
