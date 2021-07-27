@@ -718,6 +718,52 @@ paths:
           in: query
           name: currency
           description: 'Filter by currency - usd, cad, brl, etc'
+  '/linked-account/stripe-connect/slug/{linkedAccountId}':
+    parameters:
+      - schema:
+          type: string
+        name: linkedAccountId
+        in: path
+        required: true
+    get:
+      summary: Get stripe connect slug for the linked account
+      tags:
+        - linkedAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    minLength: 1
+                required:
+                  - slug
+                x-examples:
+                  example-1:
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RLpKSCKaFD1yWfq8Ns9xhvWu&redirect_uri=https%3Atest&state=c3vt4e5h5s5iqdchht0g&suggested_capabilities='
+              examples:
+                example-1:
+                  value:
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RLpK&redirect_uri=https%3Atest&state=c3vt4e5h5s5iqdchht0g&suggested_capabilities='
+      operationId: get-linked-account-stripe-connect-slug-linkedAccountId
+      description: Generates a slug for completing the stripe-connect kyc with the linked account
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: redirectUri
+          description: Redirect uri for redirecting after completing stripe connect kyc
   /withdraw:
     post:
       summary: Withdraw money from wallet
@@ -1019,15 +1065,9 @@ paths:
           required: true
       tags:
         - razorpay
-  '/linked-account/stripe-connect/slug/{linkedAccountId}':
-    parameters:
-      - schema:
-          type: string
-        name: linkedAccountId
-        in: path
-        required: true
-    get:
-      summary: Get stripe connect slug for the linked account
+  /linked-account/stripe-connect/confirm:
+    post:
+      summary: Confirm the stripe-connect kyc
       tags:
         - linkedAccount
       responses:
@@ -1039,20 +1079,55 @@ paths:
                 description: ''
                 type: object
                 properties:
-                  slug:
+                  scope:
+                    type: string
+                    minLength: 1
+                  livemode:
+                    type: boolean
+                  token_type:
+                    type: string
+                    minLength: 1
+                  access_token:
+                    type: string
+                    minLength: 1
+                  refresh_token:
+                    type: string
+                    minLength: 1
+                  stripe_user_id:
+                    type: string
+                    minLength: 1
+                  stripe_publishable_key:
                     type: string
                     minLength: 1
                 required:
-                  - slug
+                  - scope
+                  - livemode
+                  - token_type
+                  - access_token
+                  - refresh_token
+                  - stripe_user_id
+                  - stripe_publishable_key
                 x-examples:
                   example-1:
-                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RLpKSCKaFD1yWfq8Ns9xhvWu&redirect_uri=https%3Atest&state=c3vt4e5h5s5iqdchht0g&suggested_capabilities='
+                    scope: express
+                    livemode: false
+                    token_type: bearer
+                    access_token: sk_test_****
+                    refresh_token: rt_JIlA86YqHgt5tIBIOPENPB36JGRFZ9C3qXTFAX9SOEAKzYlm
+                    stripe_user_id: acct_****
+                    stripe_publishable_key: pk_test_****
               examples:
                 example-1:
                   value:
-                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RLpK&redirect_uri=https%3Atest&state=c3vt4e5h5s5iqdchht0g&suggested_capabilities='
-      operationId: get-linked-account-stripe-connect-slug-linkedAccountId
-      description: Generates a slug for completing the stripe-connect kyc with the linked account
+                    scope: express
+                    livemode: false
+                    token_type: bearer
+                    access_token: sk_test_****
+                    refresh_token: rt_JIlA86YqHgt5tIBIOPENPB36JGRFZ9C3qXTFAX9SOEAKzYlm
+                    stripe_user_id: acct_****
+                    stripe_publishable_key: pk_test_****
+          headers: {}
+      operationId: post-linked-account-stripe-connect-confirm
       parameters:
         - schema:
             type: string
@@ -1060,11 +1135,28 @@ paths:
           name: authorization
           description: user token
           required: true
-        - schema:
-            type: string
-          in: query
-          name: redirectUri
-          description: Redirect uri for redirecting after completing stripe connect kyc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  account_id: 18
+                  code: ac_IBnThr9P5nfraiI89jsinSExA0LOCOKF
+              properties:
+                account_id:
+                  type: number
+                  description: linked account id
+                code:
+                  type: string
+                  minLength: 1
+                  description: code received from stripe redirect uri
+              required:
+                - account_id
+                - code
+      description: API call to be made after the stripe-connect kyc is complete
 components:
   schemas:
     Transaction:
