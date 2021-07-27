@@ -868,7 +868,6 @@ components:
           asset_type_unit: usd
     Account:
       description: |-
-
         Asset Type Id
 
         | Currency | Asset Type Id |
@@ -932,3 +931,167 @@ components:
         - asset_type
         - asset_type_unit
       title: Account
+    LinkedAccount:
+      description: |-
+        Linked Account Model represents the relationship between the logged in user and the user to which it is connected to.
+
+        For example: Puma is a network, and Puma Kolkata & Puma Bengaluru are its vendor
+
+        Then in this case
+        Puma Kolkata is the logged in user
+        Puma network is the connected account (ref to linked_account_id)
+      type: object
+      x-examples:
+        Sample response when stripe connect is done for the connected account id:
+          created_at: '2021-04-14T14:24:27.906163Z'
+          updated_at: '2021-05-07T12:47:07.543414Z'
+          deleted_at:
+            Time: '0001-01-01T00:00:00Z'
+            Valid: false
+          ID: 28
+          type: stripe
+          token:
+            scope: express
+            livemode: false
+            token_type: bearer
+            access_token: sk_test_51Ig9bz2VdLJ2xI5aLPqPov6eErFx3FDJurONOjU4mcBABZgKLEIyYcYuBbLcFceF8l1JveN8qJXfx2NCPCw5ZgLz00oWuM8YqO
+            refresh_token: rt_JIlA86YqHgt5tIBIOPENPB36JGRFZ9C3qXTFAX9SOEAKzYlm
+            stripe_user_id: acct_1HcBy3F8kUHsrC3q
+            stripe_publishable_key: pk_test_51Ig9bz2VdLJ2xI5aeRkIix8bHxg6nQgIHB6gFd1s1RDhesn9w6zSEWjPj6EhNwYMlv1cpzXpgu4ph0htTyUV2yE900cfxhAJrJ
+          amount: 0
+          account_id: 103
+          linked_account_id: 32
+          user_id: db95654b-d967-4470-94d6-0f309072ecb7
+          linked_user_id: 947e4238-b01c-4aee-afce-ad611bb5550c
+          account_name: Walter_account
+          asset_type_unit: usd
+          value:
+            created_at: '2021-04-14T14:24:27.906163Z'
+            updated_at: '2021-05-07T12:47:07.543414Z'
+            deleted_at:
+              Time: '0001-01-01T00:00:00Z'
+              Valid: false
+            ID: 28
+            type: stripe
+            token:
+              scope: express
+              livemode: false
+              token_type: bearer
+              access_token: sk_test_****
+              refresh_token: rt_JIlA86YqHgt5tIBIOPENPB36JGRFZ9C3qXTFAX9SOEAKzYlm
+              stripe_user_id: acct_****
+              stripe_publishable_key: pk_test_****
+            amount: 0
+            account_id: 103
+            linked_account_id: 32
+            user_id: db95654b-d967-4470-94d6-0f309072ecb7
+            linked_user_id: 947e4238-b01c-4aee-afce-ad611bb5550c
+            account_name: Walter_account
+            asset_type_unit: usd
+        Sample response when stripe connect is not done for the connected account id:
+          value:
+            created_at: string
+            updated_at: string
+            deleted_at:
+              Time: string
+              Valid: true
+            ID: 0
+            type: string
+            token: null
+            amount: 0
+            account_id: 0
+            linked_account_id: 0
+            user_id: string
+            linked_user_id: string
+            account_name: string
+            asset_type_unit: string
+      properties:
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        deleted_at:
+          type: object
+          required:
+            - Time
+            - Valid
+          properties:
+            Time:
+              type: string
+              minLength: 1
+            Valid:
+              type: boolean
+        ID:
+          type: number
+        type:
+          type: string
+          minLength: 1
+        token:
+          type: object
+          required:
+            - scope
+            - livemode
+            - token_type
+            - access_token
+            - refresh_token
+            - stripe_user_id
+            - stripe_publishable_key
+          properties:
+            scope:
+              type: string
+              minLength: 1
+            livemode:
+              type: boolean
+            token_type:
+              type: string
+              minLength: 1
+            access_token:
+              type: string
+              minLength: 1
+            refresh_token:
+              type: string
+              minLength: 1
+            stripe_user_id:
+              type: string
+              minLength: 1
+            stripe_publishable_key:
+              type: string
+              minLength: 1
+        amount:
+          type: number
+          description: Sub-wallet amount
+        account_id:
+          type: number
+          description: Account ID of the logged in user
+        linked_account_id:
+          type: number
+          description: Account ID to which the user is connected to
+        user_id:
+          type: string
+          minLength: 1
+        linked_user_id:
+          type: string
+          minLength: 1
+        account_name:
+          type: string
+          minLength: 1
+        asset_type_unit:
+          type: string
+          minLength: 1
+      required:
+        - created_at
+        - updated_at
+        - deleted_at
+        - ID
+        - type
+        - token
+        - amount
+        - account_id
+        - linked_account_id
+        - user_id
+        - linked_user_id
+        - account_name
+        - asset_type_unit
+      title: ''
