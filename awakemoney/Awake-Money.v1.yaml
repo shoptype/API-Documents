@@ -1450,3 +1450,4 @@ components:
         - account_name
         - asset_type_unit
       title: ''
+      x-internal: true
