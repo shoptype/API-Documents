@@ -1019,6 +1019,52 @@ paths:
           required: true
       tags:
         - razorpay
+  '/linked-account/stripe-connect/slug/{linkedAccountId}':
+    parameters:
+      - schema:
+          type: string
+        name: linkedAccountId
+        in: path
+        required: true
+    get:
+      summary: Get stripe connect slug for the linked account
+      tags:
+        - linkedAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  slug:
+                    type: string
+                    minLength: 1
+                required:
+                  - slug
+                x-examples:
+                  example-1:
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RLpKSCKaFD1yWfq8Ns9xhvWu&redirect_uri=https%3Atest&state=c3vt4e5h5s5iqdchht0g&suggested_capabilities='
+              examples:
+                example-1:
+                  value:
+                    slug: 'https://connect.stripe.com/express/oauth/authorize?client_id=ca_HWHmlIa0RLpK&redirect_uri=https%3Atest&state=c3vt4e5h5s5iqdchht0g&suggested_capabilities='
+      operationId: get-linked-account-stripe-connect-slug-linkedAccountId
+      description: Generates a slug for completing the stripe-connect kyc with the linked account
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: user token
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: redirectUri
+          description: Redirect uri for redirecting after completing stripe connect kyc
 components:
   schemas:
     Transaction:
