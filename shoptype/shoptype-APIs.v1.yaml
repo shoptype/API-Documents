@@ -10246,154 +10246,152 @@ paths:
                     updated_at: string
       operationId: get-order-details-orderId
       description: Get Order Details for an order placed through Shoptype with Order Details per vendor with updated status and history
- 
-      /network-vendor-connections:
-        post:
-          summary: Create Network Vendor Connection for a network
-          operationId: post-network-vendor-connections
-          responses: {}
-          requestBody:
-            content:
-              application/json:
-                schema:
-                  description: ''
-                  type: object
-                  properties:
-                    vendor_id:
-                      type: string
-                      minLength: 1
-                  required:
-                    - vendor_id
-                  x-examples:
-                    example-1:
-                      vendor_id: vendor_id
-          description: ''
-          parameters:
-            - schema:
-                type: string
-              in: header
-              name: Authorization
-              description: Network token
-          tags:
-            - connections
-        parameters: []
-      '/network-vendor-connections/{vendorId}':
-        parameters:
-          - schema:
-              type: string
-            name: vendorId
-            in: path
-            required: true
-        delete:
-          summary: Remove Network Vendor Connection for a network
-          operationId: delete-network-vendor-connections-vendorId
-          responses:
-            '200':
-              description: OK
-          tags:
-            - connections
-          description: ''
-          parameters:
-            - schema:
-                type: string
-              in: header
-              name: Authorization
-              description: Network token
-      /vendor-network-connections:
-        get:
-          summary: Get All Network Vendor Connections for a vendor
-          tags:
-            - connections
-          responses: {}
-          operationId: get-vendor-network-connections
-          parameters:
-            - schema:
-                type: string
-              in: header
-              name: Authorization
-              description: Vendor token
-      /vendor-network-connections/accept:
-        put:
-          summary: Accept Network Vendor Connection for a vendor
-          operationId: put-vendor-network-connections-accept
-          responses:
-            '200':
-              description: OK
-          tags:
-            - connections
-          parameters:
-            - schema:
-                type: string
-              in: header
-              name: Authorization
-              description: Vendor token
-          requestBody:
-            content:
-              application/json:
-                schema:
-                  description: ''
-                  type: object
-                  properties:
-                    network_id:
-                      type: string
-                      minLength: 1
-                  required:
-                    - network_id
-                  x-examples:
-                    example-1:
-                      network_id: network_id
-      /vendor-network-connections/decline:
-        put:
-          summary: Decline Network Vendor Connection for a vendor
-          operationId: put-vendor-network-connections-decline
-          responses:
-            '200':
-              description: OK
-          tags:
-            - connections
-          requestBody:
-            content:
-              application/json:
-                schema:
-                  description: ''
-                  type: object
-                  properties:
-                    network_id:
-                      type: string
-                      minLength: 1
-                  required:
-                    - network_id
-                  x-examples:
-                    example-1:
-                      network_id: network_id
-          parameters:
-            - schema:
-                type: string
-              in: header
-              name: Authorization
-              description: Vendor token
-      '/vendor-network-connections/{networkId}':
-        parameters:
-          - schema:
-              type: string
-            name: networkId
-            in: path
-            required: true
-        delete:
-          summary: Remove Network Vendor Connection for a vendor
-          operationId: delete-vendor-network-connections-networkId
-          responses:
-            '200':
-              description: OK
-          parameters:
-            - schema:
-                type: string
-              in: header
-              name: Authorization
-              description: Vendor token
-          tags:
-            - connections
-
+  /network-vendor-connections:
+    post:
+      summary: Create Network Vendor Connection for a network
+      operationId: post-network-vendor-connections
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                vendor_id:
+                  type: string
+                  minLength: 1
+              required:
+                - vendor_id
+              x-examples:
+                example-1:
+                  vendor_id: vendor_id
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Network token
+      tags:
+        - connections
+    parameters: []
+  '/network-vendor-connections/{vendorId}':
+    parameters:
+      - schema:
+          type: string
+        name: vendorId
+        in: path
+        required: true
+    delete:
+      summary: Remove Network Vendor Connection for a network
+      operationId: delete-network-vendor-connections-vendorId
+      responses:
+        '200':
+          description: OK
+      tags:
+        - connections
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Network token
+  /vendor-network-connections:
+    get:
+      summary: Get All Network Vendor Connections for a vendor
+      tags:
+        - connections
+      responses: {}
+      operationId: get-vendor-network-connections
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Vendor token
+  /vendor-network-connections/accept:
+    put:
+      summary: Accept Network Vendor Connection for a vendor
+      operationId: put-vendor-network-connections-accept
+      responses:
+        '200':
+          description: OK
+      tags:
+        - connections
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Vendor token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                network_id:
+                  type: string
+                  minLength: 1
+              required:
+                - network_id
+              x-examples:
+                example-1:
+                  network_id: network_id
+  /vendor-network-connections/decline:
+    put:
+      summary: Decline Network Vendor Connection for a vendor
+      operationId: put-vendor-network-connections-decline
+      responses:
+        '200':
+          description: OK
+      tags:
+        - connections
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                network_id:
+                  type: string
+                  minLength: 1
+              required:
+                - network_id
+              x-examples:
+                example-1:
+                  network_id: network_id
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Vendor token
+  '/vendor-network-connections/{networkId}':
+    parameters:
+      - schema:
+          type: string
+        name: networkId
+        in: path
+        required: true
+    delete:
+      summary: Remove Network Vendor Connection for a vendor
+      operationId: delete-vendor-network-connections-networkId
+      responses:
+        '200':
+          description: OK
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Vendor token
+      tags:
+        - connections
 components:
   schemas:
     Vendor:
