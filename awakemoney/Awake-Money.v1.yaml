@@ -1066,63 +1066,61 @@ paths:
           required: true
       tags:
         - razorpay
-  
-        /linked-account/withdraw:
-          post:
-            summary: Withdraw via LinkedAccounts
-            operationId: post-linked-account-withdraw
-            responses:
-              '200':
-                description: OK
-            tags:
-              - withdraw
-            description: ''
-            parameters:
-              - schema:
+  /linked-account/withdraw:
+    post:
+      summary: Withdraw via LinkedAccounts
+      operationId: post-linked-account-withdraw
+      responses:
+        '200':
+          description: OK
+      tags:
+        - withdraw
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                asset_type_id:
+                  type: number
+                payment_method_type:
                   type: string
-                in: header
-                name: Authorization
-                description: token
-            requestBody:
-              content:
-                application/json:
-                  schema:
-                    description: ''
-                    type: object
-                    properties:
-                      asset_type_id:
-                        type: number
-                      payment_method_type:
-                        type: string
-                        minLength: 1
-                      linked_account_id:
-                        type: string
-                        minLength: 1
-                      withdraw_params:
-                        type: object
-                        properties:
-                          amount:
-                            type: number
-                          currency:
-                            type: string
-                            minLength: 1
-                        required:
-                          - amount
-                          - currency
-                    required:
-                      - asset_type_id
-                      - payment_method_type
-                      - linked_account_id
-                      - withdraw_params
-                    x-examples:
-                      example-1:
-                        asset_type_id: 2
-                        payment_method_type: stripe
-                        linked_account_id: linked_account_id
-                        withdraw_params:
-                          amount: 11
-                          currency: usd
-  
+                  minLength: 1
+                linked_account_id:
+                  type: string
+                  minLength: 1
+                withdraw_params:
+                  type: object
+                  properties:
+                    amount:
+                      type: number
+                    currency:
+                      type: string
+                      minLength: 1
+                  required:
+                    - amount
+                    - currency
+              required:
+                - asset_type_id
+                - payment_method_type
+                - linked_account_id
+                - withdraw_params
+              x-examples:
+                example-1:
+                  asset_type_id: 2
+                  payment_method_type: stripe
+                  linked_account_id: linked_account_id
+                  withdraw_params:
+                    amount: 11
+                    currency: usd
   /linked-account/stripe-connect/confirm:
     post:
       summary: Confirm the stripe-connect kyc
