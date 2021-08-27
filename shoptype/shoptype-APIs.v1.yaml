@@ -697,6 +697,124 @@ paths:
               Vendor details:
                 value: '{"name":"Test Vendor Name","productCategories":["Apparel"],"url":"www.testvendor.com","timestamp":1618022863105}'
         description: ''
+    put:
+      summary: ''
+      operationId: put-vendors
+      responses:
+        '202':
+          description: Accepted
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: authorization
+          description: Vendor login token
+          required: true
+      description: |-
+        This endpoint updates the vendor information.
+        N.B - Upon updaing the extras field, the products associated to the particular vendor gets updated too.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  id: 856341ad-66b5-937c-956e-2ee662bc4b87
+                  name: Miller Ace
+                  url: ''
+                  productCategories:
+                    - Beer
+                  store:
+                    addressLine1: 'SRCM Road, Rajarhat - aett'
+                    city: Kolkata
+                    countryState: IN - WB
+                    postalCode: '700136'
+                    currency: USD
+                    geoLocation:
+                      type: Point
+                      coordinates:
+                        - 88.435521
+                        - 22.6215581
+                  logo: ''
+                  extras:
+                    my_test_key: my_test_value
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                name:
+                  type: string
+                  minLength: 1
+                url:
+                  type: string
+                productCategories:
+                  type: array
+                  items:
+                    type: object
+                store:
+                  type: object
+                  properties:
+                    addressLine1:
+                      type: string
+                      minLength: 1
+                    city:
+                      type: string
+                      minLength: 1
+                    countryState:
+                      type: string
+                      minLength: 1
+                    postalCode:
+                      type: string
+                      minLength: 1
+                    currency:
+                      type: string
+                      minLength: 1
+                    geoLocation:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          minLength: 1
+                        coordinates:
+                          type: array
+                          items:
+                            type: object
+                logo:
+                  type: string
+                extras:
+                  type: object
+                  properties:
+                    my_test_key:
+                      type: string
+                      minLength: 1
+                      description: |
+                        This is of map[string]string type
+                '':
+                  type: string
+            examples:
+              Update vendor example 1 (with extras):
+                value:
+                  id: 856341ad-66b5-937c-956e-2ee662bc4b87
+                  name: Miller Ace
+                  url: ''
+                  productCategories:
+                    - Beer
+                  store:
+                    addressLine1: 'SRCM Road, Rajarhat - aett'
+                    city: Kolkata
+                    countryState: IN - WB
+                    postalCode: '700136'
+                    currency: USD
+                    geoLocation:
+                      type: Point
+                      coordinates:
+                        - 88.435521
+                        - 22.6215581
+                  logo: ''
+                  extras:
+                    my_test_key: my_test_value
   /me:
     get:
       summary: Fetch user profile details
@@ -2630,6 +2748,16 @@ paths:
           in: query
           name: inStock
           description: Show products in stock
+        - schema:
+            type: string
+          in: query
+          name: extrasKey
+          description: Extras Key at which you want to filter products
+        - schema:
+            type: string
+          in: query
+          name: extrasValue
+          description: Extras value at which you want to filter products
     parameters:
       - schema:
           type: string
@@ -3024,6 +3152,16 @@ paths:
           in: query
           name: isStoreSetup
           description: Filter out vendors who do not have any store (shopify/woocommerce) setup
+        - schema:
+            type: string
+          in: query
+          name: extrasKey
+          description: Extras Key at which you want to filter
+        - schema:
+            type: string
+          in: query
+          name: extrasValue
+          description: Extras value by which you want to filter vendors
   /command?type=sendNotification:
     post:
       summary: Send email notification
@@ -3049,6 +3187,34 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10395,81 +10561,62 @@ paths:
 components:
   schemas:
     Vendor:
-      description: Vendor model
+      description: ''
       type: object
       x-examples:
-        Sample vendor:
-          id: 6607fca3-bb93-a6f9-cb26-0177fa46883b
-          name: HEMPVADA
-          user_id: 4112668b-9a35-4e1a-8ce1-627e780aacac
+        vendor model:
+          id: 856341ad-66b5-937c-956e-2ee662bc4b87
+          name: Miller Ace
+          url: ''
           productCategories:
-            - ' Hemp'
-            - CBD
-            - Veed
-            - company type~brand
-            - company type~manufacturer
-            - company type~retailerCBD
-          url: 'https://www.hempvada.com/'
-          logo: 'https://shop-type-images-store.s3.amazonaws.com/temp/4112668b-9a35-4e1a-8ce1-627e780aacac/hempvada%20logo.png'
-          shopifyVendor: ''
-          wooCommerceVendor: ''
-          wooCommerceShipping:
-            shippingServiceId: ''
-            shippingConsumerKey: ''
-            shippingConsumerSecret: ''
+            - Beer
           store:
-            addressLine1: 23 County Road B
-            city: Antonito
-            countryState: US - Colorado
-            postalCode: '81120'
+            addressLine1: 'SRCM Road, Rajarhat - aett'
+            city: Kolkata
+            countryState: IN - WB
+            postalCode: '700136'
             currency: USD
             geoLocation:
               type: Point
               coordinates:
-                - -106.0402169
-                - 36.9956786
-      title: Vendor
+                - 88.435521
+                - 22.6215581
+          logo: ''
+          extras:
+            my_test_key: my_test_value
+          value:
+            id: 856341ad-66b5-937c-956e-2ee662bc4b87
+            name: Miller Ace
+            url: ''
+            productCategories:
+              - Beer
+            store:
+              addressLine1: 'SRCM Road, Rajarhat - aett'
+              city: Kolkata
+              countryState: IN - WB
+              postalCode: '700136'
+              currency: USD
+              geoLocation:
+                type: Point
+                coordinates:
+                  - 88.435521
+                  - 22.6215581
+            logo: ''
+            extras:
+              my_test_key: my_test_value
       properties:
         id:
           type: string
           minLength: 1
-          description: vendor id
         name:
           type: string
           minLength: 1
-        user_id:
+        url:
           type: string
-          minLength: 1
-          description: The user account to which this vendor account is linked
         productCategories:
           type: array
           items:
-            type: string
-        url:
-          type: string
-          minLength: 1
-        logo:
-          type: string
-          minLength: 1
-        shopifyVendor:
-          type: string
-          deprecated: true
-        wooCommerceVendor:
-          type: string
-          description: For a multi vendor store setup on woo commerce using Dokan
-        wooCommerceShipping:
-          type: object
-          deprecated: true
-          properties:
-            shippingServiceId:
-              type: string
-              deprecated: true
-            shippingConsumerKey:
-              type: string
-              deprecated: true
-            shippingConsumerSecret:
-              type: string
-              deprecated: true
+            type: object
         store:
           type: object
           required:
@@ -10507,16 +10654,28 @@ components:
                 coordinates:
                   type: array
                   items:
-                    type: number
+                    type: object
+        logo:
+          type: string
+        extras:
+          type: object
+          required:
+            - my_test_key
+          properties:
+            my_test_key:
+              type: string
+              minLength: 1
+              description: |-
+                This is of type map[string]string
+                this field is for the clients to save additional metadata
       required:
         - id
         - name
-        - user_id
-        - productCategories
         - url
-        - logo
-        - wooCommerceVendor
+        - productCategories
         - store
+        - logo
+        - extras
     Product:
       description: ''
       type: object
