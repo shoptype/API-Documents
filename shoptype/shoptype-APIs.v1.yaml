@@ -698,7 +698,7 @@ paths:
                 value: '{"name":"Test Vendor Name","productCategories":["Apparel"],"url":"www.testvendor.com","timestamp":1618022863105}'
         description: ''
     put:
-      summary: ''
+      summary: 'Updates an existing vendor'
       operationId: put-vendors
       responses:
         '202':
@@ -815,6 +815,9 @@ paths:
                   logo: ''
                   extras:
                     my_test_key: my_test_value
+        description: ''
+      tags:
+        - vendor
   /me:
     get:
       summary: Fetch user profile details
@@ -3187,6 +3190,8 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
 
 
 
