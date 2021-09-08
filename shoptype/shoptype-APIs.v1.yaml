@@ -556,8 +556,8 @@ paths:
         '401':
           description: Unauthorized
       description: |-
-        A successfully verified user getting authenticated based on the following user types,
-        - vendor
+        A successfully verified user getting authenticated based on the following user types, 
+        - vendor 
         - coseller
         - network
       requestBody:
@@ -1191,7 +1191,7 @@ paths:
           | Video | "video/mp4", "video/x-msvideo", "video/mpeg" |
           | Image | "image/png", "image/jpeg", "image/gif" |
 
-          > Note: `AllowedMaxMediaSize=1 MB`
+          > Note: `AllowedMaxMediaSize=1 MB` 
       tags:
         - utility
   /store/shopify:
@@ -1284,7 +1284,7 @@ paths:
                   enableCheckoutShoptype: true
         description: |
           Shopify Store details
-          > Note: `storeName` is name of the shopify store.
+          > Note: `storeName` is name of the shopify store. 
 
           ### Examples of store name
           | Shopify URL | StoreName |
@@ -1392,7 +1392,7 @@ paths:
         description: |
           Woo commerce store details
 
-          > Note: Set `storeName` same as `storeHostUrl`.
+          > Note: Set `storeName` same as `storeHostUrl`. 
       tags:
         - store
   /sync-status:
@@ -1977,7 +1977,7 @@ paths:
                         description: |
                           People have been loving our bath and beauty products and we decided it was time to offer them in bundles! Purchasing our CBD Bundles allow you to get the same products you normally purchase at a slightly discounted price! Awesome! Our CBD Sea Salt Scrub and Bath Bombs bundle comes with one 3oz Sea Salt Scrub and 3 of our long lasting bath bombs!
 
-                          CBD Bath Bombs
+                          CBD Bath Bombs 
 
                           Hempvada's CBD Bath Bombs are made from a full spectrum blend CBD. Containing at least 35mg of CBD in every Bomb, these terpene targeted Blends are sure you leave you pleased. Perfect for after a long day of work, after an event or just when you need to relax!
                           Ingredients: Avocado Oil, Baking Soda, Citric Acid, Epsom Salt, Witch Hazel Astringent, PolySorbate 80, whole plant extract, Essential Oils: Frankincense, Tea Tree, Lemon, and Blue Mica
@@ -2091,7 +2091,7 @@ paths:
                         description: |-
                           People have been loving our bath and beauty products and we decided it was time to offer them in bundles! Purchasing our CBD Bundles allow you to get the same products you normally purchase at a slightly discounted price! Awesome! Our CBD Sea Salt Scrub, CBD Bath Bombs and PM Facial Moisturizer Bundle comes with one 3oz CBD Sea Salt Scrub, 3 of our long lasting CBD bath bombs and one 2oz PM CBD Facial Moisturizer!
 
-                          CBD Bath Bombs
+                          CBD Bath Bombs 
 
                           Hempvada's CBD Bath Bombs are made from a full spectrum blend CBD. Containing at least 35mg of CBD in every Bomb, these terpene targeted Blends are sure you leave you pleased. Perfect for after a long day of work, after an event or just when you need to relax!
                           Ingredients: Avocado Oil, Baking Soda, Citric Acid, Epsom Salt, Witch Hazel Astringent, PolySorbate 80, whole plant extract, Essential Oils: Frankincense, Tea Tree, Lemon, and Blue Mica
@@ -2321,7 +2321,7 @@ paths:
         - in: unknown
         - schema:
             type: string
-            example: '500x600:400x500,500x600'
+            example: 'imgSize=500x600:400x500 or imgSize=500x600'
           in: query
           name: imgSize
           description: 'To resize product images. *Refer:* **https://thumbor.readthedocs.io/en/latest/usage.html#**'
@@ -2462,7 +2462,7 @@ paths:
                           Four Frangrances!
 
                           Redwood Trees
-                          Suave
+                          Suave 
 
                           Our CBD Beard Oil
 
@@ -2481,7 +2481,7 @@ paths:
                           Jojoba Oil is rich in minerals and vitamins that nourish beard hair, including vitamin C, B vitamins, vitamin E, copper, and zinc. Jojoba Oil helps strengthen the beard hair. Because it strengthens beard hair, it's known to help promote a fuller thicker beard. It also helps prevent dryness, damage and breakage.
                           Sweet Almond Oil
                           Sweet Almond Oil is rich in vitamins and minerals. Among these are Vitamin A, B1, B6, and vitamin E which is rich is antioxidants that promote  blood circulation, hence will provide more nutrients to the beard hair. Sweet Almond Oil can help your beard hair look bright, shiny and silky. It can penetrate the beard hair shaft and moisturize the beard hair from the inside.
-                          Ingredients: Hempseed Oil, Jojoba Oil, Sweet Almond Oil, Vitamin E, Hemp Extract Essential Oils and Fragrances.
+                          Ingredients: Hempseed Oil, Jojoba Oil, Sweet Almond Oil, Vitamin E, Hemp Extract Essential Oils and Fragrances. 
                           Using Sezzle for CBD? More info here!
                         tags:
                           - bath
@@ -2565,11 +2565,11 @@ paths:
                         title: CBD Dabs - Shatter 75% Full Spectrum
                         description: |-
                           Buy CBD Dabs Shatter 75% Full Spectrum
-                          CBD Shatter by Hempvada is an absolutely beautiful dab oil. This oil allows you to take CBD directly into your system via inhaling the vapors of the oils when dabbing for a faster-acting experience. Get the highly coveted Entourage Effect with this product!
+                          CBD Shatter by Hempvada is an absolutely beautiful dab oil. This oil allows you to take CBD directly into your system via inhaling the vapors of the oils when dabbing for a faster-acting experience. Get the highly coveted Entourage Effect with this product! 
 
                           Great after an exhausting and stressful day.
                           Hempvada CBD Shatters are terpy and delicious CBD dabs for sale with a great profile of CBD, CBN, and trace amounts of THC. These CBD Dabs can be used with any dabbing method to give you a faster acting CBD serving that you just can’t experience through ingesting or using a topical. Vaporizing CBD brings forth the full force of CBD by "indirect combustion". Our extract is free of any residual solvents.
-                          CBD is well known for its wellness properties and Hempvada is proud to provide one of the finest CBD shatters for sale available.
+                          CBD is well known for its wellness properties and Hempvada is proud to provide one of the finest CBD shatters for sale available. 
 
                           Full Spectrum CBD
 
@@ -2771,7 +2771,7 @@ paths:
           description: Extras value at which you want to filter products
         - schema:
             type: string
-            example: '500x600:400x600 or 500x600'
+            example: 'imgSize=500x600:400x500 or imgSize=500x600'
           in: query
           description: 'To resize product images. *Refer:* **https://thumbor.readthedocs.io/en/latest/usage.html#**'
           name: imgSize
@@ -3204,6 +3204,13 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
 
 
 
@@ -7499,7 +7506,13 @@ paths:
           TrackerId is optional
       tags:
         - network
-      parameters: []
+      parameters:
+        - schema:
+            type: string
+            example: 'imgSize=500x600:400x500 or imgSize=500x600'
+          in: query
+          name: imgSize
+          description: 'To resize product images. *Refer:* **https://thumbor.readthedocs.io/en/latest/usage.html#**'
   '/vendors/{vendorId}/orders':
     parameters:
       - schema:
