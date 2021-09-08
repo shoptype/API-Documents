@@ -2317,8 +2317,6 @@ paths:
           in: query
           name: showHidden
           description: Show disabled products
-        - $ref: 'https://thumbor.readthedocs.io/en/latest/usage.html#'
-        - in: unknown
         - schema:
             type: string
             example: 'imgSize=500x600:400x500 or imgSize=500x600'
