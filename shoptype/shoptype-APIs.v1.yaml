@@ -4461,6 +4461,44 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -10615,6 +10653,1089 @@ paths:
           description: Vendor token
       tags:
         - connections
+  '/platforms/{id}/vendor/{vendorId}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: vendorId
+        in: path
+        required: true
+    delete:
+      summary: ''
+      operationId: delete-platforms-id-vendor-vendorId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: vendor deleted successfully
+              examples:
+                When vendor deleted:
+                  value:
+                    message: vendor deleted successfully
+                When vendor's account isn't cleared.:
+                  value:
+                    message: Products of the given vendor disabled
+      description: to delete vendors at network level
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: network token
+  /coseller-orders:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  orders:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - userId
+                        - cosellerId
+                        - externalSource
+                        - orderId
+                        - shoptypeOrderId
+                        - externalId
+                        - createdAt
+                        - customerEmail
+                        - quantity
+                        - platformUrl
+                        - vendorId
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        userId:
+                          type: string
+                        cosellerId:
+                          type: string
+                          minLength: 1
+                        externalSource:
+                          type: string
+                          minLength: 1
+                        orderId:
+                          type: string
+                          minLength: 1
+                        shoptypeOrderId:
+                          type: string
+                        externalId:
+                          type: string
+                          minLength: 1
+                        createdAt:
+                          type: string
+                          minLength: 1
+                        customerEmail:
+                          type: string
+                          minLength: 1
+                        quantity:
+                          type: number
+                        price:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        totalPrice:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        commissionTotal:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        platformUrl:
+                          type: string
+                        productDetails:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - variantId
+                              - externalId
+                              - quantity
+                              - title
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              variantId:
+                                type: string
+                                minLength: 1
+                              externalId:
+                                type: string
+                                minLength: 1
+                              price:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              totalDiscount:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              quantity:
+                                type: number
+                              primaryImageSrc:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    minLength: 1
+                                  imageSrc:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - id
+                                  - imageSrc
+                              title:
+                                type: string
+                                minLength: 1
+                              variantNameValue:
+                                type: object
+                                properties:
+                                  size:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - size
+                              coseller_commission:
+                                type: object
+                                properties:
+                                  lX:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: object
+                                        properties:
+                                          amount:
+                                            type: number
+                                          currency:
+                                            type: string
+                                            minLength: 1
+                                        required:
+                                          - amount
+                                          - currency
+                                      percentage:
+                                        type: number
+                                      userId:
+                                        type: string
+                                        minLength: 1
+                                      cosellerId:
+                                        type: string
+                                        minLength: 1
+                                      userName:
+                                        type: string
+                                        minLength: 1
+                                      platformUrl:
+                                        type: string
+                                      createdAt:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - amount
+                                      - percentage
+                                      - userId
+                                      - cosellerId
+                                      - userName
+                                      - platformUrl
+                                      - createdAt
+                                required:
+                                  - lX
+                              coseller_adjustment:
+                                type: object
+                                properties: {}
+                                required: []
+                        attributions:
+                          type: object
+                          properties:
+                            lIntro:
+                              type: boolean
+                            lInvite:
+                              type: boolean
+                            lMiddle:
+                              type: boolean
+                            lPartner:
+                              type: boolean
+                            lReferrer:
+                              type: boolean
+                            lShare:
+                              type: boolean
+                            lX:
+                              type: boolean
+                          required:
+                            - lIntro
+                            - lInvite
+                            - lMiddle
+                            - lPartner
+                            - lReferrer
+                            - lShare
+                            - lX
+                        shipping_cost:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        vendorId:
+                          type: string
+                          minLength: 1
+                        billingAddress:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              minLength: 1
+                            street1:
+                              type: string
+                              minLength: 1
+                            city:
+                              type: string
+                              minLength: 1
+                            state:
+                              type: string
+                              minLength: 1
+                            postalCode:
+                              type: string
+                              minLength: 1
+                            country:
+                              type: string
+                              minLength: 1
+                            countryCode:
+                              type: string
+                              minLength: 1
+                          required:
+                            - name
+                            - street1
+                            - city
+                            - state
+                            - postalCode
+                            - country
+                            - countryCode
+                        shippingAddress:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              minLength: 1
+                            street1:
+                              type: string
+                              minLength: 1
+                            city:
+                              type: string
+                              minLength: 1
+                            state:
+                              type: string
+                              minLength: 1
+                            postalCode:
+                              type: string
+                              minLength: 1
+                            country:
+                              type: string
+                              minLength: 1
+                            countryCode:
+                              type: string
+                              minLength: 1
+                          required:
+                            - name
+                            - street1
+                            - city
+                            - state
+                            - postalCode
+                            - country
+                            - countryCode
+                required:
+                  - count
+                  - orders
+                x-examples:
+                  example-1:
+                    count: 228
+                    orders:
+                      - id: 5fd73b7e533041c23245774d
+                        userId: ''
+                        cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                        externalSource: shopify
+                        orderId: ef14106d-8b42-b674-21f7-c2fae1c335aa
+                        shoptypeOrderId: ''
+                        externalId: '1443'
+                        createdAt: '2020-12-14T10:16:11Z'
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 8.75
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 4e46e31c-8d8e-872e-fa30-4a4a315a92cd
+                            variantId: '32052645167243'
+                            externalId: '4494265286795'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075666497675'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/4e46e31c-8d8e-872e-fa30-4a4a315a92cd/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                              variantIds:
+                                - '32052645167243'
+                            title: Adoratherapy Beautiful Mood Boost
+                            variantNameValue:
+                              size: 10ML Spray
+                            coseller_commission:
+                              lX:
+                                amount:
+                                  amount: 8.75
+                                  currency: USD
+                                percentage: 35
+                                userId: 3c0c8ca1-5337-459e-9597-8fab44cf0acb
+                                cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                                userName: Coseller Four
+                                platformUrl: ''
+                                createdAt: '2020-12-14T10:12:18.58Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 778e321c-abd7-7bd7-4dde-c9ceb7a5ac75
+                        billingAddress:
+                          name: Buyer One
+                          street1: 1650 Northeast Valley Road
+                          city: Pullman
+                          state: Washington
+                          postalCode: '99163'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: Buyer One
+                          street1: 1650 Northeast Valley Road
+                          city: Pullman
+                          state: Washington
+                          postalCode: '99163'
+                          country: United States
+                          countryCode: US
+                      - id: 5fd75b5d2197e14d77efcf61
+                        userId: ''
+                        cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                        externalSource: shopify
+                        orderId: 01d86e53-5206-e15b-fdf6-36024bb4ba8e
+                        shoptypeOrderId: ''
+                        externalId: '1444'
+                        createdAt: '2020-12-14T12:32:24Z'
+                        customerEmail: cosellerfour@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 12.5
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 6e31da7b-b4a6-29f2-2554-0f0e37419c65
+                            variantId: '32052665581707'
+                            externalId: '4494268301451'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075670921355'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/6e31da7b-b4a6-29f2-2554-0f0e37419c65/645x520__Cube9_MoodBoost_edff3477-4e1b-42e8-bb12-0b410ab7f6eb.jpg'
+                            title: Adoratherapy Chakra Cube Set of 7
+                            variantNameValue:
+                              size: 10ML Roll On
+                            coseller_commission:
+                              lX:
+                                amount:
+                                  amount: 12.5
+                                  currency: USD
+                                percentage: 50
+                                userId: 3c0c8ca1-5337-459e-9597-8fab44cf0acb
+                                cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                                userName: Coseller Four
+                                platformUrl: ''
+                                createdAt: '2020-12-14T12:24:59.347Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 5d77acbf-2213-e297-bb96-965514b6636c
+                        billingAddress:
+                          name: buyer one
+                          street1: 1650 Grand Concourse
+                          city: The Bronx
+                          state: New York
+                          postalCode: '10457'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: buyer one
+                          street1: 1650 Grand Concourse
+                          city: The Bronx
+                          state: New York
+                          postalCode: '10457'
+                          country: United States
+                          countryCode: US
+                      - id: 5fd84b86293bbe205fdaabe7
+                        userId: ''
+                        cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                        externalSource: shopify
+                        orderId: 20285188-7017-91b9-958e-4ba9e7df7c92
+                        shoptypeOrderId: ''
+                        externalId: '1445'
+                        createdAt: '2020-12-15T05:37:05Z'
+                        customerEmail: cosellerone@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 25
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 749f44f1-9a42-fd52-eca9-c87953362305
+                            variantId: '32052645167243'
+                            externalId: '4494265286795'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075666497675'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/749f44f1-9a42-fd52-eca9-c87953362305/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                              variantIds:
+                                - '32052645167243'
+                            title: Adoratherapy Beautiful Mood Boost
+                            variantNameValue:
+                              size: 10ML Spray
+                            coseller_commission:
+                              l1:
+                                amount:
+                                  amount: 6.25
+                                  currency: USD
+                                percentage: 25
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-15T05:34:37.863Z'
+                              l2:
+                                amount:
+                                  amount: 2.5
+                                  currency: USD
+                                percentage: 10
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-15T05:34:37.863Z'
+                              lIntro:
+                                amount:
+                                  amount: 6.25
+                                  currency: USD
+                                percentage: 25
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-14T12:21:05.059Z'
+                              lX:
+                                amount:
+                                  amount: 10
+                                  currency: USD
+                                percentage: 40
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-15T05:34:37.863Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: true
+                          lInvite: false
+                          lMiddle: true
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 5d77acbf-2213-e297-bb96-965514b6636c
+                        billingAddress:
+                          name: coseller one
+                          street1: 1450 Coleman Avenue
+                          city: Santa Clara
+                          state: California
+                          postalCode: '95050'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: coseller one
+                          street1: 1450 Coleman Avenue
+                          city: Santa Clara
+                          state: California
+                          postalCode: '95050'
+                          country: United States
+                          countryCode: US
+                      - id: 5fd85289293bbe205fdaabea
+                        userId: ''
+                        cosellerId: 64c0c19d-933c-3973-c7d1-1233db9cd3d1
+                        externalSource: shopify
+                        orderId: 2a4ddafe-ae7a-f728-e663-6b75b68a784b
+                        shoptypeOrderId: ''
+                        externalId: '1446'
+                        createdAt: '2020-12-15T06:06:59Z'
+                        customerEmail: cosellerthree@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 10
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 97ba666f-90e1-97f6-29e5-1453ff4f19f2
+                            variantId: '32052614856843'
+                            externalId: '4494259585163'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075658633355'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/97ba666f-90e1-97f6-29e5-1453ff4f19f2/jldaSvU.jpg'
+                            title: Adoratherapy Mood Boost Cube - Set of 7 spray perfumes
+                            variantNameValue:
+                              size: 10ML Spray
+                            coseller_commission:
+                              lX:
+                                amount:
+                                  amount: 10
+                                  currency: USD
+                                percentage: 40
+                                userId: f442d387-ae97-4c10-9a49-060fd0d912cc
+                                cosellerId: 64c0c19d-933c-3973-c7d1-1233db9cd3d1
+                                userName: Coseller Three
+                                platformUrl: ''
+                                createdAt: '2020-12-15T06:01:21.443Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 5d77acbf-2213-e297-bb96-965514b6636c
+                        billingAddress:
+                          name: coseller three
+                          street1: 1405 Clifton Road
+                          city: Atlanta
+                          state: Georgia
+                          postalCode: '30307'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: coseller three
+                          street1: 1405 Clifton Road
+                          city: Atlanta
+                          state: Georgia
+                          postalCode: '30307'
+                          country: United States
+                          countryCode: US
+              examples:
+                example-1:
+                  value:
+                    count: 228
+                    orders:
+                      - id: 5fd73b7e533041c23245774d
+                        userId: ''
+                        cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                        externalSource: shopify
+                        orderId: ef14106d-8b42-b674-21f7-c2fae1c335aa
+                        shoptypeOrderId: ''
+                        externalId: '1443'
+                        createdAt: '2020-12-14T10:16:11Z'
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 8.75
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 4e46e31c-8d8e-872e-fa30-4a4a315a92cd
+                            variantId: '32052645167243'
+                            externalId: '4494265286795'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075666497675'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/4e46e31c-8d8e-872e-fa30-4a4a315a92cd/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                              variantIds:
+                                - '32052645167243'
+                            title: Adoratherapy Beautiful Mood Boost
+                            variantNameValue:
+                              size: 10ML Spray
+                            coseller_commission:
+                              lX:
+                                amount:
+                                  amount: 8.75
+                                  currency: USD
+                                percentage: 35
+                                userId: 3c0c8ca1-5337-459e-9597-8fab44cf0acb
+                                cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                                userName: Coseller Four
+                                platformUrl: ''
+                                createdAt: '2020-12-14T10:12:18.58Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 778e321c-abd7-7bd7-4dde-c9ceb7a5ac75
+                        billingAddress:
+                          name: Buyer One
+                          street1: 1650 Northeast Valley Road
+                          city: Pullman
+                          state: Washington
+                          postalCode: '99163'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: Buyer One
+                          street1: 1650 Northeast Valley Road
+                          city: Pullman
+                          state: Washington
+                          postalCode: '99163'
+                          country: United States
+                          countryCode: US
+                      - id: 5fd75b5d2197e14d77efcf61
+                        userId: ''
+                        cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                        externalSource: shopify
+                        orderId: 01d86e53-5206-e15b-fdf6-36024bb4ba8e
+                        shoptypeOrderId: ''
+                        externalId: '1444'
+                        createdAt: '2020-12-14T12:32:24Z'
+                        customerEmail: cosellerfour@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 12.5
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 6e31da7b-b4a6-29f2-2554-0f0e37419c65
+                            variantId: '32052665581707'
+                            externalId: '4494268301451'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075670921355'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/6e31da7b-b4a6-29f2-2554-0f0e37419c65/645x520__Cube9_MoodBoost_edff3477-4e1b-42e8-bb12-0b410ab7f6eb.jpg'
+                            title: Adoratherapy Chakra Cube Set of 7
+                            variantNameValue:
+                              size: 10ML Roll On
+                            coseller_commission:
+                              lX:
+                                amount:
+                                  amount: 12.5
+                                  currency: USD
+                                percentage: 50
+                                userId: 3c0c8ca1-5337-459e-9597-8fab44cf0acb
+                                cosellerId: 87e48939-6eed-b69b-5c15-e13c80e2a223
+                                userName: Coseller Four
+                                platformUrl: ''
+                                createdAt: '2020-12-14T12:24:59.347Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 5d77acbf-2213-e297-bb96-965514b6636c
+                        billingAddress:
+                          name: buyer one
+                          street1: 1650 Grand Concourse
+                          city: The Bronx
+                          state: New York
+                          postalCode: '10457'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: buyer one
+                          street1: 1650 Grand Concourse
+                          city: The Bronx
+                          state: New York
+                          postalCode: '10457'
+                          country: United States
+                          countryCode: US
+                      - id: 5fd84b86293bbe205fdaabe7
+                        userId: ''
+                        cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                        externalSource: shopify
+                        orderId: 20285188-7017-91b9-958e-4ba9e7df7c92
+                        shoptypeOrderId: ''
+                        externalId: '1445'
+                        createdAt: '2020-12-15T05:37:05Z'
+                        customerEmail: cosellerone@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 25
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 749f44f1-9a42-fd52-eca9-c87953362305
+                            variantId: '32052645167243'
+                            externalId: '4494265286795'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075666497675'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/749f44f1-9a42-fd52-eca9-c87953362305/1_6f1beba0-74ba-4e54-aa76-b1ab1afccd22.jpg'
+                              variantIds:
+                                - '32052645167243'
+                            title: Adoratherapy Beautiful Mood Boost
+                            variantNameValue:
+                              size: 10ML Spray
+                            coseller_commission:
+                              l1:
+                                amount:
+                                  amount: 6.25
+                                  currency: USD
+                                percentage: 25
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-15T05:34:37.863Z'
+                              l2:
+                                amount:
+                                  amount: 2.5
+                                  currency: USD
+                                percentage: 10
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-15T05:34:37.863Z'
+                              lIntro:
+                                amount:
+                                  amount: 6.25
+                                  currency: USD
+                                percentage: 25
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-14T12:21:05.059Z'
+                              lX:
+                                amount:
+                                  amount: 10
+                                  currency: USD
+                                percentage: 40
+                                userId: 063ef8dc-558c-48ce-ba14-5da81464bbd9
+                                cosellerId: f0a5623d-86b0-5edd-f82c-7cbf4d552048
+                                userName: Coseller One
+                                platformUrl: ''
+                                createdAt: '2020-12-15T05:34:37.863Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: true
+                          lInvite: false
+                          lMiddle: true
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 5d77acbf-2213-e297-bb96-965514b6636c
+                        billingAddress:
+                          name: coseller one
+                          street1: 1450 Coleman Avenue
+                          city: Santa Clara
+                          state: California
+                          postalCode: '95050'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: coseller one
+                          street1: 1450 Coleman Avenue
+                          city: Santa Clara
+                          state: California
+                          postalCode: '95050'
+                          country: United States
+                          countryCode: US
+                      - id: 5fd85289293bbe205fdaabea
+                        userId: ''
+                        cosellerId: 64c0c19d-933c-3973-c7d1-1233db9cd3d1
+                        externalSource: shopify
+                        orderId: 2a4ddafe-ae7a-f728-e663-6b75b68a784b
+                        shoptypeOrderId: ''
+                        externalId: '1446'
+                        createdAt: '2020-12-15T06:06:59Z'
+                        customerEmail: cosellerthree@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 100
+                          currency: USD
+                        totalPrice:
+                          amount: 100
+                          currency: USD
+                        commissionTotal:
+                          amount: 10
+                          currency: USD
+                        platformUrl: ''
+                        productDetails:
+                          - id: 97ba666f-90e1-97f6-29e5-1453ff4f19f2
+                            variantId: '32052614856843'
+                            externalId: '4494259585163'
+                            price:
+                              amount: 100
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075658633355'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/97ba666f-90e1-97f6-29e5-1453ff4f19f2/jldaSvU.jpg'
+                            title: Adoratherapy Mood Boost Cube - Set of 7 spray perfumes
+                            variantNameValue:
+                              size: 10ML Spray
+                            coseller_commission:
+                              lX:
+                                amount:
+                                  amount: 10
+                                  currency: USD
+                                percentage: 40
+                                userId: f442d387-ae97-4c10-9a49-060fd0d912cc
+                                cosellerId: 64c0c19d-933c-3973-c7d1-1233db9cd3d1
+                                userName: Coseller Three
+                                platformUrl: ''
+                                createdAt: '2020-12-15T06:01:21.443Z'
+                            coseller_adjustment: {}
+                        attributions:
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: true
+                        shipping_cost:
+                          amount: 0
+                          currency: USD
+                        vendorId: 5d77acbf-2213-e297-bb96-965514b6636c
+                        billingAddress:
+                          name: coseller three
+                          street1: 1405 Clifton Road
+                          city: Atlanta
+                          state: Georgia
+                          postalCode: '30307'
+                          country: United States
+                          countryCode: US
+                        shippingAddress:
+                          name: coseller three
+                          street1: 1405 Clifton Road
+                          city: Atlanta
+                          state: Georgia
+                          postalCode: '30307'
+                          country: United States
+                          countryCode: US
+      operationId: get-coseller-orders
+      description: Api to query coseller orders and order view
+      parameters:
+        - schema:
+            type: string
+            default: '10'
+            example: '20'
+          in: query
+          name: count
+          description: count of orders in a page
+        - schema:
+            type: string
+            default: '0'
+            example: '5'
+          in: query
+          name: offset
+          description: how many documents to skip
+        - schema:
+            type: string
+            example: ccc5d2cd-db86-249c-1760-1a32a2efbc1e
+          in: query
+          name: cosellerId
+          description: coseller id
+        - schema:
+            type: string
+            example: 'https://rahulshettyacademy.com'
+          in: query
+          name: platformUrl
+          description: platform url where the products got sold
 components:
   schemas:
     Vendor:
