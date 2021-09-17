@@ -1690,15 +1690,21 @@ paths:
             enum:
               - createdAt
               - name
+            example: na
           in: query
           name: sortBy
+          description: Field names
         - schema:
             type: string
             enum:
               - asc
               - desc
+            example: asc
           in: query
           name: orderBy
+          description: In ascending or descending order
+      tags:
+        - vendor
   /me:
     get:
       summary: Fetch user profile details
@@ -3603,6 +3609,10 @@ paths:
             enum:
               - price
               - discount
+              - createdAt
+              - modifiedAt
+              - quantitySold
+            example: price
           in: query
           name: sortBy
           description: Field name
@@ -4084,6 +4094,25 @@ paths:
           in: query
           name: extrasValue
           description: Extras value by which you want to filter vendors
+        - schema:
+            type: string
+            enum:
+              - createdAt
+              - name
+            example: name
+          in: query
+          name: sortBy
+          description: Field name
+        - schema:
+            type: string
+            example: asc
+            default: asc
+            enum:
+              - asc
+              - desc
+          in: query
+          name: orderBy
+          description: In ascending or descending order
   /command?type=sendNotification:
     post:
       summary: Send email notification
@@ -4109,6 +4138,33 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -11673,10 +11729,13 @@ paths:
           in: header
           name: Authorization
           description: network token
+      tags:
+        - network
   /coseller-orders:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - coseller
       responses:
         '200':
           description: OK
@@ -12713,7 +12772,8 @@ paths:
   /analytics/vendor:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - analytics
       responses:
         '200':
           description: OK
@@ -13054,14 +13114,17 @@ paths:
             type: string
           in: query
           name: vendorId
+          description: vendor id
         - schema:
             type: string
           in: query
           name: count
+          description: count
         - schema:
             type: string
           in: query
           name: offset
+          description: skip
         - schema:
             type: string
             enum:
@@ -13069,13 +13132,16 @@ paths:
               - revenueGenerated
           in: query
           name: sortBy
+          description: Field name
         - schema:
             type: string
             enum:
               - asc
               - desc
+            default: asc
           in: query
           name: orderBy
+          description: In ascending or descending order
 components:
   schemas:
     Vendor:
