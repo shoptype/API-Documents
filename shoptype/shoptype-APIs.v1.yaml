@@ -3192,6 +3192,16 @@ paths:
           in: query
           name: tags
           description: '*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+         - schema:
+            type: string
+          in: query
+          name: extras
+          description: '*Used to support userdefined fields. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
+            type: string
+          in: query
+          name: restrictions
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: number
           in: query
