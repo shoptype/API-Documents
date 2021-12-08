@@ -5529,6 +5529,114 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -8579,6 +8687,16 @@ paths:
           in: query
           name: imgSize
           description: 'To resize product images. *Refer:* **https://thumbor.readthedocs.io/en/latest/usage.html#**'
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: asc
+            example: asc
+          in: query
+          name: orderVariantBy
+          description: Sort Order for variants in accordance with price
   '/vendors/{vendorId}/orders':
     parameters:
       - schema:
@@ -13142,6 +13260,2132 @@ paths:
           in: query
           name: orderBy
           description: In ascending or descending order
+  '/platforms/{id}/orders':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  data:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - vendorId
+                        - externalSource
+                        - orderId
+                        - shoptypeOrderId
+                        - externalId
+                        - createdAt
+                        - customerEmail
+                        - quantity
+                        - platformUrl
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        vendorId:
+                          type: string
+                          minLength: 1
+                        externalSource:
+                          type: string
+                          minLength: 1
+                        orderId:
+                          type: string
+                          minLength: 1
+                        shoptypeOrderId:
+                          type: string
+                          minLength: 1
+                        externalId:
+                          type: string
+                          minLength: 1
+                        createdAt:
+                          type: string
+                          minLength: 1
+                        customerEmail:
+                          type: string
+                          minLength: 1
+                        quantity:
+                          type: number
+                        price:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        totalPrice:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        vendorRevenue:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        attributions:
+                          type: object
+                          properties:
+                            lIntro:
+                              type: boolean
+                            lInvite:
+                              type: boolean
+                            lMiddle:
+                              type: boolean
+                            lPartner:
+                              type: boolean
+                            lReferrer:
+                              type: boolean
+                            lShare:
+                              type: boolean
+                            lX:
+                              type: boolean
+                          required:
+                            - lIntro
+                            - lInvite
+                            - lMiddle
+                            - lPartner
+                            - lReferrer
+                            - lShare
+                            - lX
+                        platformUrl:
+                          type: string
+                          minLength: 1
+                        productDetails:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - variantId
+                              - externalId
+                              - quantity
+                              - title
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              variantId:
+                                type: string
+                                minLength: 1
+                              externalId:
+                                type: string
+                                minLength: 1
+                              price:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              totalDiscount:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              quantity:
+                                type: number
+                              primaryImageSrc:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    minLength: 1
+                                  imageSrc:
+                                    type: string
+                                    minLength: 1
+                                  variantIds:
+                                    type: array
+                                    items:
+                                      required: []
+                                      properties: {}
+                                required:
+                                  - id
+                                  - imageSrc
+                                  - variantIds
+                              title:
+                                type: string
+                                minLength: 1
+                              variantNameValue:
+                                type: object
+                                properties:
+                                  size:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - size
+                              commission_details:
+                                type: object
+                                properties:
+                                  lIntro:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: object
+                                        properties:
+                                          amount:
+                                            type: number
+                                          currency:
+                                            type: string
+                                            minLength: 1
+                                        required:
+                                          - amount
+                                          - currency
+                                      percentage:
+                                        type: number
+                                      userId:
+                                        type: string
+                                        minLength: 1
+                                      cosellerId:
+                                        type: string
+                                        minLength: 1
+                                      userName:
+                                        type: string
+                                        minLength: 1
+                                      platformUrl:
+                                        type: string
+                                        minLength: 1
+                                      createdAt:
+                                        type: string
+                                        minLength: 1
+                                      adjustments:
+                                        type: object
+                                        properties:
+                                          cosellerSplit:
+                                            type: array
+                                            uniqueItems: true
+                                            minItems: 1
+                                            items:
+                                              required:
+                                                - percentage
+                                                - userId
+                                                - platformId
+                                                - networkId
+                                                - userName
+                                                - platformUrl
+                                                - createdAt
+                                              properties:
+                                                amount:
+                                                  type: object
+                                                  properties:
+                                                    amount:
+                                                      type: number
+                                                    currency:
+                                                      type: string
+                                                      minLength: 1
+                                                  required:
+                                                    - amount
+                                                    - currency
+                                                percentage:
+                                                  type: number
+                                                userId:
+                                                  type: string
+                                                  minLength: 1
+                                                platformId:
+                                                  type: string
+                                                  minLength: 1
+                                                networkId:
+                                                  type: string
+                                                  minLength: 1
+                                                userName:
+                                                  type: string
+                                                platformUrl:
+                                                  type: string
+                                                  minLength: 1
+                                                createdAt:
+                                                  type: string
+                                                  minLength: 1
+                                          lReferrer:
+                                            type: array
+                                            uniqueItems: true
+                                            minItems: 1
+                                            items:
+                                              required:
+                                                - percentage
+                                                - userId
+                                                - vendorId
+                                                - userName
+                                                - platformUrl
+                                                - createdAt
+                                              properties:
+                                                amount:
+                                                  type: object
+                                                  properties:
+                                                    amount:
+                                                      type: number
+                                                    currency:
+                                                      type: string
+                                                      minLength: 1
+                                                  required:
+                                                    - amount
+                                                    - currency
+                                                percentage:
+                                                  type: number
+                                                userId:
+                                                  type: string
+                                                  minLength: 1
+                                                vendorId:
+                                                  type: string
+                                                  minLength: 1
+                                                userName:
+                                                  type: string
+                                                  minLength: 1
+                                                platformUrl:
+                                                  type: string
+                                                  minLength: 1
+                                                createdAt:
+                                                  type: string
+                                                  minLength: 1
+                                        required:
+                                          - cosellerSplit
+                                          - lReferrer
+                                    required:
+                                      - amount
+                                      - percentage
+                                      - userId
+                                      - cosellerId
+                                      - userName
+                                      - platformUrl
+                                      - createdAt
+                                      - adjustments
+                                  lX:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: object
+                                        properties:
+                                          amount:
+                                            type: number
+                                          currency:
+                                            type: string
+                                            minLength: 1
+                                        required:
+                                          - amount
+                                          - currency
+                                      percentage:
+                                        type: number
+                                      userId:
+                                        type: string
+                                        minLength: 1
+                                      cosellerId:
+                                        type: string
+                                        minLength: 1
+                                      userName:
+                                        type: string
+                                        minLength: 1
+                                      platformUrl:
+                                        type: string
+                                        minLength: 1
+                                      createdAt:
+                                        type: string
+                                        minLength: 1
+                                      adjustments:
+                                        type: object
+                                        properties:
+                                          cosellerSplit:
+                                            type: array
+                                            uniqueItems: true
+                                            minItems: 1
+                                            items:
+                                              required:
+                                                - percentage
+                                                - userId
+                                                - platformId
+                                                - networkId
+                                                - userName
+                                                - platformUrl
+                                                - createdAt
+                                              properties:
+                                                amount:
+                                                  type: object
+                                                  properties:
+                                                    amount:
+                                                      type: number
+                                                    currency:
+                                                      type: string
+                                                      minLength: 1
+                                                  required:
+                                                    - amount
+                                                    - currency
+                                                percentage:
+                                                  type: number
+                                                userId:
+                                                  type: string
+                                                  minLength: 1
+                                                platformId:
+                                                  type: string
+                                                  minLength: 1
+                                                networkId:
+                                                  type: string
+                                                  minLength: 1
+                                                userName:
+                                                  type: string
+                                                platformUrl:
+                                                  type: string
+                                                  minLength: 1
+                                                createdAt:
+                                                  type: string
+                                                  minLength: 1
+                                          lReferrer:
+                                            type: array
+                                            uniqueItems: true
+                                            minItems: 1
+                                            items:
+                                              required:
+                                                - percentage
+                                                - userId
+                                                - vendorId
+                                                - userName
+                                                - platformUrl
+                                                - createdAt
+                                              properties:
+                                                amount:
+                                                  type: object
+                                                  properties:
+                                                    amount:
+                                                      type: number
+                                                    currency:
+                                                      type: string
+                                                      minLength: 1
+                                                  required:
+                                                    - amount
+                                                    - currency
+                                                percentage:
+                                                  type: number
+                                                userId:
+                                                  type: string
+                                                  minLength: 1
+                                                vendorId:
+                                                  type: string
+                                                  minLength: 1
+                                                userName:
+                                                  type: string
+                                                  minLength: 1
+                                                platformUrl:
+                                                  type: string
+                                                  minLength: 1
+                                                createdAt:
+                                                  type: string
+                                                  minLength: 1
+                                        required:
+                                          - cosellerSplit
+                                          - lReferrer
+                                    required:
+                                      - amount
+                                      - percentage
+                                      - userId
+                                      - cosellerId
+                                      - userName
+                                      - platformUrl
+                                      - createdAt
+                                      - adjustments
+                                required:
+                                  - lIntro
+                                  - lX
+                              total_adjustments:
+                                type: object
+                                properties:
+                                  cosellerSplit:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: number
+                                      currency:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - amount
+                                      - currency
+                                  lReferrer:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: number
+                                      currency:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - amount
+                                      - currency
+                                required:
+                                  - cosellerSplit
+                                  - lReferrer
+                required:
+                  - count
+                  - data
+                x-examples:
+                  example-1:
+                    count: 5
+                    data:
+                      - id: 61725c7b956e852565300a33
+                        vendorId: f2395aa8-d916-9467-6d02-60f4ee880f3e
+                        externalSource: shopify
+                        orderId: 99eddbaf-a749-1cce-5046-1785892ab945
+                        shoptypeOrderId: c5p5okrm9jh2pt4spsqg
+                        externalId: '2070'
+                        createdAt: '2021-10-22T06:38:42Z'
+                        customerEmail: devlogin3@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        vendorRevenue:
+                          amount: 18.01
+                          currency: USD
+                        attributions:
+                          lIntro: true
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: true
+                          lShare: false
+                          lX: true
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: acfd31fd-5af6-bd2f-b4a5-834030d97c55
+                            variantId: '32052651131019'
+                            externalId: '4494266695819'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075668463755'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/acfd31fd-5af6-bd2f-b4a5-834030d97c55/comm3.jpg'
+                              variantIds:
+                                - '32052651131019'
+                            title: Adoratherapy Communication Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            commission_details:
+                              lIntro:
+                                amount:
+                                  amount: 2.54
+                                  currency: USD
+                                percentage: 40
+                                userId: 9eea5f73-11ff-46f6-a1bd-0de968e3a2cc
+                                cosellerId: f3fef0ad-3d50-b206-d524-e6fc83114fdd
+                                userName: Dev Coseller
+                                platformUrl: www.ywebsite123.com
+                                createdAt: '2021-10-20T09:24:11.601Z'
+                                adjustments:
+                                  cosellerSplit:
+                                    - amount:
+                                        amount: 0.3
+                                        currency: USD
+                                      percentage: 10
+                                      userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                      platformId: 21e3fea2-d279-0ce7-511b-fd129e6476d5
+                                      networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                      userName: ''
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-20T09:24:11.601Z'
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 50525d85-80c4-40cc-9ff8-295f3622ff51
+                                      vendorId: 85339874-1b85-6f2f-db36-30a2a5c62522
+                                      userName: Dev Vendor
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-20T09:24:11.601Z'
+                                    - amount:
+                                        amount: 0
+                                        currency: USD
+                                      percentage: 5
+                                      userId: c263ea76-fe7d-41db-9458-498f656c97aa
+                                      networkId: 2ee81b3b-9960-abeb-1773-bb965c582c9d
+                                      userName: Kiran HS
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-20T09:24:11.601Z'
+                              lX:
+                                amount:
+                                  amount: 3.83
+                                  currency: USD
+                                percentage: 60
+                                userId: 9eea5f73-11ff-46f6-a1bd-0de968e3a2cc
+                                cosellerId: f3fef0ad-3d50-b206-d524-e6fc83114fdd
+                                userName: Dev Coseller
+                                platformUrl: www.ywebsite123.com
+                                createdAt: '2021-10-22T06:21:21.915Z'
+                                adjustments:
+                                  cosellerSplit:
+                                    - amount:
+                                        amount: 0.45
+                                        currency: USD
+                                      percentage: 10
+                                      userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                      platformId: 21e3fea2-d279-0ce7-511b-fd129e6476d5
+                                      networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                      userName: ''
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-22T06:21:21.915Z'
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.21
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 50525d85-80c4-40cc-9ff8-295f3622ff51
+                                      vendorId: 85339874-1b85-6f2f-db36-30a2a5c62522
+                                      userName: Dev Vendor
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-22T06:21:21.915Z'
+                                    - amount:
+                                        amount: 0.01
+                                        currency: USD
+                                      percentage: 5
+                                      userId: c263ea76-fe7d-41db-9458-498f656c97aa
+                                      networkId: 2ee81b3b-9960-abeb-1773-bb965c582c9d
+                                      userName: Kiran HS
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-22T06:21:21.915Z'
+                            total_adjustments:
+                              cosellerSplit:
+                                amount: 0.75
+                                currency: USD
+                              lReferrer:
+                                amount: 0.59
+                                currency: USD
+              examples:
+                example-1:
+                  value:
+                    count: 5
+                    data:
+                      - id: 61725c7b956e852565300a33
+                        vendorId: f2395aa8-d916-9467-6d02-60f4ee880f3e
+                        externalSource: shopify
+                        orderId: 99eddbaf-a749-1cce-5046-1785892ab945
+                        shoptypeOrderId: c5p5okrm9jh2pt4spsqg
+                        externalId: '2070'
+                        createdAt: '2021-10-22T06:38:42Z'
+                        customerEmail: devlogin3@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        vendorRevenue:
+                          amount: 18.01
+                          currency: USD
+                        attributions:
+                          lIntro: true
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: true
+                          lShare: false
+                          lX: true
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: acfd31fd-5af6-bd2f-b4a5-834030d97c55
+                            variantId: '32052651131019'
+                            externalId: '4494266695819'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075668463755'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/acfd31fd-5af6-bd2f-b4a5-834030d97c55/comm3.jpg'
+                              variantIds:
+                                - '32052651131019'
+                            title: Adoratherapy Communication Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            commission_details:
+                              lIntro:
+                                amount:
+                                  amount: 2.54
+                                  currency: USD
+                                percentage: 40
+                                userId: 9eea5f73-11ff-46f6-a1bd-0de968e3a2cc
+                                cosellerId: f3fef0ad-3d50-b206-d524-e6fc83114fdd
+                                userName: Dev Coseller
+                                platformUrl: www.ywebsite123.com
+                                createdAt: '2021-10-20T09:24:11.601Z'
+                                adjustments:
+                                  cosellerSplit:
+                                    - amount:
+                                        amount: 0.3
+                                        currency: USD
+                                      percentage: 10
+                                      userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                      platformId: 21e3fea2-d279-0ce7-511b-fd129e6476d5
+                                      networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                      userName: ''
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-20T09:24:11.601Z'
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 50525d85-80c4-40cc-9ff8-295f3622ff51
+                                      vendorId: 85339874-1b85-6f2f-db36-30a2a5c62522
+                                      userName: Dev Vendor
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-20T09:24:11.601Z'
+                                    - amount:
+                                        amount: 0
+                                        currency: USD
+                                      percentage: 5
+                                      userId: c263ea76-fe7d-41db-9458-498f656c97aa
+                                      networkId: 2ee81b3b-9960-abeb-1773-bb965c582c9d
+                                      userName: Kiran HS
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-20T09:24:11.601Z'
+                              lX:
+                                amount:
+                                  amount: 3.83
+                                  currency: USD
+                                percentage: 60
+                                userId: 9eea5f73-11ff-46f6-a1bd-0de968e3a2cc
+                                cosellerId: f3fef0ad-3d50-b206-d524-e6fc83114fdd
+                                userName: Dev Coseller
+                                platformUrl: www.ywebsite123.com
+                                createdAt: '2021-10-22T06:21:21.915Z'
+                                adjustments:
+                                  cosellerSplit:
+                                    - amount:
+                                        amount: 0.45
+                                        currency: USD
+                                      percentage: 10
+                                      userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                      platformId: 21e3fea2-d279-0ce7-511b-fd129e6476d5
+                                      networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                      userName: ''
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-22T06:21:21.915Z'
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.21
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 50525d85-80c4-40cc-9ff8-295f3622ff51
+                                      vendorId: 85339874-1b85-6f2f-db36-30a2a5c62522
+                                      userName: Dev Vendor
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-22T06:21:21.915Z'
+                                    - amount:
+                                        amount: 0.01
+                                        currency: USD
+                                      percentage: 5
+                                      userId: c263ea76-fe7d-41db-9458-498f656c97aa
+                                      networkId: 2ee81b3b-9960-abeb-1773-bb965c582c9d
+                                      userName: Kiran HS
+                                      platformUrl: www.ywebsite123.com
+                                      createdAt: '2021-10-22T06:21:21.915Z'
+                            total_adjustments:
+                              cosellerSplit:
+                                amount: 0.75
+                                currency: USD
+                              lReferrer:
+                                amount: 0.59
+                                currency: USD
+      operationId: get-platforms-id-orders
+      description: Vendor Order v view at platform level
+      parameters:
+        - schema:
+            type: string
+            example: 'f2395aa8-d916-9467-6d02-60f4ee880f3e,9912aaf7-d351-42a5-8794-96e8e17c0bd8'
+          in: header
+          name: X-Shoptype-VendorIds
+          description: Array of Vendor Ids seperated by commas
+        - schema:
+            type: string
+            enum:
+              - createdAt
+              - totalPrice
+              - price
+              - quantity
+            example: quantity
+            default: createdAt
+          in: query
+          name: sortBy
+          description: Sort Field
+        - schema:
+            type: string
+            default: desc
+            enum:
+              - asc
+              - desc
+            example: asc
+          in: query
+          name: orderBy
+          description: Sort Order
+        - schema:
+            type: string
+            example: '2021-10-21'
+          in: query
+          name: startDate
+          description: Starting Date
+        - schema:
+            type: string
+            example: '2021-11-03'
+          in: query
+          name: endDate
+          description: Ending Date
+        - schema:
+            type: string
+            example: '10'
+            default: '10'
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: string
+            example: '0'
+            default: '0'
+          in: query
+          name: offset
+          description: Offset
+  /networks/orders:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  data:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - userId
+                        - networkId
+                        - externalSource
+                        - orderId
+                        - shoptypeOrderId
+                        - externalId
+                        - createdAt
+                        - customerEmail
+                        - quantity
+                        - platformUrl
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        userId:
+                          type: string
+                          minLength: 1
+                        networkId:
+                          type: string
+                          minLength: 1
+                        externalSource:
+                          type: string
+                          minLength: 1
+                        orderId:
+                          type: string
+                          minLength: 1
+                        shoptypeOrderId:
+                          type: string
+                          minLength: 1
+                        externalId:
+                          type: string
+                          minLength: 1
+                        createdAt:
+                          type: string
+                          minLength: 1
+                        customerEmail:
+                          type: string
+                          minLength: 1
+                        quantity:
+                          type: number
+                        price:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        totalPrice:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        commissionTotal:
+                          type: object
+                          properties:
+                            amount:
+                              type: number
+                            currency:
+                              type: string
+                              minLength: 1
+                          required:
+                            - amount
+                            - currency
+                        platformUrl:
+                          type: string
+                          minLength: 1
+                        productDetails:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - variantId
+                              - externalId
+                              - quantity
+                              - title
+                              - createdAt
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              variantId:
+                                type: string
+                                minLength: 1
+                              externalId:
+                                type: string
+                                minLength: 1
+                              price:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              totalDiscount:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              quantity:
+                                type: number
+                              primaryImageSrc:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    minLength: 1
+                                  imageSrc:
+                                    type: string
+                                    minLength: 1
+                                  variantIds:
+                                    type: array
+                                    items:
+                                      required: []
+                                      properties: {}
+                                required:
+                                  - id
+                                  - imageSrc
+                                  - variantIds
+                              title:
+                                type: string
+                                minLength: 1
+                              variantNameValue:
+                                type: object
+                                properties:
+                                  size:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - size
+                              network_commission:
+                                type: object
+                                properties:
+                                  networkFee:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: object
+                                        properties:
+                                          amount:
+                                            type: number
+                                          currency:
+                                            type: string
+                                            minLength: 1
+                                        required:
+                                          - amount
+                                          - currency
+                                      percentage:
+                                        type: number
+                                      userId:
+                                        type: string
+                                        minLength: 1
+                                      networkId:
+                                        type: string
+                                        minLength: 1
+                                      userName:
+                                        type: string
+                                      platformUrl:
+                                        type: string
+                                      createdAt:
+                                        type: string
+                                        minLength: 1
+                                      adjustments:
+                                        type: object
+                                        properties:
+                                          lReferrer:
+                                            type: array
+                                            uniqueItems: true
+                                            minItems: 1
+                                            items:
+                                              required:
+                                                - percentage
+                                                - userId
+                                                - networkId
+                                                - userName
+                                                - platformUrl
+                                                - createdAt
+                                              properties:
+                                                amount:
+                                                  type: object
+                                                  properties:
+                                                    amount:
+                                                      type: number
+                                                    currency:
+                                                      type: string
+                                                      minLength: 1
+                                                  required:
+                                                    - amount
+                                                    - currency
+                                                percentage:
+                                                  type: number
+                                                userId:
+                                                  type: string
+                                                  minLength: 1
+                                                networkId:
+                                                  type: string
+                                                  minLength: 1
+                                                userName:
+                                                  type: string
+                                                  minLength: 1
+                                                platformUrl:
+                                                  type: string
+                                                createdAt:
+                                                  type: string
+                                                  minLength: 1
+                                        required:
+                                          - lReferrer
+                                    required:
+                                      - amount
+                                      - percentage
+                                      - userId
+                                      - networkId
+                                      - userName
+                                      - platformUrl
+                                      - createdAt
+                                      - adjustments
+                                required:
+                                  - networkFee
+                              network_adjustment:
+                                type: object
+                                properties:
+                                  cosellerSplit:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: number
+                                      currency:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - amount
+                                      - currency
+                                required:
+                                  - cosellerSplit
+                              createdAt:
+                                type: string
+                                minLength: 1
+                        attributions:
+                          type: object
+                          properties:
+                            cosellerSplit:
+                              type: boolean
+                            lIntro:
+                              type: boolean
+                            lInvite:
+                              type: boolean
+                            lMiddle:
+                              type: boolean
+                            lPartner:
+                              type: boolean
+                            lReferrer:
+                              type: boolean
+                            lShare:
+                              type: boolean
+                            lX:
+                              type: boolean
+                            platformFee:
+                              type: boolean
+                          required:
+                            - cosellerSplit
+                            - lIntro
+                            - lInvite
+                            - lMiddle
+                            - lPartner
+                            - lReferrer
+                            - lShare
+                            - lX
+                            - platformFee
+                required:
+                  - count
+                  - data
+                x-examples:
+                  example-1:
+                    count: 5
+                    data:
+                      - id: f693cfd2-9a73-20d6-1808-82afad1d61d7
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: 99eddbaf-a749-1cce-5046-1785892ab945
+                        shoptypeOrderId: c5p5okrm9jh2pt4spsqg
+                        externalId: '2070'
+                        createdAt: '2021-10-22T06:38:42Z'
+                        customerEmail: devlogin3@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 3.6
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: acfd31fd-5af6-bd2f-b4a5-834030d97c55
+                            variantId: '32052651131019'
+                            externalId: '4494266695819'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075668463755'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/acfd31fd-5af6-bd2f-b4a5-834030d97c55/comm3.jpg'
+                              variantIds:
+                                - '32052651131019'
+                            title: Adoratherapy Communication Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 2.85
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0.75
+                                currency: USD
+                            createdAt: '2021-10-22T06:38:51.923Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 12e4e953-ffb4-4577-9a44-f5740da7c988
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: ac691794-26e7-e963-a3bd-d41a5780b438
+                        shoptypeOrderId: c5p5okrm9jh2pt4spsqg
+                        externalId: '2071'
+                        createdAt: '2021-10-22T06:38:46Z'
+                        customerEmail: devlogin3@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 0
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: 6de600c5-72bc-fc06-a097-b16930b306c6
+                            variantId: '32052677312651'
+                            externalId: '4494270005387'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075673968779'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/6de600c5-72bc-fc06-a097-b16930b306c6/comm2.jpg'
+                              variantIds:
+                                - '32052677312651'
+                            title: Adoratherapy Communication Chakra Boost
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 0
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0
+                                currency: USD
+                            createdAt: '2021-10-22T06:38:55.238Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 40deef7c-db40-9453-7bda-ef40cc4a7bea
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: 8d2e95b7-bce7-3c92-2578-dcdf9f2ac0cf
+                        shoptypeOrderId: c5t52d3m9jhck4g0ht20
+                        externalId: '2078'
+                        createdAt: '2021-10-28T07:29:35Z'
+                        customerEmail: testemail5@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 111
+                          currency: USD
+                        totalPrice:
+                          amount: 131
+                          currency: USD
+                        commissionTotal:
+                          amount: 12.2
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: 0d92513e-af50-38a1-d50b-b3d50cffc5b0
+                            variantId: '32052631961739'
+                            externalId: '4494262698123'
+                            price:
+                              amount: 111
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075663614091'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/a7b66132-19f9-fedd-12db-26c5f1d5eb3c/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                              variantIds:
+                                - '37937107337371'
+                            title: Adoratherapy Abundance Room Boost
+                            variantNameValue:
+                              color: Red
+                              material: Chemical1
+                              size: 10ML Spray
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 10.55
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.55
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 1.65
+                                currency: USD
+                            createdAt: '2021-10-28T07:29:44.236Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 93d0750a-74e0-22e3-e4f0-94883e517b80
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: 68a349c9-71f3-94d8-3a5d-1512bf2e7708
+                        shoptypeOrderId: c5t52d3m9jhck4g0ht20
+                        externalId: '2079'
+                        createdAt: '2021-10-28T07:29:39Z'
+                        customerEmail: testemail5@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 3.6
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: fc5df6e0-a54f-2634-0d61-8ad8a62dbc25
+                            variantId: '32052645298315'
+                            externalId: '4494265417867'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075667120267'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/95e682b2-32c8-adee-c7ec-e4b558ac3d6f/clar1_61e801b5-a47c-43e9-8ac3-bc06fd06ff39.jpg'
+                              variantIds:
+                                - '32052645298315'
+                            title: Adoratherapy Clarity Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 2.85
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0.75
+                                currency: USD
+                            createdAt: '2021-10-28T07:29:48.995Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 8d732e15-7779-55f9-7e29-ff837586e1e2
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: d5deccf8-79f1-f503-0604-1389bcbaa617
+                        shoptypeOrderId: c60j01bm9jhbgp05k150
+                        externalId: '2080'
+                        createdAt: '2021-11-02T12:33:42Z'
+                        customerEmail: autocoseller2@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 3.3
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: bb781a1c-29d1-349d-0113-56a226e87105
+                            variantId: '32052645298315'
+                            externalId: '4494265417867'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075667120267'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/881e83ff-fd24-2aae-3e6a-03b2d1750a58/clar1_61e801b5-a47c-43e9-8ac3-bc06fd06ff39.jpg'
+                              variantIds:
+                                - '32052645298315'
+                            title: Adoratherapy Clarity Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 2.85
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0.45
+                                currency: USD
+                            createdAt: '2021-11-02T12:33:58.025Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+              examples:
+                example-1:
+                  value:
+                    count: 5
+                    data:
+                      - id: f693cfd2-9a73-20d6-1808-82afad1d61d7
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: 99eddbaf-a749-1cce-5046-1785892ab945
+                        shoptypeOrderId: c5p5okrm9jh2pt4spsqg
+                        externalId: '2070'
+                        createdAt: '2021-10-22T06:38:42Z'
+                        customerEmail: devlogin3@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 3.6
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: acfd31fd-5af6-bd2f-b4a5-834030d97c55
+                            variantId: '32052651131019'
+                            externalId: '4494266695819'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075668463755'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/acfd31fd-5af6-bd2f-b4a5-834030d97c55/comm3.jpg'
+                              variantIds:
+                                - '32052651131019'
+                            title: Adoratherapy Communication Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 2.85
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0.75
+                                currency: USD
+                            createdAt: '2021-10-22T06:38:51.923Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 12e4e953-ffb4-4577-9a44-f5740da7c988
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: ac691794-26e7-e963-a3bd-d41a5780b438
+                        shoptypeOrderId: c5p5okrm9jh2pt4spsqg
+                        externalId: '2071'
+                        createdAt: '2021-10-22T06:38:46Z'
+                        customerEmail: devlogin3@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 0
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: 6de600c5-72bc-fc06-a097-b16930b306c6
+                            variantId: '32052677312651'
+                            externalId: '4494270005387'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075673968779'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/6de600c5-72bc-fc06-a097-b16930b306c6/comm2.jpg'
+                              variantIds:
+                                - '32052677312651'
+                            title: Adoratherapy Communication Chakra Boost
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 0
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0
+                                currency: USD
+                            createdAt: '2021-10-22T06:38:55.238Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 40deef7c-db40-9453-7bda-ef40cc4a7bea
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: 8d2e95b7-bce7-3c92-2578-dcdf9f2ac0cf
+                        shoptypeOrderId: c5t52d3m9jhck4g0ht20
+                        externalId: '2078'
+                        createdAt: '2021-10-28T07:29:35Z'
+                        customerEmail: testemail5@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 111
+                          currency: USD
+                        totalPrice:
+                          amount: 131
+                          currency: USD
+                        commissionTotal:
+                          amount: 12.2
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: 0d92513e-af50-38a1-d50b-b3d50cffc5b0
+                            variantId: '32052631961739'
+                            externalId: '4494262698123'
+                            price:
+                              amount: 111
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075663614091'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/a7b66132-19f9-fedd-12db-26c5f1d5eb3c/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg'
+                              variantIds:
+                                - '37937107337371'
+                            title: Adoratherapy Abundance Room Boost
+                            variantNameValue:
+                              color: Red
+                              material: Chemical1
+                              size: 10ML Spray
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 10.55
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.55
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 1.65
+                                currency: USD
+                            createdAt: '2021-10-28T07:29:44.236Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 93d0750a-74e0-22e3-e4f0-94883e517b80
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: 68a349c9-71f3-94d8-3a5d-1512bf2e7708
+                        shoptypeOrderId: c5t52d3m9jhck4g0ht20
+                        externalId: '2079'
+                        createdAt: '2021-10-28T07:29:39Z'
+                        customerEmail: testemail5@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 3.6
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: fc5df6e0-a54f-2634-0d61-8ad8a62dbc25
+                            variantId: '32052645298315'
+                            externalId: '4494265417867'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075667120267'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/95e682b2-32c8-adee-c7ec-e4b558ac3d6f/clar1_61e801b5-a47c-43e9-8ac3-bc06fd06ff39.jpg'
+                              variantIds:
+                                - '32052645298315'
+                            title: Adoratherapy Clarity Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 2.85
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0.75
+                                currency: USD
+                            createdAt: '2021-10-28T07:29:48.995Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+                      - id: 8d732e15-7779-55f9-7e29-ff837586e1e2
+                        userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                        networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                        externalSource: shopify
+                        orderId: d5deccf8-79f1-f503-0604-1389bcbaa617
+                        shoptypeOrderId: c60j01bm9jhbgp05k150
+                        externalId: '2080'
+                        createdAt: '2021-11-02T12:33:42Z'
+                        customerEmail: autocoseller2@mailinator.com
+                        quantity: 1
+                        price:
+                          amount: 30
+                          currency: USD
+                        totalPrice:
+                          amount: 50
+                          currency: USD
+                        commissionTotal:
+                          amount: 3.3
+                          currency: USD
+                        platformUrl: www.ywebsite123.com
+                        productDetails:
+                          - id: bb781a1c-29d1-349d-0113-56a226e87105
+                            variantId: '32052645298315'
+                            externalId: '4494265417867'
+                            price:
+                              amount: 30
+                              currency: USD
+                            totalDiscount:
+                              amount: 0
+                              currency: USD
+                            quantity: 1
+                            primaryImageSrc:
+                              id: '14075667120267'
+                              imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/dev/products/881e83ff-fd24-2aae-3e6a-03b2d1750a58/clar1_61e801b5-a47c-43e9-8ac3-bc06fd06ff39.jpg'
+                              variantIds:
+                                - '32052645298315'
+                            title: Adoratherapy Clarity Chakra Spice
+                            variantNameValue:
+                              size: 10ML Roll On
+                            network_commission:
+                              networkFee:
+                                amount:
+                                  amount: 2.85
+                                  currency: USD
+                                percentage: 10
+                                userId: 9551a67a-dd6f-40ce-a498-f929f2d2edf3
+                                networkId: fd67b1b5-b43a-3cf1-f356-e4085d58bd70
+                                userName: ''
+                                platformUrl: ''
+                                createdAt: '0001-01-01T00:00:00Z'
+                                adjustments:
+                                  lReferrer:
+                                    - amount:
+                                        amount: 0.15
+                                        currency: USD
+                                      percentage: 5
+                                      userId: 027fb7af-cd99-4cd6-bb61-e6ffc358c328
+                                      networkId: dfde8c53-59e3-279a-326d-fa385fb9d6a0
+                                      userName: Shoptype Admin
+                                      platformUrl: ''
+                                      createdAt: '0001-01-01T00:00:00Z'
+                            network_adjustment:
+                              cosellerSplit:
+                                amount: 0.45
+                                currency: USD
+                            createdAt: '2021-11-02T12:33:58.025Z'
+                        attributions:
+                          cosellerSplit: true
+                          lIntro: false
+                          lInvite: false
+                          lMiddle: false
+                          lPartner: false
+                          lReferrer: false
+                          lShare: false
+                          lX: false
+                          platformFee: true
+      operationId: get-networks-orders
+      description: Queries Network Order View
+      parameters:
+        - schema:
+            type: string
+            example: 'f2395aa8-d916-9467-6d02-60f4ee880f3e,9912aaf7-d351-42a5-8794-96e8e17c0bd8'
+          in: header
+          name: X-Shoptype-VendorIds
+          description: Array of Vendor Ids
+        - schema:
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJpZCI6ImZkNjdiMWI1LWI0M2EtM2NmMS1mMzU2LWU0MDg1ZDU4YmQ3MCIsInVzZXJJZCI6Ijk1NTFhNjdhLWRkNmYtNDBjZS1hNDk4LWY5MjlmMmQyZWRmMyIsInVzZXJUeXBlIjoibmV0d29yayIsImlzcyI6InNob3AtdHlwZSJ9.tB29B6XGxKJ5tkPc12Vt0iKwsnynSgnVlJbuW9xNHfI
+          in: header
+          name: Authorization
+          description: Token
+        - schema:
+            type: string
+            default: createdAt
+            example: createdAt
+            enum:
+              - createdAt
+              - totalPrice
+              - price
+              - quantity
+          in: query
+          name: sortBy
+          description: Sort Field
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            example: asc
+            default: desc
+          in: query
+          name: orderBy
+          description: Sort Order
+        - schema:
+            type: string
+            example: '2021-10-21'
+          in: query
+          name: startDate
+          description: Start Date
+        - schema:
+            type: string
+            example: '2021-11-03'
+          in: query
+          name: endDate
+          description: End Date
+        - schema:
+            type: string
+            default: '10'
+            example: '5'
+          in: query
+          name: count
+          description: Count
+        - schema:
+            type: string
+            default: '0'
+            example: '0'
+          in: query
+          name: offset
+          description: Offset
+  '/product/{productId}':
+    get:
+      summary: Your GET endpoint
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            text/html:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value: |-
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="utf-8" />
+                        <link rel="icon" href="/favicon.png" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1" />
+                        <meta name="theme-color" content="#000000" />
+                        <meta name="title" property="og:title" content="PlayTable" />
+                        <meta name="image" property="og:image" content="" />
+                        <meta name="description" property="og:description" content="Bundle C PlayTable 64GB Marshmallow White &#43; $30 worth of game credits" />
+                        <meta property="fb:app_id"          content="2375945279385032" />
+                        <meta property="og:type"            content="product" />
+                        <meta property="og:title"           content="PlayTable" />
+                        <meta property="og:image"           content="" />
+                        <meta property="og:description"     content="Bundle C PlayTable 64GB Marshmallow White &#43; $30 worth of game credits" />
+                        <meta property="og:image:width" content="1200" />
+                        <meta property="og:image:height" content="1200" />
+                    </head>
+                    <body>
+                    <noscript>You need to enable JavaScript to run this app.</noscript>
+                    </body>
+                    </html>
+      operationId: get-product
+      description: Product with variants sorted in accordance with their price
+      parameters:
+        - schema:
+            type: string
+            default: asc
+            example: asc
+            enum:
+              - asc
+              - desc
+          in: query
+          name: orderVariantBy
+          description: Sort Order of variant in accordance with price
+    parameters:
+      - schema:
+          type: string
+        name: productId
+        in: path
+        required: true
+  /invite-coseller:
+    post:
+      summary: ''
+      operationId: post-invite-coseller
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  status:
+                    type: string
+                    minLength: 1
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - status
+                  - message
+                x-examples:
+                  example-1:
+                    status: success
+                    message: Mail sent successfully!
+              examples:
+                example-1:
+                  value:
+                    status: success
+                    message: Mail sent successfully!
+      tags:
+        - referral
+      description: To send Coseller Referral Email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                to:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - email
+                      - name
+                    properties:
+                      email:
+                        type: string
+                      name:
+                        type: string
+                vendorProfileName:
+                  type: string
+                emailInviteLink:
+                  type: string
+              required:
+                - to
+                - vendorProfileName
+                - emailInviteLink
+              x-examples:
+                example-1:
+                  to:
+                    - email: ''
+                      name: ''
+                    - email: ''
+                      name: ''
+                  vendorProfileName: ''
+                  emailInviteLink: ''
+            examples:
+              example-1:
+                value:
+                  to:
+                    - email: testemail@mailinator.com
+                      name: Test Email
+                    - email: testreferral@mailinator.com
+                      name: Test Referral
+                  vendorProfileName: Vendor one
+                  emailInviteLink: 'https://dev.shoptype.com/users/signup?rid=61b08a93d324b3aeb75ced82'
 components:
   schemas:
     Vendor:
