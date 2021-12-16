@@ -1680,11 +1680,13 @@ paths:
         - schema:
             type: string
           in: query
-          name: extrasKey
+          name: extras
+          description: '*Used to support userdefined fields. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
           in: query
-          name: extrasValue
+          name: restrictions
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
             enum:
@@ -2154,6 +2156,8 @@ paths:
                   type: boolean
                 disable_all_products:
                   type: boolean
+                restrictions:
+                  type: string
               required:
                 - storeName
                 - apiKey
@@ -2178,6 +2182,7 @@ paths:
                   timestamp: 1618037786155
                   enableCheckoutShoptype: true
                   disable_all_products: true
+                  restrictions: {"isAdult":"true","isAgeRestricted":"false"}
               Sample shopify store to not disable all products:
                 value:
                   storeName: shoptypes
@@ -2280,6 +2285,8 @@ paths:
                   type: string
                   minLength: 1
                   deprecated: true
+                restrictionss:
+                  type: string
               required:
                 - storeName
                 - storeHostUrl
@@ -2310,6 +2317,7 @@ paths:
                   enableCheckoutShoptype: true
                   disable_all_products: false
                   shippingServiceId: '001'
+                  restrictions: {"isAdult":"true","isAgeRestricted":"false"}
         description: |
           Woo commerce store details
 
@@ -3193,6 +3201,16 @@ paths:
           name: tags
           description: '*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
+            type: string
+          in: query
+          name: extras
+          description: '*Used to support custom fields via dictionaries. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
+            type: string
+          in: query
+          name: restrictions
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
             type: number
           in: query
           name: minRange
@@ -3631,6 +3649,16 @@ paths:
           name: tags
           description: '''*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'''
         - schema:
+            type: string
+          in: query
+          name: extras
+          description: '*Used to support custom fields stored as dictionaries . Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
+            type: string
+          in: query
+          name: restrictions
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
             type: number
           in: query
           name: minRange
@@ -3677,13 +3705,13 @@ paths:
         - schema:
             type: string
           in: query
-          name: extrasKey
-          description: Extras Key at which you want to filter products
+          name: extras
+          description: '*Used to support userdefined fields. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
           in: query
-          name: extrasValue
-          description: Extras value at which you want to filter products
+          name: restrictions
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
             example: 'imgSize=500x600:400x500 or imgSize=500x600'
