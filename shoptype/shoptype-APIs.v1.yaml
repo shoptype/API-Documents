@@ -1680,13 +1680,23 @@ paths:
         - schema:
             type: string
           in: query
-          name: extras
-          description: '*Used to support userdefined fields. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+          name: extrasKey
+          description: '*Used to support userdefined fields as key value pairs. This field consists of ALL keys the user wishes to map. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
           in: query
-          name: restrictions
-          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+          name: extrasValue
+          description: '*Field containing all values mapped to the keys in the above field. Supports AND/OR as above, but the mapping/syntax should be identical to the extrasKey data*'
+        - schema:
+            type: string
+          in: query
+          name: restrictionsKey
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Similar to extras, this field contains only the keys/fields to restrict. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
+            type: string
+          in: query
+          name: restrictionsValue
+          description: '*For each restriction passed in restrictionsKey field, this field contains all the corresponding values. Supports AND/OR as above, but the mapping/syntax should be identical to the restrictionsKey data*'
         - schema:
             type: string
             enum:
@@ -2285,7 +2295,7 @@ paths:
                   type: string
                   minLength: 1
                   deprecated: true
-                restrictionss:
+                restrictions:
                   type: string
               required:
                 - storeName
@@ -3200,16 +3210,26 @@ paths:
           in: query
           name: tags
           description: '*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+         - schema:
+            type: string
+          in: query
+          name: extrasKey
+          description: '*Used to support userdefined fields as key value pairs. This field consists of ALL keys the user wishes to map. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
           in: query
-          name: extras
-          description: '*Used to support custom fields via dictionaries. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+          name: extrasValue
+          description: '*Field containing all values mapped to the keys in the above field. Supports AND/OR as above, but the mapping/syntax should be identical to the extrasKey data*'
         - schema:
             type: string
           in: query
-          name: restrictions
-          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+          name: restrictionsKey
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Similar to extras, this field contains only the keys/fields to restrict. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
+            type: string
+          in: query
+          name: restrictionsValue
+          description: '*For each restriction passed in restrictionsKey field, this field contains all the corresponding values. Supports AND/OR as above, but the mapping/syntax should be identical to the restrictionsKey data*'
         - schema:
             type: number
           in: query
@@ -3651,12 +3671,12 @@ paths:
         - schema:
             type: string
           in: query
-          name: extras
+          name: extrasKey
           description: '*Used to support custom fields stored as dictionaries . Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
           in: query
-          name: restrictions
+          name: restrictionsKey
           description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: number
@@ -3702,16 +3722,26 @@ paths:
           in: query
           name: inStock
           description: Show products in stock
+         - schema:
+            type: string
+          in: query
+          name: extrasKey
+          description: '*Used to support userdefined fields as key value pairs. This field consists of ALL keys the user wishes to map. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
         - schema:
             type: string
           in: query
-          name: extras
-          description: '*Used to support userdefined fields. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+          name: extrasValue
+          description: '*Field containing all values mapped to the keys in the above field. Supports AND/OR as above, but the mapping/syntax should be identical to the extrasKey data*'
         - schema:
             type: string
           in: query
-          name: restrictions
-          description: '*Allows for deselecting or viewing restriction filters based on preferences. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+          name: restrictionsKey
+          description: '*Allows for deselecting or viewing restriction filters based on preferences. Similar to extras, this field contains only the keys/fields to restrict. Supports AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
+        - schema:
+            type: string
+          in: query
+          name: restrictionsValue
+          description: '*For each restriction passed in restrictionsKey field, this field contains all the corresponding values. Supports AND/OR as above, but the mapping/syntax should be identical to the restrictionsKey data*'
         - schema:
             type: string
             example: 'imgSize=500x600:400x500 or imgSize=500x600'
