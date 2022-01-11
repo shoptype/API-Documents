@@ -3210,7 +3210,7 @@ paths:
           in: query
           name: tags
           description: '*One can form AND/OR combinations.* *Example,* * tag1 and tag2 ==> tag1,tag2 * tag1or tag2 ==> tag1:tag2 * (tag1 and tag2) or (tag3 and tag4) ==> tag1:tag2,tag3:tag4'
-         - schema:
+        - schema:
             type: string
           in: query
           name: extrasKey
@@ -3722,7 +3722,7 @@ paths:
           in: query
           name: inStock
           description: Show products in stock
-         - schema:
+        - schema:
             type: string
           in: query
           name: extrasKey
