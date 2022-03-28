@@ -2192,7 +2192,9 @@ paths:
                   timestamp: 1618037786155
                   enableCheckoutShoptype: true
                   disable_all_products: true
-                  restrictions: {"isAdult":"true","isAgeRestricted":"false"}
+                  restrictions:
+                    isAdult: 'true'
+                    isAgeRestricted: 'false'
               Sample shopify store to not disable all products:
                 value:
                   storeName: shoptypes
@@ -2327,7 +2329,9 @@ paths:
                   enableCheckoutShoptype: true
                   disable_all_products: false
                   shippingServiceId: '001'
-                  restrictions: {"isAdult":"true","isAgeRestricted":"false"}
+                  restrictions:
+                    isAdult: 'true'
+                    isAgeRestricted: 'false'
         description: |
           Woo commerce store details
 
@@ -4196,6 +4200,73 @@ paths:
                     from: greeshma@coffeebeans.io
                     subject: hello
                     body: |2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -15444,6 +15515,1409 @@ paths:
                       name: Test Referral
                   vendorProfileName: Vendor one
                   emailInviteLink: 'https://dev.shoptype.com/users/signup?rid=61b08a93d324b3aeb75ced82'
+  /networks/collections:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - created_at
+                        - updated_at
+                        - deleted_at
+                        - id
+                        - platform_id
+                        - user_id
+                        - name
+                        - description
+                        - preview_image_src
+                        - type
+                        - status
+                      properties:
+                        created_at:
+                          type: string
+                          minLength: 1
+                        updated_at:
+                          type: string
+                          minLength: 1
+                        deleted_at:
+                          type: string
+                          minLength: 1
+                        id:
+                          type: string
+                          minLength: 1
+                        platform_id:
+                          type: string
+                          minLength: 1
+                        user_id:
+                          type: string
+                        name:
+                          type: string
+                          minLength: 1
+                        description:
+                          type: string
+                          minLength: 1
+                        preview_image_src:
+                          type: string
+                        type:
+                          type: string
+                          minLength: 1
+                        status:
+                          type: string
+                          minLength: 1
+                        tags: {}
+                        attributes: {}
+                        product_metas:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - product_id
+                              - sequence_id
+                              - product_variant_id
+                            properties:
+                              product_id:
+                                type: string
+                                minLength: 1
+                              sequence_id:
+                                type: string
+                              product_variant_id:
+                                type: string
+                              attributes: {}
+                  count:
+                    type: number
+                required:
+                  - collections
+                  - count
+                x-examples:
+                  example-1:
+                    collections:
+                      - created_at: '2022-03-24T10:03:18.287Z'
+                        updated_at: '2022-03-24T10:03:18.287Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: 8d9fa96f-15c9-9087-bd0c-7fd65ffc3298
+                        platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+                        user_id: ''
+                        name: Perfumes
+                        description: Collection of imported perfumes.
+                        preview_image_src: ''
+                        type: product
+                        status: draft
+                        tags: null
+                        attributes: null
+                        product_metas:
+                          - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                          - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                      - created_at: '2022-03-24T17:26:06.045Z'
+                        updated_at: '2022-03-24T17:26:06.045Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: 661fa220-e2f9-30ae-a868-82cdf54f80c9
+                        platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+                        user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                        name: PF
+                        description: Collection of imported perfumes.
+                        preview_image_src: ''
+                        type: product
+                        status: draft
+                        tags: null
+                        attributes: null
+                        product_metas:
+                          - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                          - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                    count: 2
+              examples:
+                example-1:
+                  value:
+                    collections:
+                      - created_at: '2022-03-24T10:03:18.287Z'
+                        updated_at: '2022-03-24T10:03:18.287Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: 8d9fa96f-15c9-9087-bd0c-7fd65ffc3298
+                        platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+                        user_id: ''
+                        name: Perfumes
+                        description: Collection of imported perfumes.
+                        preview_image_src: ''
+                        type: product
+                        status: draft
+                        tags: null
+                        attributes: null
+                        product_metas:
+                          - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                          - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                      - created_at: '2022-03-24T17:26:06.045Z'
+                        updated_at: '2022-03-24T17:26:06.045Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: 661fa220-e2f9-30ae-a868-82cdf54f80c9
+                        platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+                        user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                        name: PF
+                        description: Collection of imported perfumes.
+                        preview_image_src: ''
+                        type: product
+                        status: draft
+                        tags: null
+                        attributes: null
+                        product_metas:
+                          - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                          - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                            sequence_id: ''
+                            product_variant_id: ''
+                            attributes: null
+                    count: 2
+      operationId: get-networkstagcollections
+      x-internal: false
+      description: Get collections endpoint. Returns the list of all the collections which are created by the platforms
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Network Token
+        - schema:
+            type: string
+          in: query
+          name: offset
+          description: Pagination param for skipping
+        - schema:
+            type: string
+            default: '10'
+            maxLength: 200
+          in: query
+          name: count
+          description: Pagination for number of entries returned.
+        - schema:
+            type: string
+            enum:
+              - published
+              - draft
+          in: query
+          name: status
+          description: Collection status
+        - schema:
+            type: string
+            enum:
+              - product
+              - self
+          in: query
+          name: type
+          description: Collection Type
+    post:
+      summary: ''
+      operationId: post-networks-collections
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                    minLength: 1
+                  updated_at:
+                    type: string
+                    minLength: 1
+                  deleted_at:
+                    type: string
+                    minLength: 1
+                  id:
+                    type: string
+                    minLength: 1
+                  platform_id:
+                    type: string
+                    minLength: 1
+                  user_id:
+                    type: string
+                  name:
+                    type: string
+                    minLength: 1
+                  description:
+                    type: string
+                    minLength: 1
+                  preview_image_src:
+                    type: string
+                  type:
+                    type: string
+                    minLength: 1
+                  status:
+                    type: string
+                    minLength: 1
+                  tags: {}
+                  attributes: {}
+                  product_metas:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - product_id
+                        - sequence_id
+                        - product_variant_id
+                      properties:
+                        product_id:
+                          type: string
+                          minLength: 1
+                        sequence_id:
+                          type: string
+                        product_variant_id:
+                          type: string
+                        attributes: {}
+                required:
+                  - created_at
+                  - updated_at
+                  - deleted_at
+                  - id
+                  - platform_id
+                  - user_id
+                  - name
+                  - description
+                  - preview_image_src
+                  - type
+                  - status
+                  - product_metas
+                x-examples:
+                  example-1:
+                    created_at: '2022-03-24T10:03:18.287Z'
+                    updated_at: '2022-03-24T10:03:18.287Z'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 8d9fa96f-15c9-9087-bd0c-7fd65ffc3298
+                    platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+                    user_id: ''
+                    name: Perfumes
+                    description: Collection of imported perfumes.
+                    preview_image_src: ''
+                    type: product
+                    status: draft
+                    tags: null
+                    attributes: null
+                    product_metas:
+                      - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                        sequence_id: ''
+                        product_variant_id: ''
+                        attributes: null
+                      - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                        sequence_id: ''
+                        product_variant_id: ''
+                        attributes: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  name: Perfumes
+                  description: Collection of imported perfumes.
+                  type: product
+                  status: draft
+                  preview_image_src: image_url
+                  tags:
+                    - '#perfume'
+                    - '#scent'
+                  collection_ids:
+                    - collectionId
+                  attributes:
+                    is_campaign: true
+                  product_metas:
+                    - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                      sequence_id: '1'
+                      product_variant_id: variantId
+                      attributes:
+                        is_campaign: true
+                    - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                      sequence_id: '1'
+                      product_variant_id: variantId
+                      attributes:
+                        is_campaign: true
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                description:
+                  type: string
+                  minLength: 1
+                type:
+                  type: string
+                  minLength: 1
+                status:
+                  type: string
+                  minLength: 1
+                preview_image_src:
+                  type: string
+                  minLength: 1
+                tags:
+                  type: array
+                  items:
+                    type: object
+                collection_ids:
+                  type: array
+                  description: Required only when type is self
+                  items:
+                    type: object
+                attributes:
+                  type: object
+                  required:
+                    - is_campaign
+                  properties:
+                    is_campaign:
+                      type: boolean
+                product_metas:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  description: Required when type is product
+                  items:
+                    type: object
+                    properties:
+                      product_id:
+                        type: string
+                        minLength: 1
+                      sequence_id:
+                        type: string
+                        minLength: 1
+                      product_variant_id:
+                        type: string
+                        minLength: 1
+                      attributes:
+                        type: object
+                        properties:
+                          is_campaign:
+                            type: boolean
+                        required:
+                          - is_campaign
+                    required:
+                      - product_id
+                      - sequence_id
+                      - product_variant_id
+              required:
+                - name
+                - description
+                - type
+                - status
+            examples:
+              example-1:
+                value:
+                  name: Perfumes
+                  description: Collection of imported perfumes.
+                  type: product
+                  status: draft
+                  preview_image_src: image_url
+                  tags:
+                    - '#perfume'
+                    - '#scent'
+                  collection_ids:
+                    - collectionId
+                  attributes:
+                    is_campaign: true
+                  product_metas:
+                    - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                      sequence_id: '2'
+                      product_variant_id: variantId
+                      attributes:
+                        is_campaign: true
+                    - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                      sequence_id: '1'
+                      product_variant_id: variantId
+                      attributes:
+                        is_campaign: true
+        description: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Network Token
+          required: true
+      description: For creating platform level homogeneous collections
+      tags:
+        - network
+  '/networks/collections/{collection_id}':
+    parameters:
+      - schema:
+          type: string
+        name: collection_id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - network
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                    minLength: 1
+                  updated_at:
+                    type: string
+                    minLength: 1
+                  deleted_at:
+                    type: string
+                    minLength: 1
+                  id:
+                    type: string
+                    minLength: 1
+                  platform_id:
+                    type: string
+                    minLength: 1
+                  user_id:
+                    type: string
+                    minLength: 1
+                  name:
+                    type: string
+                    minLength: 1
+                  description:
+                    type: string
+                    minLength: 1
+                  preview_image_src:
+                    type: string
+                  type:
+                    type: string
+                    minLength: 1
+                  status:
+                    type: string
+                    minLength: 1
+                  tags: {}
+                  attributes: {}
+                  product_metas:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - product_id
+                        - sequence_id
+                        - product_variant_id
+                      properties:
+                        product_id:
+                          type: string
+                          minLength: 1
+                        sequence_id:
+                          type: string
+                        product_variant_id:
+                          type: string
+                        attributes: {}
+                  product_details:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - handle
+                        - title
+                        - description
+                        - publishedAt
+                        - syncedAt
+                        - catalogId
+                        - store_name
+                        - currency
+                        - sourceId
+                        - sourceName
+                        - status
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        handle:
+                          type: string
+                          minLength: 1
+                        title:
+                          type: string
+                          minLength: 1
+                        description:
+                          type: string
+                          minLength: 1
+                        tags:
+                          type: array
+                          items:
+                            required: []
+                            properties: {}
+                        publishedAt:
+                          type: number
+                        syncedAt:
+                          type: number
+                        primaryImageSrc:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              minLength: 1
+                            imageSrc:
+                              type: string
+                              minLength: 1
+                            variantIds:
+                              type: array
+                              items:
+                                required: []
+                                properties: {}
+                          required:
+                            - id
+                            - imageSrc
+                            - variantIds
+                        previewImageSrc:
+                          type: object
+                          properties: {}
+                          required: []
+                        secondaryImageSrc:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - imageSrc
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              imageSrc:
+                                type: string
+                                minLength: 1
+                              variantIds:
+                                type: array
+                                items:
+                                  required: []
+                                  properties: {}
+                        primaryVideoSrc:
+                          type: object
+                          properties: {}
+                          required: []
+                        catalogId:
+                          type: string
+                          minLength: 1
+                        variants:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - discountedPrice
+                              - price
+                              - taxable
+                              - sku
+                              - quantity
+                              - weight
+                              - dimension_unit
+                              - weight_unit
+                              - is_virtual
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              discountedPrice:
+                                type: string
+                                minLength: 1
+                              discountedPriceAsMoney:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              price:
+                                type: string
+                              priceAsMoney:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              taxable:
+                                type: boolean
+                              imageIds:
+                                type: array
+                                items:
+                                  required: []
+                                  properties: {}
+                              sku:
+                                type: string
+                                minLength: 1
+                              quantity:
+                                type: number
+                              variantNameValue:
+                                type: object
+                                properties:
+                                  color:
+                                    type: string
+                                    minLength: 1
+                                  material:
+                                    type: string
+                                    minLength: 1
+                                  size:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - color
+                                  - material
+                                  - size
+                              dimensions:
+                                type: object
+                                properties:
+                                  length:
+                                    type: string
+                                  width:
+                                    type: string
+                                  height:
+                                    type: string
+                                required:
+                                  - length
+                                  - width
+                                  - height
+                              weight:
+                                type: string
+                              dimension_unit:
+                                type: string
+                              weight_unit:
+                                type: string
+                              is_virtual:
+                                type: boolean
+                        store_name:
+                          type: string
+                          minLength: 1
+                        currency:
+                          type: string
+                          minLength: 1
+                        sourceId:
+                          type: string
+                          minLength: 1
+                        sourceName:
+                          type: string
+                          minLength: 1
+                        options:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - name
+                            properties:
+                              name:
+                                type: string
+                                minLength: 1
+                              values:
+                                type: array
+                                items:
+                                  required: []
+                                  properties: {}
+                        extras:
+                          type: object
+                          properties:
+                            isMarketConnected:
+                              type: string
+                              minLength: 1
+                            isStoreConnected:
+                              type: string
+                              minLength: 1
+                            raviBhai:
+                              type: boolean
+                            vendor_pUpdate:
+                              type: boolean
+                          required:
+                            - isMarketConnected
+                            - isStoreConnected
+                            - raviBhai
+                            - vendor_pUpdate
+                        restrictions:
+                          type: object
+                          properties:
+                            isAdult:
+                              type: string
+                              minLength: 1
+                            isAgeRestricted:
+                              type: string
+                              minLength: 1
+                            showDefault:
+                              type: string
+                              minLength: 1
+                          required:
+                            - isAdult
+                            - isAgeRestricted
+                            - showDefault
+                        status:
+                          type: string
+                          minLength: 1
+                        geoLocation:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              minLength: 1
+                            coordinates:
+                              type: array
+                              items:
+                                required: []
+                                properties: {}
+                          required:
+                            - type
+                            - coordinates
+                required:
+                  - created_at
+                  - updated_at
+                  - deleted_at
+                  - id
+                  - platform_id
+                  - user_id
+                  - name
+                  - description
+                  - preview_image_src
+                  - type
+                  - status
+                  - product_metas
+                  - product_details
+                x-examples:
+                  example-1:
+                    created_at: '2022-03-24T17:26:06.045Z'
+                    updated_at: '2022-03-24T17:26:06.045Z'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 661fa220-e2f9-30ae-a868-82cdf54f80c9
+                    platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+                    user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                    name: PF
+                    description: Collection of imported perfumes.
+                    preview_image_src: ''
+                    type: product
+                    status: draft
+                    tags: null
+                    attributes: null
+                    product_metas:
+                      - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                        sequence_id: ''
+                        product_variant_id: ''
+                        attributes: null
+                      - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                        sequence_id: ''
+                        product_variant_id: ''
+                        attributes: null
+                    product_details:
+                      - id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                        handle: add-virtual-product
+                        title: add virtual product
+                        publishedAt: 1619808618000
+                        syncedAt: 1626075919
+                        primaryImageSrc: {}
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: f08e1e12-04f0-c8ac-9a65-86b617fa4c3f
+                        variants:
+                          - id: '39785393488027'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 43
+                            variantNameValue:
+                              title: Default Title
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: true
+                        store_name: shop-types
+                        currency: USD
+                        sourceId: '6702150385819'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isMarketConnected: 'true'
+                          isStoreConnected: 'true'
+                          productWali: extra
+                          raviBhai: true
+                          vendor_pUpdate: true
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -94.70188999999999
+                            - 38.8671878
+                      - id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                        handle: adoratherapy-abundance-room-boost-2
+                        title: Adoratherapy Abundance Room Boost
+                        description: "Super Cool Intense and exotic, Abundance is magnetic &amp; captivating. With top notes of cinnamon, clove, and patchouli. If abundance, prosperity, success, and self-confidence are what you desire most then Abundance Room Boost will ground your intention. An alternative to candles, room fresheners and diffusers, this all natural, organic, vegan &amp; cruelty free room and body spray is like feng shui for your mood and the mood of your environment\n\"I\_am in the flow of constant prosperity and abundance\"\n\nDistilled water, symbio®solv Clear Plus, organic essential oils of patchouli, cinnamon, cardamon, bergamot, clove, frankincense and vetiver, oak moss and jasmine absolute, Verstatil SL non GMO, Citric Acid.\n\nBedroom: Spray before you get out of bed for the first breath of the day. Spray on your sheets and pillow before laying to rest.\nHome and Office: Spray in the room you are in to shift the energy to the mood you desire\nPets &amp; Children: Spray to provide peace and calm to spaces you share with your family.\nYoga Mat and Meditation: Spray around you before or after your practice for purification and focus.\nTravel: Spray around your self in public spaces to shift your energy inwards and release anxiety.\nPersonal Space: Mist your personal space for energy and recalibration."
+                        tags:
+                          - Chakra
+                          - Oils
+                          - Sprays
+                        publishedAt: 1609942724000
+                        syncedAt: 1626075919
+                        primaryImageSrc:
+                          id: '14075663614091'
+                          imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg?v=1602601079'
+                          variantIds:
+                            - '37937107337371'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: '15287235739787'
+                            imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/adora2_bffd1b03-e2f1-47b1-9e2f-d51938a5aecc.jpg?v=1602601079'
+                            variantIds:
+                              - '32052631994507'
+                          - id: '14075663581323'
+                            imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/blu1.jpg?v=1602601079'
+                            variantIds:
+                              - '32052631961739'
+                          - id: '15647779160203'
+                            imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/adora4_0c5110e8-c952-4cc2-8519-60677977a520.jpg?v=1602601079'
+                        primaryVideoSrc: {}
+                        catalogId: f08e1e12-04f0-c8ac-9a65-86b617fa4c3f
+                        variants:
+                          - id: '32052631961739'
+                            discountedPrice: '111.00'
+                            discountedPriceAsMoney:
+                              amount: 111
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '14075663581323'
+                            sku: RPRBTRAVEL
+                            quantity: 677
+                            variantNameValue:
+                              color: Red
+                              material: Chemical1
+                              size: 10ML Spray
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '32052631994507'
+                            discountedPrice: '40.00'
+                            discountedPriceAsMoney:
+                              amount: 40
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '15287235739787'
+                            sku: RPRBABUND
+                            quantity: 655
+                            variantNameValue:
+                              color: Red
+                              material: Chemical2
+                              size: 100ML Spray
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '33521989812363'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 233
+                            variantNameValue:
+                              color: Red
+                              material: Chemical3
+                              size: 1000ml
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '33528243978379'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 34
+                            variantNameValue:
+                              color: Red
+                              material: Chemical4
+                              size: 1500ml
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '33529038766219'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 232
+                            variantNameValue:
+                              color: Red
+                              material: chemical5
+                              size: 2000ml
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '37937107337371'
+                            discountedPrice: '111.00'
+                            discountedPriceAsMoney:
+                              amount: 111
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '14075663614091'
+                            quantity: 104
+                            variantNameValue:
+                              color: Blue
+                              material: Chemical2
+                              size: 10ML Spray
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                        store_name: shop-types
+                        currency: USD
+                        sourceId: '4494262698123'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: size
+                            values:
+                              - 10ML Spray
+                              - 100ML Spray
+                              - 1000ml
+                              - 1500ml
+                              - 2000ml
+                          - name: material
+                            values:
+                              - Chemical1
+                              - Chemical2
+                              - Chemical3
+                              - Chemical4
+                              - chemical5
+                          - name: color
+                            values:
+                              - Red
+                              - Blue
+                        extras:
+                          isMarketConnected: 'true'
+                          isStoreConnected: 'true'
+                          raviBhai: true
+                          vendor_pUpdate: true
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -94.70188999999999
+                            - 38.8671878
+              examples:
+                example-1:
+                  value:
+                    created_at: '2022-03-24T17:26:06.045Z'
+                    updated_at: '2022-03-24T17:26:06.045Z'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 661fa220-e2f9-30ae-a868-82cdf54f80c9
+                    platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+                    user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                    name: PF
+                    description: Collection of imported perfumes.
+                    preview_image_src: ''
+                    type: product
+                    status: draft
+                    tags: null
+                    attributes: null
+                    product_metas:
+                      - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                        sequence_id: ''
+                        product_variant_id: ''
+                        attributes: null
+                      - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                        sequence_id: ''
+                        product_variant_id: ''
+                        attributes: null
+                    product_details:
+                      - id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                        handle: add-virtual-product
+                        title: add virtual product
+                        publishedAt: 1619808618000
+                        syncedAt: 1626075919
+                        primaryImageSrc: {}
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: f08e1e12-04f0-c8ac-9a65-86b617fa4c3f
+                        variants:
+                          - id: '39785393488027'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 43
+                            variantNameValue:
+                              title: Default Title
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: true
+                        store_name: shop-types
+                        currency: USD
+                        sourceId: '6702150385819'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isMarketConnected: 'true'
+                          isStoreConnected: 'true'
+                          productWali: extra
+                          raviBhai: true
+                          vendor_pUpdate: true
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -94.70188999999999
+                            - 38.8671878
+                      - id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+                        handle: adoratherapy-abundance-room-boost-2
+                        title: Adoratherapy Abundance Room Boost
+                        description: "Super Cool Intense and exotic, Abundance is magnetic &amp; captivating. With top notes of cinnamon, clove, and patchouli. If abundance, prosperity, success, and self-confidence are what you desire most then Abundance Room Boost will ground your intention. An alternative to candles, room fresheners and diffusers, this all natural, organic, vegan &amp; cruelty free room and body spray is like feng shui for your mood and the mood of your environment\n\"I\_am in the flow of constant prosperity and abundance\"\n\nDistilled water, symbio®solv Clear Plus, organic essential oils of patchouli, cinnamon, cardamon, bergamot, clove, frankincense and vetiver, oak moss and jasmine absolute, Verstatil SL non GMO, Citric Acid.\n\nBedroom: Spray before you get out of bed for the first breath of the day. Spray on your sheets and pillow before laying to rest.\nHome and Office: Spray in the room you are in to shift the energy to the mood you desire\nPets &amp; Children: Spray to provide peace and calm to spaces you share with your family.\nYoga Mat and Meditation: Spray around you before or after your practice for purification and focus.\nTravel: Spray around your self in public spaces to shift your energy inwards and release anxiety.\nPersonal Space: Mist your personal space for energy and recalibration."
+                        tags:
+                          - Chakra
+                          - Oils
+                          - Sprays
+                        publishedAt: 1609942724000
+                        syncedAt: 1626075919
+                        primaryImageSrc:
+                          id: '14075663614091'
+                          imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/653341768001_-Adoratherapy_Abundance_Travel_Room_Boost-Universal.jpg?v=1602601079'
+                          variantIds:
+                            - '37937107337371'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: '15287235739787'
+                            imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/adora2_bffd1b03-e2f1-47b1-9e2f-d51938a5aecc.jpg?v=1602601079'
+                            variantIds:
+                              - '32052631994507'
+                          - id: '14075663581323'
+                            imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/blu1.jpg?v=1602601079'
+                            variantIds:
+                              - '32052631961739'
+                          - id: '15647779160203'
+                            imageSrc: 'https://cdn.shopify.com/s/files/1/0320/8980/0843/products/adora4_0c5110e8-c952-4cc2-8519-60677977a520.jpg?v=1602601079'
+                        primaryVideoSrc: {}
+                        catalogId: f08e1e12-04f0-c8ac-9a65-86b617fa4c3f
+                        variants:
+                          - id: '32052631961739'
+                            discountedPrice: '111.00'
+                            discountedPriceAsMoney:
+                              amount: 111
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '14075663581323'
+                            sku: RPRBTRAVEL
+                            quantity: 677
+                            variantNameValue:
+                              color: Red
+                              material: Chemical1
+                              size: 10ML Spray
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '32052631994507'
+                            discountedPrice: '40.00'
+                            discountedPriceAsMoney:
+                              amount: 40
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '15287235739787'
+                            sku: RPRBABUND
+                            quantity: 655
+                            variantNameValue:
+                              color: Red
+                              material: Chemical2
+                              size: 100ML Spray
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '33521989812363'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 233
+                            variantNameValue:
+                              color: Red
+                              material: Chemical3
+                              size: 1000ml
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '33528243978379'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 34
+                            variantNameValue:
+                              color: Red
+                              material: Chemical4
+                              size: 1500ml
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '33529038766219'
+                            discountedPrice: '10.00'
+                            discountedPriceAsMoney:
+                              amount: 10
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            quantity: 232
+                            variantNameValue:
+                              color: Red
+                              material: chemical5
+                              size: 2000ml
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                          - id: '37937107337371'
+                            discountedPrice: '111.00'
+                            discountedPriceAsMoney:
+                              amount: 111
+                              currency: USD
+                            price: ''
+                            priceAsMoney:
+                              amount: 0
+                              currency: USD
+                            taxable: true
+                            imageIds:
+                              - '14075663614091'
+                            quantity: 104
+                            variantNameValue:
+                              color: Blue
+                              material: Chemical2
+                              size: 10ML Spray
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: ''
+                            weight_unit: ''
+                            is_virtual: false
+                        store_name: shop-types
+                        currency: USD
+                        sourceId: '4494262698123'
+                        sourceName: SHOPIFY
+                        options:
+                          - name: size
+                            values:
+                              - 10ML Spray
+                              - 100ML Spray
+                              - 1000ml
+                              - 1500ml
+                              - 2000ml
+                          - name: material
+                            values:
+                              - Chemical1
+                              - Chemical2
+                              - Chemical3
+                              - Chemical4
+                              - chemical5
+                          - name: color
+                            values:
+                              - Red
+                              - Blue
+                        extras:
+                          isMarketConnected: 'true'
+                          isStoreConnected: 'true'
+                          raviBhai: true
+                          vendor_pUpdate: true
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - -94.70188999999999
+                            - 38.8671878
+      operationId: get-networks-collections-collection_id
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Network Token
+          required: true
+      description: Get collection detail
 components:
   schemas:
     Vendor:
@@ -17632,4 +19106,97 @@ components:
         - requires_shipping
         - created_at
         - updated_at
+    Collection:
+      description: Collection Model
+      type: object
+      properties:
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        deleted_at:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        platform_id:
+          type: string
+          minLength: 1
+        user_id:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+        preview_image_src:
+          type: string
+        type:
+          type: string
+          minLength: 1
+        status:
+          type: string
+          minLength: 1
+        tags: {}
+        attributes: {}
+        product_metas:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            required:
+              - product_id
+              - sequence_id
+              - product_variant_id
+            properties:
+              product_id:
+                type: string
+                minLength: 1
+              sequence_id:
+                type: string
+              product_variant_id:
+                type: string
+              attributes: {}
+      required:
+        - created_at
+        - updated_at
+        - deleted_at
+        - id
+        - platform_id
+        - user_id
+        - name
+        - description
+        - preview_image_src
+        - type
+        - status
+        - product_metas
+      x-examples:
+        Collection:
+          created_at: '2022-03-24T17:26:06.045Z'
+          updated_at: '2022-03-24T17:26:06.045Z'
+          deleted_at: '0001-01-01T00:00:00Z'
+          id: 661fa220-e2f9-30ae-a868-82cdf54f80c9
+          platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+          user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+          name: PF
+          description: Collection of imported perfumes.
+          preview_image_src: ''
+          type: product
+          status: draft
+          tags: null
+          attributes: null
+          product_metas:
+            - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+              sequence_id: ''
+              product_variant_id: ''
+              attributes: null
+            - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+              sequence_id: ''
+              product_variant_id: ''
+              attributes: null
   securitySchemes: {}
