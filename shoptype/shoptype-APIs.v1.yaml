@@ -5766,6 +5766,67 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -16918,6 +16979,849 @@ paths:
           description: Network Token
           required: true
       description: Get collection detail
+  /query-products:
+    get:
+      summary: Your GET endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  product:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - title
+                        - description
+                        - publishedAt
+                        - syncedAt
+                        - catalogId
+                        - store_name
+                        - currency
+                        - quantity
+                        - quantitySold
+                        - sourceId
+                        - sourceName
+                        - status
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        title:
+                          type: string
+                          minLength: 1
+                        description:
+                          type: string
+                          minLength: 1
+                        publishedAt:
+                          type: number
+                        syncedAt:
+                          type: number
+                        primaryImageSrc:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              minLength: 1
+                            imageSrc:
+                              type: string
+                              minLength: 1
+                          required:
+                            - id
+                            - imageSrc
+                        previewImageSrc:
+                          type: object
+                          properties: {}
+                          required: []
+                        primaryVideoSrc:
+                          type: object
+                          properties: {}
+                          required: []
+                        catalogId:
+                          type: string
+                          minLength: 1
+                        variants:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - discountedPrice
+                              - price
+                              - taxable
+                              - quantity
+                              - quantitySold
+                              - views
+                              - weight
+                              - dimension_unit
+                              - weight_unit
+                              - is_virtual
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              discountedPrice:
+                                type: string
+                                minLength: 1
+                              discountedPriceAsMoney:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              price:
+                                type: string
+                                minLength: 1
+                              priceAsMoney:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              taxable:
+                                type: boolean
+                              quantity:
+                                type: number
+                              quantitySold:
+                                type: number
+                              variantNameValue:
+                                type: object
+                                properties:
+                                  title:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - title
+                              views:
+                                type: number
+                              dimensions:
+                                type: object
+                                properties:
+                                  length:
+                                    type: string
+                                  width:
+                                    type: string
+                                  height:
+                                    type: string
+                                required:
+                                  - length
+                                  - width
+                                  - height
+                              weight:
+                                type: string
+                              dimension_unit:
+                                type: string
+                                minLength: 1
+                              weight_unit:
+                                type: string
+                                minLength: 1
+                              is_virtual:
+                                type: boolean
+                        store_name:
+                          type: string
+                          minLength: 1
+                        currency:
+                          type: string
+                          minLength: 1
+                        quantity:
+                          type: number
+                        quantitySold:
+                          type: number
+                        sourceId:
+                          type: string
+                          minLength: 1
+                        sourceName:
+                          type: string
+                          minLength: 1
+                        options:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - name
+                            properties:
+                              name:
+                                type: string
+                                minLength: 1
+                              values:
+                                type: array
+                                items:
+                                  required: []
+                                  properties: {}
+                        extras:
+                          type: object
+                          properties:
+                            isAdult:
+                              type: string
+                              minLength: 1
+                            isAgeRestricted:
+                              type: string
+                              minLength: 1
+                            storeHostUrl:
+                              type: string
+                              minLength: 1
+                          required:
+                            - isAdult
+                            - isAgeRestricted
+                            - storeHostUrl
+                        restrictions:
+                          type: object
+                          properties:
+                            isAdult:
+                              type: string
+                              minLength: 1
+                            isAgeRestricted:
+                              type: string
+                              minLength: 1
+                            showDefault:
+                              type: string
+                              minLength: 1
+                          required:
+                            - isAdult
+                            - isAgeRestricted
+                            - showDefault
+                        status:
+                          type: string
+                          minLength: 1
+                        geoLocation:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              minLength: 1
+                            coordinates:
+                              type: array
+                              items:
+                                required: []
+                                properties: {}
+                          required:
+                            - type
+                            - coordinates
+                  status:
+                    type: string
+                    minLength: 1
+                required:
+                  - count
+                  - product
+                  - status
+                x-examples:
+                  example-1:
+                    count: 1
+                    product:
+                      - id: 86c08a68-357a-fafd-0afb-4c8a80fd9712
+                        title: Miller Ace beer
+                        description: |
+                          Miller Ace beer
+                        publishedAt: 1630595117
+                        syncedAt: 1630595117
+                        primaryImageSrc:
+                          id: '0'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/prod/products/da74d8e1-8864-4773-1b73-fce6c9b9a5f6/woocommerce-placeholder.png'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 42395588-d9ca-e32d-affa-12bb899f2c41
+                        variants:
+                          - id: '4358'
+                            discountedPrice: '13'
+                            discountedPriceAsMoney:
+                              amount: 13
+                              currency: CAD
+                            price: '14'
+                            priceAsMoney:
+                              amount: 14
+                              currency: CAD
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: in
+                            weight_unit: oz
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: CAD
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '4358'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://shoptypewoo.wpcomstaging.com'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 88.435521
+                            - 22.6215581
+                    status: success
+              examples:
+                example-1:
+                  value:
+                    count: 1
+                    product:
+                      - id: 86c08a68-357a-fafd-0afb-4c8a80fd9712
+                        title: Miller Ace beer
+                        description: |
+                          Miller Ace beer
+                        publishedAt: 1630595117
+                        syncedAt: 1630595117
+                        primaryImageSrc:
+                          id: '0'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/prod/products/da74d8e1-8864-4773-1b73-fce6c9b9a5f6/woocommerce-placeholder.png'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 42395588-d9ca-e32d-affa-12bb899f2c41
+                        variants:
+                          - id: '4358'
+                            discountedPrice: '13'
+                            discountedPriceAsMoney:
+                              amount: 13
+                              currency: CAD
+                            price: '14'
+                            priceAsMoney:
+                              amount: 14
+                              currency: CAD
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: in
+                            weight_unit: oz
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: CAD
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '4358'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://shoptypewoo.wpcomstaging.com'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 88.435521
+                            - 22.6215581
+                    status: success
+      operationId: get-query-products
+      parameters:
+        - schema:
+            type: string
+            example: Miller
+          in: query
+          name: text
+          description: Search text
+        - schema:
+            type: string
+            example: 42395588-d9ca-e32d-affa-12bb899f2c41
+          in: query
+          name: vendorId
+          description: Vendor ids array seperated with comma without space
+        - schema:
+            type: string
+            example: title
+          in: query
+          name: sortBy
+          description: Sort field
+        - schema:
+            type: string
+            example: 'asc, desc'
+          in: query
+          description: Sort order
+          name: orderBy
+        - schema:
+            type: string
+            default: '0'
+          in: query
+          name: offset
+          description: Skip
+        - schema:
+            type: string
+            default: '10'
+          in: query
+          name: count
+          description: Limit
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'Vendor, Coseller or Network token'
+      description: ELastic Search query-products api
+      tags:
+        - product
+    parameters: []
+  '/platforms/{id}/query-products':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  count:
+                    type: number
+                  product:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - id
+                        - title
+                        - description
+                        - publishedAt
+                        - syncedAt
+                        - catalogId
+                        - store_name
+                        - currency
+                        - quantity
+                        - quantitySold
+                        - sourceId
+                        - sourceName
+                        - status
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        title:
+                          type: string
+                          minLength: 1
+                        description:
+                          type: string
+                          minLength: 1
+                        publishedAt:
+                          type: number
+                        syncedAt:
+                          type: number
+                        primaryImageSrc:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              minLength: 1
+                            imageSrc:
+                              type: string
+                              minLength: 1
+                          required:
+                            - id
+                            - imageSrc
+                        previewImageSrc:
+                          type: object
+                          properties: {}
+                          required: []
+                        primaryVideoSrc:
+                          type: object
+                          properties: {}
+                          required: []
+                        catalogId:
+                          type: string
+                          minLength: 1
+                        variants:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - id
+                              - discountedPrice
+                              - price
+                              - taxable
+                              - quantity
+                              - quantitySold
+                              - views
+                              - weight
+                              - dimension_unit
+                              - weight_unit
+                              - is_virtual
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              discountedPrice:
+                                type: string
+                                minLength: 1
+                              discountedPriceAsMoney:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              price:
+                                type: string
+                                minLength: 1
+                              priceAsMoney:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: number
+                                  currency:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - amount
+                                  - currency
+                              taxable:
+                                type: boolean
+                              quantity:
+                                type: number
+                              quantitySold:
+                                type: number
+                              variantNameValue:
+                                type: object
+                                properties:
+                                  title:
+                                    type: string
+                                    minLength: 1
+                                required:
+                                  - title
+                              views:
+                                type: number
+                              dimensions:
+                                type: object
+                                properties:
+                                  length:
+                                    type: string
+                                  width:
+                                    type: string
+                                  height:
+                                    type: string
+                                required:
+                                  - length
+                                  - width
+                                  - height
+                              weight:
+                                type: string
+                              dimension_unit:
+                                type: string
+                                minLength: 1
+                              weight_unit:
+                                type: string
+                                minLength: 1
+                              is_virtual:
+                                type: boolean
+                        store_name:
+                          type: string
+                          minLength: 1
+                        currency:
+                          type: string
+                          minLength: 1
+                        quantity:
+                          type: number
+                        quantitySold:
+                          type: number
+                        sourceId:
+                          type: string
+                          minLength: 1
+                        sourceName:
+                          type: string
+                          minLength: 1
+                        options:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            required:
+                              - name
+                            properties:
+                              name:
+                                type: string
+                                minLength: 1
+                              values:
+                                type: array
+                                items:
+                                  required: []
+                                  properties: {}
+                        extras:
+                          type: object
+                          properties:
+                            isAdult:
+                              type: string
+                              minLength: 1
+                            isAgeRestricted:
+                              type: string
+                              minLength: 1
+                            storeHostUrl:
+                              type: string
+                              minLength: 1
+                          required:
+                            - isAdult
+                            - isAgeRestricted
+                            - storeHostUrl
+                        restrictions:
+                          type: object
+                          properties:
+                            isAdult:
+                              type: string
+                              minLength: 1
+                            isAgeRestricted:
+                              type: string
+                              minLength: 1
+                            showDefault:
+                              type: string
+                              minLength: 1
+                          required:
+                            - isAdult
+                            - isAgeRestricted
+                            - showDefault
+                        status:
+                          type: string
+                          minLength: 1
+                        geoLocation:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              minLength: 1
+                            coordinates:
+                              type: array
+                              items:
+                                required: []
+                                properties: {}
+                          required:
+                            - type
+                            - coordinates
+                  status:
+                    type: string
+                    minLength: 1
+                required:
+                  - count
+                  - product
+                  - status
+                x-examples:
+                  example-1:
+                    count: 1
+                    product:
+                      - id: 86c08a68-357a-fafd-0afb-4c8a80fd9712
+                        title: Miller Ace beer
+                        description: |
+                          Miller Ace beer
+                        publishedAt: 1630595117
+                        syncedAt: 1630595117
+                        primaryImageSrc:
+                          id: '0'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/prod/products/da74d8e1-8864-4773-1b73-fce6c9b9a5f6/woocommerce-placeholder.png'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 42395588-d9ca-e32d-affa-12bb899f2c41
+                        variants:
+                          - id: '4358'
+                            discountedPrice: '13'
+                            discountedPriceAsMoney:
+                              amount: 13
+                              currency: CAD
+                            price: '14'
+                            priceAsMoney:
+                              amount: 14
+                              currency: CAD
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: in
+                            weight_unit: oz
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: CAD
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '4358'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://shoptypewoo.wpcomstaging.com'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 88.435521
+                            - 22.6215581
+                    status: success
+              examples:
+                example-1:
+                  value:
+                    count: 1
+                    product:
+                      - id: 86c08a68-357a-fafd-0afb-4c8a80fd9712
+                        title: Miller Ace beer
+                        description: |
+                          Miller Ace beer
+                        publishedAt: 1630595117
+                        syncedAt: 1630595117
+                        primaryImageSrc:
+                          id: '0'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/prod/products/da74d8e1-8864-4773-1b73-fce6c9b9a5f6/woocommerce-placeholder.png'
+                        previewImageSrc: {}
+                        primaryVideoSrc: {}
+                        catalogId: 42395588-d9ca-e32d-affa-12bb899f2c41
+                        variants:
+                          - id: '4358'
+                            discountedPrice: '13'
+                            discountedPriceAsMoney:
+                              amount: 13
+                              currency: CAD
+                            price: '14'
+                            priceAsMoney:
+                              amount: 14
+                              currency: CAD
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: in
+                            weight_unit: oz
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: CAD
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '4358'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://shoptypewoo.wpcomstaging.com'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 88.435521
+                            - 22.6215581
+                    status: success
+      operationId: get-platforms-id-query-products
+      description: ELastic Search query-products at platform level
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Search text
+        - schema:
+            type: string
+          in: query
+          name: vendorId
+          description: Vendor ids array seperated with comma without space
+        - schema:
+            type: string
+          in: query
+          name: sortBy
+          description: Sort field
+        - schema:
+            type: string
+          in: query
+          name: orderBy
+          description: Sort order
+        - schema:
+            type: string
+            default: '0'
+          in: query
+          name: offset
+          description: Skip
+        - schema:
+            type: string
+            default: '10'
+          in: query
+          name: count
+          description: Limit
 components:
   schemas:
     Vendor:
