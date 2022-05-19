@@ -15785,11 +15785,6 @@ paths:
       parameters:
         - schema:
             type: string
-          in: header
-          name: Authorization
-          description: Network Token
-        - schema:
-            type: string
           in: query
           name: offset
           description: Pagination param for skipping
@@ -15815,7 +15810,55 @@ paths:
               - self
           in: query
           name: type
-          description: Collection Type
+          description: Get all Collections at platform level
+        - schema:
+            type: string
+            enum:
+              - count
+          in: query
+          name: sortBy
+          description: Sort by either collection of collection count or product count. type query param is mandatory for sorting
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+          in: query
+          name: orderBy
+          description: Sorting order. Default ascending
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+          in: query
+          name: isMenu
+          description: Whether the collection is a menu or not
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+          in: query
+          name: isCampaign
+          description: Whether the collection is a menu or not
+        - schema:
+            type: string
+            example: '2022-04-07T06:35:30.102Z'
+          in: query
+          name: campaignStartDate
+          description: Campaign start date filter
+        - schema:
+            type: string
+            example: '2022-04-07T06:35:30.102Z'
+          in: query
+          name: campaignEndDate
+          description: Campaign end date filter
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Text search on collection name
     post:
       summary: ''
       operationId: post-networks-collections
@@ -17905,8 +17948,8 @@ paths:
                         status:
                           type: string
                           minLength: 1
-                        tags: { }
-                        attributes: { }
+                        tags: {}
+                        attributes: {}
                         product_metas:
                           type: array
                           uniqueItems: true
@@ -17924,7 +17967,7 @@ paths:
                                 type: integer
                               product_variant_id:
                                 type: string
-                              attributes: { }
+                              attributes: {}
                   count:
                     type: number
                 required:
@@ -18059,6 +18102,54 @@ paths:
           in: query
           name: type
           description: Get all Collections at platform level
+        - schema:
+            type: string
+            enum:
+              - count
+          in: query
+          name: sortBy
+          description: Sort by either collection of collection count or product count. type query param is mandatory for sorting
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+          in: query
+          name: orderBy
+          description: Sorting order. Default ascending
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+          in: query
+          name: isMenu
+          description: Whether the collection is a menu or not
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+          in: query
+          name: isCampaign
+          description: Whether the collection is a menu or not
+        - schema:
+            type: string
+            example: '2022-04-07T06:35:30.102Z'
+          in: query
+          name: campaignStartDate
+          description: Campaign start date filter
+        - schema:
+            type: string
+            example: '2022-04-07T06:35:30.102Z'
+          in: query
+          name: campaignEndDate
+          description: Campaign end date filter
+        - schema:
+            type: string
+          in: query
+          name: text
+          description: Text search on collection name
   '/platforms/{id}/collections/{collection_id}':
     parameters:
       - schema:
