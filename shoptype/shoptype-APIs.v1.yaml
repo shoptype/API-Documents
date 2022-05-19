@@ -3282,7 +3282,7 @@ paths:
     get:
       summary: Fetch products for a given platform
       tags:
-        - network
+        - platform
       responses:
         '200':
           description: OK
@@ -3770,7 +3770,7 @@ paths:
     get:
       summary: Fetch vendors for a given platform
       tags:
-        - network
+        - platform
       responses:
         '200':
           description: OK
@@ -8887,7 +8887,7 @@ paths:
           DeviceId has to be generated on client side and is required,
           TrackerId is optional
       tags:
-        - network
+        - platform
       parameters:
         - schema:
             type: string
@@ -12056,7 +12056,7 @@ paths:
           name: Authorization
           description: network token
       tags:
-        - network
+        - platform
   /coseller-orders:
     get:
       summary: Your GET endpoint
@@ -13478,7 +13478,7 @@ paths:
     get:
       summary: Your GET endpoint
       tags:
-        - network
+        - platform
       responses:
         '200':
           description: OK
@@ -17426,7 +17426,7 @@ paths:
     get:
       summary: Your GET endpoint
       tags:
-        - network
+        - platform
       responses:
         '200':
           description: OK
@@ -17846,7 +17846,7 @@ paths:
     get:
       summary: Your GET endpoint
       tags:
-        - network
+        - platform
       responses:
         '200':
           description: OK
@@ -18074,7 +18074,7 @@ paths:
     get:
       summary: Your GET endpoint
       tags:
-        - network
+        - platform
       responses:
         '200':
           description: OK
