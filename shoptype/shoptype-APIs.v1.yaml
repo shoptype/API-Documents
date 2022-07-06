@@ -5845,6 +5845,22 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -8719,6 +8735,20 @@ paths:
                 - device_id
                 - url
                 - tracker_id
+            examples:
+              Track user event with a trackable id:
+                value:
+                  device_id: 3452789b138c275429623823e471b6ca
+                  url: 'https://drinkbeyond.co.in/'
+                  tracker_id: pv_799721b4-f5fe-cd0f-3b7b-308ef4d7f2a4
+                  referrer: 'https://drinkbeyond.co.in/'
+              Track user event for a default platform:
+                value:
+                  device_id: 3452789b138c275429623823e471b6ca
+                  url: 'https://drinkbeyond.co.in/'
+                  tracker_id: ''
+                  referrer: 'https://drinkbeyond.co.in/'
+                  platform_id: platform_id
         description: ''
       tags:
         - event
@@ -8763,6 +8793,34 @@ paths:
           in: query
           name: shareLink
           description: 'Product page url along with trackerId, required in case of coselling'
+  /track/network:
+    get:
+      summary: Get Publish/Co-sell Network link
+      tags:
+        - product
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+      operationId: get-track-network-slug
+      description: Generate publish slug (Link) for a product along with a new associated trackerID to publish/cosell a product.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Logged in User/Network/Vendor/Coseller token
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: referrer
+          description: Url from where it is publishing the tracker
+          required: true
+    parameters: []
   '/platforms/{platformId}/products/{productId}':
     parameters:
       - schema:
