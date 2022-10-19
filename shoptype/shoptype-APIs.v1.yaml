@@ -5861,6 +5861,26 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -19149,6 +19169,223 @@ paths:
                             - 38.8671878
       operationId: get-platforms-id-collections-collection_id
       description: Get collection detail at platform level by collection_id
+  '/cosellers/collections/{cosellerCollectionId}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-cosellers-collections
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+    post:
+      summary: ''
+      operationId: post-cosellers-collections
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  deleted_at:
+                    type: string
+                  id:
+                    type: string
+                  platform_id:
+                    type: string
+                  coseller_id:
+                    type: string
+                  user_id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  preview_image_src:
+                    type: string
+                  type:
+                    type: string
+                  status:
+                    type: string
+                  tags:
+                    type: 'null'
+                  product_query:
+                    type: object
+                    properties:
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                  attributes:
+                    type: 'null'
+                x-examples:
+                  example-1:
+                    created_at: '2022-10-19T18:03:05.95079+05:30'
+                    updated_at: '2022-10-19T18:03:05.950791+05:30'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 14c5b831-d967-a7b3-584b-5bcde3a4ad11
+                    platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                    coseller_id: 74e6600d-f482-55ab-8d95-8d8eee92ee9d
+                    user_id: 2834e1c5-f4be-4e53-bb06-ae84f37f9b00
+                    name: test_collection_3
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    product_query:
+                      tags:
+                        - natural ingredients
+                    attributes: null
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                platform_id:
+                  type: string
+                type:
+                  type: string
+                status:
+                  type: string
+                product_query:
+                  type: object
+                  properties:
+                    tags:
+                      type: array
+                      items:
+                        type: string
+              x-examples:
+                example-1:
+                  name: test_collection_3
+                  platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                  type: product
+                  status: published
+                  product_query:
+                    tags:
+                      - natural ingredients
+    put:
+      summary: ''
+      operationId: put-cosellers-collections
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  deleted_at:
+                    type: string
+                  id:
+                    type: string
+                  platform_id:
+                    type: string
+                  coseller_id:
+                    type: string
+                  user_id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  preview_image_src:
+                    type: string
+                  type:
+                    type: string
+                  status:
+                    type: string
+                  tags:
+                    type: 'null'
+                  product_query:
+                    type: object
+                    properties:
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                  attributes:
+                    type: 'null'
+                x-examples:
+                  example-1:
+                    created_at: '2022-10-19T12:33:05.95Z'
+                    updated_at: '2022-10-19T18:07:33.861464+05:30'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 14c5b831-d967-a7b3-584b-5bcde3a4ad11
+                    platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                    coseller_id: 74e6600d-f482-55ab-8d95-8d8eee92ee9d
+                    user_id: 2834e1c5-f4be-4e53-bb06-ae84f37f9b00
+                    name: test_collection_3
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    product_query:
+                      tags:
+                        - Fresh
+                    attributes: null
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  name: test_collection_3
+                  platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                  type: product
+                  status: published
+                  product_query:
+                    tags:
+                      - Fresh
+              properties:
+                name:
+                  type: string
+                platform_id:
+                  type: string
+                type:
+                  type: string
+                status:
+                  type: string
+                product_query:
+                  type: object
+                  properties:
+                    tags:
+                      type: array
+                      items:
+                        type: string
+    parameters:
+      - schema:
+          type: string
+        name: cosellerCollectionId
+        in: path
+        required: true
 components:
   schemas:
     Vendor:
