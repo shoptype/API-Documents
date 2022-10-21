@@ -5881,6 +5881,35 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -19171,18 +19200,8 @@ paths:
       description: Get collection detail at platform level by collection_id
   '/cosellers/collections/{cosellerCollectionId}':
     get:
-      summary: Your GET endpoint
+      summary: Get coseller collection by ID
       tags: []
-      responses: {}
-      operationId: get-cosellers-collections
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
-    post:
-      summary: ''
-      operationId: post-cosellers-collections
       responses:
         '200':
           description: OK
@@ -19203,8 +19222,6 @@ paths:
                     type: string
                   coseller_id:
                     type: string
-                  user_id:
-                    type: string
                   name:
                     type: string
                   description:
@@ -19217,6 +19234,8 @@ paths:
                     type: string
                   tags:
                     type: 'null'
+                  attributes:
+                    type: 'null'
                   product_query:
                     type: object
                     properties:
@@ -19224,64 +19243,35 @@ paths:
                         type: array
                         items:
                           type: string
-                  attributes:
-                    type: 'null'
+                  product_count:
+                    type: integer
                 x-examples:
                   example-1:
-                    created_at: '2022-10-19T18:03:05.95079+05:30'
-                    updated_at: '2022-10-19T18:03:05.950791+05:30'
+                    created_at: '2022-10-19T12:33:05.95Z'
+                    updated_at: '2022-10-19T12:37:33.861Z'
                     deleted_at: '0001-01-01T00:00:00Z'
                     id: 14c5b831-d967-a7b3-584b-5bcde3a4ad11
                     platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
                     coseller_id: 74e6600d-f482-55ab-8d95-8d8eee92ee9d
-                    user_id: 2834e1c5-f4be-4e53-bb06-ae84f37f9b00
                     name: test_collection_3
                     description: ''
                     preview_image_src: ''
                     type: product
                     status: published
                     tags: null
+                    attributes: null
                     product_query:
                       tags:
-                        - natural ingredients
-                    attributes: null
+                        - Fresh
+                    product_count: 0
+      operationId: get-cosellers-collections
       parameters:
         - schema:
             type: string
           in: header
           name: Authorization
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                platform_id:
-                  type: string
-                type:
-                  type: string
-                status:
-                  type: string
-                product_query:
-                  type: object
-                  properties:
-                    tags:
-                      type: array
-                      items:
-                        type: string
-              x-examples:
-                example-1:
-                  name: test_collection_3
-                  platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
-                  type: product
-                  status: published
-                  product_query:
-                    tags:
-                      - natural ingredients
     put:
-      summary: ''
+      summary: Update existing coseller collection
       operationId: put-cosellers-collections
       responses:
         '200':
@@ -19386,6 +19376,273 @@ paths:
         name: cosellerCollectionId
         in: path
         required: true
+  /cosellers/collections/:
+    get:
+      summary: Query all coseller collections
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  coseller_collections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        deleted_at:
+                          type: string
+                        id:
+                          type: string
+                        platform_id:
+                          type: string
+                        coseller_id:
+                          type: string
+                        user_id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        preview_image_src:
+                          type: string
+                        type:
+                          type: string
+                        status:
+                          type: string
+                        tags:
+                          type: 'null'
+                        product_query:
+                          type: object
+                          properties:
+                            tags:
+                              type: array
+                              items:
+                                type: string
+                        attributes:
+                          type: 'null'
+                        product_metas:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              product_id:
+                                type: string
+                              sequence_id:
+                                type: integer
+                              product_variant_id:
+                                type: string
+                              attributes:
+                                type: 'null'
+                  count:
+                    type: integer
+                x-examples:
+                  example-1:
+                    coseller_collections:
+                      - created_at: '2022-10-17T07:27:21.405Z'
+                        updated_at: '2022-10-17T07:27:21.405Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: ee1737c8-d35c-28ba-3717-5bfbf2e8407a
+                        platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                        coseller_id: 74e6600d-f482-55ab-8d95-8d8eee92ee9d
+                        user_id: 2834e1c5-f4be-4e53-bb06-ae84f37f9b00
+                        name: test_collection_1
+                        description: ''
+                        preview_image_src: ''
+                        type: product
+                        status: published
+                        tags: null
+                        product_query:
+                          tags:
+                            - natural ingredients
+                            - Fresh
+                        attributes: null
+                        product_metas:
+                          - product_id: 1028038c-7dd0-ffb7-d94e-53415f3f2b5f
+                            sequence_id: 2
+                            product_variant_id: ''
+                            attributes: null
+                          - product_id: 93c8f1c2-ff39-cc26-9641-df8fbc619dbe
+                            sequence_id: 1
+                            product_variant_id: ''
+                            attributes: null
+                      - created_at: '2022-10-17T08:56:56.333Z'
+                        updated_at: '2022-10-17T09:09:33.66Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: de13bb3b-3fe9-4f08-c62a-92f577e5a571
+                        platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                        coseller_id: 74e6600d-f482-55ab-8d95-8d8eee92ee9d
+                        user_id: 2834e1c5-f4be-4e53-bb06-ae84f37f9b00
+                        name: test_collection_2
+                        description: ''
+                        preview_image_src: ''
+                        type: product
+                        status: published
+                        tags: null
+                        product_query:
+                          tags:
+                            - natural ingredients
+                        attributes: null
+                      - created_at: '2022-10-19T12:33:05.95Z'
+                        updated_at: '2022-10-19T12:37:33.861Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: 14c5b831-d967-a7b3-584b-5bcde3a4ad11
+                        platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                        coseller_id: 74e6600d-f482-55ab-8d95-8d8eee92ee9d
+                        user_id: 2834e1c5-f4be-4e53-bb06-ae84f37f9b00
+                        name: test_collection_3
+                        description: ''
+                        preview_image_src: ''
+                        type: product
+                        status: published
+                        tags: null
+                        product_query:
+                          tags:
+                            - Fresh
+                        attributes: null
+                    count: 3
+      operationId: get-cosellers-collections
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+    post:
+      summary: Create a new coseller collection
+      operationId: post-cosellers-collections
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  deleted_at:
+                    type: string
+                  id:
+                    type: string
+                  platform_id:
+                    type: string
+                  coseller_id:
+                    type: string
+                  user_id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  preview_image_src:
+                    type: string
+                  type:
+                    type: string
+                  status:
+                    type: string
+                  tags:
+                    type: 'null'
+                  product_query:
+                    type: object
+                    properties:
+                      tags:
+                        type: array
+                        items:
+                          type: string
+                  attributes:
+                    type: object
+                    properties:
+                      is_campaign:
+                        type: boolean
+                x-examples:
+                  example-1:
+                    created_at: '2022-10-21T15:02:40.684215+05:30'
+                    updated_at: '2022-10-21T15:02:40.684215+05:30'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 23cf2d84-17c1-5fe3-da86-3faa7e0595d2
+                    platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                    coseller_id: 74e6600d-f482-55ab-8d95-8d8eee92ee9d
+                    user_id: 2834e1c5-f4be-4e53-bb06-ae84f37f9b00
+                    name: test_collection_5
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    product_query:
+                      tags:
+                        - Fresh
+                    attributes:
+                      is_campaign: true
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value:
+                    code: bad request
+                    message: Provided product is not a part of your platform.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  name: test_collection_4
+                  platform_id: a6a1a688-aa78-ad7f-1b3c-fe0795c17558
+                  type: product
+                  status: published
+                  attributes:
+                    is_campaign: true
+                  product_metas:
+                    - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+                      sequence_id: 2
+                      product_variant_id: variantId
+                      attributes:
+                        is_campaign: true
+                  product_query:
+                    tags:
+                      - Fresh
+              properties:
+                name:
+                  type: string
+                platform_id:
+                  type: string
+                type:
+                  type: string
+                status:
+                  type: string
+                attributes:
+                  type: object
+                  properties:
+                    is_campaign:
+                      type: boolean
+                product_query:
+                  type: object
+                  properties:
+                    tags:
+                      type: array
+                      items:
+                        type: string
 components:
   schemas:
     Vendor:
