@@ -5968,6 +5968,8 @@ paths:
 
 
 
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -19830,8 +19832,6 @@ paths:
       responses:
         '200':
           description: OK
-      tags:
-        - coseller-minstore
       description: Creates coseller ministore
       parameters:
         - schema:
@@ -19882,6 +19882,8 @@ paths:
                   collection_ids:
                     - 4e423736-7135-a24e-566d-a96b69e6d62f
                     - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+      tags:
+        - coseller-ministore
   '/cosellers/mini-stores/{ministoreid}':
     parameters:
       - schema:
