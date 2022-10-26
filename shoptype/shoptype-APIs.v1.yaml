@@ -5910,6 +5910,60 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -19643,6 +19697,334 @@ paths:
                       type: array
                       items:
                         type: string
+  /cosellers/mini-stores:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - coseller-ministore
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  mini_stores:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        deleted_at:
+                          type: string
+                        id:
+                          type: string
+                        platform_id:
+                          type: string
+                        user_id:
+                          type: string
+                        coseller_id:
+                          type: string
+                        status:
+                          type: string
+                        name:
+                          type: string
+                        domain:
+                          type: string
+                        collection_ids:
+                          type: array
+                          items:
+                            type: string
+                        attributes:
+                          type: 'null'
+                        design_attributes:
+                          type: 'null'
+                x-examples:
+                  example-1:
+                    count: 1
+                    mini_stores:
+                      - created_at: '2022-10-18T08:46:48.523Z'
+                        updated_at: '2022-10-18T08:46:48.523Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: 58ba84a9-807c-4632-7412-3e33e308f453
+                        platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                        user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                        coseller_id: c71808fe-e38d-ee40-7e34-dfb7a425870b
+                        status: ''
+                        name: another test collection
+                        domain: st.com
+                        collection_ids:
+                          - 4e423736-7135-a24e-566d-a96b69e6d62f
+                          - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+                        attributes: null
+                        design_attributes: null
+              examples:
+                example-1:
+                  value:
+                    count: 1
+                    mini_stores:
+                      - created_at: '2022-10-18T08:46:48.523Z'
+                        updated_at: '2022-10-18T08:46:48.523Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: 58ba84a9-807c-4632-7412-3e33e308f453
+                        platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                        user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                        coseller_id: c71808fe-e38d-ee40-7e34-dfb7a425870b
+                        status: ''
+                        name: another test collection
+                        domain: st.com
+                        collection_ids:
+                          - 4e423736-7135-a24e-566d-a96b69e6d62f
+                          - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+                        attributes: null
+                        design_attributes: null
+      operationId: get-cosellers-mini-stores
+      description: Fetches all the mini stores for the given coseller.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authroization
+          description: Coseller Token
+        - schema:
+            type: string
+          in: query
+          name: offset
+        - schema:
+            type: string
+          in: query
+          name: count
+        - schema:
+            type: string
+            example: active
+            enum:
+              - acitve
+              - inactive
+              - draft
+              - deleted
+          in: query
+          name: status
+        - schema:
+            type: string
+          in: query
+          name: text
+        - schema:
+            type: string
+          in: query
+          name: platformId
+    post:
+      summary: ''
+      operationId: post-cosellers-mini-stores
+      responses:
+        '200':
+          description: OK
+      tags:
+        - coseller-minstore
+      description: Creates coseller ministore
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authroization
+          description: Coseller Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  name: another test collection
+                  platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                  status: active
+                  domain: st.com
+                  collection_ids:
+                    - 4e423736-7135-a24e-566d-a96b69e6d62f
+                    - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+              properties:
+                name:
+                  type: string
+                platform_id:
+                  type: string
+                status:
+                  type: string
+                domain:
+                  type: string
+                collection_ids:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - name
+                - platform_id
+                - status
+                - domain
+                - collection_ids
+            examples:
+              example-1:
+                value:
+                  name: another test collection
+                  platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                  status: active
+                  domain: st.com
+                  collection_ids:
+                    - 4e423736-7135-a24e-566d-a96b69e6d62f
+                    - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+  '/cosellers/mini-stores/{ministoreid}':
+    parameters:
+      - schema:
+          type: string
+        name: ministoreid
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags:
+        - coseller-minstore
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  deleted_at:
+                    type: string
+                  id:
+                    type: string
+                  platform_id:
+                    type: string
+                  user_id:
+                    type: string
+                  coseller_id:
+                    type: string
+                  status:
+                    type: string
+                  name:
+                    type: string
+                  domain:
+                    type: string
+                  collection_ids:
+                    type: array
+                    items:
+                      type: string
+                  attributes:
+                    type: 'null'
+                  design_attributes:
+                    type: 'null'
+                x-examples:
+                  example-1:
+                    created_at: '2022-10-18T08:46:48.523Z'
+                    updated_at: '2022-10-18T08:46:48.523Z'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 58ba84a9-807c-4632-7412-3e33e308f453
+                    platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                    user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                    coseller_id: c71808fe-e38d-ee40-7e34-dfb7a425870b
+                    status: ''
+                    name: another test collection
+                    domain: st.com
+                    collection_ids:
+                      - 4e423736-7135-a24e-566d-a96b69e6d62f
+                      - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+                    attributes: null
+                    design_attributes: null
+              examples:
+                example-1:
+                  value:
+                    created_at: '2022-10-18T08:46:48.523Z'
+                    updated_at: '2022-10-18T08:46:48.523Z'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 58ba84a9-807c-4632-7412-3e33e308f453
+                    platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                    user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+                    coseller_id: c71808fe-e38d-ee40-7e34-dfb7a425870b
+                    status: ''
+                    name: another test collection
+                    domain: st.com
+                    collection_ids:
+                      - 4e423736-7135-a24e-566d-a96b69e6d62f
+                      - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+                    attributes: null
+                    design_attributes: null
+      operationId: get-cosellers-mini-stores-ministoreid
+      description: Get Coseller mini store detail
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Coseller Token
+        - schema:
+            type: boolean
+          in: query
+          name: includeDraftCollection
+          description: Query param to include all the mini stores
+    put:
+      summary: ''
+      operationId: put-cosellers-mini-stores-ministoreid
+      responses:
+        '200':
+          description: OK
+      tags:
+        - coseller-ministore
+      description: To update coseller mini store
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: Coseller Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                platform_id:
+                  type: string
+                status:
+                  type: string
+                domain:
+                  type: string
+                collection_ids:
+                  type: array
+                  items:
+                    type: string
+              x-examples:
+                example-1:
+                  name: another test collection
+                  platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                  status: active
+                  domain: st.com
+                  collection_ids:
+                    - 4e423736-7135-a24e-566d-a96b69e6d62f
+                    - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+            examples:
+              example-1:
+                value: {}
+              example-2:
+                value:
+                  name: another test collection
+                  platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+                  status: active
+                  domain: st.com
+                  collection_ids:
+                    - 4e423736-7135-a24e-566d-a96b69e6d62f
+                    - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
 components:
   schemas:
     Vendor:
@@ -21924,4 +22306,52 @@ components:
               sequence_id: 1
               product_variant_id: ''
               attributes: null
+    Coseller-Mini-Store:
+      type: object
+      properties:
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+        id:
+          type: string
+        platform_id:
+          type: string
+        user_id:
+          type: string
+        coseller_id:
+          type: string
+        status:
+          type: string
+        name:
+          type: string
+        domain:
+          type: string
+        collection_ids:
+          type: array
+          items:
+            type: string
+        attributes:
+          type: 'null'
+        design_attributes:
+          type: 'null'
+      x-examples:
+        example-1:
+          created_at: '2022-10-18T08:46:48.523Z'
+          updated_at: '2022-10-18T08:46:48.523Z'
+          deleted_at: '0001-01-01T00:00:00Z'
+          id: 58ba84a9-807c-4632-7412-3e33e308f453
+          platform_id: c01f9708-14e5-55a5-95ef-6048085584e4
+          user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+          coseller_id: c71808fe-e38d-ee40-7e34-dfb7a425870b
+          status: ''
+          name: another test collection
+          domain: st.com
+          collection_ids:
+            - 4e423736-7135-a24e-566d-a96b69e6d62f
+            - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
+          attributes: null
+          design_attributes: null
   securitySchemes: {}
