@@ -5966,6 +5966,8 @@ paths:
 
 
 
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -19889,8 +19891,6 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags:
-        - coseller-minstore
       responses:
         '200':
           description: OK
@@ -19975,6 +19975,8 @@ paths:
           in: query
           name: includeDraftCollection
           description: Query param to include all the mini stores
+      tags:
+        - coseller-ministore
     put:
       summary: ''
       operationId: put-cosellers-mini-stores-ministoreid
