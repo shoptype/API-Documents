@@ -5910,6 +5910,26 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -21924,4 +21944,164 @@ components:
               sequence_id: 1
               product_variant_id: ''
               attributes: null
+    Coseller-Collection:
+      description: Collection Model
+      type: object
+      x-examples:
+        Collection:
+          created_at: '2022-03-24T17:26:06.045Z'
+          updated_at: '2022-03-24T17:26:06.045Z'
+          deleted_at: '0001-01-01T00:00:00Z'
+          id: 661fa220-e2f9-30ae-a868-82cdf54f80c9
+          platform_id: 3f250d6f-bfe6-a318-6e4e-c5dbf59a2dd4
+          user_id: 43437383-f0cf-41dc-a963-34a26b5facc7
+          name: PF
+          description: Collection of imported perfumes.
+          preview_image_src: ''
+          type: product
+          status: draft
+          tags: null
+          attributes: null
+          product_metas:
+            - product_id: 6fccc277-0e7d-c4b4-a3d9-1a6cf356c945
+              sequence_id: 1
+              product_variant_id: ''
+              attributes: null
+            - product_id: 666b379b-ef8b-5739-d69c-17fa8cac8ee5
+              sequence_id: 1
+              product_variant_id: ''
+              attributes: null
+        collection of collections:
+          created_at: string
+          updated_at: string
+          deleted_at: string
+          id: string
+          user_id: string
+          platform_id: string
+          coseller_id: string
+          name: string
+          description: string
+          preview_image_src: string
+          type: string
+          status: string
+          coseller_collection_ids:
+            - string
+          tags: null
+          attributes: null
+        dynamic collection:
+          created_at: string
+          updated_at: string
+          deleted_at: string
+          id: string
+          user_id: string
+          platform_id: string
+          coseller_id: string
+          name: string
+          description: string
+          preview_image_src: string
+          type: string
+          status: string
+          tags: null
+          product_query:
+            tags:
+              - Fresh
+              - natural ingredients
+          attributes: null
+        static collection:
+          created_at: string
+          updated_at: string
+          deleted_at: string
+          id: string
+          user_id: string
+          platform_id: string
+          coseller_id: string
+          name: string
+          description: string
+          preview_image_src: string
+          type: string
+          status: string
+          tags: null
+          attributes: null
+          product_metas:
+            - product_id: string
+              sequence_id: string
+              product_variant_id: string
+              attributes: null
+      properties:
+        created_at:
+          type: string
+          minLength: 1
+        updated_at:
+          type: string
+          minLength: 1
+        deleted_at:
+          type: string
+          minLength: 1
+        id:
+          type: string
+          minLength: 1
+        user_id:
+          type: string
+          minLength: 1
+        platform_id:
+          type: string
+          minLength: 1
+        coseller_id:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+        preview_image_src:
+          type: string
+        type:
+          type: string
+          minLength: 1
+        status:
+          type: string
+          minLength: 1
+        coseller_collection_ids:
+          type: array
+          items:
+            type: string
+        tags: {}
+        product_query: {}
+        attributes: {}
+        product_metas:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items:
+            type: object
+            properties:
+              product_id:
+                type: string
+                minLength: 1
+              sequence_id:
+                type: string
+              product_variant_id:
+                type: string
+              attributes: {}
+            required:
+              - product_id
+              - sequence_id
+              - product_variant_id
+      required:
+        - created_at
+        - updated_at
+        - deleted_at
+        - id
+        - user_id
+        - platform_id
+        - coseller_id
+        - name
+        - description
+        - preview_image_src
+        - type
+        - status
+        - coseller_collection_ids
+        - product_metas
   securitySchemes: {}
