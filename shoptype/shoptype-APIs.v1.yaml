@@ -5972,6 +5972,30 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -19649,6 +19673,7 @@ paths:
                         - Fresh
                     attributes:
                       is_campaign: true
+              examples: {}
         '400':
           description: Bad Request
           content:
@@ -19709,6 +19734,7 @@ paths:
                       type: array
                       items:
                         type: string
+            examples: {}
       tags:
         - coseller-collections
   /cosellers/mini-stores:
@@ -22368,4 +22394,114 @@ components:
             - 3f797729-0c96-d7cf-ed91-e0f26d1cc90e
           attributes: null
           design_attributes: null
+    Coseller-Collection:
+      type: object
+      x-examples:
+        collection of collections:
+          created_at: string
+          updated_at: string
+          deleted_at: string
+          id: string
+          platform_id: string
+          coseller_id: string
+          user_id: string
+          name: string
+          description: string
+          preview_image_src: string
+          type: string
+          status: string
+          coseller_collection_ids:
+            - str1
+            - str2
+          tags: null
+          attributes:
+            is_campaign: true
+        collection of static products:
+          created_at: string
+          updated_at: string
+          deleted_at: string
+          id: string
+          platform_id: string
+          coseller_id: string
+          user_id: string
+          name: string
+          description: string
+          preview_image_src: string
+          type: string
+          status: string
+          tags:
+            - string
+          attributes: null
+          product_metas:
+            - product_id: string
+              sequence_id: 0
+              product_variant_id: string
+              attributes: null
+        dynamic collection:
+          created_at: string
+          updated_at: string
+          deleted_at: string
+          id: string
+          platform_id: string
+          coseller_id: string
+          user_id: string
+          name: string
+          description: string
+          preview_image_src: string
+          type: string
+          status: string
+          tags:
+            - string
+          product_query:
+            tags:
+              - Fresh
+              - natural ingredients
+          attributes: null
+      properties:
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+        id:
+          type: string
+        platform_id:
+          type: string
+        coseller_id:
+          type: string
+        user_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        preview_image_src:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        coseller_collection_ids:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        product_query: {}
+        attributes: {}
+        product_metas:
+          type: array
+          items:
+            type: object
+            properties:
+              product_id:
+                type: string
+              sequence_id:
+                type: integer
+              product_variant_id:
+                type: string
+              attributes: {}
   securitySchemes: {}
