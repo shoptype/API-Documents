@@ -5996,6 +5996,40 @@ paths:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                           <!DOCTYPE html
                           PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                       <html xmlns="https://www.w3.org/1999/xhtml">
@@ -19351,12 +19385,1001 @@ paths:
                       tags:
                         - Fresh
                     product_count: 0
+              examples:
+                dynamic collection:
+                  value:
+                    created_at: '2022-10-28T07:05:12.454Z'
+                    updated_at: '2022-10-28T07:05:12.454Z'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: f949057d-824f-13c7-b697-edca57afae55
+                    platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                    coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                    name: test_collection_1
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    attributes: null
+                    product_query:
+                      tags:
+                        - natural ingredients
+                    product_count: 102
+                    product_details:
+                      - id: 5843872e-321e-7ae5-dda5-0ed30418776f
+                        title: Just Healing Face Pack
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - facepack
+                          - health
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                          - skinglow
+                        publishedAt: 1605034948
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: d0e54a40-3e6c-6fd8-58c4-8f1911d6a937
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/5843872e-321e-7ae5-dda5-0ed30418776f/39-JusT-HealinG-PacK-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 88f300ea-4341-8caa-1738-7e6350cb09d3
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/5843872e-321e-7ae5-dda5-0ed30418776f/39-JusT-HealinG-PacK-2.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '2181'
+                            discountedPrice: '537'
+                            discountedPriceAsMoney:
+                              amount: 537
+                              currency: INR
+                            price: '767'
+                            priceAsMoney:
+                              amount: 767
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '2181'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 5843872e-321e-7ae5-dda5-0ed30418776f
+                        sequence_id: 1
+                        product_variant_id: ''
+                        attributes: null
+                      - id: 42583a56-6c46-d0cf-7142-981a0abaf455
+                        title: Just B&M - Beard Oil for Men
+                        tags:
+                          - ayuerveda
+                          - beard
+                          - beauty
+                          - health
+                          - mens beard oil
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                        publishedAt: 1605034955
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 6a319b9d-fe88-6cee-3ec4-2072336284d2
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/42583a56-6c46-d0cf-7142-981a0abaf455/38-JusT-BM-oil-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: e00f32f5-cce9-3f00-1300-2c6208d8467e
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/42583a56-6c46-d0cf-7142-981a0abaf455/38-JusT-BM-oil-2.jpg'
+                          - id: a2d9dd42-5c60-5d00-a754-af81b1e7d6ea
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/42583a56-6c46-d0cf-7142-981a0abaf455/38-JusT-BM-oil-3.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '2155'
+                            discountedPrice: '537'
+                            discountedPriceAsMoney:
+                              amount: 537
+                              currency: INR
+                            price: '767'
+                            priceAsMoney:
+                              amount: 767
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '2155'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 42583a56-6c46-d0cf-7142-981a0abaf455
+                        sequence_id: 2
+                        product_variant_id: ''
+                        attributes: null
+                      - id: 1a85aaca-b380-e655-d7ee-18ad9684979e
+                        title: INHarmony Beard wash
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - mens beard wash
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                        publishedAt: 1605034998
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: dd690697-1264-6950-56a2-84b9f836290c
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/1a85aaca-b380-e655-d7ee-18ad9684979e/37-Inharmony-Lush-with-pride-Beard-Wash-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 029e0d8a-fadb-c307-3a48-e44be3e95246
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/1a85aaca-b380-e655-d7ee-18ad9684979e/37-Inharmony-Lush-with-pride-Beard-Wash-2.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '2010'
+                            discountedPrice: '217'
+                            discountedPriceAsMoney:
+                              amount: 217
+                              currency: INR
+                            price: '310'
+                            priceAsMoney:
+                              amount: 310
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '2010'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 1a85aaca-b380-e655-d7ee-18ad9684979e
+                        sequence_id: 3
+                        product_variant_id: ''
+                        attributes: null
+                      - id: 917817b2-5cd9-fbe3-9be7-ed6d8f00328a
+                        title: Refreshing Roses
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemicalfree
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - rosewater
+                          - skincare
+                        publishedAt: 1605034999
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 5522bafa-4698-405a-92b2-a513422b0d60
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/917817b2-5cd9-fbe3-9be7-ed6d8f00328a/36-RefreshinG-RoseS-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 56ccc178-65a4-c0b6-132a-341a06024334
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/917817b2-5cd9-fbe3-9be7-ed6d8f00328a/36-RefreshinG-RoseS-2.jpg'
+                          - id: ab8f3191-4e9f-2d0b-b763-25e47656741c
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/917817b2-5cd9-fbe3-9be7-ed6d8f00328a/36-RefreshinG-RoseS-3.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '2003'
+                            discountedPrice: '388'
+                            discountedPriceAsMoney:
+                              amount: 388
+                              currency: INR
+                            price: '567'
+                            priceAsMoney:
+                              amount: 567
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '2003'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 917817b2-5cd9-fbe3-9be7-ed6d8f00328a
+                        sequence_id: 4
+                        product_variant_id: ''
+                        attributes: null
+                      - id: 8c31c76b-7f8b-ed32-f589-e0c6fac5da71
+                        title: Golden Drop - Face Serum Oil
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - Face oil
+                          - faceglow
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                          - skinglow
+                        publishedAt: 1605035000
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 9e67de84-a6c1-5612-5db4-ee25ae7b9236
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/8c31c76b-7f8b-ed32-f589-e0c6fac5da71/35-GoldeN-DroP-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 2a1d621e-5ddf-aa2a-70f3-c066bc11d991
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/8c31c76b-7f8b-ed32-f589-e0c6fac5da71/35-GoldeN-DroP-2.jpg'
+                          - id: 321de898-0ccd-f83b-4a20-c6f9a8c32018
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/8c31c76b-7f8b-ed32-f589-e0c6fac5da71/35-GoldeN-DroP-3.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '1998'
+                            discountedPrice: '558'
+                            discountedPriceAsMoney:
+                              amount: 558
+                              currency: INR
+                            price: '797'
+                            priceAsMoney:
+                              amount: 797
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '1998'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 8c31c76b-7f8b-ed32-f589-e0c6fac5da71
+                        sequence_id: 5
+                        product_variant_id: ''
+                        attributes: null
+                      - id: b196b429-a238-3ba7-3671-783c769b01c4
+                        title: Henna & Hair
+                        tags:
+                          - Ayurvedic
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - haircare
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                        publishedAt: 1605035003
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 4d6ee1c7-0022-9e54-728a-d5ee1ce5a3b8
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/b196b429-a238-3ba7-3671-783c769b01c4/32-HennA-HaiR-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 97b5e9ba-0e54-5c60-d614-1fbcb4e61131
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/b196b429-a238-3ba7-3671-783c769b01c4/32-HennA-HaiR-2.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '1992'
+                            discountedPrice: '233'
+                            discountedPriceAsMoney:
+                              amount: 233
+                              currency: INR
+                            price: '333'
+                            priceAsMoney:
+                              amount: 333
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '1992'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: b196b429-a238-3ba7-3671-783c769b01c4
+                        sequence_id: 6
+                        product_variant_id: ''
+                        attributes: null
+                      - id: 6217f3a5-9459-503f-3e57-c8ea65da2ce1
+                        title: Incredible Indigo
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - haircare
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                        publishedAt: 1605035005
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 91d0b281-25e7-27fd-8ec0-553ac96be9e5
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/6217f3a5-9459-503f-3e57-c8ea65da2ce1/31-IncrediblE-IndigO-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: af753f7b-51ed-299a-ad5c-ea4f6c3848f2
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/6217f3a5-9459-503f-3e57-c8ea65da2ce1/31-IncrediblE-IndigO-2.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '1989'
+                            discountedPrice: '162'
+                            discountedPriceAsMoney:
+                              amount: 162
+                              currency: INR
+                            price: '232'
+                            priceAsMoney:
+                              amount: 232
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '1989'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 6217f3a5-9459-503f-3e57-c8ea65da2ce1
+                        sequence_id: 7
+                        product_variant_id: ''
+                        attributes: null
+                      - id: c3368b8f-dbba-5d43-485d-6660699086c1
+                        title: Alovera gel
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                        publishedAt: 1605035005
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 868e7650-3383-3f4a-f889-593fbe20091a
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/c3368b8f-dbba-5d43-485d-6660699086c1/30-AloE-ButteR-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 72717216-6142-5a9d-ce3a-183b717391a6
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/c3368b8f-dbba-5d43-485d-6660699086c1/30-AloE-ButteR-2.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '1986'
+                            discountedPrice: '378'
+                            discountedPriceAsMoney:
+                              amount: 378
+                              currency: INR
+                            price: '540'
+                            priceAsMoney:
+                              amount: 540
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '1986'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: c3368b8f-dbba-5d43-485d-6660699086c1
+                        sequence_id: 8
+                        product_variant_id: ''
+                        attributes: null
+                      - id: 56ce144e-9771-df7f-7ec8-74c03c8911ac
+                        title: INHarmony Just for Kidz
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - haircare
+                          - healthbeauty
+                          - kids
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                        publishedAt: 1605035006
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 8da7044c-84ed-b486-548e-8ce1f03b2788
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/56ce144e-9771-df7f-7ec8-74c03c8911ac/29-INHarmony-Just-for-kids-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 6fc88833-8443-258a-0711-8f347a5898d2
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/56ce144e-9771-df7f-7ec8-74c03c8911ac/29-INHarmony-Just-for-kids-2.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '1983'
+                            discountedPrice: '245'
+                            discountedPriceAsMoney:
+                              amount: 245
+                              currency: INR
+                            price: '350'
+                            priceAsMoney:
+                              amount: 350
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '1983'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 56ce144e-9771-df7f-7ec8-74c03c8911ac
+                        sequence_id: 9
+                        product_variant_id: ''
+                        attributes: null
+                      - id: 8cf5e860-013f-36af-d61c-c32f9ea0fafa
+                        title: InHarmony Violet Breeze Hair Wash
+                        tags:
+                          - beauty
+                          - beautyproducts
+                          - chemical free
+                          - haircare
+                          - hairwash
+                          - MrilQ
+                          - natural ingredients
+                          - organic
+                          - skincare
+                        publishedAt: 1605035007
+                        syncedAt: 1607941182
+                        primaryImageSrc:
+                          id: 816b10a6-4056-3c4d-860e-10036ce6d512
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/8cf5e860-013f-36af-d61c-c32f9ea0fafa/28-INHarmony-Violet-Breeze-Hair-Wash-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: 46e623ed-a168-d2e1-09fc-49c0a18bb647
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/8cf5e860-013f-36af-d61c-c32f9ea0fafa/28-INHarmony-Violet-Breeze-Hair-Wash-2.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '1980'
+                            discountedPrice: '298'
+                            discountedPriceAsMoney:
+                              amount: 298
+                              currency: INR
+                            price: '425'
+                            priceAsMoney:
+                              amount: 425
+                              currency: INR
+                            taxable: true
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '1980'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 8cf5e860-013f-36af-d61c-c32f9ea0fafa
+                        sequence_id: 10
+                        product_variant_id: ''
+                        attributes: null
+                static collection:
+                  value:
+                    created_at: '2022-10-28T07:05:12.454Z'
+                    updated_at: '2022-10-28T07:21:12.443Z'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: f949057d-824f-13c7-b697-edca57afae55
+                    platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                    coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                    name: test_collection_1
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    attributes: null
+                    product_query: null
+                    product_count: 2
+                    product_metas:
+                      - product_id: 57a4fdab-c990-8866-861e-7807c74ce6e5
+                        sequence_id: 1
+                        product_variant_id: ''
+                        attributes: null
+                      - product_id: c9489b2d-774a-6701-f24d-51f9b7e6ee96
+                        sequence_id: 2
+                        product_variant_id: ''
+                        attributes: null
+                    product_details:
+                      - id: 57a4fdab-c990-8866-861e-7807c74ce6e5
+                        title: AURA
+                        description: |
+                          Brand -PlutusPlus
+                          AURA -Our auras are like magnets picking up vibrational energies that are floating around everywhere we go.It is important to cleanse your aura freeing it of foreign vibrations and negative energies.This 100% natural vegetarian and soy free soap bar will help you maintain a clean aura with lavender essential oils,Himalayan sea salt,baking soda and reiki charged oils.
+                          Ingredients - Olive oil,coconut oil,Argan oil,eucalyptus oil,fresh lavender buds,lavender oil,herbs,himalayan sea salt,essential oil,lye water,aqua.
+                          Weight - 100gms
+                          Shipping - INR 70
+                        tags:
+                          - '#skincare'
+                          - beautyproducts
+                          - healthbeauty
+                          - healthcare
+                          - naturalingredients
+                          - organic
+                          - PlutusPlus
+                          - soaps
+                        publishedAt: 1624446518
+                        syncedAt: 1624446522
+                        primaryImageSrc:
+                          id: '30966'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9662d3de-a2dd-9639-aed0-1762338189bb/602_SOAP-scaled-1-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: '30967'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9662d3de-a2dd-9639-aed0-1762338189bb/499_SOAP-1.jpg'
+                          - id: '30968'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9662d3de-a2dd-9639-aed0-1762338189bb/415_SOAP-1.jpg'
+                          - id: '30969'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9662d3de-a2dd-9639-aed0-1762338189bb/414_SOAP-1.jpg'
+                          - id: '30970'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9662d3de-a2dd-9639-aed0-1762338189bb/412_SOAP-1.jpg'
+                          - id: '30966'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9662d3de-a2dd-9639-aed0-1762338189bb/602_SOAP-scaled-1-1.jpg'
+                          - id: '30971'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/9662d3de-a2dd-9639-aed0-1762338189bb/600_SOAP-scaled-1-1.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '3270'
+                            discountedPrice: '321'
+                            discountedPriceAsMoney:
+                              amount: 321
+                              currency: INR
+                            price: '549'
+                            priceAsMoney:
+                              amount: 549
+                              currency: INR
+                            taxable: true
+                            sku: PP0012
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '3270'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: 57a4fdab-c990-8866-861e-7807c74ce6e5
+                        sequence_id: 1
+                        product_variant_id: ''
+                        attributes: null
+                      - id: c9489b2d-774a-6701-f24d-51f9b7e6ee96
+                        title: POPPY
+                        description: |
+                          Brand - PLUTUSPLUS
+                          POPPY - Lemon and poppy seeds are a match made in heaven.The high amount of linoleic acid in poppy makes it extremely effective in healing sun burns and itching.Poppy soap,a cold pressed oil based soap,gets its extravagant fragrance from the combination of lemon verbena and champagne fragrance oil,poppy seeds are very efficient in eliminating pimples and gives a clear,glowing complexion adding to your persona.
+                          Ingredients - Coconut virgin oil,palm oil,olive oil,soyabean oil,lemon essential oil,yellow dioxide,titanium dioxide,poppy seads,essential oil,aqua&amp;lye water.
+                          Weight - 100gms
+                          Shipping -7 days
+                          Shipping - INR 70
+                        tags:
+                          - '#skincare'
+                          - beautyproducts
+                          - healthbeauty
+                          - healthcare
+                          - naturalingredients
+                          - organic
+                          - PlutusPlus
+                          - soaps
+                        publishedAt: 1624446515
+                        syncedAt: 1624446518
+                        primaryImageSrc:
+                          id: '30959'
+                          imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/d05a200e-8842-c1a1-8ba6-8e7f7c01d5ba/666_SOAP-scaled-1-1.jpg'
+                        previewImageSrc: {}
+                        secondaryImageSrc:
+                          - id: '30960'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/d05a200e-8842-c1a1-8ba6-8e7f7c01d5ba/671_SOAP-scaled-1-1.jpg'
+                          - id: '30961'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/d05a200e-8842-c1a1-8ba6-8e7f7c01d5ba/564_SOAP-1.jpg'
+                          - id: '30962'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/d05a200e-8842-c1a1-8ba6-8e7f7c01d5ba/560_SOAP-1.jpg'
+                          - id: '30963'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/d05a200e-8842-c1a1-8ba6-8e7f7c01d5ba/550_SOAP-1.jpg'
+                          - id: '30964'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/d05a200e-8842-c1a1-8ba6-8e7f7c01d5ba/475_SOAP-1.jpg'
+                          - id: '30965'
+                            imageSrc: 'https://shop-type-images-store.s3.amazonaws.com/beta/products/d05a200e-8842-c1a1-8ba6-8e7f7c01d5ba/472_SOAP-1.jpg'
+                        primaryVideoSrc: {}
+                        catalogId: 480b5583-27c0-07a6-15d0-8ee6cc6c93c7
+                        variants:
+                          - id: '3261'
+                            discountedPrice: '237'
+                            discountedPriceAsMoney:
+                              amount: 237
+                              currency: INR
+                            price: '339'
+                            priceAsMoney:
+                              amount: 339
+                              currency: INR
+                            taxable: true
+                            sku: PP0011
+                            quantity: 999
+                            quantitySold: 99
+                            variantNameValue:
+                              title: Default Title
+                            views: 99
+                            dimensions:
+                              length: ''
+                              width: ''
+                              height: ''
+                            weight: ''
+                            dimension_unit: cm
+                            weight_unit: g
+                            is_virtual: false
+                        store_name: woo-commerce
+                        currency: INR
+                        quantity: 999
+                        quantitySold: 99
+                        sourceId: '3261'
+                        sourceName: woo-commerce
+                        options:
+                          - name: title
+                            values:
+                              - Default Title
+                        extras:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          storeHostUrl: 'https://92e4d4c2aa.nxcli.net'
+                        restrictions:
+                          isAdult: 'false'
+                          isAgeRestricted: 'false'
+                          showDefault: 'true'
+                        status: enabled
+                        geoLocation:
+                          type: Point
+                          coordinates:
+                            - 0
+                            - 0
+                        product_id: c9489b2d-774a-6701-f24d-51f9b7e6ee96
+                        sequence_id: 2
+                        product_variant_id: ''
+                        attributes: null
       operationId: get-cosellers-collections
       parameters:
         - schema:
             type: string
           in: header
           name: Authorization
+        - schema:
+            type: boolean
+          in: query
+          name: showDynamic
     put:
       summary: Update existing coseller collection
       operationId: put-cosellers-collections
@@ -19422,6 +20445,52 @@ paths:
                       tags:
                         - Fresh
                     attributes: null
+              examples:
+                update dynamic collection tag:
+                  value:
+                    created_at: '2022-10-28T07:05:12.454Z'
+                    updated_at: '2022-10-28T12:48:12.133589+05:30'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: f949057d-824f-13c7-b697-edca57afae55
+                    platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                    coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                    user_id: 2e6f6acf-a056-47fa-bdce-46383efb370f
+                    name: test_collection_1
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    product_query:
+                      tags:
+                        - moisturizer
+                    attributes: null
+                update static collection:
+                  value:
+                    created_at: '2022-10-28T07:05:12.454Z'
+                    updated_at: '2022-10-28T12:51:12.443752+05:30'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: f949057d-824f-13c7-b697-edca57afae55
+                    platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                    coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                    user_id: 2e6f6acf-a056-47fa-bdce-46383efb370f
+                    name: test_collection_1
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    product_query: null
+                    attributes: null
+                    product_metas:
+                      - product_id: 57a4fdab-c990-8866-861e-7807c74ce6e5
+                        sequence_id: 1
+                        product_variant_id: ''
+                        attributes: null
+                      - product_id: c9489b2d-774a-6701-f24d-51f9b7e6ee96
+                        sequence_id: 2
+                        product_variant_id: ''
+                        attributes: null
       parameters:
         - schema:
             type: string
@@ -19457,6 +20526,27 @@ paths:
                       type: array
                       items:
                         type: string
+            examples:
+              update dynamic collection tag:
+                value:
+                  name: test_collection_1
+                  platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                  type: product
+                  status: published
+                  product_query:
+                    tags:
+                      - moisturizer
+              update static collection:
+                value:
+                  name: test_collection_1
+                  platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                  type: product
+                  status: published
+                  product_metas:
+                    - product_id: 57a4fdab-c990-8866-861e-7807c74ce6e5
+                      sequence_id: 1
+                    - product_id: c9489b2d-774a-6701-f24d-51f9b7e6ee96
+                      sequence_id: 2
       tags:
         - coseller-collections
     parameters:
@@ -19598,6 +20688,45 @@ paths:
                             - Fresh
                         attributes: null
                     count: 3
+              examples:
+                example-1:
+                  value:
+                    coseller_collections:
+                      - created_at: '2022-10-28T07:01:24.532Z'
+                        updated_at: '2022-10-28T07:01:24.532Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: b1a22183-ae4d-9469-e40f-129bb8f23d07
+                        platform_id: f8db4f0e-9632-6f43-aba8-5badad686ebc
+                        coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                        user_id: 2e6f6acf-a056-47fa-bdce-46383efb370f
+                        name: test_collection_1
+                        description: ''
+                        preview_image_src: ''
+                        type: product
+                        status: published
+                        tags: null
+                        product_query:
+                          tags:
+                            - Huawei
+                        attributes: null
+                      - created_at: '2022-10-28T07:05:12.454Z'
+                        updated_at: '2022-10-28T07:05:12.454Z'
+                        deleted_at: '0001-01-01T00:00:00Z'
+                        id: f949057d-824f-13c7-b697-edca57afae55
+                        platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                        coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                        user_id: 2e6f6acf-a056-47fa-bdce-46383efb370f
+                        name: test_collection_1
+                        description: ''
+                        preview_image_src: ''
+                        type: product
+                        status: published
+                        tags: null
+                        product_query:
+                          tags:
+                            - natural ingredients
+                        attributes: null
+                    count: 2
       operationId: get-cosellers-collections
       parameters:
         - schema:
@@ -19673,7 +20802,52 @@ paths:
                         - Fresh
                     attributes:
                       is_campaign: true
-              examples: {}
+              examples:
+                dynamic collection:
+                  value:
+                    created_at: '2022-10-28T12:35:12.454348+05:30'
+                    updated_at: '2022-10-28T12:35:12.454348+05:30'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: f949057d-824f-13c7-b697-edca57afae55
+                    platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                    coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                    user_id: 2e6f6acf-a056-47fa-bdce-46383efb370f
+                    name: test_collection_1
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    product_query:
+                      tags:
+                        - natural ingredients
+                    attributes: null
+                static collection:
+                  value:
+                    created_at: '2022-10-28T12:53:42.443376+05:30'
+                    updated_at: '2022-10-28T12:53:42.443376+05:30'
+                    deleted_at: '0001-01-01T00:00:00Z'
+                    id: 297a547d-d6b9-4233-7dc3-b25223302230
+                    platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                    coseller_id: d1d35eae-2ee1-70a7-df64-b23e19e2c4ee
+                    user_id: 2e6f6acf-a056-47fa-bdce-46383efb370f
+                    name: test_collection_2
+                    description: ''
+                    preview_image_src: ''
+                    type: product
+                    status: published
+                    tags: null
+                    product_query: null
+                    attributes: null
+                    product_metas:
+                      - product_id: 57a4fdab-c990-8866-861e-7807c74ce6e5
+                        sequence_id: 1
+                        product_variant_id: ''
+                        attributes: null
+                      - product_id: c9489b2d-774a-6701-f24d-51f9b7e6ee96
+                        sequence_id: 2
+                        product_variant_id: ''
+                        attributes: null
         '400':
           description: Bad Request
           content:
@@ -19734,7 +20908,27 @@ paths:
                       type: array
                       items:
                         type: string
-            examples: {}
+            examples:
+              dynamic collection:
+                value:
+                  name: test_collection_1
+                  platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                  type: product
+                  status: published
+                  product_query:
+                    tags:
+                      - natural ingredients
+              static collection:
+                value:
+                  name: test_collection_2
+                  platform_id: c5263039-ee0f-8910-0a3f-653f213f3a03
+                  type: product
+                  status: published
+                  product_metas:
+                    - product_id: 57a4fdab-c990-8866-861e-7807c74ce6e5
+                      sequence_id: 1
+                    - product_id: c9489b2d-774a-6701-f24d-51f9b7e6ee96
+                      sequence_id: 2
       tags:
         - coseller-collections
   /cosellers/mini-stores:
