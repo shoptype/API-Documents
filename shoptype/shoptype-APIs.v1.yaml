@@ -8988,7 +8988,11 @@ paths:
           in: query
           name: referrer
           description: Url from where it is publishing the tracker
-          required: true
+        - schema:
+            type: string
+          in: query
+          name: platformId
+          description: Platform id of the network. Either pass referrer or platformId. But one of the two is required
     parameters: []
   '/platforms/{platformId}/products/{productId}':
     parameters:
